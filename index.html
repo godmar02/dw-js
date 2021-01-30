@@ -86,6 +86,7 @@
 			position: relative;
 			width: 135px;
 			height: 40px;
+			display: table-cell;
 		}
 
 		label {
@@ -115,6 +116,7 @@
 			width: 135px;
 			height: 40px;
 			background: url(images/icons/down_arrow.png) no-repeat right;
+			display: table-cell;
 		}
 
 		select::-ms-expand {
@@ -1384,12 +1386,12 @@
 
 			<div id="attvalues">
 
-				<p class="row">
+				<p>
 					<label for="characterName">Name:</label>
 					<input type="text" id="characterName">
 				</p>
 
-				<p class="row">
+				<p>
 					<label for="selectClass">Class:</label>
 					<select id="selectClass" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Barbarian">Barbarian
@@ -1399,7 +1401,7 @@
 						<option value="Wizard">Wizard
 					</select><br>
 				</p>
-				<p class="row">
+				<p>
 					<label for="selectRace">Race:</label>
 					<select id="selectRace" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Dwarf">Dwarf
@@ -1408,7 +1410,7 @@
 						<option value="Human">Human
 					</select><br>
 				</p>
-				<p class="row">
+				<p>
 					<label for="selectAlignment">Alignment:</label>
 					<select id="selectAlignment" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Chaotic">Chaotic
@@ -1417,7 +1419,7 @@
 					</select>
 				</p>
 
-				<p class="row">
+				<p>
 					<label for="characterLevel">Level:</label>
 					<input type="number" min="1" id="characterLevel">
 
@@ -1442,7 +1444,7 @@
 					<input type="number" min="1" id="characterCHA">
 				</p>
 
-				<p class="row">
+				<p>
 					<select id="sTRAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Unafflicted">Unafflicted
 						<option value="Weak">Weak
@@ -1469,12 +1471,12 @@
 					</select>
 				</p>
 
-				<p class="row">
+				<p>
 				<p class="cell">Damage:</p>
 				<p class="cell">Armour:</p>
 				<p class="cell">HP:</p>
 				</p>
-				<p class="row">
+				<p>
 					<input type="text" id="characterDamage" readonly>
 					<input type="number" min="0" id="characterArmour">
 					<input type="number" min="0" id="characterHP">
