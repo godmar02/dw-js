@@ -2650,13 +2650,12 @@ function refreshattackers()
 <noscript>
 	<h2>Dungeon World Character Sheet</h2>
 	<i style="display: inline-block">(by Godmar02)</i>
-	<p>Javascript is required to use the calculator!</p>
+	<p>Javascript is required to use the Character Sheet!</p>
 	<p>If you are worried about potential security issues, you can always review the code at the project's <a href="https://github.com/godmar02/godmar02.github.io/index.html">GitHub repository</a>.</p>
 </noscript>
 <div id="main" style="visibility: hidden">
 	<h2>Dungeon World Character Sheet</h2>
-	<span style="display: inline-block"><i>(by Godmar02)</i>
-	<i id="shortlink">[<a href="https://github.com/godmar02/godmar02.github.io/?short">Short version</a>]</i></span>
+	<span style="display: inline-block"><i>(by Godmar02)</i></span>
 
 	<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
@@ -2818,7 +2817,7 @@ function refreshattackers()
 	<div id="resultcontainer" onclick="displayextinfo()" style="max-width: 800px">
 		<p><b id="result">Result:</b><span id="respressindicator">&#9679;</span></p>
 	<p id="resultatt"><b><i>30.01.2021: </i></b> Refer to the <a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a> for details.<br/><br/></p>
-		<p id="resultdef">For information on combat mechanics, calculator usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
+		<p id="resultdef">For information on the Character Sheet usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
 		<p id="resultsplash"></p>
 		<p id="frozennote" class="i"></p>
 		<p id="note" class="i"></p>
@@ -2830,158 +2829,26 @@ function refreshattackers()
 <div id="faq" style="display:none; max-width: 800px">
 	<h2>Frequently Asked Questions</h2><br/><br/>
 
-<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the calculator!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right" onclick="expandall(1)">+ Expand all</a></p>
+<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right" onclick="expandall(1)">+ Expand all</a></p>
 
 	<div class="q" style="border-top: 1px solid; margin-top: 25px;" onclick="expandcontainer(0)">
-		<div class="p"><b>How to use the calculator?</b></div>
+		<div class="p"><b>How to use the Character Sheet?</b></div>
 		<div id="expandindicator0" class="ei">+</div>
 	</div>
 	<div id="answercontainer0" class="a">
-	<p>Simply input all of the fields, click the Calculate! button, and your battle result will pop up at the bottom. All of the fields are required because every variable affects the result. You can use drop-down unit templates to fill the fields quicker, although these can also be useful if you don't remember the unit stats. Additional details such as unit veterancy and variable ship HP will appear next to the template box once you have selected a relevant unit.<br/><br/>When tapping or clicking on number fields to change values, the original value will be deleted to allow for faster input. A reminder containing the previous value will appear next to the corresponding text above. If a new value isn't provided, the previous one is automatically reinstated upon leaving the field.<br/><br/>Defender's current HP is automatically updated if the defender survives, so you can keep pressing Calculate! repeatedly until it is destroyed. This is useful for quickly calculating how many units of the same power are needed to take down a stronger unit, and you don't need to manually change the defender's current HP every time you want to perform an attack with a different unit.<br/><br/>Current HP values can be quickly refreshed by tapping or clicking the text above the current HP box twice (Attacker/Defender current HP:). This will set the attacker's or defender's current HP value equal to its max HP value.<br/><br/>You can access a history of all the recent battles that were performed in the current session. Tap or click three times on "Result:" or any text that appears below it to activate the history. Likewise, you can turn it off by tapping or clicking three times in that same area. The history showcases 10 entries by default. If for some reason you would like to keep a bigger (or smaller) history for the current session, set the attacker current HP value to 123, set the defender current HP value to the number of entries you want to keep and then press the Calculate! button. A message will appear as a confirmation. All entries are formatted as Attacker (stats) - Defender (stats|D/W), where stats are shown in the same order as they appear on the calculator, and D/W representing the defense/wall bonus for the defender.<br/><br/>Also, you can run the shortened version of the calculator if you find the attack, defense and max HP prompts unnecessary, or if you feel they are taking up too much space. To activate the shortened version, simply add the parameter ?short to the end of the calculator's browser URL. Therefore, the end of the URL should look like this:<br/><br/><a href="https://github.com/godmar02/godmar02.github.io/?short">.../polytopiacalculator/?short</a><br/><br/>This hides the redundant info. Attack and defense values will be shown in brackets just right of the current HP input boxes, while the current HP reminder when tapping or clicking to change values will also contain the max HP info. You can add this parameter even if you are running the calculator from a different location.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(1)">
-		<div class="p"><b>What is the damage formula?</b></div>
-		<div id="expandindicator1" class="ei">+</div>
-	</div>
-	<div id="answercontainer1" class="a">
-		<p>The calculator uses the same formula posted by the developer on the game wikia forums some time ago. You can find a link to this thread on the bottom of this FAQ. Here is the simplified code:</p>
-
-		<p>accelerator = 4.5<br/>
-		attackForce = attacker.attack * (attacker.health / attacker.maxHealth)<br/>
-		defenseForce = defender.defense * (defender.health / defender.maxHealth) * defenseBonus<br/>
-		totalDamage = attackForce + defenseForce<br/><br/>
-		attackResult = round((attackForce / totalDamage) * attacker.attack * accelerator)<br/>
-		defenseResult = round((defenseForce / totalDamage) * defender.defense * accelerator)</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(2)">
-		<div class="p"><b>How to use the Multi option?</b></div>
-		<div id="expandindicator2" class="ei">+</div>
-	</div>
-	<div id="answercontainer2" class="a">
-		<p>This option allows you to recreate a battle state so you can try a variety of approaches in order to achieve optimal results. To use it, press the Multi button. This makes the calculator switch modes. You can always return to the original mode by pressing the Single button.<br/><br/>When in Multi mode, do the following:<br/><br/>- Create a battlefield of attackers and defenders by selecting between Choose Attacker or Choose Defender at the top.<br/><br/>- Select a unit type from the unit template list, change its current HP if necessary and tick additional modifiers, if any.<br/><br/>- Press the Create Unit! button. This creates a unit on the battlefield. If you created a defender and ticked a defensive bonus, the unit will have a letter indicating the bonus type in their upper right corner (D/W for defense/wall bonus).<br/><br/>- Repeat this process until you create the desired battle situation. You can create any number of units this way.<br/><br/>- Before you start battling, it is recommended that you press the Save State button. This will preserve the current battle situation and whatever you do, you can always press Load State to reload the battle state you previously saved. This is very useful when you want to try out multiple methods to resolve the situation.<br/><br/>- You can start battling now. Simply press on an attacker to select it, and then press on a defender. If possible, the battle will automatically take place. As long as you keep creating new units and/or have units available, you can perform any number of calculations.<br/><br/>- To delete units, press the Delete Units button and select the attackers or defenders you want to delete. Units selected this way will instantly disappear. To stop deleting, press the Delete Units button again. Pressing other buttons such as Create Unit! or opening the FAQ also stops the deletion process. When active, the Delete Units button will have an (x) appear within it.<br/><br/>- Heal units by pressing the +2 button, and then select the units you want to heal. This heals the selected unit for +2 HP, and you can select any unit any number of times. To stop healing, press the +2 button again, but pressing other buttons or opening the FAQ also stops the process. When active, the +2 button will have an (x) appear within it. You cannot heal units over their maximum HP value, but you can resurrect units this way. <br/><br/>As per standard gameplay mechanics, most units can attack only once. Once a unit is either dead or unavailable for attack, its border is automatically grayed out and it cannot be selected again. There are some exceptions...<br/><br/>Knights and navalons will be able to continue attacking as long as they are destroying enemy units. They become unavailable once an attack doesn't destroy an enemy unit, but you can also do so manually by pressing on them again while they are selected. This usually just deselects any unit but if a knight or a navalon already performed an attack, it will become unavailable this way.<br/><br/>Fire dragon's first attack is always its main attack. Every subsequent attack is its splash attack, which is indicated by the letter S appearing in its upper right corner. If the fire dragon's main attack was retaliated against, splash attacks will still be calculated with its original HP in mind. This is true even if the fire dragon was destroyed by the retaliation, in which case it will be treated as available to perform splash attacks. Since the main attack and all of the collateral splash attacks happen at once, the fire dragon becomes unavailable once you deselect it or select any other attacker after performing its main attack. Saving a state or prompting to delete units also triggers this.<br/><br/>Other than the exceptions above, you can freely select and deselect your available attackers however you wish. The calculator remembers which units attacked and which did not.<br/><br/>You can freeze defenders by pressing on a defender you want to freeze three times repeatedly. Confirmation messages will appear under the "Feedback:" text, with the unit name being shown and a number in brackets which denotes the unit's position in the defender list. Once the unit is frozen its border will turn blue. You can unfreeze units in the same way. Ice archers will automatically freeze units with their attacks.<br/><br/>Another thing to note about the attacker knight is that its attack value will show as a bolded 3 instead of a regular 3.5. This is deliberate because additional symbols didn't fit well into the unit container in some battle situations. It otherwise has no effect on the battle result.<br/><br/>You can refresh all of your attackers by pressing the "Attackers:" text three times repeatedly. This will make all non-destroyed, unavailable attackers able to attack again.<br/><br/>When selecting an available ranged unit, you are prompted with a No retaliation checkbox which prevents enemy units from retaliating. This setting is automatically ticked by default. However, if you have to perform a big number of calculations that take place between ranged units (such as in a sea battle), you can change this default setting by pressing on the "Defenders:" text. This will make enemy units retaliate by default. You can change back to the original setting by pressing the text again.<br/><br/>Since this mode uses some sprites from the game, the images won't appear if you download the calculator to use it offline. You'd have to download the image folders also while preserving the pathing context. Just in case, I'll be keeping the old calculator .html file on the Github repository if this update breaks anything (as <a href="https://github.com/godmar02/godmar02.github.io/oldindex.html">oldindex.html</a>). Only Imperius and Xin-Xi sprites will be available out of respect for the developer.<br/><br/>The Multi mode uses the same code as the original single-battle calculator. This is why you will see the same values being filled and the same results being reported as before, even though most of them aren't visible in Multi mode. The battle history is also available while in Multi mode with additional info being preserved, including the No retaliation clause and the fire dragon's attack type.<br/><br/>To prevent accidental resets of huge battlefields, a button to clear everything isn't included. Simply refresh the calculator page if you want to start over, or delete the leftover units by pressing the Delete Units button.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(3)">
-		<div class="p"><b>Is it possible to calculate on the fly?</b></div>
-		<div id="expandindicator3" class="ei">+</div>
-	</div>
-	<div id="answercontainer3" class="a">
-		<p>It is to some extent. Follow these guidelines:<br/><br/>- Maximum damage of any unit is its relevant battle value * 4.5, rounded up. Attack value is used when attacking, defense value is used when retaliating.<br/><br/>- Add up the attack and defense values of units participating in the battle, and see how much of each value constitutes the sum in percentages.<br/><br/>- Apply the percentage to the unit's maximum damage to get the battle result. Assuming equal opponents with full HP, this will be 50% for both, which translates into half the maximum damage being dealt by either side. Warriors would deal 5 (4.5) damage to each other, swordsmen would deal 7 (6.75), etc.<br/><br/>- For another example, say a swordsman is attacking a rider - 3 attack value versus 1 defense value, both at full HP. That comes up to 75% of maximum damage for the attacker (10 damage at full HP), and 25% of maximum damage for the defender (1 damage, if it somehow survives the attack).<br/><br/>- Lower HP also affects the result as a percentage, causing the attack and defense values to scale down with the amount of HP lost. Maximum damage stays the same, but only the fraction of the relevant battle value is added to the sum for the purpose of determining constituting percentages. For example, a 5-HP, non-veteran warrior would have 50% less health, which corresponds to 50% less attack value being added to the sum. If he were to attack an enemy warrior with full HP, the sum of their battle values would be 3 instead of 4. Therefore, the attacker would deal about 33% of its maximum damage (3), while the defender would deal about 67% of its maximum damage (6).<br/><br/>- Taking the above example into account, we can conclude that HP loss affects a unit very adversely. Having 1/10 HP allows the unit to use only 10% of its offensive and defensive capabilities, sometimes resulting in that unit dealing no damage at all. Damage received is almost certainly fatal, as the consequently low defense value allows enemy units to deal their maximum damage (or close to it). This also means that 0-defense units like catapults always receive maximum damage regardless of current HP values for either side, while dealing no damage in return.<br/><br/>- Defense bonuses affect retaliation damage in the same way as lost HP does, since it is all calculated together at the same time. See questions below for more details.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(4)">
-		<div class="p"><b>How is the defense bonus applied?</b></div>
-		<div id="expandindicator4" class="ei">+</div>
-	</div>
-	<div id="answercontainer4" class="a">
-		<p>The defenseForce variable is increased by a factor of 1.5 (defenseBonus = 1.5) if the defender is on a tile that provides a standard defense bonus. If the defender is behind a wall, it's increased by a factor of 4. If no defense bonuses are applied, the defenseBonus variable has a default value of 1.<br/><br/>Because of how the formula works, defense bonuses have less effect on defenders with low HP. There is no effect on defenders with 0 defense value, which will always receive maximum damage regardless of where they are.<br/><br/>Only the defenseForce variable is affected by the increase, so you won't get the correct retaliation result if you were to apply the same factor to the defense value of the unit instead.<br/><br/>Keep in mind that since the Polaris update, all units that can benefit from defense bonuses in cities have the Fortify skill. If a unit can occupy a city but doesn't have this skill - it can't benefit from that city's defense bonus. Units that don't have the Fortify skill are:<br/><br/>Catapults, mind benders, giants, crabs, navalons, baby dragons, fire dragons, moonies, battle sleds, ice fortresses and gaamis.<br/><br/>Perhaps surprisingly, dragon eggs do get the Fortify skill.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(5)">
-		<div class="p"><b>Which tiles provide the standard defense bonus?</b></div>
-		<div id="expandindicator5" class="ei">+</div>
-	</div>
-	<div id="answercontainer5" class="a">
-		<p>Non-walled cities and defensive terrain for which you researched the relevant technology - Aquatism for water, Archery for forests and Meditation for mountains. If a player has any of these technologies, their units will have a shield appear around their HP when they are on tiles that provide the bonus. The shield will also appear on units that are in friendly cities, excepting units that don't have the Fortify skill. These units never benefit from defense bonuses in cities, even if they are walled.<br/><br/>For Polaris, the Polarism technology replaces Aquatism and provides the standard defense bonus for friendly units on water tiles that have been turned to ice.<br/><br/>Friendly territory does not in itself grant additional defensive bonuses. It does, however, improve the unit's HP recovery rate (see "How does healing work?" further below).</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(6)">
-		<div class="p"><b>How does the retaliation damage work?</b></div>
-		<div id="expandindicator6" class="ei">+</div>
-	</div>
-	<div id="answercontainer6" class="a">
-		<p>The unit's defense value is used in place of its attack value to calculate the retaliation damage. This is why some units deal significantly less damage when retaliating, while the defender unit and units with defense bonuses deal more. Because all of the modifiers are already applied before dealing damage takes place, the defender's HP loss doesn't affect its retaliation result. Instead, it deals damage based on HP it had before combat began.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(7)">
-		<div class="p"><b>Why is there no option for attacking from a tile that provides a defense bonus?</b></div>
-		<div id="expandindicator7" class="ei">+</div>
-	</div>
-	<div id="answercontainer7" class="a">
-		<p>Contrary to popular belief, this has no effect on the result. You forfeit the bonus entirely. Your unit will receive full damage when the enemy unit retaliates.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(8)">
-		<div class="p"><b>The defender was destroyed, but no word on what happened to the attacker?</b></div>
-		<div id="expandindicator8" class="ei">+</div>
-	</div>
-	<div id="answercontainer8" class="a">
-		<p>If the attack outright destroys the defender, no retaliation takes place. The attacker is unphased, so there's nothing for the calculator to report.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(9)">
-		<div class="p"><b>Enemy doesn't retaliate, but here I receive damage anyway. Will this affect my result?</b></div>
-		<div id="expandindicator9" class="ei">+</div>
-	</div>
-	<div id="answercontainer9" class="a">
-		<p>No. It doesn't matter if an enemy unit is next to you, away from you, or if it is a ranged unit that doesn't retaliate because you're in your opponent's fog of war. Simply disregard the retaliation damage - the damage you deal is not affected in any of these cases. You can always use Multi mode which does offer the option of no enemy retaliation.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(10)">
-		<div class="p"><b>How does healing work?</b></div>
-		<div id="expandindicator10" class="ei">+</div>
-	</div>
-	<div id="answercontainer10" class="a">
-		<p>Any damaged unit that does nothing during its turn can recover some of its lost HP instead. The amount is 4 HP if it is in friendly territory, and 2 HP if it is anywhere else. This happens automatically at the end of your turn, but you can choose to do so manually.<br/><br/>There are only two situations in the game where you can benefit from manually recovered HP. When the damaged unit is in a city which is about to be upgraded in order to activate the super unit reward, the damaged unit will be displaced from the city by the appearing super unit. This is treated as a regular move action, and the damaged unit will no longer be able to recover its HP as a result. Heal the unit first, then upgrade the city to prevent this. A similar thing happens when you're playing Elyrion and your damaged unit is on a tile where you're about to train a polytaur. It is solved in the same way - heal the unit first, then train the polytaur.<br/><br/>Mind benders also have the Heal Others ability which allows them to restore 4 HP to all friendly units adjacent to them. This stacks with the intrinsic Recover ability and heals from other mind benders. You can unlock the mind bender unit by researching Philosophy.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(11)">
-		<div class="p"><b>What are veteran units?</b></div>
-		<div id="expandindicator11" class="ei">+</div>
-	</div>
-	<div id="answercontainer11" class="a">
-		<p>A unit can be promoted to veteran status once it has destroyed 3 or more units, either via attacks or retaliations. You can promote the unit at any time during your turn, and you can even carry over the reward into following turns. However, you can only promote a unit once this way.<br/><br/>Once promoted, the unit's maximum HP permanently increases by 5 and the unit heals up completely. No other stats are affected. Because of this, it is generally a good idea to hold on to the reward until the unit is seriously damaged in battle.<br/><br/>Some units can't be promoted. This includes all super units (giants, crabs, every form of dragon, gaamis), mind benders, polytaurs, navalons, ice archers and moonies. Boats, ships and battleships can be promoted, but only if the carried unit previously activated the reward on land. This is due to the unit's battle victories at sea not being counted towards achieving its veteran status.<br/><br/>Interestingly, ice archers do have an option to track their battle victories for veteran status. However, their 0.1 attack value is not enough to deal damage, even in the worst case scenario where the defender's defense value is 0.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(12)">
-		<div class="p"><b>Where can I see all the unit stats?</b></div>
-		<div id="expandindicator12" class="ei">+</div>
-	</div>
-	<div id="answercontainer12" class="a">
-		<p>If you use drop-down unit templates, the calculator will automatically fill all the relevant stats for the selected unit. For more info, you should read the unit page on the game's wikia site. You can find the link to this page at the bottom of this FAQ.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(13)">
-		<div class="p"><b>How does the fire dragon's splash damage work?</b></div>
-		<div id="expandindicator13" class="ei">+</div>
-	</div>
-	<div id="answercontainer13" class="a">
-		<p>It is calculated in the same way as a regular attack. However, an additional line of code is added at the end:<br/><br/>
-		defender.health = defender.health - floor(attackResult / 2)<br/><br/>
-
-		This means that the unit receives half the damage it would normally receive if it was the main target, rounded down. So e.g. if the fire dragon would deal 11 damage to a unit by attacking it directly, that same unit would receive 5 damage (11/2=5.5=5) if it was splashed instead. Since nothing is altered in the original formula, the unit also benefits from its defense bonus, if any. Only the fire dragon's main target can retaliate, provided it survives the initial attack.<br/><br/>
-
-		In Single mode, both the main attack and splash damage results are provided to you simultaneously, calculated separately for the same defending unit. You either take one result or the other, depending on your follow-up. This is convenient if you're testing for damage in a group of units, so you can quickly get an idea which unit would be the most optimal to choose for the dragon's main attack. The calculator assumes the main attack will be the follow-up, and deducts that result from the defender's current HP.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(14)">
-		<div class="p"><b>How does the Polaris freezing mechanic work?</b></div>
-		<div id="expandindicator14" class="ei">+</div>
-	</div>
-	<div id="answercontainer14" class="a">
-		<p>The mechanic is unique to the Polaris tribe, with three of their special units being able to utilize the ability:<br/><br/>
-
-		Ice archers automatically freeze enemy units they attack. Frozen units cannot retaliate against the attack that freezes them nor against any subsequent attacks. The unit remains frozen until the Polaris player's next turn. None of its stats are affected. It's also worth noting that the ice archer itself can't retaliate at all, and its 0.1 attack value is not enough to destroy another unit or deal damage to it under any circumstances. This is why the calculator treats it as 0 instead.<br/><br/>
-
-		Moonies can freeze terrain and enemy units adjacent to them as its action that turn, which means it can't both move and use its freeze area ability. This freezes the affected units in the same way as that of the ice archer, but also freezes the terrain. Moonies can't attack nor retaliate.<br/><br/>
-
-		Gaami freezes the area around it in the same way as the mooni, but does so automatically after it moves. It can also choose to do so as an action.<br/><br/>
-
-		Frozen terrain has several benefits for the Polaris. Refer to the game wikia below for additional details.</p>
+	<p>TBC</p>
 	</div>
 
 	<div class="q" onclick="expandcontainer(15)">
-		<div class="p"><b>Can I use the calculator offline?</b></div>
+		<div class="p"><b>Can I use the Character Sheet offline?</b></div
 		<div id="expandindicator15" class="ei">+</div>
 	</div>
 	<div id="answercontainer15" class="a">
 		<p>Yes you can. Follow these instructions:<br/><br/>
-		<i>Any platform</i>: If you don't quit your browser app, you should be able to use the calculator without internet access as long as the browser stays in memory. The calculator is a static website and doesn't require the use of bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br/><br/>
-		<i>PC</i>: Go to the calculator website, right-click on any empty space and press Save as... or Save Page As... to get the index.html file. Alternatively, you can download the file from my <a href="https://drive.google.com/open?id=0B7HGBGCiKHGkSUExdEs3Q2J1UG8" target="_blank">Google Drive</a> or <a href="https://github.com/godmar02/godmar02.github.io" target="_blank">GitHub</a>. After you downloaded it, simply drag the .html file into your browser to run the calculator.<br/><br/>
+		<i>Any platform</i>: If you don't quit your browser app, you should be able to use the Character Sheet without internet access as long as the browser stays in memory. The Character Sheet is a static website and doesn't require the use of bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br/><br/>
+		<i>PC</i>: Go to the Character Sheet website, right-click on any empty space and press Save as... or Save Page As... to get the index.html file. After you downloaded it, simply drag the .html file into your browser to run the Character Sheet.<br/><br/>
 		<i>iOS</i>: Repeat the PC process. Download an app called HTML Viewer Q by Spica. Connect your device to iTunes. In iTunes, select your device and go to File Sharing. Select HTML Viewer, press Add File and find the .html file you downloaded on your PC. Disconnect your device, run HTML Viewer and press on a book-like icon at the bottom right. Switch from Bookmarks to Files and select the downloaded .html file.<br/><br/>
-		<i>Android</i>: Either repeat the PC process, or download the Google Drive app to fetch the .html file from my <a href="https://drive.google.com/open?id=0B7HGBGCiKHGkSUExdEs3Q2J1UG8" target="_blank">Google Drive</a>. If you used the PC, connect your device and transfer the .html file to it. If you used Google Drive, the file should be in your Downloads folder. Download the HTML Viewer app by Yogev Haham and run it. Press the paper-like icon at the upper right. Find and select the downloaded .html file, then press the browser view icon in the upper right.</p>
+		<i>Android</i>: Repeat the PC process. If you used the PC, connect your device and transfer the .html file to it. If you used Google Drive, the file should be in your Downloads folder. Download the HTML Viewer app by Yogev Haham and run it. Press the paper-like icon at the upper right. Find and select the downloaded .html file, then press the browser view icon in the upper right.</p>
 	</div>
 
 	<div class="q" onclick="expandcontainer(16)">
@@ -2989,71 +2856,26 @@ function refreshattackers()
 		<div id="expandindicator16" class="ei">+</div>
 	</div>
 	<div id="answercontainer16" class="a">
-		<p>I'm a big fan of the game and I've been playing it since early 2017. I have a tendency to learn every game I play in great detail as I'm hoping to pursue game design at some point. For about a year I was active over at the game's Discord server, which you should definitely join if you want to improve your game and meet other players. An invite to the server is posted at the bottom of this FAQ. I have since left Discord so I can focus on other things.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(17)">
-		<div class="p"><b>How can I contact you?</b></div>
-		<div id="expandindicator17" class="ei">+</div>
-	</div>
-	<div id="answercontainer17" class="a">
-		<p>You can contact me via <a href="mailto:frothdiscord@gmail.com" target="_top">e-mail</a>. I will no longer be updating the calculator, but other inquiries are always welcome.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(18)">
-		<div class="p"><b>What are Discord challenges?</b></div>
-		<div id="expandindicator18" class="ei">+</div>
-	</div>
-	<div id="answercontainer18" class="a">
-		<p>These are player-made, self-imposed limitations that alter the gameplay in some fundamental way. You can find the challenge list at the bottom of this FAQ. To be eligible for the scoreboard, you have to join Discord and post your results in the appropriate channel.</p>
-	</div>
-
-	<div class="q" onclick="expandcontainer(19)">
-		<div class="p"><b>How can I become a better player?</b></div>
-		<div id="expandindicator19" class="ei">+</div>
-	</div>
-	<div id="answercontainer19" class="a">
-		<p>Read through strategies on the game wikia, Reddit and Discord. Watch videos of experienced players on Youtube. Ask the player-base for help. Most important of all - play a lot, maximize your income and try to learn the mechanics behind the game. It will come in time. The links to help you with this are provided below.</p>
+		<p>Never you mind...</p>
 	</div>
 
 	<div style="float: left; position: relative; top: 6px; width: 100%">
 		<p><b style="float: left; margin-top: 4px;">Links:</b><a href="javascript:;" class="textpress" id="expandallindicator2" style="float: right" onclick="expandall(2)">+ Expand all</a></p><br/>
 
-		<p style="margin-top: 16px"><a href="https://discord.gg/YTFTuAq?" target="_blank">Discord</a><br/>
-		<a href="http://polytopia.wikia.com/wiki/The_Battle_of_Polytopia_Wikia" target="_blank">Wikia</a><br/>
-		<a href="https://www.reddit.com/r/Polytopia/" target="_blank">Reddit</a><br/><br/>
+		<p style="margin-top: 16px">
+		<a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br/>
+		<a href="https://www.reddit.com/r/DungeonWorld/" target="_blank">Reddit</a><br/><br/>
 
-		<a href="http://www.midjiwan.com/polytopia.html" target="_blank">Official Game Website</a><br/>
-		<a href="https://www.facebook.com/polytopia/" target="_blank">Official Game Facebook</a><br/>
-		<a href="https://www.facebook.com/groups/1863426817282664/" target="_blank">Official Facebook Multiplayer Group</a><br/><br/>
+		<a href="https://dungeon-world.com/" target="_blank">Official Game Website</a><br/>
+		<a href="https://a-dungeon-world.fandom.com/wiki/Free_Playbooks" target="_blank">Free Playbooks</a><br/>
+		<a href="https://drive.google.com/file/d/1O3-dNuIxoiVkIrH20LIzzA38r9sVsiEI/view?usp=sharing" target="_blank">Dungeon World First Edition by Sage LaTorra and Adam Koebel</a><br/>
+		<a href="https://drive.google.com/file/d/1uAJBlTFUbpPcNRBI7iHQ3eD2QT5Hxhu3/view?usp=sharing" target="_blank">Dungeon World Playbooks v2.0 Designed by Stefan Grambart</a><br/>
+		<a href="https://drive.google.com/file/d/1S2ntGyK17puyC01XfxSGIIaq-1w86gkd/view?usp=sharing" target="_blank">Truncheon World: The Truncated Dungeon World by Sage LaTorra and Adam Koebel</a><br/><br/>
 
-		<a href="https://twitter.com/midjiwan?lang=en" target="_blank">Midjiwan's Twitter</a><br/>
-		<a href="https://www.instagram.com/midjiwan/" target="_blank">Midjiwan's Instagram</a><br/>
-		<a href="https://www.youtube.com/channel/UCtBjQ-1WqlHrAjSaJUpKb0w" target="_blank">Midjiwan's Youtube Channel</a><br/>
-		<a href="http://polytopia.wikia.com/wiki/Thread:920" target="_blank">Midjiwan's Wikia Post</a><br/>
-		<a href="https://polytopia.wikia.com/wiki/Units" target="_blank">Wikia Unit Page</a><br/><br/>
+		<a href="https://github.com/godmar02/godmar02.github.ior" target="_blank">My GitHub</a><br/>
+		<a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br/><br/>
 
-		<a href="https://drive.google.com/open?id=0B7HGBGCiKHGkSFN2clluYnM0QlU" target="_blank">My Screenshots</a><br/><br/>
-
-		<a href="https://www.youtube.com/playlist?list=PLQqaZ-kEj4Exd6EMDYTadaWbsFMoROwzw" target="_blank">My Videos</a><br/>
-		<a href="https://www.youtube.com/channel/UCg0jaVEMIuy_sQ9t-VRuHXw/videos?disable_polymer=1" target="_blank">Tupp's Videos</a><span> (Recommended!)</span><br/>
-		<a href="https://www.youtube.com/channel/UCEmKzVafcBQauZylIoomojw/videos?disable_polymer=1" target="_blank">Ze Biggest Potato's Videos</a><br/><br/>
-
-		<a href="https://www.reddit.com/r/Polytopia/comments/6cjc4j/guide_quick_and_simple_guide_to_get_3_start_in/" target="_blank">Domination Guide by Airgibbo</a><br/>
-		<a href="https://www.reddit.com/r/Polytopia/comments/6fslca/bardur_100k_points_strategy_guide/" target="_blank">Perfection Guide by Tupp</a><br/>
-		<a href="https://www.reddit.com/r/Polytopia/comments/8b2f4s/guide_and_benchmarks_for_120k_in_perfection/" target="_blank">Perfection Guide by ameredit</a><br/>
-		<a href="https://www.reddit.com/r/Polytopia/comments/87urp6/consistently_over_100k_perfection_guide/" target="_blank">Perfection Guide by KiranKat</a><br/>
-		<a href="https://www.reddit.com/r/Polytopia/comments/5qbppw/my_guide_to_high_scores_in_perfection_mode_based/" target="_blank">Perfection Guide by Illinois_Jones</a><br/>
-		<a href="https://www.reddit.com/r/Polytopia/comments/85asn3/advanced_multiplayer_tribe_by_tribe_guide/" target="_blank">Multiplayer Guide by Will2Brown</a><br/>
-		<a href="https://docs.google.com/document/d/1-FeDFSUGY9ugUPNfTNqqrzzD8vfQ2Is_6FL_-XTrnrc" target="_blank">Comprehensive Guide by Gerenuk</a><br/><br/>
-
-		<a href="https://drive.google.com/open?id=10vODoFZk-i670i56je_6G-XyZK7qHHEqp7xA-nYW4X8" target="_blank">Challenge List</a><br/><br/>
-
-		<a href="https://github.com/godmar02/godmar02.github.ior" target="_blank">My GitHub</a><br/><br/>
-
-		<a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br/><br/><br/>
-
-		<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the calculator!</a></p><br/>
+		<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br/>
 	</div>
 </div>
 </body>
