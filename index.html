@@ -1398,7 +1398,9 @@
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
 			<div id="attvalues">
-				<p>Name:</p>
+				<label for="characterName">Name:</label>
+				<input type="text" id="characterName" name="characterName"><br><br>
+
 				<p>Class:</p>
 				<select id="selectClass" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 					<option value="Barbarian">Barbarian
@@ -1423,7 +1425,9 @@
 					<option value="Neutral">Neutral
 				</select>
 
-				<p>Level:</p>
+				<label for="characterLevel">Level:</label>
+				<input type="number" id="characterLevel" name="characterLevel"><br><br>
+
 				<p>XP:</p>
 				<p>STR DEX CON INT WIS CHA</p>
 				<label class="container" id="attveterancy" onclick="attackerveteran()" style="display: none; position: absolute; margin-left: 4px;">
