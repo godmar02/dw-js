@@ -19,7 +19,6 @@
 	<title>Dungeon World Character Sheet</title>
 
 	<style>
-
 		button {
 			font-size: 17px;
 			background-color: #eee;
@@ -242,7 +241,6 @@
 			-webkit-transform: rotate(45deg);
 			-ms-transform: rotate(45deg);
 		}
-
 	</style>
 
 </head>
@@ -1445,6 +1443,26 @@
 				<p class="cell">INT</p>
 				<p class="cell">WIS</p>
 				<p class="cell">CHA</p>
+				</p>
+
+				<pclass="row">
+					<input type="number" min="1" id="characterSTR">
+					<input type="number" min="1" id="characterDEX">
+					<input type="number" min="1" id="characterCON">
+					<input type="number" min="1" id="characterINT">
+					<input type="number" min="1" id="characterWIS">
+					<input type="number" min="1" id="characterCHA">
+				</p>
+
+				<p class="row">
+					<select id="sTRAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+						<option value="Unafflicted">Unafflicted
+						<option value="Weak">Weak
+					</select>
+					<select id="dEXAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+						<option value="Unafflicted">Unafflicted
+						<option value="Shaky">Shaky
+					</select>
 				</p>
 
 				<p class="row">
