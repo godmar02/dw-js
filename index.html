@@ -745,16 +745,6 @@
 					document.getElementById("attackmaxhp").value = "15";
 					break;
 			}
-			document.getElementById("shortatt").innerText = "(" + document.getElementById("attack").value + ")";
-			if (getattacker == "Warrior" || getattacker == "Rider" || getattacker == "Defender" || getattacker == "Swordsman" || getattacker == "Archer" || getattacker == "Catapult" || getattacker == "Knight" || getattacker == "Amphibian" || getattacker ==
-				"Tridention" || getattacker == "Battle Sled" || getattacker == "Ice Fortress") {
-				document.getElementById("attvetbox").checked = false;
-				document.getElementById("attveterancy").style.display = 'inline-block';
-			} else if (getattacker == "Boat" || getattacker == "Ship" || getattacker == "Battleship") {
-				document.getElementById("attveterancy").style.display = 'none';
-			} else {
-				document.getElementById("attveterancy").style.display = 'none';
-			}
 		}
 
 		function attackerveteran() {
