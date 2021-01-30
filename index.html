@@ -28,6 +28,13 @@
 			font-size: 17px;
 			margin-top: 12px;
 			margin-bottom: 12px;
+		}
+
+		p.cell {
+			display: table-cell;
+		}
+
+		p.row {
 			display: table-row;
 		}
 
@@ -1399,12 +1406,12 @@
 
 			<div id="attvalues">
 
-				<p>
+				<p class="row">
 					<label for="characterName">Name:</label>
 					<input type="text" id="characterName">
 				</p>
 
-				<p>
+				<p class="row">
 					<label for="selectClass">Class:</label>
 					<select id="selectClass" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Barbarian">Barbarian
@@ -1414,7 +1421,7 @@
 						<option value="Wizard">Wizard
 					</select><br>
 				</p>
-				<p>
+				<p class="row">
 					<label for="selectRace">Race:</label>
 					<select id="selectRace" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Dwarf">Dwarf
@@ -1423,7 +1430,7 @@
 						<option value="Human">Human
 					</select><br>
 				</p>
-				<p>
+				<p class="row">
 					<label for="selectAlignment">Alignment:</label>
 					<select id="selectAlignment" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
 						<option value="Chaotic">Chaotic
@@ -1432,7 +1439,7 @@
 					</select>
 				</p>
 
-				<p>
+				<p class="row">
 					<label for="characterLevel">Level:</label>
 					<input type="number" min="1" id="characterLevel">
 
@@ -1441,9 +1448,16 @@
 					<input type="number" min="0" id="characterMaxXP" readonly>
 				</p>
 
-				<p>STR DEX CON INT WIS CHA</p>
+				<p class="row">
+				<p class="cell">STR</p>
+				<p class="cell">DEX</p>
+				<p class="cell">CON</p>
+				<p class="cell">INT</p>
+				<p class="cell">WIS</p>
+				<p class="cell">CHA</p>
+				</p>
 
-				<p>
+				<p class="row">
 					<label for="characterDamage">Damage:</label>
 					<input type="text" id="characterDamage" readonly>
 
