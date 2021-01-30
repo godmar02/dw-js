@@ -19,8 +19,77 @@
 	<title>Dungeon World Character Sheet</title>
 
 	<style>
+
+		button {
+			font-size: 17px;
+			background-color: #eee;
+			color: black;
+			padding: 7px 11px;
+			border: 1px solid #696969;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		button:active {
+			background-color: lightgray;
+		}
+
+		div.ans {
+			border-bottom: 1px solid;
+			float: left;
+			display: none;
+			width: 100%;
+		}
+
+		div.ei {
+			text-align: right;
+			padding-right: 8px;
+			float: right;
+			width: 1%;
+		}
+
+		div.p {
+			font-size: 17px;
+			float: left;
+			width: 92%;
+		}
+
+		div.que {
+			border-bottom: 1px solid;
+			padding-top: 14px;
+			padding-bottom: 14px;
+			float: left;
+			width: 100%
+		}
+
+		form {
+			display: table;
+		}
+
 		h2 {
 			display: inline;
+		}
+
+		input {
+			display: table-cell;
+		}
+
+		input[type=number] {
+			display: inline-block;
+			border: 1px solid #A9A9A9;
+			padding-top: 4px;
+			padding-bottom: 4px;
+			padding-left: 1px;
+			padding-right: 1px;
+			border-radius: 0;
+			font-size: 17px;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			appearance: none;
+		}
+
+		label {
+			display: table-cell;
 		}
 
 		p {
@@ -38,45 +107,28 @@
 			display: table-row;
 		}
 
-		p.ext {
-			font-size: 16px;
-		}
-
-		p.i {
-			font-style: italic;
-		}
-
-		div.a {
-			border-bottom: 1px solid;
-			float: left;
-			display: none;
-			width: 100%;
-		}
-
-		div.c {
-			font-size: 13px;
-			max-height: 999999px;
-		}
-
-		div.ei {
-			text-align: right;
-			padding-right: 8px;
-			float: right;
-			width: 1%;
-		}
-
-		div.p {
+		select {
+			position: relative;
+			width: 135px;
+			height: 40px;
 			font-size: 17px;
-			float: left;
-			width: 92%;
+			display: inline-block;
+			border: 1px solid #A9A9A9;
+			display: table-cell;
+			padding-left: 1px;
+			padding-right: 2px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			border-radius: 0;
+			background: url(images/icons/down_arrow.png) no-repeat right;
+			box-sizing: border-box;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			appearance: none;
 		}
 
-		div.q {
-			border-bottom: 1px solid;
-			padding-top: 14px;
-			padding-bottom: 14px;
-			float: left;
-			width: 100%
+		select::-ms-expand {
+			display: none;
 		}
 
 		.textpress {
@@ -190,69 +242,7 @@
 			-ms-transform: rotate(45deg);
 		}
 
-		input[type=number] {
-			display: inline-block;
-			border: 1px solid #A9A9A9;
-			padding-top: 4px;
-			padding-bottom: 4px;
-			padding-left: 1px;
-			padding-right: 1px;
-			border-radius: 0;
-			font-size: 17px;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
-		}
 
-		form {
-			display: table;
-		}
-
-		label {
-			display: table-cell;
-		}
-
-		input {
-			display: table-cell;
-		}
-
-		select {
-			position: relative;
-			width: 135px;
-			height: 40px;
-			font-size: 17px;
-			display: inline-block;
-			border: 1px solid #A9A9A9;
-			display: table-cell;
-			padding-left: 1px;
-			padding-right: 2px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			border-radius: 0;
-			background: url(images/icons/down_arrow.png) no-repeat right;
-			box-sizing: border-box;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
-		}
-
-		select::-ms-expand {
-			display: none;
-		}
-
-		button {
-			font-size: 17px;
-			background-color: #eee;
-			color: black;
-			padding: 7px 11px;
-			border: 1px solid #696969;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		button:active {
-			background-color: lightgray;
-		}
 	</style>
 
 </head>
@@ -1482,10 +1472,7 @@
 			<p><b id="result">Result:</b><span id="respressindicator">&#9679;</span></p>
 			<p id="resultdef">For information on Character Sheet usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
 			<p id="resultsplash"></p>
-			<p id="frozennote" class="i"></p>
-			<p id="note" class="i"></p>
 			<span id="scrollanchor"></span>
-			<p id="extendedinfo" class="ext" style="display:none"><span style="border-top: 1px dashed black; padding-top: 10px; display: block; max-width: 350px;"></span>Battle history does not contain any entries yet.</p>
 		</div>
 	</div>
 
@@ -1495,19 +1482,19 @@
 		<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the calculator!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right"
 				onclick="expandall(1)">+ Expand all</a></p>
 
-		<div class="q" style="border-top: 1px solid; margin-top: 25px;" onclick="expandcontainer(0)">
+		<div class="que" style="border-top: 1px solid; margin-top: 25px;" onclick="expandcontainer(0)">
 			<div class="p"><b>How do I use the Character Sheet?</b></div>
 			<div id="expandindicator0" class="ei">+</div>
 		</div>
-		<div id="answercontainer0" class="a">
+		<div id="answercontainer0" class="ans">
 			<p>TBC.</p>
 		</div>
 
-		<div class="q" onclick="expandcontainer(1)">
+		<div class="que" onclick="expandcontainer(1)">
 			<div class="p"><b>Can I use the Character Sheet offline?</b></div>
 			<div id="expandindicator1" class="ei">+</div>
 		</div>
-		<div id="answercontainer1" class="a">
+		<div id="answercontainer1" class="ans">
 			<p>Yes you can. Follow these instructions:<br /><br />
 				<i>Any platform</i>: If you don't quit your browser app, you should be able to use the Character Sheet without internet access as long as the browser stays in memory. The Character Sheet is a static website and doesn't require the use of
 				bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br /><br />
@@ -1519,11 +1506,11 @@
 				downloaded .html file, then press the browser view icon in the upper right.</p>
 		</div>
 
-		<div class="q" onclick="expandcontainer(2)">
+		<div class="que" onclick="expandcontainer(2)">
 			<div class="p"><b>Who are you?</b></div>
 			<div id="expandindicator2" class="ei">+</div>
 		</div>
-		<div id="answercontainer2" class="a">
+		<div id="answercontainer2" class="ans">
 			<p>Never you mind.</p>
 		</div>
 
