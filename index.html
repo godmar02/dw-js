@@ -1450,31 +1450,23 @@
 					<input type="number" min="0" id="characterXP">
 					<input type="number" min="0" id="characterMaxXP" readonly>
 				</p>
-				
+
+				<p>STR DEX CON INT WIS CHA</p>
+
 				<p>
 					<label for="characterDamage">Damage:</label>
 					<input type="text" id="characterDamage" readonly>
 
 					<label for="characterArmour">Armour:</label>
 					<input type="number" min="0" id="characterArmour">
+
+					<label for="characterHP">HP:</label>
+					<input type="number" min="0" id="characterHP">
+					<input type="number" min="0" id="characterMaxHP" readonly>
 				</p>
 
 				<br><br>
 
-				<p>STR DEX CON INT WIS CHA</p>
-				<label class="container" id="attveterancy" onclick="attackerveteran()" style="display: none; position: absolute; margin-left: 4px;">
-					<span style="margin-right: 28px">Veteran?</span>
-					<input type="checkbox" id="attvetbox" style="visibility: hidden">
-					<span class="checkmark"></span>
-				</label>
-
-				<p class="shorthide" id="attvaluetext">Attacker attack value: <span id="attackrem" style="color: darkgray; visibility: hidden;"></span></p>
-				<input type="number" id="attack" class="minput shorthide" onfocusin="numberfocus('attack')" onfocusout="numberfocusout('attack')" min="0" step="0.5" required tabindex="1">
-				<p><span class="textpress" onclick="refreshatthp()">Current HP: </span><span id="attackhprem" style="color: darkgray; visibility: hidden;"></span></p>
-				<input type="number" id="attackhp" class="minput" onfocusin="numberfocus('attackhp')" onfocusout="numberfocusout('attackhp')" min="1" required tabindex="2"><span id="shortatt" style="display: none; font-size: 17px; margin-left: 4px;"></span>
-
-				<p class="shorthide" id="attmaxhptext">Max HP: <span id="attackmaxhprem" style="color: darkgray; visibility: hidden;"></span></p>
-				<input type="number" id="attackmaxhp" class="minput shorthide" onfocusin="numberfocus('attackmaxhp')" onfocusout="numberfocusout('attackmaxhp')" min="10" required tabindex="3">
 			</div>
 
 		</form>
