@@ -303,7 +303,7 @@ function calculate(mode)
 		var splashhp = parseInt(document.getElementById("defensehp").value);
 		var attmaxhp = parseInt(document.getElementById("attackmaxhp").value);
 		var defmaxhp = parseInt(document.getElementById("defensemaxhp").value);
-		var attname = document.getElementById("selectattacker").value;
+		var attname = document.getElementById("selectClass").value;
 		var defname = document.getElementById("selectdefender").value;
 	}
 	resetcounters();
@@ -913,9 +913,9 @@ function setwallbonus()
 	}
 	wallcheck();
 }
-function attackerfill()
+function classFill()
 {
-	var getattacker = document.getElementById("selectattacker").value;
+	var getattacker = document.getElementById("selectClass").value;
 	switch (getattacker)
 	{
 		case "Warrior":
@@ -1222,7 +1222,7 @@ function egg(attack)
 }
 function attackerveteran()
 {
-	var getattacker = document.getElementById("selectattacker").value;
+	var getattacker = document.getElementById("selectClass").value;
 	var getattveterancy = document.getElementById("attvetbox").checked;
 	switch (getattacker)
 	{
@@ -1362,7 +1362,7 @@ function defenderveteran()
 }
 function attackershiphp(selectattshiphp)
 {
-	var getattacker = document.getElementById("selectattacker").value;
+	var getattacker = document.getElementById("selectClass").value;
 	var getattshiphp = selectattshiphp;
 
 	document.getElementById("attshiphp" + prevattshiphp).style.border = "1px solid #A9A9A9";
@@ -1608,14 +1608,14 @@ function multiswitch()
 		document.getElementById("states").style.display='block';
 		document.getElementById("def1").checked = false;
 		document.getElementById("def2").checked = false;
-		document.getElementById("selectattacker").selectedIndex = 0;
+		document.getElementById("selectClass").selectedIndex = 0;
 		document.getElementById("attshiphp" + prevattshiphp).style.border = "1px solid #A9A9A9";
 		document.getElementById("attshiphp" + prevattshiphp).style.backgroundColor = "";
 		prevattshiphp = 10;
 		document.getElementById("defshiphp" + prevdefshiphp).style.border = "1px solid #A9A9A9";
 		document.getElementById("defshiphp" + prevdefshiphp).style.backgroundColor = "";
 		prevdefshiphp = 10;
-		attackerfill();
+		classFill();
 		document.getElementById("selectdefender").selectedIndex = 0;
 		defenderfill();
 		document.getElementById("unitselect").innerText = "Create Defender";
@@ -1689,7 +1689,7 @@ function createunit()
 		var atthp = parseInt(document.getElementById("attackhp").value);
 		var attorighp = parseInt(document.getElementById("attackhp").value);
 		var attmaxhp = parseInt(document.getElementById("attackmaxhp").value);
-		var attname = document.getElementById("selectattacker").value;
+		var attname = document.getElementById("selectClass").value;
 
 		if ((atthp < 1) || ((document.getElementById("attackhp").value % atthp) != 0) || (atthp > attmaxhp))
 		{
@@ -2476,7 +2476,7 @@ function noretaldefault()
 }
 function loadelements()
 {
-	attackerfill();
+	classFill();
 	defenderfill();
 	document.getElementById("main").style.visibility = "visible";
 
@@ -2659,33 +2659,14 @@ function refreshattackers()
 
 	<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
-	<p><label class="creationcontainer" id="createunitbutton" onclick="choosetype()" style="width: 185px; display: none; margin-bottom: 8px;">
-		<span id="unitselect" style="font-size: 17px; padding-left: 1px; padding-top: 4px; padding-bottom: 4px; width: 152px; float: left;">Create Attacker</span><img src="images/icons/switch1.png" alt="Image Switcher" id="switch1" height="20" width="20" style="position: absolute; margin-left: 10px; padding-top: 4px; visibility: visible;"><img src="images/icons/switch2.png" alt="Image Switcher" id="switch2" height="20" width="20" style="position: absolute; margin-left: 10px; padding-top: 4px; visibility: hidden;">
-	</label></p>
+  <p>Class:</p>
 	<div id="attvalues">
-		<select id="selectattacker" class= "mselect" onchange="attackerfill()" style="position: relative" tabindex="-1">
- 			<option value="Warrior">Warrior
-		 	<option value="Rider">Rider
-			<option value="Defender">Defender
-			<option value="Swordsman">Swordsman
-			<option value="Archer">Archer
-			<option value="Catapult">Catapult
-			<option value="Knight">Knight
-			<option value="Giant">Giant
-			<option value="Boat">Boat
-			<option value="Ship">Ship
-			<option value="Battleship">Battleship
-			<option value="Amphibian">Amphibian
-			<option value="Crab">Crab
-			<option value="Tridention">Tridention
-			<option value="Polytaur">Polytaur
-			<option value="Navalon">Navalon
-			<option value="Baby Dragon">Baby Dragon
-			<option value="Fire Dragon">Fire Dragon
-			<option value="Ice Archer">Ice Archer
-			<option value="Battle Sled">Battle Sled
-			<option value="Ice Fortress">Ice Fortress
-			<option value="Gaami">Gaami
+		<select id="selectClass" class= "mselect" onchange="classFill()" style="position: relative" tabindex="-1">
+ 			<option value="Barbarian">Barbarian
+		 	<option value="Bard">Bard
+			<option value="Ranger">Ranger
+			<option value="Thief">Thief
+			<option value="Wizard">Wizard
 		</select>
 
 		<label class="container" id="attveterancy" onclick="attackerveteran()" style="display: none; position: absolute; margin-left: 4px;">
@@ -2694,127 +2675,23 @@ function refreshattackers()
 			<span class="checkmark"></span>
 		</label>
 
-		<span id="attshiphp" style="display: none; position: absolute; margin-left: 4px;">
-			<label id="attshiphp10" class="shiphpcontainer" onclick="attackershiphp(10)">
-				<span>10</span>
-			</label>
-			<label id="attshiphp15" class="shiphpcontainer" onclick="attackershiphp(15)">
-				<span>15</span>
-			</label>
-			<label id="attshiphp20" class="shiphpcontainer" onclick="attackershiphp(20)">
-				<span>20</span>
-			</label>
-			<label id="attshiphp40" class="shiphpcontainer" onclick="attackershiphp(40)">
-				<span>40</span>
-			</label>
-		</span>
 		<p class="shorthide" id="attvaluetext">Attacker attack value: <span id="attackrem" style="color: darkgray; visibility: hidden;"></span></p>
 		<input type="number" id="attack" class="minput shorthide" onfocusin="numberfocus('attack')" onfocusout="numberfocusout('attack')" min="0" step="0.5" required tabindex="1">
-		<p><span class="textpress" onclick="refreshatthp()">Attacker current HP: </span><span id="attackhprem" style="color: darkgray; visibility: hidden;"></span></p>
+		<p><span class="textpress" onclick="refreshatthp()">Current HP: </span><span id="attackhprem" style="color: darkgray; visibility: hidden;"></span></p>
 		<input type="number" id="attackhp" class="minput" onfocusin="numberfocus('attackhp')" onfocusout="numberfocusout('attackhp')" min="1" required tabindex="2"><span id="shortatt" style="display: none; font-size: 17px; margin-left: 4px;"></span>
 
-		<p class="shorthide" id="attmaxhptext">Attacker max HP: <span id="attackmaxhprem" style="color: darkgray; visibility: hidden;"></span></p>
+		<p class="shorthide" id="attmaxhptext">Max HP: <span id="attackmaxhprem" style="color: darkgray; visibility: hidden;"></span></p>
 		<input type="number" id="attackmaxhp" class="minput shorthide" onfocusin="numberfocus('attackmaxhp')" onfocusout="numberfocusout('attackmaxhp')" min="10" required tabindex="3">
 	</div>
 
-	<div id="defvalues" style="display: inline;">
-		<p><select id="selectdefender" class= "mselect" onchange="defenderfill()" style="position: relative" tabindex="-4">
- 			<option value="Warrior">Warrior
-	 		<option value="Rider">Rider
-			<option value="Defender">Defender
-			<option value="Swordsman">Swordsman
-			<option value="Archer">Archer
-			<option value="Catapult">Catapult
-			<option value="Knight">Knight
-			<option value="Giant">Giant
-			<option value="Boat">Boat
-			<option value="Ship">Ship
-			<option value="Battleship">Battleship
-			<option value="Mind Bender">Mind Bender
-			<option value="Amphibian">Amphibian
-			<option value="Crab">Crab
-			<option value="Tridention">Tridention
-			<option value="Polytaur">Polytaur
-			<option value="Navalon">Navalon
-			<option value="Dragon Egg">Dragon Egg
-			<option value="Baby Dragon">Baby Dragon
-			<option value="Fire Dragon">Fire Dragon
-			<option value="Mooni">Mooni
-			<option value="Ice Archer">Ice Archer
-			<option value="Battle Sled">Battle Sled
-			<option value="Ice Fortress">Ice Fortress
-			<option value="Gaami">Gaami
-			<option value="Nature Bunny">Nature Bunny
-		</select>
-
-		<label class="container" id="defveterancy" onclick="defenderveteran()" style="display: none; position: absolute; margin-left: 4px;">
-			<span style="margin-right: 28px;">Veteran?</span>
-			<input type="checkbox" id="defvetbox" style="visibility: hidden">
-			<span class="checkmark"></span>
-		</label>
-
-		<span id="defshiphp" style="display: none; position: absolute; margin-left: 4px;">
-			<label id="defshiphp10" class="shiphpcontainer" onclick="defendershiphp(10)">
-				<span>10</span>
-			</label>
-			<label id="defshiphp15" class="shiphpcontainer" onclick="defendershiphp(15)">
-				<span>15</span>
-			</label>
-			<label id="defshiphp20" class="shiphpcontainer" onclick="defendershiphp(20)">
-				<span>20</span>
-			</label>
-			<label id="defshiphp40" class="shiphpcontainer" onclick="defendershiphp(40)">
-				<span>40</span>
-			</label>
-		</span></p>
-
-		<p class="shorthide" id="defvaluetext">Defender defense value: <span id="defenserem" style="color: darkgray; visibility: hidden;"></span></p>
-		<input type="number" id="defense" class="minput shorthide" onfocusin="numberfocus('defense')" onfocusout="numberfocusout('defense')" min="0" step="0.5" required tabindex="4">
-		<p><span class="textpress" onclick="refreshdefhp()">Defender current HP: </span><span id="defensehprem" style="color: darkgray; visibility: hidden;"></span></p>
-		<input type="number" id="defensehp" class="minput" onfocusin="numberfocus('defensehp')" onfocusout="numberfocusout('defensehp')" min="1" required tabindex="5"><span id="shortdef" style="display: none; font-size: 17px; margin-left: 4px;"></span>
-		<p class="shorthide" id="defmaxhptext">Defender max HP: <span id="defensemaxhprem" style="color: darkgray; visibility: hidden;"></span></p>
-		<input type="number" id="defensemaxhp" class="minput shorthide" onfocusin="numberfocus('defensemaxhp')" onfocusout="numberfocusout('defensemaxhp')" min="10" required tabindex="6">
-
-		<p>
-		<label class="container" onclick="setdefbonus()">
-			<span style="margin-right: 28px">Defense bonus?</span>
-			<input type="checkbox" id="def1" onclick="defcheck()" style="visibility: hidden">
-			<span class="checkmark"></span>
-		</label>
-		<label class="container" onclick="setwallbonus()">
-			<span style="margin-right: 28px">Wall bonus?</span>
-			<input type="checkbox" id="def2" onclick="wallcheck()" style="visibility: hidden">
-			<span class="checkmark"></span>
-		</label>
-		</p>
-	</div>
-
-	<p><button id="submitbutton" type="submit" class="mbutton" onclick="calculate('Single')" tabindex="7">Calculate!</button>
-	<button id="createbutton" type="button" class="mbutton" onclick="createunit()" style="display:none">Create Unit!</button>
-	<button id="multibutton" type="button" class="mbutton" onclick="multiswitch()">Multi</button>
-	<button id="deletebutton" type="button" class="mbutton" onclick="deleteunitprompt()" style="display:none">Delete Units</button>
 	</form>
-
-	<p id="attackersheader" style="display:none"><b class="textpress" onclick="refreshattackers()">Attackers:</b></p>
-	<div id="attackerlist" style="display:none; width: 325px;"></div>
-	<p id="defendersheader" style="display:none"><b class="textpress" onclick="noretaldefault()" style="margin-right: 75px">Defenders:</b>
-
-		<label class="container" id="noretaltext" onclick="noretalboxcheck()" style="visibility: hidden; position: relative;">
-			<span style="margin-right: 28px">No retaliation?</span>
-			<input type="checkbox" id="noretalbox" style="visibility: hidden">
-			<span class="checkmark"></span>
-		</label>
-
-		</p>
-	<div id="defenderlist" style="display:none; width: 325px;"></div>
 
 	<p id="states" style="display: none"><button type="button" class="mbutton" onclick="createbackup()">Save State</button>
 	<button type="button" class="mbutton" onclick="loadbackup()">Load State</button>
-	<button id="healbutton" type="button" class="mbutton" onclick="healunitprompt()">+2</button>
 
 	<div id="resultcontainer" onclick="displayextinfo()" style="max-width: 800px">
 		<p><b id="result">Result:</b><span id="respressindicator">&#9679;</span></p>
-		<p id="resultdef">For information on combat mechanics, calculator usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
+		<p id="resultdef">For information on Character Sheet usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
 		<p id="resultsplash"></p>
 		<p id="frozennote" class="i"></p>
 		<p id="note" class="i"></p>
