@@ -36,14 +36,14 @@
 		div.ans {
 			border-bottom: 1px solid;
 			float: left;
-			display: none;
 			width: 100%;
+			display: none;
 		}
 
 		div.expi {
 			text-align: right;
-			padding-right: 8px;
 			float: right;
+			padding-right: 8px;
 			width: 1%;
 		}
 
@@ -61,43 +61,11 @@
 			width: 100%
 		}
 
-		form {
-			display: table;
-		}
-
 		h2 {
 			display: inline;
 		}
 
-		input {
-			display: inline-block;
-			border: 1px solid #A9A9A9;
-			padding-top: 4px;
-			padding-bottom: 4px;
-			padding-left: 1px;
-			padding-right: 2px;
-			border-radius: 0;
-			font-size: 17px;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
-			display: table-cell;
-			box-sizing: border-box;
-			position: relative;
-			width: 135px;
-			height: 40px;
-			display: table-cell;
-		}
-
-		label {
-			display: table-cell;
-		}
-
-		p {
-			max-height: 999999px;
-			font-size: 17px;
-		}
-
+		input,
 		select {
 			display: inline-block;
 			border: 1px solid #A9A9A9;
@@ -110,13 +78,26 @@
 			-moz-appearance: none;
 			-webkit-appearance: none;
 			appearance: none;
-			display: table-cell;
 			box-sizing: border-box;
 			position: relative;
 			width: 135px;
 			height: 40px;
-			background: url(images/icons/down_arrow.png) no-repeat right;
-			display: table-cell;
+		}
+
+		input.shorttext,
+		input.shortnum {
+			width: 80px;
+			text-align: center;
+		}
+
+		input.attributes, select.mselect {
+			background-color: lightgrey;
+			text-align: center;
+		}
+
+		p {
+			max-height: 999999px;
+			font-size: 17px;
 		}
 
 		select::-ms-expand {
@@ -159,24 +140,6 @@
 
 		.container:active {
 			background-color: lightgray;
-		}
-
-		.shiphpcontainer {
-			display: inline-block;
-			cursor: pointer;
-			font-size: 17px;
-			border: 1px solid #A9A9A9;
-			width: 39px;
-			height: 40px;
-			padding-top: 10px;
-			padding-bottom: 6px;
-			padding-left: 2px;
-			padding-right: 2px;
-			text-align: center;
-			box-sizing: border-box;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
 		}
 
 		.creationcontainer {
@@ -1380,113 +1343,182 @@
 	</noscript>
 	<div id="main" style="visibility: hidden">
 		<h2>Dungeon World Character Sheet</h2>
-		<span style="display: inline-block"><i>(v0.1.2 by Godmar02)</i></span>
+		<span style="display: inline-block"><i>(v0.1.3 by Godmar02)</i></span><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
 			<div id="attvalues">
+				<table>
+					<tr>
+						<td>
+							<label for="characterName"><b>NAME</b></label>
+						</td>
+						<td>
+							<input type="text" id="characterName">
+						</td>
+					</tr>
 
-				<p>
-					<label for="characterName">Name:</label>
-					<input type="text" id="characterName">
-				</p>
+					<tr>
+						<td>
+							<label for="characterBackstory"><b>BACKSTORY</b></label>
+						</td>
+						<td>
+							<input type="text" id="characterBackstory">
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table>
+					<tr>
+						<td>
+							<label for="selectClass"><b>CLASS</b></label>
+						</td>
+						<td>
+							<select id="selectClass" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Barbarian">Barbarian
+								<option value="Bard">Bard
+								<option value="Ranger">Ranger
+								<option value="Thief">Thief
+								<option value="Wizard">Wizard
+							</select>
+						</td>
+					</tr>
 
-				<p>
-					<label for="selectClass">Class:</label>
-					<select id="selectClass" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Barbarian">Barbarian
-						<option value="Bard">Bard
-						<option value="Ranger">Ranger
-						<option value="Thief">Thief
-						<option value="Wizard">Wizard
-					</select><br>
-				</p>
-				<p>
-					<label for="selectRace">Race:</label>
-					<select id="selectRace" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Dwarf">Dwarf
-						<option value="Elf">Elf
-						<option value="Goblin">Goblin
-						<option value="Human">Human
-					</select><br>
-				</p>
-				<p>
-					<label for="selectAlignment">Alignment:</label>
-					<select id="selectAlignment" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Chaotic">Chaotic
-						<option value="Good">Good
-						<option value="Neutral">Neutral
-					</select>
-				</p>
+					<tr>
+						<td>
+							<label for="selectRace"><b>RACE</b></label>
+						</td>
+						<td>
+							<select id="selectRace" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Dwarf">Dwarf
+								<option value="Elf">Elf
+								<option value="Goblin">Goblin
+								<option value="Human">Human
+							</select>
+						</td>
+						<td>
+							<input type="text" id="raceAttributes" readonly>
+						</td>
+					</tr>
 
-				<p>
-					<label for="characterLevel">Level:</label>
-					<input type="number" min="1" id="characterLevel">
-
-					<label for="characterXP">XP:</label>
-					<input type="number" min="0" id="characterXP">
-					<input type="number" min="0" id="characterMaxXP" readonly>
-				</p>
-
-				<p>STR</p>
-				<p>DEX</p>
-				<p>CON</p>
-				<p>INT</p>
-				<p>WIS</p>
-				<p>CHA</p>
-
-				<p>
-					<input type="number" min="1" id="characterSTR">
-					<input type="number" min="1" id="characterDEX">
-					<input type="number" min="1" id="characterCON">
-					<input type="number" min="1" id="characterINT">
-					<input type="number" min="1" id="characterWIS">
-					<input type="number" min="1" id="characterCHA">
-				</p>
-
-				<p>
-					<select id="sTRAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Unafflicted">Unafflicted
-						<option value="Weak">Weak
-					</select>
-					<select id="dEXNAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Unafflicted">Unafflicted
-						<option value="Shaky">Shaky
-					</select>
-					<select id="cONAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Unafflicted">Unafflicted
-						<option value="Shaky">Sick
-					</select>
-					<select id="iNTAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Unafflicted">Unafflicted
-						<option value="Shaky">Stunned
-					</select>
-					<select id="wISAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Unafflicted">Unafflicted
-						<option value="Shaky">Confused
-					</select>
-					<select id="cHAAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
-						<option value="Unafflicted">Unafflicted
-						<option value="Shaky">Scarred
-					</select>
-				</p>
-
-				<p>
-				<p>Damage:</p>
-				<p>Armour:</p>
-				<p>HP:</p>
-				</p>
-				<p>
-					<input type="text" id="characterDamage" readonly>
-					<input type="number" min="0" id="characterArmour">
-					<input type="number" min="0" id="characterHP">
-					<input type="number" min="0" id="characterMaxHP" readonly>
-				</p>
-
+					<tr>
+						<td>
+							<label for="selectAlignment"><b>ALIGNMENT</b></label>
+						</td>
+						<td>
+							<select id="selectAlignment" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Chaotic">Chaotic
+								<option value="Good">Good
+								<option value="Neutral">Neutral
+							</select>
+						</td>
+						<td>
+							<input type="text" id="alignmentAttributes" readonly>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table>
+					<tr>
+						<td>
+							<label for="characterLevel"><b>LEVEL<b></label>
+						</td>
+						<td>
+							<input type="number" min="1" class="shortnum" id="characterLevel">
+						</td>
+						<td>
+							<label for="characterXP"><b>XP</b></label>
+						</td>
+						<td>
+							<input type="number" min="0" class="shortnum" id="characterXP">
+							<input type="text" class="shorttext" id="characterMaxXP" readonly>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table>
+					<tr>
+						<th><label for="characterSTR">STR</label></th>
+						<th><label for="characterDEX">DEX</label></th>
+						<th><label for="characterCON">CON</label></th>
+						<th><label for="characterINT">INT</label></th>
+						<th><label for="characterWIS">WIS</label></th>
+						<th><label for="characterCHA">CHA</label></th>
+					</tr>
+					<tr>
+						<td>
+							<input type="number" min="1" class="attributes" id="characterSTR"><br>
+							<input type="text" id="sTRModifier" readonly><br>
+							<select id="sTRAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Unafflicted">Unafflicted
+								<option value="Weak">Weak
+							</select>
+						</td>
+						<td>
+							<input type="number" min="1" class="attributes" id="characterDEX"><br>
+							<input type="text" id="dEXModifier" readonly><br>
+							<select id="dEXNAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Unafflicted">Unafflicted
+								<option value="Shaky">Shaky
+							</select>
+						</td>
+						<td>
+							<input type="number" min="1" class="attributes" id="characterCON"><br>
+							<input type="text" id="cONModifier" readonly><br>
+							<select id="cONAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Unafflicted">Unafflicted
+								<option value="Shaky">Sick
+							</select>
+						</td>
+						<td>
+							<input type="number" min="1" class="attributes" id="characterINT"><br>
+							<input type="text" id="iNTModifier" readonly><br>
+							<select id="iNTAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Unafflicted">Unafflicted
+								<option value="Shaky">Stunned
+							</select>
+						</td>
+						<td>
+							<input type="number" min="1" class="attributes" id="characterWIS"><br>
+							<input type="text" id="wISModifier" readonly><br>
+							<select id="wISAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Unafflicted">Unafflicted
+								<option value="Shaky">Confused
+							</select>
+						</td>
+						<td>
+							<input type="number" min="1" class="attributes" id="characterCHA"><br>
+							<input type="text" id="cHAModifier" readonly><br>
+							<select id="cHAAffliction" class="mselect" onchange="characterFill()" style="position: relative" tabindex="-1">
+								<option value="Unafflicted">Unafflicted
+								<option value="Shaky">Scarred
+							</select>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table>
+					<tr>
+						<th><label for="characterDamage">DAMAGE</label></th>
+						<th><label for="characterArmour">ARMOUR</label></th>
+						<th colspan="2"><label for="characterHP">HP</label></th>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" class="shorttext" id="characterDamage" readonly>
+						</td>
+						<td>
+							<input type="number" min="0" class="shortnum" id="characterArmour">
+						</td>
+						<td>
+							<input type="number" min="0" class="shortnum" id="characterHP">
+						</td>
+						<td>
+							<input type="text" class="shorttext" id="characterMaxHP" readonly>
+						</td>
+				</table>
 				<br><br>
-
 			</div>
-
 		</form>
 
 		<p id="states" style="display: none"><button type="button" class="mbutton" onclick="createbackup()">Save State</button>
