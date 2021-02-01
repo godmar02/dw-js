@@ -6,17 +6,17 @@
 	<link rel="apple-touch-icon" href="images/icons/dw_icon.png?v=2" type="image/png" />
 
 	<meta charset="UTF-8" />
-	<meta name="description" content="Welcome to the unofficial Dungeon World chara sheet!" />
+	<meta name="description" content="Welcome to the unofficial Dungeon World Character Sheet!" />
 	<meta name="author" content="Godmar02" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<meta property="og:url" content="https://github.com/godmar02/godmar02.github.io" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Dungeon World chara Sheet" />
-	<meta property="og:description" content="Welcome to the unofficial Dungeon World chara sheet!" />
+	<meta property="og:title" content="Dungeon World Character Sheet" />
+	<meta property="og:description" content="Welcome to the unofficial Dungeon World Character Sheet!" />
 	<meta property="og:image" content="https://github.com/godmar02/godmar02.github.io/images/icons/dw_icon.png" />
 
-	<title>Dungeon World chara Sheet</title>
+	<title>Dungeon World Character Sheet</title>
 
 	<style>
 		button {
@@ -108,25 +108,24 @@
 			height: 40px;
 		}
 
-		input.shorttext,
-		input.shortnum {
-			width: 80px;
-			text-align: center;
-		}
-
 		input.attributes,
 		select.mselect {
 			background-color: lightgrey;
 			text-align: center;
 		}
 
-		p {
-			max-height: 999999px;
-			font-size: 17px;
+		.shortfield {
+			width: 80px;
+			text-align: center;
 		}
 
 		select::-ms-expand {
 			display: none;
+		}
+
+		p {
+			max-height: 999999px;
+			font-size: 17px;
 		}
 
 		.textpress {
@@ -1237,7 +1236,7 @@
 				document.getElementById("shortatt").style.display = "inline";
 				document.getElementById("shortdef").style.display = "inline";
 				document.getElementById("shortlink").style.display = "none";
-				document.getElementById("shorttext").style.display = "none";
+				document.getElementById("shortfield").style.display = "none";
 			}
 		}
 
@@ -1361,13 +1360,13 @@
 	</script>
 
 	<noscript>
-		<h2>Dungeon World chara Sheet</h2>
+		<h2>Dungeon World Character Sheet</h2>
 		<i style="display: inline-block">(by Godmar02)</i>
-		<p>Javascript is required to use the chara Sheet</p>
+		<p>Javascript is required to use the Character Sheet</p>
 		<p>If you are worried about potential security issues, you can always review the code at the project's <a href="https://github.com/godmar02/godmar02.github.io/index.html">GitHub repository</a>.</p>
 	</noscript>
 	<div id="main" style="visibility: hidden">
-		<h2>Dungeon World chara Sheet</h2>
+		<h2>Dungeon World Character Sheet</h2>
 		<span style="display: inline-block"><i>(v0.1.4 by Godmar02)</i></span><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
@@ -1449,14 +1448,14 @@
 							<label for="charaLevel">LEVEL</label>
 						</th>
 						<td>
-							<input type="number" min="1" class="shortnum" id="charaLevel">
+							<input type="number" min="1" class="shortfield" id="charaLevel">
 						</td>
 						<th>
 							<label for="charaXP">XP</label>
 						</th>
 						<td>
-							<input type="number" min="0" class="shortnum" id="charaXP">
-							<input type="text" class="shorttext" id="charaMaxXP" readonly>
+							<input type="number" min="0" class="shortfield" id="charaXP">
+							<input type="text" class="shortfield" id="charaMaxXP" readonly>
 						</td>
 					</tr>
 				</table>
@@ -1530,16 +1529,16 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="shorttext" id="charaDamage" readonly>
+							<input type="text" class="shortfield" id="charaDamage" readonly>
 						</td>
 						<td>
-							<input type="number" min="0" class="shortnum" id="charaArmour">
+							<input type="number" min="0" class="shortfield" id="charaArmour">
 						</td>
 						<td>
-							<input type="number" min="0" class="shortnum" id="charaHP">
+							<input type="number" min="0" class="shortfield" id="charaHP">
 						</td>
 						<td>
-							<input type="text" class="shorttext" id="charaMaxHP" readonly>
+							<input type="text" class="shortfield" id="charaMaxHP" readonly>
 						</td>
 				</table>
 				<br>
@@ -1578,12 +1577,12 @@
 							<input type="text" id="item1">
 						</td>
 						<td>
-							<input type="number" class="shortnum" min="0" id="item1weight">
+							<input type="number" class="shortfield" min="0" id="item1weight">
 						</td>
 					</tr>
 					<tr>
 						<th><label for="Load">LOAD</label></th>
-						<td><input type="text" class="shorttext" id="loadWeight" readonly></td>
+						<td><input type="text" class="shortfield" id="loadWeight" readonly></td>
 					</tr>
 				</table>
 				<br>
@@ -1600,7 +1599,7 @@
 						<th><label for="charaFunds">FUNDS</label></th>
 					</tr>
 					<tr>
-						<td><input type="number" class="shortnum" min="0" id="charaFunds"></td>
+						<td><input type="number" class="shortfield" min="0" id="charaFunds"></td>
 					</tr>
 				</table>
 			</div>
@@ -1611,7 +1610,7 @@
 
 		<div id="resultcontainer" onclick="displayextinfo()" style="max-width: 800px">
 			<p><b id="result">Result:</b><span id="respressindicator">&#9679;</span></p>
-			<p id="resultdef">For information on chara Sheet usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
+			<p id="resultdef">For information on Character Sheet usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
 			<p id="resultsplash"></p>
 			<span id="scrollanchor"></span>
 		</div>
@@ -1620,11 +1619,11 @@
 	<div id="faq" style="display:none; max-width: 800px">
 		<h2>Frequently Asked Questions</h2><br /><br />
 
-		<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the chara Sheet!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right"
+		<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right"
 				onclick="expandall(1)">+ Expand all</a></p>
 
 		<div class="que" style="border-top: 1px solid; margin-top: 25px;" onclick="expandcontainer(0)">
-			<div class="p"><b>How do I use the chara Sheet?</b></div>
+			<div class="p"><b>How do I use the Character Sheet?</b></div>
 			<div id="expandindicator0" class="expi">+</div>
 		</div>
 		<div id="answercontainer0" class="ans">
@@ -1632,15 +1631,15 @@
 		</div>
 
 		<div class="que" onclick="expandcontainer(1)">
-			<div class="p"><b>Can I use the chara Sheet offline?</b></div>
+			<div class="p"><b>Can I use the Character Sheet offline?</b></div>
 			<div id="expandindicator1" class="expi">+</div>
 		</div>
 		<div id="answercontainer1" class="ans">
 			<p>Yes you can. Follow these instructions:<br /><br />
-				<i>Any platform</i>: If you don't quit your browser app, you should be able to use the chara Sheet without internet access as long as the browser stays in memory. The chara Sheet is a static website and doesn't require the use of
+				<i>Any platform</i>: If you don't quit your browser app, you should be able to use the Character Sheet without internet access as long as the browser stays in memory. The Character Sheet is a static website and doesn't require the use of
 				bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br /><br />
-				<i>PC</i>: Go to the chara Sheet website, right-click on any empty space and press Save as... or Save Page As... to get the index.html file. Alternatively, you can download the file from <a
-					href="https://github.com/godmar02/godmar02.github.io" target="_blank">GitHub</a>. After you downloaded it, simply drag the .html file into your browser to run the chara Sheet.<br /><br />
+				<i>PC</i>: Go to the Character Sheet website, right-click on any empty space and press Save as... or Save Page As... to get the index.html file. Alternatively, you can download the file from <a
+					href="https://github.com/godmar02/godmar02.github.io" target="_blank">GitHub</a>. After you downloaded it, simply drag the .html file into your browser to run the Character Sheet.<br /><br />
 				<i>iOS</i>: Repeat the PC process. Download an app called HTML Viewer Q by Spica. Connect your device to iTunes. In iTunes, select your device and go to File Sharing. Select HTML Viewer, press Add File and find the .html file you downloaded
 				on your PC. Disconnect your device, run HTML Viewer and press on a book-like icon at the bottom right. Switch from Bookmarks to Files and select the downloaded .html file.<br /><br />
 				<i>Android</i>: Repeat the PC process. If you used the PC, connect your device and transfer the .html file to it. Download the HTML Viewer app by Yogev Haham and run it. Press the paper-like icon at the upper right. Find and select the
@@ -1672,7 +1671,7 @@
 				<a href="https://github.com/godmar02/godmar02.github.io" target="_blank">My GitHub</a><br />
 				<a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br /><br />
 
-				<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the chara Sheet!</a></p><br />
+				<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br />
 		</div>
 	</div>
 </body>
