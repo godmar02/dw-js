@@ -68,31 +68,32 @@
 		table {
 			border-style: solid;
 			border-width: medium;
-            border-radius: 5px;
+			border-radius: 5px;
 		}
 
 		th {
 			background-color: black;
 			color: white;
-            font-size: 17px;
+			font-size: 17px;
 			text-align: center;
 			padding: 5px;
-            border-radius: 5px;
+			border-radius: 5px;
 		}
 
-		select,input {
+		select,
+		input {
 			display: inline-block;
 			-moz-appearance: none;
 			-webkit-appearance: none;
 			appearance: none;
 			position: relative;
-            box-sizing: border-box;
+			box-sizing: border-box;
 			font-size: 17px;
 			width: 135px;
 			height: 40px;
 			padding: 5px;
 			border: 1px solid #A9A9A9;
-            border-radius: 5px;
+			border-radius: 5px;
 			margin: 0;
 			text-align: center;
 		}
@@ -101,12 +102,16 @@
 			background: url(images/icons/down_arrow.png) no-repeat right;
 		}
 
-        .grey {
-        	background-color: lightgrey;
-        }
+		.grey {
+			background-color: lightgrey;
+		}
 
 		.shortfield {
 			width: 80px;
+		}
+
+		.tallfield {
+			height: 80px;
 		}
 
 		select::-ms-expand {
@@ -1462,7 +1467,7 @@
 					<tr>
 						<td>
 							<input type="number" min="1" id="charaSTR"><br>
-							<input type="text" class="grey" readonly id="sTRModifier"><br>
+							<input type="text" class="grey tallfield" readonly id="sTRModifier"><br>
 							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="sTRAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Weak">Weak
@@ -1470,7 +1475,7 @@
 						</td>
 						<td>
 							<input type="number" min="1" id="charaDEX"><br>
-							<input type="text" class="grey" readonly id="dEXModifier" ><br>
+							<input type="text" class="grey tallfield" readonly id="dEXModifier"><br>
 							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="dEXAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Shaky
@@ -1478,15 +1483,15 @@
 						</td>
 						<td>
 							<input type="number" min="1" id="charaCON"><br>
-							<input type="text" class="grey" readonly id="cONModifier" ><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cONAffliction" >
+							<input type="text" class="grey tallfield" readonly id="cONModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cONAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Sick
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" id="charaINT"><br>
-							<input type="text" class="grey" readonly id="iNTModifier"><br>
+							<input type="text" class="grey tallfield" readonly id="iNTModifier"><br>
 							<select id="iNTAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Stunned
@@ -1494,7 +1499,7 @@
 						</td>
 						<td>
 							<input type="number" min="1" id="charaWIS"><br>
-							<input type="text" class="grey" readonly id="wISModifier"><br>
+							<input type="text" class="grey tallfield" readonly id="wISModifier"><br>
 							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="wISAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Confused
@@ -1502,7 +1507,7 @@
 						</td>
 						<td>
 							<input type="number" min="1" id="charaCHA"><br>
-							<input type="text" class="grey" readonly id="cHAModifier"><br>
+							<input type="text" class="grey tallfield" readonly id="cHAModifier"><br>
 							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cHAAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Scarred
@@ -1513,7 +1518,7 @@
 				<br>
 				<table>
 					<tr>
-						<th><label for="charaDamage" >DAMAGE</label></th>
+						<th><label for="charaDamage">DAMAGE</label></th>
 						<th><label for="charaArmour">ARMOUR</label></th>
 						<th colspan="2"><label for="charaHP">HP</label></th>
 					</tr>
@@ -1528,7 +1533,7 @@
 							<input type="number" min="0" class="shortfield" id="charaHP">
 						</td>
 						<td>
-							<input type="text" class="shortfield" id="charaMaxHP" class="grey" readonly>
+							<input type="text" class="shortfield grey" readonly id="charaMaxHP">
 						</td>
 				</table>
 				<br>
