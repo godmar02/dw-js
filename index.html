@@ -69,6 +69,7 @@
 			border-style: solid;
 			border-width: medium;
 			border-radius: 5px;
+			width: 100%;
 		}
 
 		th {
@@ -78,6 +79,7 @@
 			text-align: center;
 			padding: 5px;
 			border-radius: 5px;
+			/*width: 25%;*/
 		}
 
 		select,
@@ -89,7 +91,8 @@
 			position: relative;
 			box-sizing: border-box;
 			font-size: 17px;
-			width: 135px;
+			/*width: 135px;*/
+			width: 100%;
 			height: 40px;
 			padding: 5px;
 			border: 1px solid #A9A9A9;
@@ -107,7 +110,8 @@
 		}
 
 		.shortfield {
-			width: 80px;
+			/*width: 80px;*/
+			width: 100%;
 		}
 
 		.tallfield {
@@ -220,6 +224,31 @@
 </head>
 
 <body onload="loadelements()">
+
+	<!-- SDKs and initialisation for Firebase: https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+	<script>
+		// Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		var firebaseConfig = {
+			apiKey: "AIzaSyAIKYE0kZAcB5AzAmuiNB37BFjoiO6AY6g",
+			authDomain: "dungeon-world-45d46.firebaseapp.com",
+			projectId: "dungeon-world-45d46",
+			storageBucket: "dungeon-world-45d46.appspot.com",
+			messagingSenderId: "226498870916",
+			appId: "1:226498870916:web:7cbaa58a3a178f1afeccd1",
+			measurementId: "G-YTPKF0BTK9"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+
+		const firebase = require("firebase");
+		// Required for side-effects
+		require("firebase/firestore");
+	</script>
+	<!-- Custom Scripting -->
 	<script>
 		var extinfo = [];
 		var tapcounter = 0;
@@ -656,20 +685,6 @@
 			}
 		}
 
-		function defcheck() {
-			var test = document.getElementById("def2").checked;
-			if (test == true) {
-				document.getElementById("def2").checked = false;
-			}
-		}
-
-		function wallcheck() {
-			var test = document.getElementById("def1").checked;
-			if (test == true) {
-				document.getElementById("def1").checked = false;
-			}
-		}
-
 		function setdefbonus() {
 			var test = document.getElementById("def1").checked;
 			if (test == true) {
@@ -713,142 +728,6 @@
 					document.getElementById("attackhp").value = "15";
 					document.getElementById("attackmaxhp").value = "15";
 					break;
-			}
-		}
-
-		function attackerveteran() {
-			var getattacker = document.getElementById("selectClass").value;
-			var getattveterancy = document.getElementById("attvetbox").checked;
-			switch (getattacker) {
-				case "Warrior":
-					document.getElementById("attack").value = "2";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-				case "Rider":
-					document.getElementById("attack").value = "2";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-				case "Defender":
-					document.getElementById("attack").value = "1";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
-				case "Swordsman":
-					document.getElementById("attack").value = "3";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
-				case "Archer":
-					document.getElementById("attack").value = "2";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-				case "Catapult":
-					document.getElementById("attack").value = "4";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-				case "Knight":
-					document.getElementById("attack").value = "3.5";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
-				case "Amphibian":
-					document.getElementById("attack").value = "2";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-				case "Tridention":
-					document.getElementById("attack").value = "3";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
-				case "Battle Sled":
-					document.getElementById("attack").value = "3";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
-				case "Ice Fortress":
-					document.getElementById("attack").value = "4";
-					document.getElementById("attackhp").value = "20";
-					document.getElementById("attackmaxhp").value = "20";
-					break;
-			}
-			var atthp = parseInt(document.getElementById("attackhp").value);
-			var attmaxhp = parseInt(document.getElementById("attackmaxhp").value);
-			if (getattveterancy == true) {
-				document.getElementById("attackhp").value = atthp + 5;
-				document.getElementById("attackmaxhp").value = attmaxhp + 5;
-			}
-		}
-
-		function defenderveteran() {
-			var getdefender = document.getElementById("selectdefender").value;
-			var getdefveterancy = document.getElementById("defvetbox").checked;
-			switch (getdefender) {
-				case "Warrior":
-					document.getElementById("defense").value = "2";
-					document.getElementById("defensehp").value = "10";
-					document.getElementById("defensemaxhp").value = "10";
-					break;
-				case "Rider":
-					document.getElementById("defense").value = "1";
-					document.getElementById("defensehp").value = "10";
-					document.getElementById("defensemaxhp").value = "10";
-					break;
-				case "Defender":
-					document.getElementById("defense").value = "3";
-					document.getElementById("defensehp").value = "15";
-					document.getElementById("defensemaxhp").value = "15";
-					break;
-				case "Swordsman":
-					document.getElementById("defense").value = "3";
-					document.getElementById("defensehp").value = "15";
-					document.getElementById("defensemaxhp").value = "15";
-					break;
-				case "Archer":
-					document.getElementById("defense").value = "1";
-					document.getElementById("defensehp").value = "10";
-					document.getElementById("defensemaxhp").value = "10";
-					break;
-				case "Catapult":
-					document.getElementById("defense").value = "0";
-					document.getElementById("defensehp").value = "10";
-					document.getElementById("defensemaxhp").value = "10";
-					break;
-				case "Knight":
-					document.getElementById("defense").value = "1";
-					document.getElementById("defensehp").value = "15";
-					document.getElementById("defensemaxhp").value = "15";
-					break;
-				case "Amphibian":
-					document.getElementById("defense").value = "1";
-					document.getElementById("defensehp").value = "10";
-					document.getElementById("defensemaxhp").value = "10";
-					break;
-				case "Tridention":
-					document.getElementById("defense").value = "1";
-					document.getElementById("defensehp").value = "15";
-					document.getElementById("defensemaxhp").value = "15";
-					break;
-				case "Battle Sled":
-					document.getElementById("defense").value = "2";
-					document.getElementById("defensehp").value = "15";
-					document.getElementById("defensemaxhp").value = "15";
-					break;
-				case "Ice Fortress":
-					document.getElementById("defense").value = "3";
-					document.getElementById("defensehp").value = "20";
-					document.getElementById("defensemaxhp").value = "20";
-					break;
-			}
-			var defhp = parseInt(document.getElementById("defensehp").value);
-			var defmaxhp = parseInt(document.getElementById("defensemaxhp").value);
-			if (getdefveterancy == true) {
-				document.getElementById("defensehp").value = defhp + 5;
-				document.getElementById("defensemaxhp").value = defmaxhp + 5;
 			}
 		}
 
@@ -1352,6 +1231,28 @@
 				}
 			}
 		}
+
+		function saveCharacter() {
+			db.collection("users").add({
+					first: "Ada",
+					last: "Lovelace",
+					born: 1815
+				})
+				.then(function(docRef) {
+					console.log("Document written with ID: ", docRef.id);
+				})
+				.catch(function(error) {
+					console.error("Error adding document: ", error);
+				});
+		}
+
+		function readCharacter() {
+			db.collection("users").get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					console.log(`${doc.id} => ${doc.data()}`);
+				});
+			});
+		}
 	</script>
 
 	<noscript>
@@ -1362,14 +1263,14 @@
 	</noscript>
 	<div id="main" style="visibility: hidden">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>(v0.1.5 by Godmar02)</i></span><br><br>
+		<span style="display: inline-block"><i>(v0.1.6 by Godmar02)</i></span><br><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
 			<div id="attvalues">
 				<table>
 					<tr>
-						<th>
+						<th style="width: 25%;">
 							<label for="charaName">NAME</label>
 						</th>
 						<td>
@@ -1450,6 +1351,8 @@
 						</th>
 						<td>
 							<input type="number" min="0" class="shortfield" id="charaXP">
+						</td>
+						<td>
 							<input type="text" class="shortfield grey" readonly id="charaMaxXP">
 						</td>
 					</tr>
@@ -1564,7 +1467,7 @@
 						<th colspan="2"><label for="charaGear">GEAR</label></th>
 					</tr>
 					<tr>
-						<th><label for="items">ITEMS</label></th>
+						<th style="width: 75%;"><label for="items">ITEMS</label></th>
 						<th><label for="weight">WEIGHT</label></th>
 					</tr>
 					<tr>
