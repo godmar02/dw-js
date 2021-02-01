@@ -65,6 +65,11 @@
 			display: inline;
 		}
 
+		table {
+			border-style: solid;
+			border-width: medium;
+		}
+
 		th {
 			background-color: black;
 			color: white;
@@ -72,7 +77,7 @@
 			padding: 5px;
 		}
 
-		select {
+		select,input {
 			display: inline-block;
 			/*border: 1px solid #A9A9A9;*/
 			/*padding: 4px 2px 4px 1px;*/
@@ -87,36 +92,15 @@
 			height: 40px;
 			text-align: center;
 			margin: 0px;
+
+		}
+
+		select {
 			background: url(images/icons/down_arrow.png) no-repeat right;
-		}
-
-		input {
-			display: inline-block;
-			/*border: 1px solid #A9A9A9;*/
-			padding-top: 4px;
-			padding-bottom: 4px;
-			padding-left: 1px;
-			padding-right: 2px;
-			border-radius: 0;
-			font-size: 17px;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
-			box-sizing: border-box;
-			position: relative;
-			width: 135px;
-			height: 40px;
-		}
-
-		input.attributes,
-		select.mselect {
-			background-color: lightgrey;
-			text-align: center;
 		}
 
 		.shortfield {
 			width: 80px;
-			text-align: center;
 		}
 
 		select::-ms-expand {
@@ -1367,7 +1351,7 @@
 	</noscript>
 	<div id="main" style="visibility: hidden">
 		<h2>Dungeon World Character Sheet</h2>
-		<span style="display: inline-block"><i>(v0.1.4 by Godmar02)</i></span><br>
+		<span style="display: inline-block"><i>(v0.1.5 by Godmar02)</i></span><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
@@ -1471,7 +1455,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="number" min="1" class="attributes" id="charaSTR"><br>
+							<input type="number" min="1" id="charaSTR"><br>
 							<input type="text" id="sTRModifier" readonly><br>
 							<select id="sTRAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
@@ -1479,7 +1463,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" class="attributes" id="charaDEX"><br>
+							<input type="number" min="1" id="charaDEX"><br>
 							<input type="text" id="dEXModifier" readonly><br>
 							<select id="dEXNAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
@@ -1487,7 +1471,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" class="attributes" id="charaCON"><br>
+							<input type="number" min="1" id="charaCON"><br>
 							<input type="text" id="cONModifier" readonly><br>
 							<select id="cONAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
@@ -1495,7 +1479,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" class="attributes" id="charaINT"><br>
+							<input type="number" min="1" id="charaINT"><br>
 							<input type="text" id="iNTModifier" readonly><br>
 							<select id="iNTAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
@@ -1503,7 +1487,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" class="attributes" id="charaWIS"><br>
+							<input type="number" min="1" id="charaWIS"><br>
 							<input type="text" id="wISModifier" readonly><br>
 							<select id="wISAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
@@ -1511,7 +1495,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" class="attributes" id="charaCHA"><br>
+							<input type="number" min="1" id="charaCHA"><br>
 							<input type="text" id="cHAModifier" readonly><br>
 							<select id="cHAAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
