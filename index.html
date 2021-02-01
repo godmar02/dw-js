@@ -68,32 +68,31 @@
 		table {
 			border-style: solid;
 			border-width: medium;
-			border-radius: 5px;
+            border-radius: 5px;
 		}
 
 		th {
 			background-color: black;
 			color: white;
-			font-size: 17px;
+            font-size: 17px;
 			text-align: center;
 			padding: 5px;
-			border-radius: 5px;
+            border-radius: 5px;
 		}
 
-		select,
-		input {
+		select,input {
 			display: inline-block;
 			-moz-appearance: none;
 			-webkit-appearance: none;
 			appearance: none;
 			position: relative;
-			box-sizing: border-box;
+            box-sizing: border-box;
 			font-size: 17px;
 			width: 135px;
 			height: 40px;
 			padding: 5px;
 			border: 1px solid #A9A9A9;
-			border-radius: 5px;
+            border-radius: 5px;
 			margin: 0;
 			text-align: center;
 		}
@@ -101,6 +100,10 @@
 		select {
 			background: url(images/icons/down_arrow.png) no-repeat right;
 		}
+
+        .grey {
+        	background-color: lightgrey;
+        }
 
 		.shortfield {
 			width: 80px;
@@ -1408,7 +1411,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="text" id="raceAttributes" readonly>
+							<input type="text" id="raceAttributes" class="grey" readonly>
 						</td>
 					</tr>
 
@@ -1424,7 +1427,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="text" id="alignmentAttributes" readonly>
+							<input type="text" id="alignmentAttributes" class="grey" readonly>
 						</td>
 					</tr>
 				</table>
@@ -1442,7 +1445,7 @@
 						</th>
 						<td>
 							<input type="number" min="0" class="shortfield" id="charaXP">
-							<input type="text" class="shortfield" id="charaMaxXP" readonly>
+							<input type="text" class="shortfield grey" readonly id="charaMaxXP">
 						</td>
 					</tr>
 				</table>
@@ -1459,31 +1462,31 @@
 					<tr>
 						<td>
 							<input type="number" min="1" id="charaSTR"><br>
-							<input type="text" id="sTRModifier" readonly><br>
-							<select id="sTRAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
+							<input type="text" class="grey" readonly id="sTRModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="sTRAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Weak">Weak
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" id="charaDEX"><br>
-							<input type="text" id="dEXModifier" readonly><br>
-							<select id="dEXNAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
+							<input type="text" class="grey" readonly id="dEXModifier" ><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="dEXAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Shaky
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" id="charaCON"><br>
-							<input type="text" id="cONModifier" readonly><br>
-							<select id="cONAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
+							<input type="text" class="grey" readonly id="cONModifier" ><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cONAffliction" >
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Sick
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" id="charaINT"><br>
-							<input type="text" id="iNTModifier" readonly><br>
+							<input type="text" class="grey" readonly id="iNTModifier"><br>
 							<select id="iNTAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Stunned
@@ -1491,16 +1494,16 @@
 						</td>
 						<td>
 							<input type="number" min="1" id="charaWIS"><br>
-							<input type="text" id="wISModifier" readonly><br>
-							<select id="wISAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
+							<input type="text" class="grey" readonly id="wISModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="wISAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Confused
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" id="charaCHA"><br>
-							<input type="text" id="cHAModifier" readonly><br>
-							<select id="cHAAffliction" onchange="charaFill()" style="position: relative" tabindex="-1">
+							<input type="text" class="grey" readonly id="cHAModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cHAAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Scarred
 							</select>
@@ -1510,13 +1513,13 @@
 				<br>
 				<table>
 					<tr>
-						<th><label for="charaDamage">DAMAGE</label></th>
+						<th><label for="charaDamage" >DAMAGE</label></th>
 						<th><label for="charaArmour">ARMOUR</label></th>
 						<th colspan="2"><label for="charaHP">HP</label></th>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="shortfield" id="charaDamage" readonly>
+							<input type="text" class="shortfield" id="charaDamage" class="grey" readonly>
 						</td>
 						<td>
 							<input type="number" min="0" class="shortfield" id="charaArmour">
@@ -1525,7 +1528,7 @@
 							<input type="number" min="0" class="shortfield" id="charaHP">
 						</td>
 						<td>
-							<input type="text" class="shortfield" id="charaMaxHP" readonly>
+							<input type="text" class="shortfield" id="charaMaxHP" class="grey" readonly>
 						</td>
 				</table>
 				<br>
@@ -1569,7 +1572,7 @@
 					</tr>
 					<tr>
 						<th><label for="Load">LOAD</label></th>
-						<td><input type="text" class="shortfield" id="loadWeight" readonly></td>
+						<td><input type="text" class="shortfield grey" readonly id="loadWeight"></td>
 					</tr>
 				</table>
 				<br>
