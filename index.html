@@ -251,33 +251,6 @@
 
 	<!-- Custom Scripting -->
 	<script>
-		/*Base User-Set attributes*/
-		var player;
-		var character;
-		var backstory;
-		var look;
-		var dwclass;
-		var race;
-		var alignment;
-
-		/*Other attributes*/
-		var armour = 0;
-		var currentHP = 0;
-		var level = 0;
-		var currentXP = 0;
-
-		/*Misc*/
-		var bonds = [];
-		var items = [];
-		var weight = 0;
-		var funds = 0;
-
-		/*Calculated values*/
-		var raceAttributes;
-		var alignmentAttributes;
-		var load = 0;
-		var maxLoad = 0;
-		var classFeatures = [];
 
 		/*Other variables*/
 		var answersexpanded = 0;
@@ -411,17 +384,6 @@
 				messageclear();
 			}
 			return false;
-		}
-
-		function charaFill() {
-			var getattacker = document.getElementById("selectClass").value;
-			switch (getattacker) {
-				case "Warrior":
-					document.getElementById("attack").value = "2";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-			}
 		}
 
 		function saveCharacter() {
