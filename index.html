@@ -559,6 +559,51 @@
 			});
 		}
 
+		function populateAlignments() {
+
+			var $dropdown = $(this);
+
+			$.getJSON("jsondata/alignments.json", function(data) {
+
+				var key = $dropdown.val();
+				var vals = [];
+
+				switch (key) {
+
+					case 'Barbarian':
+						vals = data.Barbarian.split(",");
+						break;
+					case 'Bard':
+						vals = data.Bard.split(",");
+						break;
+					case 'Cleric':
+						vals = data.Cleric.split(",");
+						break;
+					case 'Druid':
+						vals = data.Druid.split(",");
+						break;
+					case 'Fighter':
+						vals = data.Fighter.split(",");
+						break;
+					case 'Paladin':
+						vals = data.Paladin.split(",");
+						break;
+					case 'Thief':
+						vals = data.Thief.split(",");
+						break;
+					case 'Wizard':
+						vals = data.Wizard.split(",");
+						break;
+				}
+
+				var $alignment = $("#alignment");
+				$alignment.empty();
+				$.each(vals, function(index, value) {
+					$alignment.append("<option value='" + value + "'>" + value);
+				})
+			})
+		}
+
 		function loadelements() {
 			document.getElementById("main").style.visibility = "visible";
 		}
@@ -625,7 +670,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select id="dwClass" onchange="setMaxHP(); setMaxLoad(); setDamage();" style="position: relative" tabindex="-1">
+							<select id="dwClass" onchange="setMaxHP(); setMaxLoad(); setDamage(); populateAlignments();" style="position: relative" tabindex="-1">
 								<option value="Barbarian">Barbarian
 								<option value="Bard">Bard
 								<option value="Cleric">Cleric
@@ -663,9 +708,6 @@
 						</th>
 						<td>
 							<select id="alignment" style="position: relative" tabindex="-1">
-								<option value="Chaotic">Chaotic
-								<option value="Good">Good
-								<option value="Neutral">Neutral
 							</select>
 						</td>
 						<td>
