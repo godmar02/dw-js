@@ -305,45 +305,9 @@
 		/*Other variables*/
 		var answersexpanded = 0;
 
-		function checkAbilities() {
-			/* max abilities are 73*/
-		}
+		function calcModifier(value) {
 
-		function checkLoad() {}
-
-		function setRaceAttributes() {
-			/*
-						[Click To Pick A Class]	[Choose Here!]				[Pick a race from the dropdown!]
-						Bard	Elf	Human			When you enter an important location (your call) you can ask the GM for one fact from the history of that location.	When you first enter a civilized settlement someone who respects the custom of hospitality to minstrels will take you in as their guest.
-						Cleric	Dwarf	Human			You are one with stone. When you commune you are also granted a special version of Words of the Unspeaking as a rote which only works on stone.	Your faith is diverse. Choose one wizard spell. You can cast and be granted that spell as if it was a cleric spell.
-						Druid	Elf	Human	Halfling		The sap of the elder trees flows within you. In addition to any other attunements, the Great Forest is always considered your land.	As your people learned to bind animals to field and farm, so too are you bound to them. You may always take the shape of any domesticated animal, in addition to your normal options.	You sing the healing songs of spring and brook. When you make camp, you and your allies heal +1d6.
-						Fighter	Dwarf	Elf	Halfling	Human	When you share a drink with someone, you may parley with them using CON instead of CHA.	Choose one weapon—you can always treat weapons of that type as if they had the precise tag.	When you defy danger and use your small size to your advantage, take +1.	Once per battle you may reroll a single damage roll (yours or someone else's).
-						Paladin	Human				When you pray for guidance, even for a moment, and ask, "What here is evil?" the GM will tell you, honestly.
-						Ranger	Elf	Human			When you undertake a perilous journey through wilderness whatever job you take you succeed as if you rolled a 10+.	When you make camp in a dungeon or city, you don't need to consume a ration.
-						Thief	Halfling	Human			When you attack with a ranged weapon, deal +2 damage.	You are a professional. When you spout lore or discern realities about criminal activities, take +1.
-						Wizard	Elf	Human			Magic is as natural as breath to you. Detect Magic is a cantrip for you.	Choose one cleric spell. You can cast it as if it was a wizard spell.
-						*/
-		}
-
-		function setAlignmentAttributes() {
-			/*
-			CLASS ALIGNMENTS
-			CLASS	ALIGNMENT1	ALIGNMENT2	ALIGNMENT3	DESCRIPTION1	DESCRIPTION2	DESCRIPTION3
-			[Click To Pick A Class]	[Choose Here!]			[Pick an alignment from the dropdown!]
-			Bard	Good	Neutral	Chaotic	Perform your art to aid someone else.	Avoid a conflict or defuse a tense situation.	Spur others to significant and unplanned decisive action.
-			Cleric	Good	Lawful	Evil	Endanger yourself to heal another.	Endanger yourself following the precepts of your church or god.	Harm another to prove the superiority of your church or god.
-			Druid	Chaotic	Good	Neutral	Destroy a symbol of civilization.	Help something or someone grow.	Eliminate an unnatural menace.
-			Fighter	Good	Neutral	Evil	Defend those weaker than you.	Defeat a worthy opponent.	Kill a defenseless or surrendered enemy.
-			Paladin	Lawful	Good		Deny mercy to a criminal or unbeliever.	Endanger yourself to protect someone weaker than you.
-			Ranger	Chaotic	Good	Neutral	Free someone from literal or figurative bonds.	Endanger yourself to combat an unnatural threat.	Help an animal or spirit of the wild.
-			Thief	Chaotic	Neutral	Evil	Leap into danger without a plan.	Avoid detection or infiltrate a location.	Shift danger or blame from yourself to someone else.
-			Wizard	Good	Neutral	Evil	Use magic to directly aid another.	Discover something about a magical mystery.	Use magic to cause terror and fear.
-			*/
-		}
-
-		function calcModifier(ability) {
-
-			var input = parseInt(ability, 10);
+			var input = parseInt(value, 10);
 			if ([1, 2, 3].indexOf(input) > -1) {
 				return -3
 			} else if ([4, 5].indexOf(input) > -1) {
@@ -584,7 +548,6 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.1.8 by Godmar02</i></span><br><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
