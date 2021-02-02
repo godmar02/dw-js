@@ -267,12 +267,12 @@
 		var int = 0;
 		var wis = 0;
 		var cha = 0;
-		var sTRAffliction;
-		var dEXAffliction;
-		var cONAffliction;
-		var iNTAffliction;
-		var wISAffliction;
-		var cHAAffliction;
+		var strAffliction;
+		var dexAffliction;
+		var conAffliction;
+		var intAffliction;
+		var wisAffliction;
+		var chaAffliction;
 
 		/*Other attributes*/
 		var armour = 0;
@@ -289,12 +289,12 @@
 		/*Calculated values*/
 		var raceAttributes;
 		var alignmentAttributes;
-		var sTRModifier;
-		var dEXModifier;
-		var cONModifier;
-		var iNTModifier;
-		var wISModifier;
-		var cHAModifier;
+		var strModifier;
+		var dexModifier;
+		var conModifier;
+		var intModifier;
+		var wisModifier;
+		var chaModifier;
 		var damage;
 		var maxHP = 0;
 		var maxXP = 0;
@@ -315,17 +315,44 @@
 
 		function setAlignmentAttributes() {}
 
-		function setSTRModifier() {}
+		function calcModifier(ability) {
+			if ([1, 2, 3].indexOf(ability) > -1) {
+				return "[-3]"
+			} else if ([4, 5].indexOf(ability) > -1) {
+				return "[-2]"
+			} else if ([6, 7, 8].indexOf(ability) > -1) {
+				return "[-1]"
+			} else if ([9, 10, 11, 12].indexOf(ability) > -1) {
+				return "[0]"
+			} else if ([13, 14, 15].indexOf(ability) > -1) {
+				return "[+1]"
+			} else if ([16, 17].indexOf(ability) > -1) {
+				return "[+2]"
+			} else if ([18].indexOf(ability) > -1) {
+				return "[+3]"
+			} else if (ability == null) {
+				return null
+			} else {
+				return "ERROR"
+			}
+		}
 
-		function setDEXModifier() {}
+		function setModifiers() {
+			var str = document.getElementById("str").value ;
+			var dex = document.getElementById("dex").value ;
+			var con = document.getElementById("con").value ;
+			var int = document.getElementById("int").value ;
+			var wis = document.getElementById("wis").value ;
+			var cha = document.getElementById("cha").value ;
 
-		function setCONModifier() {}
+			document.getElementById("strModifier").value = calcModifier(str);
+			document.getElementById("dexModifier").value = calcModifier(dex);
+			document.getElementById("conModifier").value = calcModifier(con);
+			document.getElementById("intModifier").value = calcModifier(int);
+			document.getElementById("wisModifier").value = calcModifier(wis);
+			document.getElementById("chaModifier").value = calcModifier(cha);
 
-		function setINTModifier() {}
-
-		function setWISModifier() {}
-
-		function setCHAModifier() {}
+		}
 
 		function setDamage() {}
 
@@ -438,21 +465,6 @@
 					document.getElementById("attackhp").value = "10";
 					document.getElementById("attackmaxhp").value = "10";
 					break;
-				case "Rider":
-					document.getElementById("attack").value = "2";
-					document.getElementById("attackhp").value = "10";
-					document.getElementById("attackmaxhp").value = "10";
-					break;
-				case "Defender":
-					document.getElementById("attack").value = "1";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
-				case "Swordsman":
-					document.getElementById("attack").value = "3";
-					document.getElementById("attackhp").value = "15";
-					document.getElementById("attackmaxhp").value = "15";
-					break;
 			}
 		}
 
@@ -490,21 +502,7 @@
 			charaFill();
 			document.getElementById("main").style.visibility = "visible";
 
-			var queryStr = window.location.search;
-			if (queryStr == "?short") {
-				var hiddenelements = document.getElementsByClassName("shorthide");
-				var i;
-				for (i = 0; i < hiddenelements.length; i++) {
-					hiddenelements[i].style.display = "none";
-				}
-				shortparameter = true;
-				document.getElementById("shortatt").style.display = "inline";
-				document.getElementById("shortdef").style.display = "inline";
-				document.getElementById("shortlink").style.display = "none";
-				document.getElementById("shortfield").style.display = "none";
-			}
 		}
-
 	</script>
 
 	<noscript>
@@ -552,12 +550,12 @@
 					</tr>
 
 					<tr>
-						<th><label for="charaBackstory">BACKSTORY</label></th>
-						<td><input type="text" id="charaBackstory"></td>
+						<th><label for="Backstory">BACKSTORY</label></th>
+						<td><input type="text" id="Backstory"></td>
 					</tr>
 					<tr>
-						<th><label for="charaLook">LOOK</label></th>
-						<td><input type="text" id="charaLook"></td>
+						<th><label for="Look">LOOK</label></th>
+						<td><input type="text" id="Look"></td>
 					</tr>
 
 				</table>
@@ -615,77 +613,77 @@
 				<table>
 					<tr>
 						<th>
-							<label for="charaLevel">LEVEL</label>
+							<label for="Level">LEVEL</label>
 						</th>
 						<td>
-							<input type="number" min="1" class="shortfield" id="charaLevel">
+							<input type="number" min="1" class="shortfield" id="Level">
 						</td>
 						<th>
-							<label for="charaXP">XP</label>
+							<label for="XP">XP</label>
 						</th>
 						<td>
-							<input type="number" min="0" class="shortfield" id="charaXP">
+							<input type="number" min="0" class="shortfield" id="XP">
 						</td>
 						<td>
-							<input type="text" class="shortfield grey" readonly id="charaMaxXP">
+							<input type="text" class="shortfield grey" readonly id="MaxXP">
 						</td>
 					</tr>
 				</table>
 				<br>
 				<table>
 					<tr>
-						<th><label for="charaSTR">STR</label></th>
-						<th><label for="charaDEX">DEX</label></th>
-						<th><label for="charaCON">CON</label></th>
-						<th><label for="charaINT">INT</label></th>
-						<th><label for="charaWIS">WIS</label></th>
-						<th><label for="charaCHA">CHA</label></th>
+						<th><label for="str">STR</label></th>
+						<th><label for="dex">DEX</label></th>
+						<th><label for="con">CON</label></th>
+						<th><label for="int">INT</label></th>
+						<th><label for="wis">WIS</label></th>
+						<th><label for="cha">CHA</label></th>
 					</tr>
 					<tr>
 						<td>
-							<input type="number" min="1" max="18" id="charaSTR"><br>
-							<input type="text" class="grey tallfield" readonly id="sTRModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="sTRAffliction">
+							<input type="number" min="1" max="18" onchange="setModifiers()" id="str"><br>
+							<input type="text" class="grey tallfield" readonly id="strModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="strAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Weak">Weak
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" id="charaDEX"><br>
-							<input type="text" class="grey tallfield" readonly id="dEXModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="dEXAffliction">
+							<input type="number" min="1" max="18" onchange="setModifiers()" id="dex"><br>
+							<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="dexAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Shaky
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" id="charaCON"><br>
-							<input type="text" class="grey tallfield" readonly id="cONModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cONAffliction">
+							<input type="number" min="1" max="18" onchange="setModifiers()" id="con"><br>
+							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="conAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Sick
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" id="charaINT"><br>
-							<input type="text" class="grey tallfield" readonly id="iNTModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="iNTAffliction">
+							<input type="number" min="1" max="18" onchange="setModifiers()" id="int"><br>
+							<input type="text" class="grey tallfield" readonly id="intModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="intAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Stunned
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" id="charaWIS"><br>
-							<input type="text" class="grey tallfield" readonly id="wISModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="wISAffliction">
+							<input type="number" min="1" max="18" onchange="setModifiers()" id="wis"><br>
+							<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="wisAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Confused
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" id="charaCHA"><br>
-							<input type="text" class="grey tallfield" readonly id="cHAModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="cHAAffliction">
+							<input type="number" min="1" max="18" onchange="setModifiers()" id="cha"><br>
+							<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
+							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="chaAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Scarred
 							</select>
@@ -695,39 +693,39 @@
 				<br>
 				<table>
 					<tr>
-						<th><label for="charaDamage">DAMAGE</label></th>
-						<th><label for="charaArmour">ARMOUR</label></th>
-						<th colspan="2"><label for="charaHP">HP</label></th>
+						<th><label for="Damage">DAMAGE</label></th>
+						<th><label for="Armour">ARMOUR</label></th>
+						<th colspan="2"><label for="HP">HP</label></th>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="shortfield grey" readonly id="charaDamage">
+							<input type="text" class="shortfield grey" readonly id="Damage">
 						</td>
 						<td>
-							<input type="number" min="0" class="shortfield" id="charaArmour">
+							<input type="number" min="0" class="shortfield" id="Armour">
 						</td>
 						<td>
-							<input type="number" min="0" class="shortfield" id="charaHP">
+							<input type="number" min="0" class="shortfield" id="HP">
 						</td>
 						<td>
-							<input type="text" class="shortfield grey" readonly id="charaMaxHP">
+							<input type="text" class="shortfield grey" readonly id="MaxHP">
 						</td>
 				</table>
 				<br>
 				<table>
 					<tr>
-						<th><label for="charaBonds">BONDS</label></th>
+						<th><label for="Bonds">BONDS</label></th>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="charaBonds">
+							<input type="text" id="Bonds">
 						</td>
 					</tr>
 				</table>
 				<br>
 				<table>
 					<tr>
-						<th colspan="2"><label for="charaGear">GEAR</label></th>
+						<th colspan="2"><label for="Gear">GEAR</label></th>
 					</tr>
 					<tr>
 						<th style="width: 75%;"><label for="items">ITEMS</label></th>
@@ -758,10 +756,10 @@
 				<br>
 				<table>
 					<tr>
-						<th><label for="charaFunds">FUNDS</label></th>
+						<th><label for="Funds">FUNDS</label></th>
 					</tr>
 					<tr>
-						<td><input type="number" class="shortfield" min="0" id="charaFunds"></td>
+						<td><input type="number" class="shortfield" min="0" id="Funds"></td>
 					</tr>
 				</table>
 				<br>
@@ -780,7 +778,8 @@
 	<div id="faq" style="display:none; max-width: 800px">
 		<h2>Frequently Asked Questions</h2><br /><br />
 
-		<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right" onclick="expandall(1)">+ Expand all</a></p>
+		<p><a href="javascript:;" class="textpress" style="float: left" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress" id="expandallindicator1" style="float: right"
+				onclick="expandall(1)">+ Expand all</a></p>
 
 		<div class="que" style="border-top: 1px solid; margin-top: 25px;" onclick="expandcontainer(0)">
 			<div class="p"><b>How do I use the Character Sheet?</b></div>
