@@ -79,7 +79,6 @@
 			text-align: center;
 			padding: 5px;
 			border-radius: 5px;
-			/*width: 25%;*/
 		}
 
 		select,
@@ -93,6 +92,7 @@
 			font-size: 17px;
 			/*width: 135px;*/
 			width: 100%;
+			min-width: 100px;
 			height: 40px;
 			padding: 5px;
 			border: 1px solid #A9A9A9;
@@ -248,8 +248,15 @@
 		// Required for side-effects
 		require("firebase/firestore");
 	</script>
+
 	<!-- Custom Scripting -->
 	<script>
+		/*Abilities and modifiers*/
+		var str = 0;
+
+
+
+
 		var extinfo = [];
 		var tapcounter = 0;
 		var entries = 10;
@@ -1261,17 +1268,30 @@
 		<p>Javascript is required to use the Character Sheet</p>
 		<p>If you are worried about potential security issues, you can always review the code at the project's <a href="https://github.com/godmar02/godmar02.github.io/index.html">GitHub repository</a>.</p>
 	</noscript>
-	<div id="main" style="visibility: hidden">
+	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
 		<span style="display: inline-block"><i>(v0.1.6 by Godmar02)</i></span><br><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
 			<div id="attvalues">
+
+<table>
+					<tr>
+						<th style="width: 25%;">
+							<label for="playerName">PLAYER</label>
+						</th>
+						<td>
+							<input type="text" id="playerName">
+						</td>
+					</tr>
+                    </table>
+                    <br>
+
 				<table>
 					<tr>
 						<th style="width: 25%;">
-							<label for="charaName">NAME</label>
+							<label for="charaName">CHARACTER</label>
 						</th>
 						<td>
 							<input type="text" id="charaName">
@@ -1505,7 +1525,9 @@
 				<button type="button" class="mbutton" onclick="createbackup()" id="saveCharacter">Save</button>
 				<button type="button" class="mbutton" onclick="loadbackup()" id="loadCharacter">Load</button>
 				<button id="clearCharacter">Clear</button>
+
 			</div>
+
 		</form>
 
 		<p id="faqLinks">For information on Character Sheet usage and useful guides or links, read the <a href="#top" onclick="return show('faq', 'main')" target="_top">FAQ</a>.</p>
