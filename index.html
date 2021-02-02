@@ -306,15 +306,15 @@
 			document.getElementById("maxXP").value = "/ " + maxXP;
 		}
 
-		/* FOR SOME REASON THIS BREAKS LOADING
+
 		function setClassVariables() {
 
-		  var dwClass = document.getElementById(dwClass).value;
+		   var dwClass = document.getElementById(dwClass).value;
 
 		  if (dwClass == "Barbarian") {
-		    var damage = ;
-		    var baseHP = ;
-		    var baseLoad = ;
+		    var damage = "NOT KNOWN";
+		    var baseHP = 0;
+		    var baseLoad = 0;
 		  } else if (dwClass == "Bard") {
 		    var damage = "d6";
 		    var baseHP = 6;
@@ -348,7 +348,7 @@
 		    var baseHP = 4;
 		    var baseLoad = 7;
 		  }
-		}*/
+		}
 
 		function expandall(indicator) {
 			if (document.getElementById("expandallindicator1").innerHTML == "+ Expand all") {
@@ -470,7 +470,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.2.0 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.2.1 by Godmar02</i></span><br><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
