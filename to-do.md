@@ -10,3 +10,4 @@
 - save
 - load
 - clear
+- dice roller

@@ -149,7 +149,6 @@
 			position: absolute;
 			display: none;
 		}
-
 	</style>
 
 </head>
@@ -281,22 +280,178 @@
 				baseHP = 1000;
 				baseLoad = 1000;
 			}
+		}
 
+		function setDamage() {
+			setClassVariables()
 			document.getElementById("damage").value = damage;
 		}
 
 		function setMaxHP() {
 			setClassVariables()
-			var con = parseInt(document.getElementById("con").value,10);
-			var maxHP = parseInt(baseHP,10) + con;
+			var con = parseInt(document.getElementById("con").value, 10);
+			var maxHP = parseInt(baseHP, 10) + con;
 			document.getElementById("maxHP").value = "/ " + maxHP;
 		}
 
 		function setMaxLoad() {
 			setClassVariables()
-			var str = parseInt(document.getElementById("str").value,10);
-			var maxLoad = parseInt(baseLoad,10) + str;
+			var str = parseInt(document.getElementById("str").value, 10);
+			var maxLoad = parseInt(baseLoad, 10) + str;
 			document.getElementById("maxLoad").value = "/ " + maxLoad;
+		}
+
+		function setRaceAttribute() {
+
+			var dwClass = document.getElementById("dwClass").value;
+			var race = document.getElementById("race").value;
+			console.log(dwClass);
+
+			if (dwClass == "Barbarian") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Human") {
+					raceAttribute = "UNDEFINED";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Bard") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "When you enter an important location (your call) you can ask the GM for one fact from the history of that location.";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Human") {
+					raceAttribute = "When you first enter a civilized settlement someone who respects the custom of hospitality to minstrels will take you in as their guest.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Cleric") {
+				if (race == "Dwarf") {
+					raceAttribute = "You are one with stone. When you commune you are also granted a special version of Words of the Unspeaking as a rote which only works on stone.";
+				} else if (race == "Elf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Human") {
+					raceAttribute = "Your faith is diverse. Choose one wizard spell. You can cast and be granted that spell as if it was a cleric spell.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Druid") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "The sap of the elder trees flows within you. In addition to any other attunements, the Great Forest is always considered your land.";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "You sing the healing songs of spring and brook. When you make camp, you and your allies heal +1d6.";
+				} else if (race == "Human") {
+					raceAttribute = "As your people learned to bind animals to field and farm, so too are you bound to them. You may always take the shape of any domesticated animal, in addition to your normal options.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Fighter") {
+				if (race == "Dwarf") {
+					raceAttribute = "When you share a drink with someone, you may parley with them using CON instead of CHA.";
+				} else if (race == "Elf") {
+					raceAttribute = "Choose one weapon—you can always treat weapons of that type as if they had the precise tag.";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "When you defy danger and use your small size to your advantage, take +1.";
+				} else if (race == "Human") {
+					raceAttribute = "Once per battle you may reroll a single damage roll (yours or someone else's).";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Paladin") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Human") {
+					raceAttribute = "When you pray for guidance, even for a moment, and ask, 'What here is evil?'' the GM will tell you, honestly.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Ranger") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "When you undertake a perilous journey through wilderness whatever job you take you succeed as if you rolled a 10+.";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Human") {
+					raceAttribute = "When you make camp in a dungeon or city, you don't need to consume a ration.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Thief") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "When you attack with a ranged weapon, deal +2 damage.";
+				} else if (race == "Human") {
+					raceAttribute = "You are a professional. When you spout lore or discern realities about criminal activities, take +1.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else if (dwClass == "Wizard") {
+				if (race == "Dwarf") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Elf") {
+					raceAttribute = "Magic is as natural as breath to you. Detect Magic is a cantrip for you.";
+				} else if (race == "Goblin") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Halfling") {
+					raceAttribute = "UNDEFINED";
+				} else if (race == "Human") {
+					raceAttribute = "Choose one cleric spell. You can cast it as if it was a wizard spell.";
+				} else {
+					raceAttribute = "UNDEFINED";
+				}
+			} else {
+				raceAttribute = "ERROR";
+			}
+
+			document.getElementById("raceAttribute").value = raceAttribute;
+		}
+
+		function singleRoll(sides) {
+			var roll = Math.floor(Math.random() * sides) + 1;
+			return roll;
+		}
+
+		function rollDice(sides, number) {
+			var i;
+			var total = 0;
+			for (i = 1; i == number; i++) {
+				total = total + singleRoll(sides);
+			}
+			return total;
 		}
 
 		function expandall(indicator) {
@@ -470,7 +625,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select id="dwClass" onchange="setClassVariables(); setMaxHP(); setMaxLoad()" style="position: relative" tabindex="-1">
+							<select id="dwClass" onchange="setMaxHP(); setMaxLoad(); setDamage();" style="position: relative" tabindex="-1">
 								<option value="Barbarian">Barbarian
 								<option value="Bard">Bard
 								<option value="Cleric">Cleric
@@ -489,15 +644,16 @@
 							<label for="race">RACE</label>
 						</th>
 						<td>
-							<select id="race" style="position: relative" tabindex="-1">
+							<select id="race" onchange="setRaceAttribute();" style="position: relative" tabindex="-1">
 								<option value="Dwarf">Dwarf
 								<option value="Elf">Elf
 								<option value="Goblin">Goblin
+								<option value="Halfling">Halfling
 								<option value="Human">Human
 							</select>
 						</td>
 						<td>
-							<input type="text" id="raceAttributes" class="grey" readonly>
+							<input type="text" id="raceAttribute" class="grey" readonly>
 						</td>
 					</tr>
 
@@ -513,7 +669,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="text" id="alignmentAttributes" class="grey" readonly>
+							<input type="text" id="alignmentAttribute" class="grey" readonly>
 						</td>
 					</tr>
 				</table>
@@ -604,7 +760,7 @@
 						<th><label for="damage">DAMAGE</label></th>
 						<th><label for="armour">ARMOUR</label></th>
 						<th colspan="2"><label for="HP">HP</label></th>
-                        <th><label for="Funds">FUNDS</label></th>
+						<th><label for="Funds">FUNDS</label></th>
 					</tr>
 					<tr>
 						<td>
@@ -619,7 +775,7 @@
 						<td>
 							<input type="text" class="shortfield grey" readonly id="maxHP">
 						</td>
-                        <td><input type="number" class="shortfield" min="0" id="Funds"></td>
+						<td><input type="number" class="shortfield" min="0" id="Funds"></td>
 				</table>
 				<br>
 				<table style="width: 100%;">
@@ -718,20 +874,20 @@
 		<div style="float: left; position: relative; top: 6px; width: 100%">
 			<p><a href="javascript:;" class="textpress" id="expandallindicator2" style="float: right" onclick="expandall(2)">+ Expand all</a></p><br />
 
-				<p><b>Links:</b></p>
-				<a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br />
-				<a href="https://www.reddit.com/r/DungeonWorld/" target="_blank">Reddit</a><br /><br />
+			<p><b>Links:</b></p>
+			<a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br />
+			<a href="https://www.reddit.com/r/DungeonWorld/" target="_blank">Reddit</a><br /><br />
 
-				<a href="https://dungeon-world.com/" target="_blank">Official Game Website</a><br />
-				<a href="https://a-dungeon-world.fandom.com/wiki/Free_Playbooks" target="_blank">Free Playbooks</a><br />
-				<a href="https://drive.google.com/file/d/1O3-dNuIxoiVkIrH20LIzzA38r9sVsiEI/view?usp=sharing" target="_blank">Dungeon World First Edition by Sage LaTorra and Adam Koebel</a><br />
-				<a href="https://drive.google.com/file/d/1uAJBlTFUbpPcNRBI7iHQ3eD2QT5Hxhu3/view?usp=sharing" target="_blank">Dungeon World Playbooks v2.0 Designed by Stefan Grambart</a><br />
-				<a href="https://drive.google.com/file/d/1S2ntGyK17puyC01XfxSGIIaq-1w86gkd/view?usp=sharing" target="_blank">Truncheon World: The Truncated Dungeon World by Sage LaTorra and Adam Koebel</a><br /><br />
+			<a href="https://dungeon-world.com/" target="_blank">Official Game Website</a><br />
+			<a href="https://a-dungeon-world.fandom.com/wiki/Free_Playbooks" target="_blank">Free Playbooks</a><br />
+			<a href="https://drive.google.com/file/d/1O3-dNuIxoiVkIrH20LIzzA38r9sVsiEI/view?usp=sharing" target="_blank">Dungeon World First Edition by Sage LaTorra and Adam Koebel</a><br />
+			<a href="https://drive.google.com/file/d/1uAJBlTFUbpPcNRBI7iHQ3eD2QT5Hxhu3/view?usp=sharing" target="_blank">Dungeon World Playbooks v2.0 Designed by Stefan Grambart</a><br />
+			<a href="https://drive.google.com/file/d/1S2ntGyK17puyC01XfxSGIIaq-1w86gkd/view?usp=sharing" target="_blank">Truncheon World: The Truncated Dungeon World by Sage LaTorra and Adam Koebel</a><br /><br />
 
-				<a href="https://github.com/godmar02/godmar02.github.io" target="_blank">My GitHub</a><br />
-				<a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br /><br />
+			<a href="https://github.com/godmar02/godmar02.github.io" target="_blank">My GitHub</a><br />
+			<a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br /><br />
 
-				<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br />
+			<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br />
 		</div>
 	</div>
 </body>
