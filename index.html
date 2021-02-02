@@ -260,20 +260,6 @@
 		var race;
 		var alignment;
 
-		/*Abilities and Afflictions*/
-		var str = 0;
-		var dex = 0;
-		var con = 0;
-		var int = 0;
-		var wis = 0;
-		var cha = 0;
-		var strAffliction;
-		var dexAffliction;
-		var conAffliction;
-		var intAffliction;
-		var wisAffliction;
-		var chaAffliction;
-
 		/*Other attributes*/
 		var armour = 0;
 		var currentHP = 0;
@@ -289,15 +275,6 @@
 		/*Calculated values*/
 		var raceAttributes;
 		var alignmentAttributes;
-		var strModifier;
-		var dexModifier;
-		var conModifier;
-		var intModifier;
-		var wisModifier;
-		var chaModifier;
-		var damage;
-		var maxHP = 0;
-		var maxXP = 0;
 		var load = 0;
 		var maxLoad = 0;
 		var classFeatures = [];
@@ -350,57 +327,11 @@
 
 		}
 
-		function setDamage() {
-			/*
-			DAMAGE BASE HP BASE LOAD
-						Bard	d6	6	9
-						Cleric	d6	6	10
-						Druid	d6	6	6
-						Fighter	d10	10	12
-						Paladin	d10	10	12
-						Ranger	d8	8	11
-						Thief	d8	6	9
-						Wizard	d4	4	7
-						*/
-		}
-
-		function setMaxHP() {
-			/*Maximum HP is equal to your class’s base HP+Constitution score. You start with your maximum HP.
-			  DAMAGE BASE HP BASE LOAD
-				Bard	d6	6	9
-				Cleric	d6	6	10
-				Druid	d6	6	6
-				Fighter	d10	10	12
-				Paladin	d10	10	12
-				Ranger	d8	8	11
-				Thief	d8	6	9
-				Wizard	d4	4	7
-				*/
-		}
-
 		function setMaxXP() {
 			var lvl = document.getElementById("level").value;
 			var maxXP = parseInt(lvl, 10) + 7;
-			document.getElementById("maxXP").value = maxXP;
+			document.getElementById("maxXP").value = "/ " + maxXP;
 		}
-
-		function setLoad() {}
-
-		function setMaxLoad() {
-			/*
-			DAMAGE BASE HP BASE LOAD
-						Bard	d6	6	9
-						Cleric	d6	6	10
-						Druid	d6	6	6
-						Fighter	d10	10	12
-						Paladin	d10	10	12
-						Ranger	d8	8	11
-						Thief	d8	6	9
-						Wizard	d4	4	7
-						*/
-		}
-
-		function setClassFeatures() {}
 
 		function expandall(indicator) {
 			if (document.getElementById("expandallindicator1").innerHTML == "+ Expand all") {
@@ -469,24 +400,15 @@
 			document.getElementById("note").innerHTML = "";
 		}
 
-		function resetcounters() {
-			tapcounter = 0;
-		}
-
 		function show(shown, hidden) {
 			document.body.scrollTop = document.documentElement.scrollTop = 0;
 			document.getElementById(shown).style.display = 'block';
 			document.getElementById(hidden).style.display = 'none';
-			resetcounters();
 			if ((document.getElementById("multibutton").innerText == "Single") && (deleteselected == true)) {
 				messageclear();
-				deleteselected = false;
-				document.getElementById("deletebutton").innerText = "Delete Units";
 			}
 			if ((document.getElementById("multibutton").innerText == "Single") && (healselected == true)) {
 				messageclear();
-				healselected = false;
-				document.getElementById("healbutton").innerText = "+2";
 			}
 			return false;
 		}
@@ -533,9 +455,7 @@
 		}
 
 		function loadelements() {
-			charaFill();
 			document.getElementById("main").style.visibility = "visible";
-
 		}
 	</script>
 
