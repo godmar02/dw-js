@@ -310,9 +310,9 @@
 			var dwClass = document.getElementById("dwClass").value;
 
 			if (dwClass == "Barbarian") {
-				damage = "NOT KNOWN";
-				baseHP = 0;
-				baseLoad = 0;
+				damage = "d10";
+				baseHP = 8;
+				baseLoad = 8;
 			} else if (dwClass == "Bard") {
 				damage = "d6";
 				baseHP = 6;
@@ -347,15 +347,23 @@
 				baseLoad = 7;
 			}
 
+			/*+STR for load*/
+
 			document.getElementById("damage").value = damage;
-			document.getElementById("maxLoad").value = "/ " + baseLoad;
 		}
 
 		function setMaxHP() {
 			setClassVariables()
-			var con = document.getElementById("con").value;
-			var maxHP = baseHP + con;
+			var con = parseInt(document.getElementById("con").value,10);
+			var maxHP = parseInt(baseHP,10) + con;
 			document.getElementById("maxHP").value = "/ " + maxHP;
+		}
+
+		function setMaxLoad() {
+			setClassVariables()
+			var str = parseInt(document.getElementById("str").value,10);
+			var maxLoad = parseInt(baseLoad,10) + str;
+			document.getElementById("maxLoad").value = "/ " + maxLoad;
 		}
 
 		function expandall(indicator) {
@@ -477,7 +485,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.2.1 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.0 by Godmar02</i></span><br><br>
 
 		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
 
@@ -529,7 +537,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select id="dwClass" onchange="setClassVariables()" style="position: relative" tabindex="-1">
+							<select id="dwClass" onchange="setClassVariables(); setMaxHP(); setMaxLoad()" style="position: relative" tabindex="-1">
 								<option value="Barbarian">Barbarian
 								<option value="Bard">Bard
 								<option value="Cleric">Cleric
@@ -608,7 +616,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('str')" id="str"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('str'); setMaxLoad();" id="str"><br>
 							<input type="text" class="grey tallfield" readonly id="strModifier"><br>
 							<select onchange="setModifier('str')" style="position: relative" tabindex="-1" id="strAffliction">
 								<option value="Unafflicted">Unafflicted
@@ -624,7 +632,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('con'); setMaxXP();" id="con"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('con'); setMaxHP();" id="con"><br>
 							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
 							<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
 								<option value="Unafflicted">Unafflicted
@@ -709,7 +717,7 @@
 					<tr>
 						<th><label for="load">LOAD</label></th>
 						<td><input type="text" class="shortfield grey" readonly id="load"></td>
-                        <td><input type="text" class="shortfield grey" readonly id="maxLoad"></td>
+						<td><input type="text" class="shortfield grey" readonly id="maxLoad"></td>
 					</tr>
 				</table>
 				<br>

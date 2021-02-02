@@ -1,0 +1,12 @@
+# TO DO
+- better calculation handling (maybe single function with lots of loads if fields are populated and then any relevant field change initiates a full re-load?)
+- Error checking (load, max xp, max hp)
+- add multiple items
+- total WEIGHT
+- class FEATUREs mutliple
+- default items
+- race and alignment lookups
+- dynamic alignment
+- save
+- load
+- clear
