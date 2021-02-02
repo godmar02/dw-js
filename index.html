@@ -251,7 +251,6 @@
 
 	<!-- Custom Scripting -->
 	<script>
-
 		/*Other variables*/
 		var answersexpanded = 0;
 
@@ -306,48 +305,57 @@
 			document.getElementById("maxXP").value = "/ " + maxXP;
 		}
 
-
 		function setClassVariables() {
 
-		   var dwClass = document.getElementById(dwClass).value;
+			var dwClass = document.getElementById("dwClass").value;
 
-		  if (dwClass == "Barbarian") {
-		    var damage = "NOT KNOWN";
-		    var baseHP = 0;
-		    var baseLoad = 0;
-		  } else if (dwClass == "Bard") {
-		    var damage = "d6";
-		    var baseHP = 6;
-		    var baseLoad = 9;
-		  } else if (dwClass == "Cleric") {
-		    var damage = "d6";
-		    var baseHP = 6;
-		    var baseLoad = 10;
-		  } else if (dwClass == "Druid") {
-		    var damage = "d6";
-		    var baseHP = 6;
-		    var baseLoad = 6;
-		  } else if (dwClass == "Fighter") {
-		    var damage = "d10";
-		    var baseHP = 10;
-		    var baseLoad = 12;
-		  } else if (dwClass == "Paladin") {
-		    var damage = "d10";
-		    var baseHP = 10;
-		    var baseLoad = 12;
-		  } else if (dwClass == "Ranger") {
-		    var damage = "d8";
-		    var baseHP = 8;
-		    var baseLoad = 11;
-		  } else if (dwClass == "Thief") {
-		    var damage = "d8";
-		    var baseHP = 6;
-		    var baseLoad = 9;
-		  } else if (dwClass == "Wizard") {
-		    var damage = "d4";
-		    var baseHP = 4;
-		    var baseLoad = 7;
-		  }
+			if (dwClass == "Barbarian") {
+				damage = "NOT KNOWN";
+				baseHP = 0;
+				baseLoad = 0;
+			} else if (dwClass == "Bard") {
+				damage = "d6";
+				baseHP = 6;
+				baseLoad = 9;
+			} else if (dwClass == "Cleric") {
+				damage = "d6";
+				baseHP = 6;
+				baseLoad = 10;
+			} else if (dwClass == "Druid") {
+				damage = "d6";
+				baseHP = 6;
+				baseLoad = 6;
+			} else if (dwClass == "Fighter") {
+				damage = "d10";
+				baseHP = 10;
+				baseLoad = 12;
+			} else if (dwClass == "Paladin") {
+				damage = "d10";
+				baseHP = 10;
+				baseLoad = 12;
+			} else if (dwClass == "Ranger") {
+				damage = "d8";
+				baseHP = 8;
+				baseLoad = 11;
+			} else if (dwClass == "Thief") {
+				damage = "d8";
+				baseHP = 6;
+				baseLoad = 9;
+			} else if (dwClass == "Wizard") {
+				damage = "d4";
+				baseHP = 4;
+				baseLoad = 7;
+			}
+
+			document.getElementById("damage").value = damage;
+			document.getElementById("maxLoad").value = "/ " + baseLoad;
+		}
+
+		function setMaxHP() {
+			setClassVariables()
+			var con = document.getElementById("con").value;
+			var maxHP = baseHP + con;
+			document.getElementById("maxHP").value = "/ " + maxHP;
 		}
 
 		function expandall(indicator) {
@@ -458,7 +466,6 @@
 		function loadelements() {
 			document.getElementById("main").style.visibility = "visible";
 		}
-
 	</script>
 
 	<noscript>
@@ -556,7 +563,8 @@
 					<tr>
 						<th>
 							<label for="alignment">ALIGNMENT</label>
-						</th>						<td>
+						</th>
+						<td>
 							<select id="alignment" style="position: relative" tabindex="-1">
 								<option value="Chaotic">Chaotic
 								<option value="Good">Good
@@ -616,7 +624,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('con')" id="con"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('con'); setMaxXP();" id="con"><br>
 							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
 							<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
 								<option value="Unafflicted">Unafflicted
@@ -652,55 +660,56 @@
 				<br>
 				<table>
 					<tr>
-						<th><label for="Damage">DAMAGE</label></th>
-						<th><label for="Armour">ARMOUR</label></th>
+						<th><label for="damage">DAMAGE</label></th>
+						<th><label for="armour">ARMOUR</label></th>
 						<th colspan="2"><label for="HP">HP</label></th>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="shortfield grey" readonly id="Damage">
+							<input type="text" class="shortfield grey" readonly id="damage">
 						</td>
 						<td>
-							<input type="number" min="0" class="shortfield" id="Armour">
+							<input type="number" min="0" class="shortfield" id="armour">
 						</td>
 						<td>
 							<input type="number" min="0" class="shortfield" id="HP">
 						</td>
 						<td>
-							<input type="text" class="shortfield grey" readonly id="MaxHP">
+							<input type="text" class="shortfield grey" readonly id="maxHP">
 						</td>
 				</table>
 				<br>
 				<table>
 					<tr>
-						<th><label for="Bonds">BONDS</label></th>
+						<th><label for="bonds">BONDS</label></th>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="Bonds">
+							<input type="text" id="bonds">
 						</td>
 					</tr>
 				</table>
 				<br>
 				<table>
 					<tr>
-						<th colspan="2"><label for="Gear">GEAR</label></th>
+						<th colspan="3"><label for="gear">GEAR</label></th>
 					</tr>
 					<tr>
-						<th style="width: 75%;"><label for="items">ITEMS</label></th>
-						<th><label for="weight">WEIGHT</label></th>
+						<th style="width: 75%;"><label for="items">ITEM</label></th>
+						<th colspan="2"><label for="weight">WEIGHT</label></th>
 					</tr>
 					<tr>
 						<td>
 							<input type="text" id="item1">
 						</td>
-						<td>
+						<td colspan="2">
 							<input type="number" class="shortfield" min="0" id="item1weight">
 						</td>
 					</tr>
 					<tr>
-						<th><label for="Load">LOAD</label></th>
-						<td><input type="text" class="shortfield grey" readonly id="loadWeight"></td>
+						<th><label for="load">LOAD</label></th>
+						<td><input type="text" class="shortfield grey" readonly id="load"></td>
+                        <td><input type="text" class="shortfield grey" readonly id="maxLoad"></td>
 					</tr>
 				</table>
 				<br>
