@@ -311,60 +311,130 @@
 
 		function checkLoad() {}
 
-		function setRaceAttributes() {}
+		function setRaceAttributes() {
+			/*
+						[Click To Pick A Class]	[Choose Here!]				[Pick a race from the dropdown!]
+						Bard	Elf	Human			When you enter an important location (your call) you can ask the GM for one fact from the history of that location.	When you first enter a civilized settlement someone who respects the custom of hospitality to minstrels will take you in as their guest.
+						Cleric	Dwarf	Human			You are one with stone. When you commune you are also granted a special version of Words of the Unspeaking as a rote which only works on stone.	Your faith is diverse. Choose one wizard spell. You can cast and be granted that spell as if it was a cleric spell.
+						Druid	Elf	Human	Halfling		The sap of the elder trees flows within you. In addition to any other attunements, the Great Forest is always considered your land.	As your people learned to bind animals to field and farm, so too are you bound to them. You may always take the shape of any domesticated animal, in addition to your normal options.	You sing the healing songs of spring and brook. When you make camp, you and your allies heal +1d6.
+						Fighter	Dwarf	Elf	Halfling	Human	When you share a drink with someone, you may parley with them using CON instead of CHA.	Choose one weapon—you can always treat weapons of that type as if they had the precise tag.	When you defy danger and use your small size to your advantage, take +1.	Once per battle you may reroll a single damage roll (yours or someone else's).
+						Paladin	Human				When you pray for guidance, even for a moment, and ask, "What here is evil?" the GM will tell you, honestly.
+						Ranger	Elf	Human			When you undertake a perilous journey through wilderness whatever job you take you succeed as if you rolled a 10+.	When you make camp in a dungeon or city, you don't need to consume a ration.
+						Thief	Halfling	Human			When you attack with a ranged weapon, deal +2 damage.	You are a professional. When you spout lore or discern realities about criminal activities, take +1.
+						Wizard	Elf	Human			Magic is as natural as breath to you. Detect Magic is a cantrip for you.	Choose one cleric spell. You can cast it as if it was a wizard spell.
+						*/
+		}
 
-		function setAlignmentAttributes() {}
+		function setAlignmentAttributes() {
+			/*
+			CLASS ALIGNMENTS
+			CLASS	ALIGNMENT1	ALIGNMENT2	ALIGNMENT3	DESCRIPTION1	DESCRIPTION2	DESCRIPTION3
+			[Click To Pick A Class]	[Choose Here!]			[Pick an alignment from the dropdown!]
+			Bard	Good	Neutral	Chaotic	Perform your art to aid someone else.	Avoid a conflict or defuse a tense situation.	Spur others to significant and unplanned decisive action.
+			Cleric	Good	Lawful	Evil	Endanger yourself to heal another.	Endanger yourself following the precepts of your church or god.	Harm another to prove the superiority of your church or god.
+			Druid	Chaotic	Good	Neutral	Destroy a symbol of civilization.	Help something or someone grow.	Eliminate an unnatural menace.
+			Fighter	Good	Neutral	Evil	Defend those weaker than you.	Defeat a worthy opponent.	Kill a defenseless or surrendered enemy.
+			Paladin	Lawful	Good		Deny mercy to a criminal or unbeliever.	Endanger yourself to protect someone weaker than you.
+			Ranger	Chaotic	Good	Neutral	Free someone from literal or figurative bonds.	Endanger yourself to combat an unnatural threat.	Help an animal or spirit of the wild.
+			Thief	Chaotic	Neutral	Evil	Leap into danger without a plan.	Avoid detection or infiltrate a location.	Shift danger or blame from yourself to someone else.
+			Wizard	Good	Neutral	Evil	Use magic to directly aid another.	Discover something about a magical mystery.	Use magic to cause terror and fear.
+			*/
+		}
 
 		function calcModifier(ability) {
 
-				var input = parseInt(ability, 10);
-				if ([1, 2, 3].indexOf(input) > -1) {
-					return "[-3]"
-				} else if ([4, 5].indexOf(input) > -1) {
-					return "[-2]"
-				} else if ([6, 7, 8].indexOf(input) > -1) {
-					return "[-1]"
-				} else if ([9, 10, 11, 12].indexOf(input) > -1) {
-					return "[0]"
-				} else if ([13, 14, 15].indexOf(input) > -1) {
-					return "[+1]"
-				} else if ([16, 17].indexOf(input) > -1) {
-					return "[+2]"
-				} else if (input == 18) {
-					return "[+3]"
-				} else {
-					return "ERROR"
-				}
+			var input = parseInt(ability, 10);
+			if ([1, 2, 3].indexOf(input) > -1) {
+				return -3
+			} else if ([4, 5].indexOf(input) > -1) {
+				return -2
+			} else if ([6, 7, 8].indexOf(input) > -1) {
+				return -1
+			} else if ([9, 10, 11, 12].indexOf(input) > -1) {
+				return 0
+			} else if ([13, 14, 15].indexOf(input) > -1) {
+				return 1
+			} else if ([16, 17].indexOf(input) > -1) {
+				return 2
+			} else if (input == 18) {
+				return 3
+			} else {
+				return "ERROR"
+			}
 		}
 
-		function setModifiers() {
-			var str = document.getElementById("str").value;
-			var dex = document.getElementById("dex").value;
-			var con = document.getElementById("con").value;
-			var int = document.getElementById("int").value;
-			var wis = document.getElementById("wis").value;
-			var cha = document.getElementById("cha").value;
+		function setModifier(ability) {
+			var ab = document.getElementById(ability).value;
+			var abAffliction = document.getElementById(ability + "Affliction").value;
 
-			document.getElementById("strModifier").value = calcModifier(str);
-			document.getElementById("dexModifier").value = calcModifier(dex);
-			document.getElementById("conModifier").value = calcModifier(con);
-			document.getElementById("intModifier").value = calcModifier(int);
-			document.getElementById("wisModifier").value = calcModifier(wis);
-			document.getElementById("chaModifier").value = calcModifier(cha);
+			/*-1 if afflicted*/
+			if (abAffliction == "Unafflicted") {
+				var afflicted = 0;
+			} else {
+				var afflicted = 1;
+			}
+
+			var modifier = calcModifier(ab) - afflicted;
+
+			if (modifier > 0) {
+				var stringModifier = "+" + modifier
+			} else {
+				var stringModifier = modifier
+			}
+
+			document.getElementById(ability + "Modifier").value = "[ " + stringModifier + " ]";
 
 		}
 
-		function setDamage() {}
+		function setDamage() {
+			/*
+			DAMAGE BASE HP BASE LOAD
+						Bard	d6	6	9
+						Cleric	d6	6	10
+						Druid	d6	6	6
+						Fighter	d10	10	12
+						Paladin	d10	10	12
+						Ranger	d8	8	11
+						Thief	d8	6	9
+						Wizard	d4	4	7
+						*/
+		}
 
 		function setMaxHP() {
-			/*Maximum HP is equal to your class’s base HP+Constitution score. You start with your maximum HP.*/
+			/*Maximum HP is equal to your class’s base HP+Constitution score. You start with your maximum HP.
+			  DAMAGE BASE HP BASE LOAD
+				Bard	d6	6	9
+				Cleric	d6	6	10
+				Druid	d6	6	6
+				Fighter	d10	10	12
+				Paladin	d10	10	12
+				Ranger	d8	8	11
+				Thief	d8	6	9
+				Wizard	d4	4	7
+				*/
 		}
 
-		function setMaxXP() {}
+		function setMaxXP() {
+			var lvl = document.getElementById("level").value;
+			var maxXP = parseInt(lvl, 10) + 7;
+			document.getElementById("maxXP").value = maxXP;
+		}
 
 		function setLoad() {}
 
-		function setMaxLoad() {}
+		function setMaxLoad() {
+			/*
+			DAMAGE BASE HP BASE LOAD
+						Bard	d6	6	9
+						Cleric	d6	6	10
+						Druid	d6	6	6
+						Fighter	d10	10	12
+						Paladin	d10	10	12
+						Ranger	d8	8	11
+						Thief	d8	6	9
+						Wizard	d4	4	7
+						*/
+		}
 
 		function setClassFeatures() {}
 
@@ -616,7 +686,7 @@
 							<label for="Level">LEVEL</label>
 						</th>
 						<td>
-							<input type="number" min="1" class="shortfield" id="Level">
+							<input type="number" min="1" onchange="setMaxXP()" class="shortfield" id="level">
 						</td>
 						<th>
 							<label for="XP">XP</label>
@@ -625,7 +695,7 @@
 							<input type="number" min="0" class="shortfield" id="XP">
 						</td>
 						<td>
-							<input type="text" class="shortfield grey" readonly id="MaxXP">
+							<input type="text" class="shortfield grey" readonly id="maxXP">
 						</td>
 					</tr>
 				</table>
@@ -641,49 +711,49 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifiers()" id="str"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('str')" id="str"><br>
 							<input type="text" class="grey tallfield" readonly id="strModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="strAffliction">
+							<select onchange="setModifier('str')" style="position: relative" tabindex="-1" id="strAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Weak">Weak
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifiers()" id="dex"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('dex')" id="dex"><br>
 							<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="dexAffliction">
+							<select onchange="setModifier('dex')" style="position: relative" tabindex="-1" id="dexAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Shaky
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifiers()" id="con"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('con')" id="con"><br>
 							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="conAffliction">
+							<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Sick
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifiers()" id="int"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('int')" id="int"><br>
 							<input type="text" class="grey tallfield" readonly id="intModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="intAffliction">
+							<select onchange="setModifier('int')" style="position: relative" tabindex="-1" id="intAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Stunned
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifiers()" id="wis"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('wis')" id="wis"><br>
 							<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="wisAffliction">
+							<select onchange="setModifier('wis')" style="position: relative" tabindex="-1" id="wisAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Confused
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifiers()" id="cha"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('cha')" id="cha"><br>
 							<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
-							<select onchange="charaFill()" style="position: relative" tabindex="-1" id="chaAffliction">
+							<select onchange="setModifier('cha')" style="position: relative" tabindex="-1" id="chaAffliction">
 								<option value="Unafflicted">Unafflicted
 								<option value="Shaky">Scarred
 							</select>
