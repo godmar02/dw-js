@@ -69,7 +69,6 @@
 			border-style: solid;
 			border-width: medium;
 			border-radius: 5px;
-			width: 100%;
 		}
 
 		th {
@@ -90,7 +89,6 @@
 			position: relative;
 			box-sizing: border-box;
 			font-size: 17px;
-			/*width: 135px;*/
 			width: 100%;
 			min-width: 100px;
 			height: 40px;
@@ -110,8 +108,7 @@
 		}
 
 		.shortfield {
-			/*width: 80px;*/
-			width: 100%;
+			width: 80px;
 		}
 
 		.tallfield {
@@ -510,7 +507,7 @@
 				</table>
 				<br>
 
-				<table>
+				<table style="width: 100%;">
 					<tr>
 						<th style="width: 25%;">
 							<label for="charaName">CHARACTER</label>
@@ -531,7 +528,7 @@
 
 				</table>
 				<br>
-				<table>
+				<table style="width: 100%;">
 					<tr>
 						<th>
 							<label for="dwClass">CLASS</label>
@@ -605,7 +602,7 @@
 					</tr>
 				</table>
 				<br>
-				<table>
+				<table style="width: 100%;">
 					<tr>
 						<th><label for="str">STR</label></th>
 						<th><label for="dex">DEX</label></th>
@@ -671,6 +668,7 @@
 						<th><label for="damage">DAMAGE</label></th>
 						<th><label for="armour">ARMOUR</label></th>
 						<th colspan="2"><label for="HP">HP</label></th>
+                        <th><label for="Funds">FUNDS</label></th>
 					</tr>
 					<tr>
 						<td>
@@ -685,9 +683,10 @@
 						<td>
 							<input type="text" class="shortfield grey" readonly id="maxHP">
 						</td>
+                        <td><input type="number" class="shortfield" min="0" id="Funds"></td>
 				</table>
 				<br>
-				<table>
+				<table style="width: 100%;">
 					<tr>
 						<th><label for="bonds">BONDS</label></th>
 					</tr>
@@ -698,7 +697,7 @@
 					</tr>
 				</table>
 				<br>
-				<table>
+				<table style="width: 100%;">
 					<tr>
 						<th colspan="3"><label for="gear">GEAR</label></th>
 					</tr>
@@ -721,21 +720,12 @@
 					</tr>
 				</table>
 				<br>
-				<table>
+				<table style="width: 100%;">
 					<tr>
 						<th><label for="classFeatures">CLASS FEATURES</label></th>
 					</tr>
 					<tr>
 						<td><input type="text" id="classFeature1"></td>
-					</tr>
-				</table>
-				<br>
-				<table>
-					<tr>
-						<th><label for="Funds">FUNDS</label></th>
-					</tr>
-					<tr>
-						<td><input type="number" class="shortfield" min="0" id="Funds"></td>
 					</tr>
 				</table>
 				<br>
