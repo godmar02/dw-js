@@ -563,7 +563,7 @@
 			});
 		}
 
-		function populateAlignments() {
+		$("#race").change(function() {
 
 			var $dropdown = $(this);
 
@@ -604,9 +604,10 @@
 				$alignment.empty();
 				$.each(vals, function(index, value) {
 					$alignment.append("<option value='" + value + "'>" + value);
-				})
-			})
-		}
+				});
+
+			});
+		});
 
 		function loadelements() {
 			document.getElementById("main").style.visibility = "visible";
