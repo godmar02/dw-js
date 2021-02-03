@@ -502,6 +502,52 @@
 
 		});
 
+		function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var cell1 = row.insertCell(0);
+			var element1 = document.createElement("input");
+			element1.type = "checkbox";
+			element1.name = "chkbox[]";
+			cell1.appendChild(element1);
+
+			var cell2 = row.insertCell(1);
+			cell2.innerHTML = rowCount + 1;
+
+			var cell3 = row.insertCell(2);
+			var element2 = document.createElement("input");
+			element2.type = "text";
+			element2.name = "txtbox[]";
+			cell3.appendChild(element2);
+
+
+		}
+
+		function deleteRow(tableID) {
+			try {
+				var table = document.getElementById(tableID);
+				var rowCount = table.rows.length;
+
+				for (var i = 0; i < rowCount; i++) {
+					var row = table.rows[i];
+					var chkbox = row.cells[0].childNodes[0];
+					if (null != chkbox && true == chkbox.checked) {
+						table.deleteRow(i);
+						rowCount--;
+						i--;
+					}
+
+
+				}
+			} catch (e) {
+				alert(e);
+			}
+		}
+
 		function loadelements() {
 			document.getElementById("main").style.visibility = "visible";
 		}
@@ -522,7 +568,7 @@
 
 			<div id="attvalues">
 
-				<table style="width: 50%;">
+				<table style="width: 50%;" id="sheetHeaderTable">
 					<tr>
 						<th style="width: 25%;">
 							<label for="player">PLAYER</label>
@@ -551,7 +597,7 @@
 				</table>
 				<br>
 
-				<table style="width: 100%;">
+				<table style="width: 100%;" id="basicInfoTable">
 					<tr>
 						<th style="width: 25%;">
 							<label for="charaName">CHARACTER</label>
@@ -572,7 +618,7 @@
 
 				</table>
 				<br>
-				<table style="width: 100%;">
+				<table style="width: 100%;" id="additionalInfoTable">
 					<tr>
 						<th>
 							<label for="dwClass">CLASS</label>
@@ -624,7 +670,7 @@
 					</tr>
 				</table>
 				<br>
-				<table>
+				<table id="basicAttributesTable">
 					<tr>
 						<th>
 							<label for="Level">LEVEL</label>
@@ -644,7 +690,7 @@
 					</tr>
 				</table>
 				<br>
-				<table style="width: 100%;">
+				<table style="width: 100%;" id="abilitiesTable">
 					<tr>
 						<th><label for="str">STR</label></th>
 						<th><label for="dex">DEX</label></th>
@@ -728,9 +774,9 @@
 						<td><input type="number" class="shortfield" min="0" id="Funds"></td>
 				</table>
 				<br>
-				<table style="width: 100%;">
+				<table style="width: 100%;" id="bondsTable">
 					<tr>
-						<th colspan="2" ><label for="bonds">BONDS</label></th>
+						<th colspan="2"><label for="bonds">BONDS</label></th>
 					</tr>
 					<tr>
 						<td>
@@ -742,7 +788,7 @@
 					</tr>
 				</table>
 				<br>
-				<table style="width: 100%;">
+				<table style="width: 100%;" id="gearTable">
 					<tr>
 						<th colspan="4"><label for="gear">GEAR</label></th>
 					</tr>
@@ -768,7 +814,7 @@
 					</tr>
 				</table>
 				<br>
-				<table style="width: 100%;">
+				<table style="width: 100%;" id="classFeaturesTable">
 					<tr>
 						<th colspan="2"><label for="classFeatures">CLASS FEATURES</label></th>
 					</tr>
