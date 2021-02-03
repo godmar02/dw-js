@@ -243,51 +243,33 @@
 			var dwClass = document.getElementById("dwClass").value;
 
 			if (dwClass == "Barbarian") {
-				damage = "d10";
 				baseHP = 8;
 				baseLoad = 8;
 			} else if (dwClass == "Bard") {
-				damage = "d6";
 				baseHP = 6;
 				baseLoad = 9;
 			} else if (dwClass == "Cleric") {
-				damage = "d6";
 				baseHP = 6;
 				baseLoad = 10;
 			} else if (dwClass == "Druid") {
-				damage = "d6";
 				baseHP = 6;
 				baseLoad = 6;
 			} else if (dwClass == "Fighter") {
-				damage = "d10";
 				baseHP = 10;
 				baseLoad = 12;
 			} else if (dwClass == "Paladin") {
-				damage = "d10";
 				baseHP = 10;
 				baseLoad = 12;
 			} else if (dwClass == "Ranger") {
-				damage = "d8";
 				baseHP = 8;
 				baseLoad = 11;
 			} else if (dwClass == "Thief") {
-				damage = "d8";
 				baseHP = 6;
 				baseLoad = 9;
 			} else if (dwClass == "Wizard") {
-				damage = "d4";
 				baseHP = 4;
 				baseLoad = 7;
-			} else {
-				damage = "UNRECOGNISED CLASS";
-				baseHP = 1000;
-				baseLoad = 1000;
 			}
-		}
-
-		function setDamage() {
-			setClassVariables()
-			document.getElementById("damage").value = damage;
 		}
 
 		function setMaxHP() {
@@ -431,10 +413,19 @@
 
 				$.getJSON("data/classes.json", function(data) {
 
-					var key = $dwClass.val();
-					var vals = [];
+					var dwClass = $dwClass.val();
+					var alignments = [];
+					var damage = "";
 
-					vals = data[key].alignments.split(",");
+					damage = data[dwClass].damage;
+					alignments = data[dwClass].alignments.split(",");
+
+					console.log(
+					"Class: " + dwClass
+					"Damage: " + damage
+					"alignments: " + alignments)
+
+					$("#damage").val(raceAttribute);
 
 					var $alignments = $("#alignment");
 					$alignments.empty();
@@ -452,11 +443,11 @@
 
 				$.getJSON("data/classes.json", function(data) {
 
-					var key1 = $dwClass.val();
-					var key2 = $race.val();
-					var raceAttribute = "" ;
+					var dwClass = $dwClass.val();
+					var race = $race.val();
+					var raceAttribute = "";
 
-					raceAttribute = data[key1].raceAttributes[key2];
+					raceAttribute = data[dwClass].raceAttributes[race];
 
 					$("#raceAttribute").val(raceAttribute);
 				});
@@ -469,16 +460,11 @@
 
 				$.getJSON("data/classes.json", function(data) {
 
-					var key1 = $dwClass.val();
-					var key2 = $alignment.val();
-					var alignmentAttribute = "" ;
+					var dwClass = $dwClass.val();
+					var alignment = $alignment.val();
+					var alignmentAttribute = "";
 
-					console.log(key1);
-					console.log(key2);
-
-					alignmentAttribute = data[key1].alignmentAttributes[key2];
-
-					console.log(alignmentAttribute);
+					alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
 
 					$("#alignmentAttribute").val(alignmentAttribute);
 				});
@@ -500,7 +486,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.11 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.12 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
@@ -562,7 +548,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select id="dwClass" onchange="setMaxHP(); setMaxLoad(); setDamage();" style="position: relative" tabindex="-1">
+							<select id="dwClass" onchange="setMaxHP(); setMaxLoad();" style="position: relative" tabindex="-1">
 								<option value="Barbarian">Barbarian</option>
 								<option value="Bard">Bard</option>
 								<option value="Cleric">Cleric</option>
