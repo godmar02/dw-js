@@ -572,32 +572,7 @@
 					var key = $dropdown.val();
 					var vals = [];
 
-					switch(key) {
-						case 'Barbarian':
-							vals = data.Barbarian.alignments.split(",");
-							break;
-						case 'Bard':
-							vals = data.Bard.alignments.split(",");
-							break;
-						case 'Cleric':
-							vals = data.Cleric.alignments.split(",");
-							break;
-						case 'Druid':
-							vals = data.Druid.alignments.split(",");
-							break;
-						case 'Fighter':
-							vals = data.Fighter.alignments.split(",");
-							break;
-						case 'Paladin':
-							vals = data.Paladin.alignments.split(",");
-							break;
-						case 'Thief':
-							vals = data.Thief.alignments.split(",");
-							break;
-						case 'Wizard':
-							vals = data.Wizard.alignments.split(",");
-							break;
-					}
+					vals = data[key].alignments.split(",");
 
 					var $alignments = $("#alignment");
 					$alignments.empty();
@@ -605,6 +580,24 @@
 						$alignments.append("<option>" + value + "</option>");
 					});
 
+				});
+			});
+
+			$("#race").change(function() {
+
+				var $dropdown = $(this);
+
+				$.getJSON("data/classes.json", function(data) {
+
+					var key = $dropdown.val();
+					var vals = [];
+
+					console.log(data);
+					vals = data[key].alignments.split(",");
+
+					var $alignments = $("#alignment");
+
+					$("#raceAttribute").val(raceAttribute);
 				});
 			});
 
@@ -624,7 +617,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.5 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.6 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
