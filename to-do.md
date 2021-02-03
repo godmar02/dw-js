@@ -1,13 +1,12 @@
 # TO DO
-- dynamic alignment
-- all data lookups from JSON
-- add multiple items
+- add/remove rows (Items, Bonds, class features)
 - total WEIGHT
-- class FEATUREs mutliple
+- expanding text entry / word wrap
 - Error checking (load, max xp, max hp)
-- default items
-- adventure
 - save
 - load
 - clear
 - dice roller
+- make pretty
+- default items?
+- default bonds?
