@@ -566,7 +566,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select id="dwClass" onchange="setMaxHP(); setMaxLoad();" style="position: relative" tabindex="-1">
+							<select id="dwClass" onchange="setMaxHP();" style="position: relative" tabindex="-1">
 								<option value="Barbarian">Barbarian</option>
 								<option value="Bard">Bard</option>
 								<option value="Cleric">Cleric</option>
@@ -643,7 +643,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('str'); setMaxLoad();" id="str"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('str');" id="str"><br>
 							<input type="text" class="grey tallfield" readonly id="strModifier"><br>
 							<select onchange="setModifier('str')" style="position: relative" tabindex="-1" id="strAffliction">
 								<option value="Unafflicted">Unafflicted</option>
