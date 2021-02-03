@@ -403,20 +403,34 @@
 			$("#dwClass").change(function() {
 
 				var $dwClass = $(this);
+				var $str = $("#str");
+				var $con = $("#con");
 
 				$.getJSON("data/classes.json", function(data) {
 
 					var dwClass = $dwClass.val();
+					var str = $str.val();
+					var con = $con.val();
 					var alignments = [];
 					var damage = "";
+					var baseLoad = 0;
+					var maxLoad = 0;
+					var baseHP = 0;
+					var maxHP = 0;
 
-					damage = data[dwClass].damage;
 					alignments = data[dwClass].alignments.split(",");
+					damage = data[dwClass].damage;
+					baseLoad = data[dwClass].baseLoad;
+					baseHP = data[dwClass].baseHP;
 
 					console.log(
-					"Class: " + dwClass + '\n' +
-					"Damage: " + damage + '\n' +
-					"alignments: " + alignments)
+					"dwClass: " + dwClass + '\n' +
+					"str: " + str + '\n' +
+					"con: " + con + '\n' +
+					"alignments: " + alignments + '\n' +
+					"damage: " + damage + '\n' +
+					"baseLoad: " + baseLoad + '\n' +
+					"baseHP: " + baseHP)
 
 					$("#damage").val(raceAttribute);
 
@@ -476,11 +490,12 @@
 					var maxLoad = 0;
 
 					baseLoad = data[dwClass].baseLoad;
+					baseLoad = parseInt(baseLoad, 10);
 					maxLoad = baseLoad + str;
 
 					console.log(
-					"Class: " + dwClass + '\n' +
-					"Str: " + str + '\n' +
+					"dwClass: " + dwClass + '\n' +
+					"str: " + str + '\n' +
 					"baseLoad: " + baseLoad + '\n' +
 					"maxLoad: " + maxLoad )
 
@@ -504,7 +519,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.14 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.15 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
