@@ -597,9 +597,9 @@
 					console.log(key1);
 					console.log(key2);
 
-					raceAttribute = data[key1].raceAttributes[key2].split(",");
+					raceAttribute = data[key1].raceAttributes[key2];
 
-					var $alignments = $("#alignment");
+					console.log(raceAttribute);
 
 					$("#raceAttribute").val(raceAttribute);
 				});
@@ -621,7 +621,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.7 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.8 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
@@ -702,7 +702,7 @@
 							<label for="race">RACE</label>
 						</th>
 						<td>
-							<select id="race" onchange="setRaceAttribute();" style="position: relative" tabindex="-1">
+							<select id="race" style="position: relative" tabindex="-1">
 								<option value="Dwarf">Dwarf</option>
 								<option value="Elf">Elf</option>
 								<option value="Goblin">Goblin</option>
