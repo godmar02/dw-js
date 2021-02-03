@@ -567,7 +567,7 @@
 
 			var $dropdown = $(this);
 
-			$.getJSON("jsondata/alignments.json", function(data) {
+			$.getJSON("classes/classes.json", function(data) {
 
 				var key = $dropdown.val();
 				var vals = [];
@@ -575,28 +575,28 @@
 				switch (key) {
 
 					case 'Barbarian':
-						vals = data.Barbarian.split(",");
+						vals = data.Barbarian.alignments.split(",");
 						break;
 					case 'Bard':
-						vals = data.Bard.split(",");
+						vals = data.Bard.alignments.split(",");
 						break;
 					case 'Cleric':
-						vals = data.Cleric.split(",");
+						vals = data.Cleric.alignments.split(",");
 						break;
 					case 'Druid':
-						vals = data.Druid.split(",");
+						vals = data.Druid.alignments.split(",");
 						break;
 					case 'Fighter':
-						vals = data.Fighter.split(",");
+						vals = data.Fighter.alignments.split(",");
 						break;
 					case 'Paladin':
-						vals = data.Paladin.split(",");
+						vals = data.Paladin.alignments.split(",");
 						break;
 					case 'Thief':
-						vals = data.Thief.split(",");
+						vals = data.Thief.alignments.split(",");
 						break;
 					case 'Wizard':
-						vals = data.Wizard.split(",");
+						vals = data.Wizard.alignments.split(",");
 						break;
 				}
 
