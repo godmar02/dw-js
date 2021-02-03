@@ -565,11 +565,11 @@
 
 			$("#dwClass").change(function() {
 
-				var $dropdown = $(this);
+				var $dwClass = $(this);
 
 				$.getJSON("data/classes.json", function(data) {
 
-					var key = $dropdown.val();
+					var key = $dwClass.val();
 					var vals = [];
 
 					vals = data[key].alignments.split(",");
@@ -585,15 +585,19 @@
 
 			$("#race").change(function() {
 
-				var $dropdown = $(this);
+				var $race = $(this);
+				var $dwClass = $("#dwClass").val();
 
 				$.getJSON("data/classes.json", function(data) {
 
-					var key = $dropdown.val();
-					var vals = [];
+					var key1 = $race.val();
+					var key2 = $dwClass.val();
+					var raceAttribute = "" ;
 
-					console.log(data);
-					vals = data[key].alignments.split(",");
+					console.log(key1);
+					console.log(key2);
+
+					raceAttribute = data[key1].raceAttributes[key2].split(",");
 
 					var $alignments = $("#alignment");
 
@@ -617,7 +621,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.6 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.7 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
