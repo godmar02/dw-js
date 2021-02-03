@@ -279,13 +279,6 @@
 			document.getElementById("maxHP").value = "/ " + maxHP;
 		}
 
-		function setMaxLoad() {
-			setClassVariables()
-			var str = parseInt(document.getElementById("str").value, 10);
-			var maxLoad = parseInt(baseLoad, 10) + str;
-			document.getElementById("maxLoad").value = "/ " + maxLoad;
-		}
-
 		function singleRoll(sides) {
 			var roll = Math.floor(Math.random() * sides) + 1;
 			return roll;
@@ -421,8 +414,8 @@
 					alignments = data[dwClass].alignments.split(",");
 
 					console.log(
-					"Class: " + dwClass
-					"Damage: " + damage
+					"Class: " + dwClass +
+					"Damage: " + damage +
 					"alignments: " + alignments)
 
 					$("#damage").val(raceAttribute);
@@ -470,6 +463,31 @@
 				});
 			});
 
+			$("#str").change(function() {
+
+				var $str = $(this);
+				var $dwClass = $("#dwClass");
+
+				$.getJSON("data/classes.json", function(data) {
+
+					var dwClass = $dwClass.val();
+					var str = $str.val();
+					var baseLoad = 0;
+					var maxLoad = 0;
+
+					baseLoad = data[dwClass].baseLoad;
+					maxLoad = baseLoad + str;
+
+					console.log(
+					"Class: " + dwClass +
+					"Str: " + str +
+					"baseLoad: " + baseLoad +
+					"maxLoad: " + maxLoad )
+
+					$("#maxLoad").val("/ " + maxLoad);
+				});
+			});
+
 		});
 
 		function loadelements() {
@@ -486,7 +504,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.12 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.13 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
