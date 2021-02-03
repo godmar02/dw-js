@@ -3,9 +3,10 @@
     "damage": "d10",
     "baseHP": 8,
     "baseLoad": 8,
-    "alignments": "Undefined",
+    "alignments": "Chaotic,Neutral",
     "alignmentAttributes": {
-      "Undefined"
+       "Chaotic":"You eschew a convention of the civilized world.",
+       "Neutral":"Teach someone the ways of your people."
     },
     "raceAttributes": {
       "Dwarf": "Undefined",
@@ -14,7 +15,9 @@
       "Halfling": "Undefined",
       "Human": "Undefined"
     },
-    "startingMoves": ["Undefined"]
+    "startingMoves": ["Undefined"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Bard": {
     "damage": "d6",
@@ -33,7 +36,9 @@
       "Halfling": "Undefined",
       "Human": "When you first enter a civilized settlement someone who respects the custom of hospitality to minstrels will take you in as their guest."
     },
-    "startingMoves": ["Arcane Art", "Bardic Lore", "Charming and Open", "A Port in the Storm"]
+    "startingMoves": ["Arcane Art", "Bardic Lore", "Charming and Open", "A Port in the Storm"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Cleric": {
     "damage": "d6",
@@ -52,7 +57,9 @@
       "Halfling": "Undefined",
       "Human": "Your faith is diverse. Choose one wizard spell. You can cast and be granted that spell as if it was a cleric spell."
     },
-    "startingMoves": ["Deity","Divine Guidance","Turn Undead","Commune","Cast a Spell"]
+    "startingMoves": ["Deity","Divine Guidance","Turn Undead","Commune","Cast a Spell"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Druid": {
     "damage": "d6",
@@ -71,7 +78,9 @@
       "Halfling": "You sing the healing songs of spring and brook. When you make camp, you and your allies heal +1d6.",
       "Human": "As your people learned to bind animals to field and farm, so too are you bound to them. You may always take the shape of any domesticated animal, in addition to your normal options."
     },
-    "startingMoves": ["Born of the Soil","By Nature Sustained","Spirit Tongue","Shapeshifter"]
+    "startingMoves": ["Born of the Soil","By Nature Sustained","Spirit Tongue","Shapeshifter"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Fighter": {
     "damage": "d10",
@@ -90,7 +99,9 @@
       "Halfling": "When you defy danger and use your small size to your advantage, take +1.",
       "Human": "Once per battle you may reroll a single damage roll (yours or someone else's)."
     },
-    "startingMoves": ["Bend Bars, Lift Gates","Armored","Signature Weapon"]
+    "startingMoves": ["Bend Bars, Lift Gates","Armored","Signature Weapon"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Paladin": {
     "damage": "d10",
@@ -108,7 +119,9 @@
       "Halfling": "Undefined",
       "Human": "When you pray for guidance, even for a moment, and ask, 'What here is evil?'' the GM will tell you, honestly."
     },
-    "startingMoves": ["Lay on Hands (Cha)","Armored","I Am the Law","Quest"]
+    "startingMoves": ["Lay on Hands (Cha)","Armored","I Am the Law","Quest"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Ranger": {
     "damage": "d8",
@@ -127,7 +140,9 @@
       "Halfling": "Undefined",
       "Human": "When you make camp in a dungeon or city, you don't need to consume a ration."
     },
-    "startingMoves": ["Animal Companion","Command","Hunt and Track (Wis)","Called Shot"]
+    "startingMoves": ["Animal Companion","Command","Hunt and Track (Wis)","Called Shot"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Thief": {
     "damage": "d8",
@@ -146,7 +161,9 @@
       "Halfling": "When you attack with a ranged weapon, deal +2 damage.",
       "Human": "You are a professional. When you spout lore or discern realities about criminal activities, take +1."
     },
-    "startingMoves": ["Trap Expert","Tricks of the Trade","Backstab","Flexible Morals","Poisoner"]
+    "startingMoves": ["Trap Expert","Tricks of the Trade","Backstab","Flexible Morals","Poisoner"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   },
   "Wizard": {
     "damage": "d4",
@@ -165,6 +182,8 @@
       "Halfling": "Undefined",
       "Human": "Choose one cleric spell. You can cast it as if it was a wizard spell."
     },
-    "startingMoves": ["Spellbook","Prepare Spells","Cast a Spell (Int)","Spell Defense","Ritual"]
+    "startingMoves": ["Spellbook","Prepare Spells","Cast a Spell (Int)","Spell Defense","Ritual"],
+    "advancedMoves2-5": [""],
+    "advancedMoves6-10": [""]
   }
 }

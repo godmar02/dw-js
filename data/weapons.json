@@ -1,0 +1,146 @@
+{
+  "Ragged Bow": {
+    "range": "near",
+    "cost": 15,
+    "weight": 2,
+    "tags": []
+  },
+  "Fine Bow": {
+    "range": "near & far",
+    "cost": 60,
+    "weight": 2,
+    "tags": []
+  },
+  "Hunter’s Bow": {
+    "range": "near & far",
+    "cost": 100,
+    "weight": 1,
+    "tags": []
+  },
+  "Crossbow": {
+    "range": "near",
+    "cost": 35,
+    "weight": 3,
+    "tags": ["+1 damage", "reload"]
+  },
+  "Bundle of Arrows": {
+    "range": null,
+    "cost": 1,
+    "weight": 1,
+    "tags": ["3 ammo"]
+  },
+  "Elven Arrows": {
+    "range": null,
+    "cost": 20,
+    "weight": 1,
+    "tags": ["4 ammo"],
+  },
+  "Club": {
+    "range": "close",
+    "cost": 1,
+    "weight": 2,
+    "tags": []
+  },
+  "Shillelagh": {
+    "range": "close",
+    "cost": 1,
+    "weight": 2,
+    "tags": []
+  },
+  "Staff": {
+    "range": "close",
+    "cost": 1,
+    "weight": 1,
+    "tags": ["two-handed"]
+  },
+  "Dagger": {
+    "range": "hand",
+    "cost": 2,
+    "weight": 1,
+    "tags": []
+  },
+  "Shiv": {
+    "range": "hand",
+    "cost": 2,
+    "weight": 1,
+    "tags": []
+  },
+  "Knife": {
+    "range": "hand",
+    "cost": 2,
+    "weight": 1,
+    "tags": []
+  },
+  "Throwing Dagger": {
+    "range": "near",
+    "cost": 1,
+    "weight": 0,
+    "tags": ["thrown"]
+  },
+  "Short Sword": {
+    "range": "close",
+    "cost": 8,
+    "weight": 1,
+    "tags": []
+  },
+  "Axe": {
+    "range": "close",
+    "cost": 8,
+    "weight": 1,
+    "tags": []
+  },
+  "Warhammer": {
+    "range": "close",
+    "cost": 8,
+    "weight": 1,
+    "tags": []
+  },
+  "Mace": {
+    "range": "close",
+    "cost": 8,
+    "weight": 1,
+    "tags": []
+  },
+  "Spear": {
+    "range": "reach & near",
+    "cost": 5,
+    "weight": 1,
+    "tags": ["thrown"]
+  },
+  "Long Sword": {
+    "range": "close",
+    "cost": 15,
+    "weight": 2,
+    "tags": ["+1 damage"]
+  },
+  "Battle Axe": {
+    "range": "close",
+    "cost": 15,
+    "weight": 2,
+    "tags": ["+1 damage"]
+  },
+  "Flail": {
+    "range": "close",
+    "cost": 15,
+    "weight": 2,
+    "tags": ["+1 damage"]
+  },
+  "Halberd": {
+    "range": "reach",
+    "cost": 9,
+    "weight": 2,
+    "tags": ["+1 damage", "two-handed"]
+  },
+  "Rapier": {
+    "range": "close",
+    "cost": 25,
+    "weight": 1,
+    "tags": ["precise"]
+  },
+  "Dueling Rapier": {
+    "range": "close",
+    "cost": 50,
+    "weight": 2,
+    "tags": ["1 piercing", "precise"]
+  }
+}
