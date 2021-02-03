@@ -238,47 +238,6 @@
 			document.getElementById("maxXP").value = "/ " + maxXP;
 		}
 
-		function setClassVariables() {
-
-			var dwClass = document.getElementById("dwClass").value;
-
-			if (dwClass == "Barbarian") {
-				baseHP = 8;
-				baseLoad = 8;
-			} else if (dwClass == "Bard") {
-				baseHP = 6;
-				baseLoad = 9;
-			} else if (dwClass == "Cleric") {
-				baseHP = 6;
-				baseLoad = 10;
-			} else if (dwClass == "Druid") {
-				baseHP = 6;
-				baseLoad = 6;
-			} else if (dwClass == "Fighter") {
-				baseHP = 10;
-				baseLoad = 12;
-			} else if (dwClass == "Paladin") {
-				baseHP = 10;
-				baseLoad = 12;
-			} else if (dwClass == "Ranger") {
-				baseHP = 8;
-				baseLoad = 11;
-			} else if (dwClass == "Thief") {
-				baseHP = 6;
-				baseLoad = 9;
-			} else if (dwClass == "Wizard") {
-				baseHP = 4;
-				baseLoad = 7;
-			}
-		}
-
-		function setMaxHP() {
-			setClassVariables()
-			var con = parseInt(document.getElementById("con").value, 10);
-			var maxHP = parseInt(baseHP, 10) + con;
-			document.getElementById("maxHP").value = "/ " + maxHP;
-		}
-
 		function singleRoll(sides) {
 			var roll = Math.floor(Math.random() * sides) + 1;
 			return roll;
@@ -435,6 +394,8 @@
 					$("#damage").val(damage);
 
 					//TO DO SET HP AND LOAD
+					//			var maxHP = parseInt(baseHP, 10) + con;
+								//document.getElementById("maxHP").value = "/ " + maxHP;
 
 					var $alignments = $("#alignment");
 					$alignments.empty();
@@ -522,7 +483,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.16 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.17 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
@@ -584,7 +545,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select id="dwClass" onchange="setMaxHP();" style="position: relative" tabindex="-1">
+							<select id="dwClass" style="position: relative" tabindex="-1">
 								<option value="Barbarian">Barbarian</option>
 								<option value="Bard">Bard</option>
 								<option value="Cleric">Cleric</option>
@@ -677,7 +638,7 @@
 							</select>
 						</td>
 						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('con'); setMaxHP();" id="con"><br>
+							<input type="number" min="1" max="18" onchange="setModifier('con');" id="con"><br>
 							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
 							<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
 								<option value="Unafflicted">Unafflicted</option>
