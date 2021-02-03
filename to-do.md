@@ -1,11 +1,12 @@
 # TO DO
 - dynamic alignment
-- alignment lookups
+- all data lookups from JSON
 - add multiple items
 - total WEIGHT
 - class FEATUREs mutliple
 - Error checking (load, max xp, max hp)
 - default items
+- adventure
 - save
 - load
 - clear

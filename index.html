@@ -624,7 +624,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.4 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.5 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
@@ -637,12 +637,22 @@
 						</th>
 						<td>
 							<select id="player" style="position: relative" tabindex="-1">
-								<option value="Jon">Jon
-								<option value="Mark">Mark
-								<option value="Nath">Nath
-								<option value="Rich">Rich
-								<option value="Tom">Tom
-								<option value="Tony">Tony
+								<option value="Jon">Jon</option>
+								<option value="Mark">Mark</option>
+								<option value="Nath">Nath</option>
+								<option value="Rich">Rich</option>
+								<option value="Tom">Tom</option>
+								<option value="Tony">Tony</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 25%;">
+							<label for="adventure">ADVENTURE</label>
+						</th>
+						<td>
+							<select id="adventure" style="position: relative" tabindex="-1">
+								<option value="Grease Lightning">Grease Lightning</option>
 							</select>
 						</td>
 					</tr>
@@ -677,15 +687,15 @@
 						</th>
 						<td>
 							<select id="dwClass" onchange="setMaxHP(); setMaxLoad(); setDamage();" style="position: relative" tabindex="-1">
-								<option value="Barbarian">Barbarian
-								<option value="Bard">Bard
-								<option value="Cleric">Cleric
-								<option value="Druid">Druid
-								<option value="Fighter">Fighter
-								<option value="Paladin">Paladin
-								<option value="Ranger">Ranger
-								<option value="Thief">Thief
-								<option value="Wizard">Wizard
+								<option value="Barbarian">Barbarian</option>
+								<option value="Bard">Bard</option>
+								<option value="Cleric">Cleric</option>
+								<option value="Druid">Druid</option>
+								<option value="Fighter">Fighter</option>
+								<option value="Paladin">Paladin</option>
+								<option value="Ranger">Ranger</option>
+								<option value="Thief">Thief</option>
+								<option value="Wizard">Wizard</option>
 							</select>
 						</td>
 					</tr>
@@ -696,11 +706,11 @@
 						</th>
 						<td>
 							<select id="race" onchange="setRaceAttribute();" style="position: relative" tabindex="-1">
-								<option value="Dwarf">Dwarf
-								<option value="Elf">Elf
-								<option value="Goblin">Goblin
-								<option value="Halfling">Halfling
-								<option value="Human">Human
+								<option value="Dwarf">Dwarf</option>
+								<option value="Elf">Elf</option>
+								<option value="Goblin">Goblin</option>
+								<option value="Halfling">Halfling</option>
+								<option value="Human">Human</option>
 							</select>
 						</td>
 						<td>
@@ -756,48 +766,48 @@
 							<input type="number" min="1" max="18" onchange="setModifier('str'); setMaxLoad();" id="str"><br>
 							<input type="text" class="grey tallfield" readonly id="strModifier"><br>
 							<select onchange="setModifier('str')" style="position: relative" tabindex="-1" id="strAffliction">
-								<option value="Unafflicted">Unafflicted
-								<option value="Weak">Weak
+								<option value="Unafflicted">Unafflicted</option>
+								<option value="Weak">Weak</option>
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" max="18" onchange="setModifier('dex')" id="dex"><br>
 							<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
 							<select onchange="setModifier('dex')" style="position: relative" tabindex="-1" id="dexAffliction">
-								<option value="Unafflicted">Unafflicted
-								<option value="Shaky">Shaky
+								<option value="Unafflicted">Unafflicted</option>
+								<option value="Shaky">Shaky</option>
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" max="18" onchange="setModifier('con'); setMaxHP();" id="con"><br>
 							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
 							<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
-								<option value="Unafflicted">Unafflicted
-								<option value="Shaky">Sick
+								<option value="Unafflicted">Unafflicted</option>
+								<option value="Shaky">Sick</option>
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" max="18" onchange="setModifier('int')" id="int"><br>
 							<input type="text" class="grey tallfield" readonly id="intModifier"><br>
 							<select onchange="setModifier('int')" style="position: relative" tabindex="-1" id="intAffliction">
-								<option value="Unafflicted">Unafflicted
-								<option value="Shaky">Stunned
+								<option value="Unafflicted">Unafflicted</option>
+								<option value="Shaky">Stunned</option>
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" max="18" onchange="setModifier('wis')" id="wis"><br>
 							<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
 							<select onchange="setModifier('wis')" style="position: relative" tabindex="-1" id="wisAffliction">
-								<option value="Unafflicted">Unafflicted
-								<option value="Shaky">Confused
+								<option value="Unafflicted">Unafflicted</option>
+								<option value="Shaky">Confused</option>
 							</select>
 						</td>
 						<td>
 							<input type="number" min="1" max="18" onchange="setModifier('cha')" id="cha"><br>
 							<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
 							<select onchange="setModifier('cha')" style="position: relative" tabindex="-1" id="chaAffliction">
-								<option value="Unafflicted">Unafflicted
-								<option value="Shaky">Scarred
+								<option value="Unafflicted">Unafflicted</option>
+								<option value="Shaky">Scarred</option>
 							</select>
 						</td>
 					</tr>
