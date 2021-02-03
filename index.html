@@ -149,6 +149,10 @@
 			position: absolute;
 			display: none;
 		}
+		.bin {
+			background: url(images/icons/bin.png) no-repeat;
+		}
+
 	</style>
 
 </head>
@@ -360,13 +364,11 @@
 		$(function() {
 
 			$("#dwClass").change(function() {
-
 				var $dwClass = $(this);
 				var $str = $("#str");
 				var $con = $("#con");
 
 				$.getJSON("data/classes.json", function(data) {
-
 					var dwClass = $dwClass.val();
 					var str = $str.val();
 					var con = $con.val();
@@ -413,7 +415,6 @@
 			});
 
 			$("#race").change(function() {
-
 				var $race = $(this);
 				var $dwClass = $("#dwClass");
 
@@ -430,7 +431,6 @@
 			});
 
 			$("#alignment").change(function() {
-
 				var $alignment = $(this);
 				var $dwClass = $("#dwClass");
 
@@ -447,7 +447,6 @@
 			});
 
 			$("#str").change(function() {
-
 				var $str = $(this);
 				var $dwClass = $("#dwClass");
 
@@ -474,7 +473,6 @@
 			});
 
 			$("#con").change(function() {
-
 				var $con = $(this);
 				var $dwClass = $("#dwClass");
 
@@ -499,54 +497,55 @@
 					$("#maxHP").val("/ " + maxHP);
 				});
 			});
-
 		});
 
-		function addRow(tableID) {
-
-			var table = document.getElementById(tableID);
-
-			var rowCount = table.rows.length;
-			var row = table.insertRow(rowCount);
-
-			var cell1 = row.insertCell(0);
-			var element1 = document.createElement("input");
-			element1.type = "checkbox";
-			element1.name = "chkbox[]";
-			cell1.appendChild(element1);
-
-			var cell2 = row.insertCell(1);
-			cell2.innerHTML = rowCount + 1;
-
-			var cell3 = row.insertCell(2);
-			var element2 = document.createElement("input");
-			element2.type = "text";
-			element2.name = "txtbox[]";
-			cell3.appendChild(element2);
-
-
+		function arrangeID(tableID) {
+			var tbl = document.getElementById(tableID);
+			var rowCount = tbl.rows.length;
+			for (var i = 0; i < rowCount - 1; i++)
+				tbl.rows[i + 1].cells[0].innerHTML = i + 1;
 		}
 
-		function deleteRow(tableID) {
-			try {
-				var table = document.getElementById(tableID);
-				var rowCount = table.rows.length;
+		function addRow(tableID, firstDataRow, footerCount) {
 
-				for (var i = 0; i < rowCount; i++) {
-					var row = table.rows[i];
-					var chkbox = row.cells[0].childNodes[0];
-					if (null != chkbox && true == chkbox.checked) {
-						table.deleteRow(i);
-						rowCount--;
-						i--;
-					}
+			var tbl = document.getElementById(tableID);
+			var rowCount = tbl.rows.length;
 
+			// to insert single row
+			var rowInTable = tbl.insertRow(rowCount - footerCount);
 
+			// to get the number of colums from the first row
+			var colCount = tbl.rows[firstDataRow].cells.length;
+
+			// to increment sno from the previous row by one
+			var rno = eval(tbl.rows[rowCount - 1].cells[0].innerHTML) + 1;
+
+			for (var i = 0; i < colCount; i++) {
+				// to insert one column
+				var columnInRow = rowInTable.insertCell(i);
+				columnInRow.innerHTML = tbl.rows[1].cells[i].innerHTML;
+				if (i == 0) columnInRow.innerHTML = rno;
+				// to fill new row with  blank  text box, unchecked checkbox ,  combo selected with index 0 when the row is created , eventhough  the first row of the table having the textbox with filled values , etc...
+				switch (columnInRow.childNodes[0].type) {
+					case "text":
+						columnInRow.childNodes[0].value = "";
+						break;
+					case "checkbox":
+						columnInRow.childNodes[0].checked = false;
+						break;
+					case "select-one":
+						columnInRow.childNodes[0].selectedIndex = 0;
+						break;
 				}
-			} catch (e) {
-				alert(e);
 			}
 		}
+
+		function deleteRow(tableID, rowID) {
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+			table.deleteRow(rowID);
+		}
+
 
 		function loadelements() {
 			document.getElementById("main").style.visibility = "visible";
@@ -777,13 +776,16 @@
 				<table style="width: 100%;" id="bondsTable">
 					<tr>
 						<th colspan="2"><label for="bonds">BONDS</label></th>
+						<td>
+							<button type="button" id="addBond">+</button>
+						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" id="bonds">
+							<input type="text" id="bond1">
 						</td>
 						<td>
-							<button type="button" class="mbutton" id="addBond">+</button>
+							<button type="button" class="bin" id="deleteBond1"></button>
 						</td>
 					</tr>
 				</table>
@@ -795,16 +797,19 @@
 					<tr>
 						<th style="width: 75%;"><label for="items">ITEM</label></th>
 						<th colspan="2"><label for="weight">WEIGHT</label></th>
+						<td>
+							<button type="button" id="addItem">+</button>
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<input type="text" id="item1">
 						</td>
 						<td colspan="2">
-							<input type="number" min="0" id="item1weight">
+							<input type="number" min="0" id="item1Weight">
 						</td>
 						<td>
-							<button type="button" class="mbutton" id="addItem">+</button>
+							<button type="button" class="bin" id="deleteItem1"></button>
 						</td>
 					</tr>
 					<tr>
@@ -817,18 +822,21 @@
 				<table style="width: 100%;" id="classFeaturesTable">
 					<tr>
 						<th colspan="2"><label for="classFeatures">CLASS FEATURES</label></th>
+						<td>
+							<button type="button" onclick="addRow(classFeaturesTable, 2, 0)" id="addClassFeature">+</button>
+						</td>
 					</tr>
 					<tr>
 						<td><input type="text" id="classFeature1"></td>
 						<td>
-							<button type="button" class="mbutton" id="addClassFeature">+</button>
+							<button type="button" class="bin" id="deleteClassFeature1"></button>
 						</td>
 					</tr>
 				</table>
 				<br>
-				<button type="button" class="mbutton" onclick="saveCharacter()" id="saveCharacter">Save</button>
-				<button type="button" class="mbutton" onclick="loadCharacter()" id="loadCharacter">Load</button>
-				<button type="button" class="mbutton" onclick="clearCharacter()" id="clearCharacter">Clear</button>
+				<button type="button" onclick="saveCharacter()" id="saveCharacter">Save</button>
+				<button type="button" onclick="loadCharacter()" id="loadCharacter">Load</button>
+				<button type="button" onclick="clearCharacter()" id="clearCharacter">Clear</button>
 
 			</div>
 
