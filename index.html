@@ -448,7 +448,7 @@
 			$("#race").change(function() {
 
 				var $race = $(this);
-				var $dwClass = $("#dwClass").val();
+				var $dwClass = $("#dwClass");
 
 				$.getJSON("data/classes.json", function(data) {
 
@@ -483,7 +483,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.3.8 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.3.9 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
