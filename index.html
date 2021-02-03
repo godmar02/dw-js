@@ -561,51 +561,53 @@
 			});
 		}
 
-		$("#race").change(function() {
+		$(function() {
 
-			var $dropdown = $(this);
+			$("#dwClass").change(function() {
 
-			$.getJSON("data/classes.json", function(data) {
+				var $dropdown = $(this);
 
-				var key = $dropdown.val();
-				var vals = [];
-				console.log("HERE")
+				$.getJSON("data/classes.json", function(data) {
 
-				switch (key) {
+					var key = $dropdown.val();
+					var vals = [];
 
-					case 'Barbarian':
-						vals = data.Barbarian.alignments.split(",");
-						break;
-					case 'Bard':
-						vals = data.Bard.alignments.split(",");
-						break;
-					case 'Cleric':
-						vals = data.Cleric.alignments.split(",");
-						break;
-					case 'Druid':
-						vals = data.Druid.alignments.split(",");
-						break;
-					case 'Fighter':
-						vals = data.Fighter.alignments.split(",");
-						break;
-					case 'Paladin':
-						vals = data.Paladin.alignments.split(",");
-						break;
-					case 'Thief':
-						vals = data.Thief.alignments.split(",");
-						break;
-					case 'Wizard':
-						vals = data.Wizard.alignments.split(",");
-						break;
-				}
+					switch(key) {
+						case 'Barbarian':
+							vals = data.Barbarian.alignments.split(",");
+							break;
+						case 'Bard':
+							vals = data.Bard.alignments.split(",");
+							break;
+						case 'Cleric':
+							vals = data.Cleric.alignments.split(",");
+							break;
+						case 'Druid':
+							vals = data.Druid.alignments.split(",");
+							break;
+						case 'Fighter':
+							vals = data.Fighter.alignments.split(",");
+							break;
+						case 'Paladin':
+							vals = data.Paladin.alignments.split(",");
+							break;
+						case 'Thief':
+							vals = data.Thief.alignments.split(",");
+							break;
+						case 'Wizard':
+							vals = data.Wizard.alignments.split(",");
+							break;
+					}
 
-				var $alignment = $("#alignment");
-				$alignment.empty();
-				$.each(vals, function(index, value) {
-					$alignment.append("<option value='" + value + "'>" + value);
+					var $alignments = $("#alignment");
+					$alignments.empty();
+					$.each(vals, function(index, value) {
+						$alignments.append("<option>" + value + "</option>");
+					});
+
 				});
-
 			});
+
 		});
 
 		function loadelements() {
@@ -624,7 +626,7 @@
 		<h2>Dungeon World Character Sheet</h2><br>
 		<span style="display: inline-block"><i>v0.3.3 by Godmar02</i></span><br><br>
 
-		<form id="values" onsubmit="return false" onkeypress="if (document.getElementById('multibutton').innerText == 'Single') {return event.keyCode != 13;}">
+		<form id="values">
 
 			<div id="attvalues">
 
