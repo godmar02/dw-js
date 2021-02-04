@@ -27,10 +27,15 @@
 			border: 1px solid #696969;
 			border-radius: 5px;
 			cursor: pointer;
+			height = 40px;
 		}
 
 		button:active {
 			background-color: lightgray;
+		}
+
+		button.bin {
+			background: url(images/icons/bin.png) center/15px no-repeat;
 		}
 
 		div.ans {
@@ -65,21 +70,11 @@
 			display: inline;
 		}
 
-		table {
-			border-style: solid;
-			border-width: medium;
-			border-radius: 5px;
-		}
-
-		th {
-			background-color: black;
-			color: white;
+		p {
+			max-height: 999999px;
 			font-size: 17px;
-			text-align: center;
-			padding: 5px;
-			border-radius: 5px;
 		}
-
+		
 		select,
 		input {
 			display: inline-block;
@@ -103,6 +98,25 @@
 			background: url(images/icons/down_arrow.png) no-repeat right;
 		}
 
+		select::-ms-expand {
+			display: none;
+		}
+
+		table {
+			border-style: solid;
+			border-width: medium;
+			border-radius: 5px;
+		}
+
+		th {
+			background-color: black;
+			color: white;
+			font-size: 17px;
+			text-align: center;
+			padding: 5px;
+			border-radius: 5px;
+		}
+
 		.grey {
 			background-color: lightgrey;
 		}
@@ -113,15 +127,6 @@
 
 		.tallfield {
 			height: 80px;
-		}
-
-		select::-ms-expand {
-			display: none;
-		}
-
-		p {
-			max-height: 999999px;
-			font-size: 17px;
 		}
 
 		.textpress {
@@ -148,9 +153,6 @@
 			content: "";
 			position: absolute;
 			display: none;
-		}
-		.bin {
-			background: url(images/icons/bin.png) no-repeat;
 		}
 
 	</style>
