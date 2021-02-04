@@ -534,6 +534,8 @@
 			// to create columns in new row
 			for (var i = 0; i < colCount; i++) {
 
+				console.log("column: " + i)
+
 				// to insert one column
 				var newCell = newRow.insertCell(i);
 				var templateCell = templateRow.cells[i];
@@ -543,12 +545,11 @@
 
 				// set new ID based upon existing cell
 				var templateCellID = templateCell.innerHTML.id;
+				console.log("templateCellID: " + templateCellID)
 				var templateCellIDPrefix = templateCellID.slice(0, -1);
 				newCell.id = templateCellIDPrefix + newRowID;
 
-				console.log(
-					"column: " + i + '\n' +
-					"templateCellID: " + templateCellID + '\n' +
+				console.log(	
 					"templateCellIDPrefix: " + templateCellIDPrefix + '\n' +
 					"newRowID: " + newRowID
 				)
