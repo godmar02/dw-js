@@ -509,10 +509,11 @@
 				tbl.rows[i + 1].cells[0].innerHTML = i + 1;
 		}
 
-		function addRow(tableID, firstDataRow, footerCount) {
+		function addRow(tableID, rowIDPrefix, firstDataRow, footerCount) {
 
 			console.log(
 				"tableID: " + tableID + '\n' +
+				"rowIDPrefix: " + rowIDPrefix + '\n' +
 				"firstDataRow: " + firstDataRow + '\n' +
 				"footerCount: " + footerCount
 			)
@@ -536,13 +537,17 @@
 
 			// to create columns in new row
 			for (var i = 0; i < colCount; i++) {
+
 				// to insert one column
 				var columnInRow = rowInTable.insertCell(i);
-				// set to first data row
-				columnInRow.innerHTML = tbl.rows[firstDataRow].cells[i].innerHTML;
-				// set new ID?
 
-				// to fill new row with  blank  text box, unchecked checkbox ,  combo selected with index 0 when the row is created , eventhough  the first row of the table having the textbox with filled values , etc...
+				// set to same as first data row
+				columnInRow.innerHTML = tbl.rows[firstDataRow].cells[i].innerHTML;
+
+				// set new ID?
+				columnInRow.childNodes[0].id = rowIDPrefix + newRowID;
+
+				// to ensure content is blank or unchecked
 				switch (columnInRow.childNodes[0].type) {
 					case "text":
 						columnInRow.childNodes[0].value = "";
@@ -577,7 +582,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.5.6 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.5.7 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
@@ -839,7 +844,7 @@
 					<tr>
 						<th colspan="2"><label for="classFeatures">CLASS FEATURES</label></th>
 						<td>
-							<button type="button" onclick="addRow('classFeaturesTable', 1, 0)" id="addClassFeature">+</button>
+							<button type="button" onclick="addRow('classFeaturesTable', 'classFeature', 1, 0)" id="addClassFeature">+</button>
 						</td>
 					</tr>
 					<tr>
