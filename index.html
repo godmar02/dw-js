@@ -515,7 +515,7 @@
 			var rowCount = tbl.rows.length;
 			var colCount = tbl.rows[firstDataRow].cells.length;
 			var newRowNum = rowCount - footerCount;
-			var newRowID = newRowNum - firstDataRow;
+			var newRowID = 1 + newRowNum - firstDataRow;
 
 			console.log(
 				"tableID: " + tableID + '\n' +
@@ -850,7 +850,7 @@
 					<tr>
 						<td><input type="text" id="classFeature1"></td>
 						<td>
-							<button type="button" class="bin" onclick="addRow('classFeaturesTable',1)" id="deleteClassFeature1"></button>
+							<button type="button" class="bin" onclick="deleteRow('classFeaturesTable')" id="deleteClassFeature1"></button>
 						</td>
 					</tr>
 				</table>
