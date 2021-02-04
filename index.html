@@ -544,7 +544,7 @@
 				newCell.innerHTML = templateCell.innerHTML;
 
 				// set new ID based upon existing cell
-				var templateCellID = templateCell.childNodes[0].id;
+				var templateCellID = templateCell.children[0].id;
 				console.log("templateCellID: " + templateCellID)
 				var templateCellIDPrefix = templateCellID.slice(0, -1);
 				newCell.id = templateCellIDPrefix + newRowID;
@@ -555,15 +555,15 @@
 				)
 
 				// Blank or uncheck content
-				switch (newCell.childNodes[0].type) {
+				switch (newCell.children[0].type) {
 					case "text":
-						newCell.childNodes[0].value = "";
+						newCell.children[0].value = "";
 						break;
 					case "checkbox":
-						newCell.childNodes[0].checked = false;
+						newCell.children[0].checked = false;
 						break;
 					case "select-one":
-						newCell.childNodes[0].selectedIndex = 0;
+						newCell.children[0].selectedIndex = 0;
 						break;
 				}
 			}
@@ -587,7 +587,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.6.0 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.6.1 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -841,8 +841,12 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="text" id="classFeature1"></td>
-						<td><button type="button" class="bin" onclick="deleteRow('classFeaturesTable')" id="deleteClassFeature1"></button></td>
+						<td>
+							<input type="text" id="classFeature1">
+						</td>
+						<td>
+							<button type="button" class="bin" onclick="deleteRow('classFeaturesTable')" id="deleteClassFeature1"></button>
+						</td>
 					</tr>
 				</table>
 				<br>
