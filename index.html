@@ -27,7 +27,7 @@
 			border: 1px solid #696969;
 			border-radius: 5px;
 			cursor: pointer;
-			height = 40px;
+			height=40px;
 		}
 
 		button:active {
@@ -154,7 +154,6 @@
 			position: absolute;
 			display: none;
 		}
-
 	</style>
 
 </head>
@@ -499,7 +498,7 @@
 					$("#maxHP").val("/ " + maxHP);
 				});
 			});
-			
+
 		});
 
 		function arrangeID(tableID) {
@@ -513,21 +512,29 @@
 
 			var tbl = document.getElementById(tableID);
 			var rowCount = tbl.rows.length;
+			var colCount = tbl.rows[firstDataRow].cells.length;
+			var newRowNum = rowCount - footerCount;
+			var newRowID = newRowNum - firstDataRow;
+
+			console.log(
+				"tbl: " + tbl + '\n' +
+				"colCount" + colCount + '\n' +
+				"rowCount: " + rowCount + '\n' +
+				"newRowNum: " + newRowNum + '\n' +
+				"newRowID: " + newRowID
+			)
 
 			// to insert single row
-			var rowInTable = tbl.insertRow(rowCount - footerCount);
+			var rowInTable = tbl.insertRow(newRowNum);
 
-			// to get the number of colums from the first row
-			var colCount = tbl.rows[firstDataRow].cells.length;
-
-			// to increment sno from the previous row by one
-			var rno = eval(tbl.rows[rowCount - 1].cells[0].innerHTML) + 1;
-
+			// to create columns in new row
 			for (var i = 0; i < colCount; i++) {
 				// to insert one column
 				var columnInRow = rowInTable.insertCell(i);
-				columnInRow.innerHTML = tbl.rows[1].cells[i].innerHTML;
-				if (i == 0) columnInRow.innerHTML = rno;
+				// set to first data row
+				columnInRow.innerHTML = tbl.rows[firstDataRow].cells[i].innerHTML;
+				// set new ID?
+
 				// to fill new row with  blank  text box, unchecked checkbox ,  combo selected with index 0 when the row is created , eventhough  the first row of the table having the textbox with filled values , etc...
 				switch (columnInRow.childNodes[0].type) {
 					case "text":
@@ -549,7 +556,6 @@
 			table.deleteRow(rowID);
 		}
 
-
 		function loadelements() {
 			document.getElementById("main").style.visibility = "visible";
 		}
@@ -564,7 +570,7 @@
 
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2><br>
-		<span style="display: inline-block"><i>v0.5.1 by Godmar02</i></span><br><br>
+		<span style="display: inline-block"><i>v0.5.2 by Godmar02</i></span><br><br>
 
 		<form id="values">
 
