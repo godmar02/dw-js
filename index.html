@@ -884,7 +884,7 @@
 			// Note table items are zero indexed
 			var tbl = document.getElementById(tableID);
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-			var headerRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+			var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
 			var footerRowCount = tbl.getElementsByTagName('tfoot')[0].getElementsByTagName('tr').length;
 			var colCount = tbl.rows[headerRowCount].cells.length;
 			var newRowNum = headerRowCount + bodyRowCount;
