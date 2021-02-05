@@ -563,7 +563,7 @@
 					case "button":
 						var templateCellOnClick = templateCell.children[0].onclick;
 						var templateCellOnClickPrefix = templateCellOnClick.slice(0, -2);
-						var newCellOnClick = templateCellOnClickPrefix + newRowID + ")";
+						var newCellOnClick = templateCellOnClickPrefix + newRowNum + ")";
 						newCell.children[0].onclick = newCellOnClick;
 						console.log(
 							"templateCellOnClick: " + templateCellID + '\n' +
