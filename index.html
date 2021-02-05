@@ -563,12 +563,12 @@
 				switch (newCell.children[0].type) {
 					case "button":
 						var currentCellOnClick = document.getElementById(newCellID).onclick;
-						var templateCellOnClickPrefix = templateCellOnClick.slice(0, -2);
-						var newCellOnClick = templateCellOnClickPrefix + newRowNum + ")";
+						var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
+						var newCellOnClick = currentCellOnClickkPrefix + newRowNum + ")";
 						document.getElementById(newCellID).onclick = newCellOnClick;
 						console.log(
 							"currentCellOnClick: " + currentCellOnClick + '\n' +
-							"templateCellOnClickPrefix: " + templateCellOnClickPrefix + '\n' +
+							"currentCellOnClickkPrefix: " + currentCellOnClickkPrefix + '\n' +
 							"newCellOnClick: " + newCellOnClick
 						)
 						break;
