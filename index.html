@@ -592,6 +592,7 @@
 		function deleteRow(tableID, rowID) {
 			var table = document.getElementById(tableID);
 			table.deleteRow(rowID);
+			//todo - rearrange remaining row ids etc
 		}
 
 		function loadelements() {
@@ -607,7 +608,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.7.1 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.7.2 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -734,123 +735,142 @@
 				</table>
 				<br>
 				<table style="width: 100%;" id="abilitiesTable">
-					<tr>
-						<th><label for="str">STR</label></th>
-						<th><label for="dex">DEX</label></th>
-						<th><label for="con">CON</label></th>
-						<th><label for="int">INT</label></th>
-						<th><label for="wis">WIS</label></th>
-						<th><label for="cha">CHA</label></th>
-					</tr>
-					<tr>
-						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('str');" id="str"><br>
-							<input type="text" class="grey tallfield" readonly id="strModifier"><br>
-							<select onchange="setModifier('str')" style="position: relative" tabindex="-1" id="strAffliction">
-								<option value="Unafflicted">Unafflicted</option>
-								<option value="Weak">Weak</option>
-							</select>
-						</td>
-						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('dex')" id="dex"><br>
-							<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
-							<select onchange="setModifier('dex')" style="position: relative" tabindex="-1" id="dexAffliction">
-								<option value="Unafflicted">Unafflicted</option>
-								<option value="Shaky">Shaky</option>
-							</select>
-						</td>
-						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('con');" id="con"><br>
-							<input type="text" class="grey tallfield" readonly id="conModifier"><br>
-							<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
-								<option value="Unafflicted">Unafflicted</option>
-								<option value="Shaky">Sick</option>
-							</select>
-						</td>
-						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('int')" id="int"><br>
-							<input type="text" class="grey tallfield" readonly id="intModifier"><br>
-							<select onchange="setModifier('int')" style="position: relative" tabindex="-1" id="intAffliction">
-								<option value="Unafflicted">Unafflicted</option>
-								<option value="Shaky">Stunned</option>
-							</select>
-						</td>
-						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('wis')" id="wis"><br>
-							<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
-							<select onchange="setModifier('wis')" style="position: relative" tabindex="-1" id="wisAffliction">
-								<option value="Unafflicted">Unafflicted</option>
-								<option value="Shaky">Confused</option>
-							</select>
-						</td>
-						<td>
-							<input type="number" min="1" max="18" onchange="setModifier('cha')" id="cha"><br>
-							<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
-							<select onchange="setModifier('cha')" style="position: relative" tabindex="-1" id="chaAffliction">
-								<option value="Unafflicted">Unafflicted</option>
-								<option value="Shaky">Scarred</option>
-							</select>
-						</td>
-					</tr>
+					<thead>
+						<tr>
+							<th><label for="str">STR</label></th>
+							<th><label for="dex">DEX</label></th>
+							<th><label for="con">CON</label></th>
+							<th><label for="int">INT</label></th>
+							<th><label for="wis">WIS</label></th>
+							<th><label for="cha">CHA</label></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input type="number" min="1" max="18" onchange="setModifier('str');" id="str"><br>
+								<input type="text" class="grey tallfield" readonly id="strModifier"><br>
+								<select onchange="setModifier('str')" style="position: relative" tabindex="-1" id="strAffliction">
+									<option value="Unafflicted">Unafflicted</option>
+									<option value="Weak">Weak</option>
+								</select>
+							</td>
+							<td>
+								<input type="number" min="1" max="18" onchange="setModifier('dex')" id="dex"><br>
+								<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
+								<select onchange="setModifier('dex')" style="position: relative" tabindex="-1" id="dexAffliction">
+									<option value="Unafflicted">Unafflicted</option>
+									<option value="Shaky">Shaky</option>
+								</select>
+							</td>
+							<td>
+								<input type="number" min="1" max="18" onchange="setModifier('con');" id="con"><br>
+								<input type="text" class="grey tallfield" readonly id="conModifier"><br>
+								<select onchange="setModifier('con')" style="position: relative" tabindex="-1" id="conAffliction">
+									<option value="Unafflicted">Unafflicted</option>
+									<option value="Shaky">Sick</option>
+								</select>
+							</td>
+							<td>
+								<input type="number" min="1" max="18" onchange="setModifier('int')" id="int"><br>
+								<input type="text" class="grey tallfield" readonly id="intModifier"><br>
+								<select onchange="setModifier('int')" style="position: relative" tabindex="-1" id="intAffliction">
+									<option value="Unafflicted">Unafflicted</option>
+									<option value="Shaky">Stunned</option>
+								</select>
+							</td>
+							<td>
+								<input type="number" min="1" max="18" onchange="setModifier('wis')" id="wis"><br>
+								<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
+								<select onchange="setModifier('wis')" style="position: relative" tabindex="-1" id="wisAffliction">
+									<option value="Unafflicted">Unafflicted</option>
+									<option value="Shaky">Confused</option>
+								</select>
+							</td>
+							<td>
+								<input type="number" min="1" max="18" onchange="setModifier('cha')" id="cha"><br>
+								<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
+								<select onchange="setModifier('cha')" style="position: relative" tabindex="-1" id="chaAffliction">
+									<option value="Unafflicted">Unafflicted</option>
+									<option value="Shaky">Scarred</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
 				</table>
 				<br>
 				<table id="damageArmourFunds">
-					<tr>
-						<th><label for="damage">DAMAGE</label></th>
-						<th><label for="armour">ARMOUR</label></th>
-						<th colspan="2"><label for="HP">HP</label></th>
-						<th><label for="Funds">FUNDS</label></th>
-					</tr>
-					<tr>
-						<td>
-							<input type="text" class="shortfield grey" readonly id="damage">
-						</td>
-						<td>
-							<input type="number" min="0" class="shortfield" id="armour">
-						</td>
-						<td>
-							<input type="number" min="0" class="shortfield" id="HP">
-						</td>
-						<td>
-							<input type="text" class="shortfield grey" readonly id="maxHP">
-						</td>
-						<td><input type="number" class="shortfield" min="0" id="Funds"></td>
+					<thead>
+						<tr>
+							<th><label for="damage">DAMAGE</label></th>
+							<th><label for="armour">ARMOUR</label></th>
+							<th colspan="2"><label for="HP">HP</label></th>
+							<th><label for="Funds">FUNDS</label></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" class="shortfield grey" readonly id="damage">
+							</td>
+							<td>
+								<input type="number" min="0" class="shortfield" id="armour">
+							</td>
+							<td>
+								<input type="number" min="0" class="shortfield" id="HP">
+							</td>
+							<td>
+								<input type="text" class="shortfield grey" readonly id="maxHP">
+							</td>
+							<td><input type="number" class="shortfield" min="0" id="Funds"></td>
+						</tr>
+					</tbody>
 				</table>
 				<br>
 				<table style="width: 100%;" id="bondsTable">
-					<tr>
-						<th colspan="2"><label for="bonds">BONDS</label></th>
-						<td>
-							<button type="button" onclick="addRow('bondsTable', 1, 0)" id="addBond">+</button>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="text" id="bond1"></td>
-						<td><button type="button" class="deleteRowButton" id="deleteBond1"></button></td>
-					</tr>
+					<thead>
+						<tr>
+							<th colspan="2"><label for="bonds">BONDS</label></th>
+							<td>
+								<button type="button" onclick="addRow('bondsTable', 1, 0)" id="addBond">+</button>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" id="bond1"></td>
+							<td><button type="button" class="deleteRowButton" id="deleteBond1"></button></td>
+						</tr>
+					</tbody>
 				</table>
 				<br>
 				<table style="width: 100%;" id="gearTable">
-					<tr>
-						<th colspan="4"><label for="gear">GEAR</label></th>
-					</tr>
-					<tr>
-						<th style="width: 75%;"><label for="items">ITEM</label></th>
-						<th colspan="2"><label for="weight">WEIGHT</label></th>
-						<td>
-							<button type="button" onclick="addRow('gearTable', 2, 1)" id="addItem">+</button>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="text" id="item1"></td>
-						<td colspan="2"><input type="number" min="0" id="itemWeight1"></td>
-						<td><button type="button" class="deleteRowButton" id="deleteItem1"></button></td>
-					</tr>
-					<tr>
-						<th><label for="load">LOAD</label></th>
-						<td><input type="text" class="shortfield grey" readonly id="load"></td>
-						<td><input type="text" class="shortfield grey" readonly id="maxLoad"></td>
-					</tr>
+					<thead>
+						<tr>
+							<th colspan="4"><label for="gear">GEAR</label></th>
+						</tr>
+						<tr>
+							<th style="width: 75%;"><label for="items">ITEM</label></th>
+							<th colspan="2"><label for="weight">WEIGHT</label></th>
+							<td>
+								<button type="button" onclick="addRow('gearTable', 2, 1)" id="addItem">+</button>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" id="item1"></td>
+							<td colspan="2"><input type="number" min="0" id="itemWeight1"></td>
+							<td><button type="button" class="deleteRowButton" id="deleteItem1"></button></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th><label for="load">LOAD</label></th>
+							<td><input type="text" class="shortfield grey" readonly id="load"></td>
+							<td><input type="text" class="shortfield grey" readonly id="maxLoad"></td>
+						</tr>
+					</tfoot>
 				</table>
 				<br>
 				<table style="width: 100%;" id="classFeaturesTable">
