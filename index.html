@@ -960,7 +960,7 @@
 			var tbl = document.getElementById(tableID);
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
 			if (bodyRowCount != 1) {
-				table.deleteRow(rowNum);
+				tbl.deleteRow(rowNum);
 				//todo - rearrange remaining row ids etc
 			} else {
 				console.log("Cannot delete last row: " + tableID)
