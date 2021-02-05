@@ -176,7 +176,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.7.5 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.7.6 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -407,7 +407,7 @@
 					<tbody>
 						<tr>
 							<td><input type="text" id="bond0"></td>
-							<td><button type="button" class="deleteRowButton" onclick="deleteRow('bondsTable', 0)" id="deleteBond0"></button></td>
+							<td><button type="button" class="deleteRowButton" onclick="deleteRow('bondsTable', 1)" id="deleteBond0"></button></td>
 						</tr>
 					</tbody>
 					<tfoot></tfoot>
@@ -430,7 +430,7 @@
 						<tr>
 							<td><input type="text" id="item0"></td>
 							<td colspan="2"><input type="number" min="0" id="itemWeight0"></td>
-							<td><button type="button" class="deleteRowButton" onclick="deleteRow('gearTable', 0)" id="deleteItem0"></button></td>
+							<td><button type="button" class="deleteRowButton" onclick="deleteRow('gearTable', 2)" id="deleteItem0"></button></td>
 						</tr>
 					</tbody>
 					<tfoot>
@@ -457,7 +457,7 @@
 								<input type="text" id="classFeature0">
 							</td>
 							<td>
-								<button type="button" class="deleteRowButton" onclick="deleteRow('classFeaturesTable', 0)" id="deleteClassFeature0"></button>
+								<button type="button" class="deleteRowButton" onclick="deleteRow('classFeaturesTable', 1)" id="deleteClassFeature0"></button>
 							</td>
 						</tr>
 					</tbody>
@@ -887,8 +887,8 @@
 			var headerRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
 			var footerRowCount = tbl.getElementsByTagName('tfoot')[0].getElementsByTagName('tr').length;
 			var colCount = tbl.rows[headerRowCount].cells.length;
-			var newRowNum = headerRowCount + bodyRowCount ;
-			var newRowID = bodyRowCount ;
+			var newRowNum = headerRowCount + bodyRowCount;
+			var newRowID = bodyRowCount;
 			var templateRow = tbl.rows[headerRowCount];
 
 			/*console.log(
@@ -956,13 +956,15 @@
 			}
 		}
 
-		function deleteRow(tableID, bodyRowNum) {
+		function deleteRow(tableID, rowNum) {
 			var tbl = document.getElementById(tableID);
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-			var headerRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-			var footerRowCount = tbl.getElementsByTagName('tfoot')[0].getElementsByTagName('tr').length;
-			table.deleteRow(rowID);
-			//todo - rearrange remaining row ids etc
+			if (bodyRowCount != 1) {
+				table.deleteRow(rowNum);
+				//todo - rearrange remaining row ids etc
+			} else {
+				console.log("Cannot delete last row: " + tableID)
+			}
 		}
 	</script>
 </body>
