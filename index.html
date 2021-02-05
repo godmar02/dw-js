@@ -988,7 +988,9 @@
 			var tbl = document.getElementById(tableID);
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
 			console.log("bodyRowCount: " + bodyRowCount)
+			//bodyRowCount not working for gear on this or add row!!
 			if (bodyRowCount != 1) {
+				console.log("Deleting Row: " + rowNum)
 				tbl.deleteRow(rowNum);
 				//todo - rearrange remaining row ids etc
 				//arrangeRows(tableID);
