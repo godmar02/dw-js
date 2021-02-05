@@ -563,14 +563,13 @@
 				switch (newCell.children[0].type) {
 					case "button":
 						var currentCellOnClick = document.getElementById(newCellID).onclick;
+						console.log("currentCellOnClick: " + currentCellOnClick);
+						//need to convert the current cell on click to string
 						var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
 						var newCellOnClick = currentCellOnClickkPrefix + newRowNum + ")";
 						document.getElementById(newCellID).onclick = newCellOnClick;
-						console.log(
-							"currentCellOnClick: " + currentCellOnClick + '\n' +
-							"currentCellOnClickkPrefix: " + currentCellOnClickkPrefix + '\n' +
-							"newCellOnClick: " + newCellOnClick
-						)
+						console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
+						console.log("newCellOnClick: " + newCellOnClick);
 						break;
 				}
 
@@ -607,7 +606,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.6.5 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.6.6 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
