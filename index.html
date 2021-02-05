@@ -927,6 +927,7 @@
 			);*/
 
 			// to insert single row
+			// CURRENTLY THIS INSERTS ROW INTO FOOTER!!
 			var newRow = tbl.insertRow(newRowNum);
 
 			// to create columns in new row
@@ -988,7 +989,6 @@
 			var tbl = document.getElementById(tableID);
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
 			console.log("bodyRowCount: " + bodyRowCount)
-			//bodyRowCount not working for gear on this or add row!!
 			if (bodyRowCount != 1) {
 				console.log("Deleting Row: " + rowNum)
 				tbl.deleteRow(rowNum);
