@@ -891,7 +891,7 @@
 			var newRowID = bodyRowCount;
 			var templateRow = tbl.rows[headerRowCount];
 
-			/*console.log(
+			console.log(
 				"tableID: " + tableID + '\n' +
 				"headerRowCount: " + headerRowCount + '\n' +
 				"bodyRowCount: " + bodyRowCount + '\n' +
@@ -899,7 +899,7 @@
 				"colCount: " + colCount + '\n' +
 				"newRowNum: " + newRowNum + '\n' +
 				"newRowID: " + newRowID
-			);*/
+			);
 
 			// to insert single row
 			var newRow = tbl.insertRow(newRowNum);
@@ -907,7 +907,7 @@
 			// to create columns in new row
 			for (var i = 0; i < colCount; i++) {
 
-				//console.log("column: " + i)
+				console.log("column: " + i)
 
 				// to insert one column
 				var newCell = newRow.insertCell(i);
@@ -921,22 +921,22 @@
 				var templateCellIDPrefix = templateCellID.slice(0, -1);
 				var newCellID = templateCellIDPrefix + newRowID;
 				newCell.children[0].id = newCellID
-				//console.log("templateCellID: " + templateCellID)
-				//console.log("templateCellIDPrefix: " + templateCellIDPrefix)
-				//console.log("newCellID: " + newCellID)
-				//console.log("newCell class: " + document.getElementById(newCellID).class)
-				//console.log("newCell type: " + document.getElementById(newCellID).type)
+				console.log("templateCellID: " + templateCellID)
+				console.log("templateCellIDPrefix: " + templateCellIDPrefix)
+				console.log("newCellID: " + newCellID)
+				console.log("newCell class: " + document.getElementById(newCellID).class)
+				console.log("newCell type: " + document.getElementById(newCellID).type)
 
 				// set new onclick value for any buttons of format function(...N)
 				switch (newCell.children[0].type) {
 					case "button":
 						var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
-						//console.log("newCell onclick: " + currentCellOnClick);
-						//console.log("currentCellOnClick: " + currentCellOnClick);
+						console.log("newCell onclick: " + currentCellOnClick);
+						console.log("currentCellOnClick: " + currentCellOnClick);
 						var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
 						var newCellOnClick = currentCellOnClickkPrefix + newRowNum + ")";
-						//console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
-						//console.log("newCellOnClick: " + newCellOnClick);
+						console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
+						console.log("newCellOnClick: " + newCellOnClick);
 						document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
 						break;
 				}
