@@ -176,7 +176,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.7.8 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.7.9 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -889,13 +889,13 @@
 
 					// set new onclick value for any buttons of format function(...N)
 					if (cell.children[0].type == "button") {
-							var currentOnClick = document.getElementById(cellID).getAttribute("onclick");
-							var currentOnClickkPrefix = currentCellOnClick.slice(0, -2);
-							var newOnClick = currentOnClickkPrefix + rowNum + ")";
-							console.log("currentOnClick: " + currentOnClick);
-							console.log("currentOnClickkPrefix: " + currentOnClickkPrefix);
-							console.log("newOnClick: " + newOnClick);
-							document.getElementById(cellID).setAttribute("onclick", newOnClick);
+						var currentOnClick = document.getElementById(cellID).getAttribute("onclick");
+						var currentOnClickkPrefix = currentCellOnClick.slice(0, -2);
+						var newOnClick = currentOnClickkPrefix + rowNum + ")";
+						console.log("currentOnClick: " + currentOnClick);
+						console.log("currentOnClickkPrefix: " + currentOnClickkPrefix);
+						console.log("newOnClick: " + newOnClick);
+						document.getElementById(cellID).setAttribute("onclick", newOnClick);
 					}
 				}
 		}
@@ -945,23 +945,28 @@
 				var templateCellID = templateCell.children[0].id;
 				var templateCellIDPrefix = templateCellID.slice(0, -1);
 				var newCellID = templateCellIDPrefix + newRowID;
-				newCell.children[0].id = newCellID
-				//console.log("templateCellID: " + templateCellID)
-				//console.log("templateCellIDPrefix: " + templateCellIDPrefix)
-				//console.log("newCellID: " + newCellID)
-				//console.log("newCell class: " + document.getElementById(newCellID).class)
-				//console.log("newCell type: " + document.getElementById(newCellID).type)
+				//console.log("templateCellID: " + templateCellID);
+				//console.log("templateCellIDPrefix: " + templateCellIDPrefix);
+				//console.log("newCellID: " + newCellID);
+				//console.log("newCell class: " + document.getElementById(newCellID).class);
+				//console.log("newCell type: " + document.getElementById(newCellID).type);
+				newCell.children[0].id = newCellID;
+
+				// set colspan
+				var templateCellColSpan = templateCell.getAttribute("colspan");
+				console.log("templateCellColSpan: " + templateCellColSpan);
+				newCell.setAttribute("colspan", templateCellColSpan);
 
 				// set new onclick value for any buttons of format function(...N)
-				if (newCell.children[0].type == "button"){
-						var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
-						//console.log("newCell onclick: " + currentCellOnClick);
-						//console.log("currentCellOnClick: " + currentCellOnClick);
-						var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
-						var newCellOnClick = currentCellOnClickkPrefix + newRowNum + ")";
-						//console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
-						//console.log("newCellOnClick: " + newCellOnClick);
-						document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
+				if (newCell.children[0].type == "button") {
+					var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
+					//console.log("newCell onclick: " + currentCellOnClick);
+					//console.log("currentCellOnClick: " + currentCellOnClick);
+					var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
+					var newCellOnClick = currentCellOnClickkPrefix + newRowNum + ")";
+					//console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
+					//console.log("newCellOnClick: " + newCellOnClick);
+					document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
 				}
 
 				// Blank or uncheck content
@@ -982,6 +987,7 @@
 		function deleteRow(tableID, rowNum) {
 			var tbl = document.getElementById(tableID);
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+			console.log("bodyRowCount: " + bodyRowCount)
 			if (bodyRowCount != 1) {
 				tbl.deleteRow(rowNum);
 				//todo - rearrange remaining row ids etc
