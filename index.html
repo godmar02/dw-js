@@ -554,7 +554,7 @@
 				newCell.children[0].id = newCellID
 				//console.log("templateCellID: " + templateCellID)
 				//console.log("templateCellIDPrefix: " + templateCellIDPrefix)
-				console.log("newCellID: " + newCellID)
+				//console.log("newCellID: " + newCellID)
 				//console.log("newCell class: " + document.getElementById(newCellID).class)
 				//console.log("newCell type: " + document.getElementById(newCellID).type)
 
@@ -562,12 +562,12 @@
 				switch (newCell.children[0].type) {
 					case "button":
 						var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
-            //console.log("newCell onclick: " + currentCellOnClick);
-						console.log("currentCellOnClick: " + currentCellOnClick);
+						//console.log("newCell onclick: " + currentCellOnClick);
+						//console.log("currentCellOnClick: " + currentCellOnClick);
 						var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
 						var newCellOnClick = currentCellOnClickkPrefix + newRowNum + ")";
-						console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
-						console.log("newCellOnClick: " + newCellOnClick);
+						//console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix);
+						//console.log("newCellOnClick: " + newCellOnClick);
 						document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
 						break;
 				}
