@@ -178,7 +178,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.9.3 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.9.4 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -530,17 +530,11 @@
 			<a href="javascript:;" class="textpress" onclick="return show('main', 'faq')" target="_top">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br />
 		</div>
 	</div>
-	<!--jQuery-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<!--SDKs and initialisation for Firebase-->
-	<!--https://firebase.google.com/docs/web/setup#available-libraries-->
-	<!--
-	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+	<!--<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
 	<script src="code/firebase.js"></script>
 	-->
-
-	<!-- Custom Scripting -->
 	<script>
 		var answersexpanded = 0;
 
@@ -569,30 +563,36 @@
 		function setModifier(ability) {
 			var ab = document.getElementById(ability).value;
 			var abAffliction = document.getElementById(ability + "Affliction").value;
+			if (ab) {
+				/*-1 if afflicted*/
+				if (abAffliction == "Unafflicted") {
+					var afflicted = 0;
+				} else {
+					var afflicted = 1;
+				}
 
-			/*-1 if afflicted*/
-			if (abAffliction == "Unafflicted") {
-				var afflicted = 0;
+				var modifier = calcModifier(ab) - afflicted;
+
+				if (modifier > 0) {
+					var stringModifier = "+" + modifier
+				} else {
+					var stringModifier = modifier
+				}
+
+				document.getElementById(ability + "Modifier").value = "[ " + stringModifier + " ]";
 			} else {
-				var afflicted = 1;
+				document.getElementById(ability + "Modifier").value = "";
 			}
-
-			var modifier = calcModifier(ab) - afflicted;
-
-			if (modifier > 0) {
-				var stringModifier = "+" + modifier
-			} else {
-				var stringModifier = modifier
-			}
-
-			document.getElementById(ability + "Modifier").value = "[ " + stringModifier + " ]";
-
 		}
 
 		function setMaxXP() {
 			var lvl = document.getElementById("level").value;
-			var maxXP = parseInt(lvl, 10) + 7;
-			document.getElementById("maxXP").value = "/ " + maxXP;
+			if (lvl) {
+				var maxXP = parseInt(lvl, 10) + 7;
+				document.getElementById("maxXP").value = "/ " + maxXP;
+			} else {
+				document.getElementById("maxXP").value = "";
+			}
 		}
 
 		function singleRoll(sides) {
@@ -839,21 +839,24 @@
 					var str = $str.val();
 					var baseLoad = 0;
 					var maxLoad = 0;
+					if (str) {
+						str = parseInt(str, 10);
+						baseLoad = data[dwClass].baseLoad;
+						baseLoad = parseInt(baseLoad, 10);
+						maxLoad = baseLoad + str;
 
-					str = parseInt(str, 10);
-					baseLoad = data[dwClass].baseLoad;
-					baseLoad = parseInt(baseLoad, 10);
-					maxLoad = baseLoad + str;
+						if (debug == true) {
+							console.info(
+								"$(#str).change() - dwClass: " + dwClass + '\n' +
+								"$(#str).change() - str: " + str + '\n' +
+								"$(#str).change() - baseLoad: " + baseLoad + '\n' +
+								"$(#str).change() - maxLoad: " + maxLoad)
+						};
 
-					if (debug == true) {
-						console.info(
-							"$(#str).change() - dwClass: " + dwClass + '\n' +
-							"$(#str).change() - str: " + str + '\n' +
-							"$(#str).change() - baseLoad: " + baseLoad + '\n' +
-							"$(#str).change() - maxLoad: " + maxLoad)
-					};
-
-					$("#maxLoad").val("/ " + maxLoad);
+						$("#maxLoad").val("/ " + maxLoad);
+					} else {
+						$("#maxLoad").val("");
+					}
 				});
 			});
 
@@ -867,21 +870,24 @@
 					var con = $con.val();
 					var baseHP = 0;
 					var maxHP = 0;
+					if (con) {
+						con = parseInt(con, 10);
+						baseHP = data[dwClass].baseHP;
+						baseHP = parseInt(baseHP, 10);
+						maxHP = baseHP + con;
 
-					con = parseInt(con, 10);
-					baseHP = data[dwClass].baseHP;
-					baseHP = parseInt(baseHP, 10);
-					maxHP = baseHP + con;
+						if (debug == true) {
+							console.info(
+								"$(#con).change() - dwClass: " + dwClass + '\n' +
+								"$(#con).change() - con: " + con + '\n' +
+								"$(#con).change() - baseHP: " + baseHP + '\n' +
+								"$(#con).change() - maxHP: " + maxHP)
+						};
 
-					if (debug == true) {
-						console.info(
-							"$(#con).change() - dwClass: " + dwClass + '\n' +
-							"$(#con).change() - con: " + con + '\n' +
-							"$(#con).change() - baseHP: " + baseHP + '\n' +
-							"$(#con).change() - maxHP: " + maxHP)
-					};
-
-					$("#maxHP").val("/ " + maxHP);
+						$("#maxHP").val("/ " + maxHP);
+					} else {
+						$("#maxHP").val("");
+					}
 				});
 			});
 
@@ -900,13 +906,15 @@
 						console.info("itemID: itemWeight" + i)
 					};
 					itemload = $("#itemWeight" + i).val();
-					itemload = parseInt(itemload, 10);
-					totalload = totalload + itemload
-					if (debug == true) {
-						console.info(
-							"itemWeight.change() - itemload:" + itemload + '\n' +
-							"itemWeight.change() - totalload:" + totalload
-						)
+					if (itemload) {
+						itemload = parseInt(itemload, 10);
+						totalload = totalload + itemload
+						if (debug == true) {
+							console.info(
+								"itemWeight.change() - itemload:" + itemload + '\n' +
+								"itemWeight.change() - totalload:" + totalload
+							)
+						}
 					}
 				};
 
