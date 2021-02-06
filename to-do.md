@@ -1,6 +1,5 @@
 # TO DO
-- NaN error
-- simplify javascript with jQuery
+- simplify javascript with jQuery and listeners rather than onclick or onchange
 - testing of re-calculate when changing values or removing rows
 - expanding text entry / word wrap
 - Error checking (load, max xp, max hp)
