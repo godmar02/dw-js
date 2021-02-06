@@ -178,7 +178,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.9.2 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.9.3 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -733,9 +733,9 @@
 					var con = $con.val();
 					if (debug == true) {
 						console.info(
-							"$(#dwClass).change(function() - dwClass: " + dwClass + '\n' +
-							"$(#dwClass).change(function() - str: " + str + '\n' +
-							"$(#dwClass).change(function() - con: " + con)
+							"$(#dwClass).change() - dwClass: " + dwClass + '\n' +
+							"$(#dwClass).change() - str: " + str + '\n' +
+							"$(#dwClass).change() - con: " + con)
 					};
 					var alignments = [];
 					var damage = "";
@@ -745,31 +745,31 @@
 					var maxHP = 0;
 
 					// set MaxLoad based upon strength
-					if (str != null) {
+					if (str) {
 						str = parseInt(str, 10);
 						baseLoad = data[dwClass].baseLoad;
 						if (debug == true) {
-							console.info("$(#dwClass).change(function() - baseLoad: " + baseLoad)
+							console.info("$(#dwClass).change() - baseLoad: " + baseLoad)
 						};
 						baseLoad = parseInt(baseLoad, 10);
 						maxLoad = baseLoad + str;
 						if (debug == true) {
-							console.info("$(#dwClass).change(function() - maxLoad: " + maxLoad)
+							console.info("$(#dwClass).change() - maxLoad: " + maxLoad)
 						};
 						$("#maxLoad").val("/ " + maxLoad)
 					}
 
 					// set MaxHP based upon constitution
-					if (con != null) {
+					if (con) {
 						con = parseInt(con, 10);
 						baseHP = data[dwClass].baseHP;
 						if (debug == true) {
-							console.info("$(#dwClass).change(function() - baseHP: " + baseHP)
+							console.info("$(#dwClass).change() - baseHP: " + baseHP)
 						};
 						baseHP = parseInt(baseHP, 10);
 						maxHP = baseHP + con;
 						if (debug == true) {
-							console.info("$(#dwClass).change(function() - maxHP: " + maxHP)
+							console.info("$(#dwClass).change() - maxHP: " + maxHP)
 						};
 						$("#maxHP").val("/ " + maxHP)
 					}
@@ -778,7 +778,7 @@
 					damage = data[dwClass].damage;
 					if (debug == true) {
 						console.info(
-							"$(#dwClass).change(function() - damage: " + damage)
+							"$(#dwClass).change() - damage: " + damage)
 					};
 					$("#damage").val(damage);
 
@@ -786,7 +786,7 @@
 					alignments = data[dwClass].alignments.split(",");
 					if (debug == true) {
 						console.info(
-							"$(#dwClass).change(function() - alignments: " + alignments)
+							"$(#dwClass).change() - alignments: " + alignments)
 					};
 					var $alignments = $("#alignment");
 					$alignments.empty();
@@ -847,10 +847,10 @@
 
 					if (debug == true) {
 						console.info(
-							"$(#str).change(function() - dwClass: " + dwClass + '\n' +
-							"$(#str).change(function() - str: " + str + '\n' +
-							"$(#str).change(function() - baseLoad: " + baseLoad + '\n' +
-							"$(#str).change(function() - maxLoad: " + maxLoad)
+							"$(#str).change() - dwClass: " + dwClass + '\n' +
+							"$(#str).change() - str: " + str + '\n' +
+							"$(#str).change() - baseLoad: " + baseLoad + '\n' +
+							"$(#str).change() - maxLoad: " + maxLoad)
 					};
 
 					$("#maxLoad").val("/ " + maxLoad);
@@ -875,10 +875,10 @@
 
 					if (debug == true) {
 						console.info(
-							"$(#con).change(function() - dwClass: " + dwClass + '\n' +
-							"$(#con).change(function() - con: " + con + '\n' +
-							"$(#con).change(function() - baseHP: " + baseHP + '\n' +
-							"$(#con).change(function() - maxHP: " + maxHP)
+							"$(#con).change() - dwClass: " + dwClass + '\n' +
+							"$(#con).change() - con: " + con + '\n' +
+							"$(#con).change() - baseHP: " + baseHP + '\n' +
+							"$(#con).change() - maxHP: " + maxHP)
 					};
 
 					$("#maxHP").val("/ " + maxHP);
@@ -891,7 +891,7 @@
 				var tableBody = tbl.getElementsByTagName('tbody')[0];
 				var bodyRowCount = tableBody.getElementsByTagName('tr').length;
 				if (debug == true) {
-					console.info("$([id^=itemWeight]).change(function() - gearTable bodyRowCount:" + bodyRowCount)
+					console.info("itemWeight.change() - gearTable bodyRowCount:" + bodyRowCount)
 				};
 				var totalload = 0;
 				var itemload = 0;
@@ -904,8 +904,8 @@
 					totalload = totalload + itemload
 					if (debug == true) {
 						console.info(
-							"$([id^=itemWeight]).change(function() - itemload:" + itemload + '\n' +
-							"$([id^=itemWeight]).change(function() - totalload:" + totalload
+							"itemWeight.change() - itemload:" + itemload + '\n' +
+							"itemWeight.change() - totalload:" + totalload
 						)
 					}
 				};
