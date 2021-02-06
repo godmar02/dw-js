@@ -162,11 +162,10 @@
 </head>
 
 <body onload="loadelements()">
-	<p style="visibility: hidden;" id="debug">true</p>
 	<script>
 		function loadelements() {
+			debug = true;
 			document.getElementById("main").style.visibility = "visible";
-			debug = document.getElementById(debug);
 			console.log("debug: " + debug);
 		}
 	</script>
