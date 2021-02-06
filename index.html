@@ -964,7 +964,7 @@
 						if (debug == true) {
 							console.log("reindexBodyRows() - currentOnClick: " + currentOnClick)
 						};
-						var currentOnClickkPrefix = currentCellOnClick.slice(0, -2);
+						var currentOnClickkPrefix = currentOnClick.slice(0, -2);
 						if (debug == true) {
 							console.log("reindexBodyRows() - currentOnClickkPrefix: " + currentOnClickkPrefix)
 						};
@@ -1043,17 +1043,17 @@
 
 				// set new onclick value for any buttons of format function(...N)
 				if (newCell.children[0].type == "button") {
-					var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
+					var currentOnClick = document.getElementById(newCellID).getAttribute("onclick");
 					if (debug == true) {
-						console.log("addRow() - newCell onclick: " + currentCellOnClick)
+						console.log("addRow() - newCell onclick: " + currentOnClick)
 					};
 					if (debug == true) {
-						console.log("addRow() - currentCellOnClick: " + currentCellOnClick)
+						console.log("addRow() - currentOnClick: " + currentOnClick)
 					};
-					var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
-					var newCellOnClick = currentCellOnClickkPrefix + newRowID + ")";
+					var currentOnClickkPrefix = currentOnClick.slice(0, -2);
+					var newCellOnClick = currentOnClickkPrefix + newRowID + ")";
 					if (debug == true) {
-						console.log("addRow() - currentCellOnClickkPrefix: " + currentCellOnClickkPrefix)
+						console.log("addRow() - currentOnClickkPrefix: " + currentOnClickkPrefix)
 					};
 					if (debug == true) {
 						console.log("addRow() - newCellOnClick: " + newCellOnClick)
