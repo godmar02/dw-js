@@ -178,7 +178,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.8.9 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.8.10 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -936,7 +936,7 @@
 			};
 
 			for (var i = 0; i < bodyRowCount; i++) {
-				for (var j = 0; i < bodyColCount; i++) {
+				for (var j = 0; i < bodyColCount; j++) {
 
 					if (debug == true) {
 						console.log("reindexBodyRows() - Row / Column: " + i + " / " + j)
@@ -952,11 +952,11 @@
 						console.log("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix)
 					};
 					var cell = tableBody.rows[i].cells[j];
-					var cellID = templateCellIDPrefix + i;
+					var newCellID = templateCellIDPrefix + i;
 					if (debug == true) {
-						console.log("reindexBodyRows() - cellID: " + cellID)
+						console.log("reindexBodyRows() - newCellID: " + newCellID)
 					};
-					cell.children[0].id = cellID
+					cell.children[0].id = newCellID
 
 					// set new onclick value for any buttons of format function(...N)
 					if (cell.children[0].type == "button") {
