@@ -178,7 +178,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.8.5 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.8.6 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -908,20 +908,19 @@
 
 		if (debug == true) {console.log("Reindexing table body: " + tableID) };
 			var tbl = document.getElementById(tableID);
-			var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
-			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-			var templateRow = tbl.rows[headerRowCount];
-			var colCount = tbl.rows[headerRowCount].cells.length;
+			var tableBody = tbl.getElementsByTagName('tbody')[0];
+			var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+			var templateRow = tableBody.rows[0];
+			var colCount = templateRow.cells.length;
 
-			for (var i = headerRowCount; i < 1 + headerRowCount + bodyRowCount; i++)
+			for (var i = 0; i < bodyRowCount; i++)
 				for (var j = 0; i < colCount; i++) {
 
 					// set new ID based upon triming existing cellid of format itemN
 					var templateCellID = templateRow.children[0].id;
 					var templateCellIDPrefix = templateCellID.slice(0, -1);
-					var rowID = i - headerRowCount
-					var rowNum = i + 1
-					var cell = tbl.rows[i].cells[j];
+					var rowID = i
+					var cell = tableBody.rows[i].cells[j];
 					var cellID = templateCellIDPrefix + rowID;
 					cell.children[0].id = cellID
 
@@ -929,7 +928,7 @@
 					if (cell.children[0].type == "button") {
 						var currentOnClick = document.getElementById(cellID).getAttribute("onclick");
 						var currentOnClickkPrefix = currentCellOnClick.slice(0, -2);
-						var newOnClick = currentOnClickkPrefix + rowNum + ")";
+						var newOnClick = currentOnClickkPrefix + rowID + ")";
 						if (debug == true) {
 							console.log("currentOnClick: " + currentOnClick)
 						};
@@ -952,19 +951,16 @@
 			// these numbers can be incremented by 1 each time
 			// Note table items are zero indexed
 			var tbl = document.getElementById(tableID);
-			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-			var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
-			var footerRowCount = tbl.getElementsByTagName('tfoot')[0].getElementsByTagName('tr').length;
-			var templateRow = tbl.rows[headerRowCount];
+			var tableBody = tbl.getElementsByTagName('tbody')[0];
+			var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+			var templateRow = tableBody.rows[0];
 			var newRowColCount = templateRow.cells.length;
 			var newRowID = bodyRowCount;
 
 			if (debug == true) {
 				console.log(
 					"tableID: " + tableID + '\n' +
-					"headerRowCount: " + headerRowCount + '\n' +
 					"bodyRowCount: " + bodyRowCount + '\n' +
-					"footerRowCount: " + footerRowCount + '\n' +
 					"newRowColCount: " + newRowColCount + '\n' +
 					"newRowID: " + newRowID
 				)
