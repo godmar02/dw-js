@@ -1,5 +1,4 @@
 # TO DO
-- add/remove rows (Items, Bonds, class features)
 - total WEIGHT
 - NaN error
 - expanding text entry / word wrap
