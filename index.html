@@ -178,7 +178,7 @@
 	<div id="main" style="visibility: hidden;">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.8.10 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.8.11 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -942,7 +942,7 @@
 						console.log("reindexBodyRows() - Row / Column: " + i + " / " + j)
 					};
 					// set new ID based upon triming existing cellid of format itemN
-					var templateCell = templateRow.cells[i];
+					var templateCell = templateRow.cells[j];
 					var templateCellID = templateCell.children[0].id;
 					if (debug == true) {
 						console.log("reindexBodyRows() - templateCellID: " + templateCellID)
