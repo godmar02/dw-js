@@ -166,7 +166,7 @@
 		function loadElements() {
 			debug = true;
 			document.getElementById("main").style.visibility = "visible";
-			console.log("loadElements() - debug: " + debug);
+			console.info("loadElements() - debug: " + debug);
 		}
 	</script>
 	<noscript>
@@ -709,7 +709,7 @@
 				})
 				.then(function(docRef) {
 					if (debug == true) {
-						console.log("saveCharacter() - Document written with ID: ", docRef.id)
+						console.info("saveCharacter() - Document written with ID: ", docRef.id)
 					};
 				})
 				.catch(function(error) {
@@ -721,7 +721,7 @@
 			db.collection("users").get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					if (debug == true) {
-						console.log(`${doc.id} => ${doc.data()}`)
+						console.info(`${doc.id} => ${doc.data()}`)
 					};
 				});
 			});
@@ -731,7 +731,7 @@
 			db.collection("users").get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
 					if (debug == true) {
-						console.log(`${doc.id} => ${doc.data()}`)
+						console.info(`${doc.id} => ${doc.data()}`)
 					};
 				});
 			});
@@ -749,7 +749,7 @@
 					var str = $str.val();
 					var con = $con.val();
 					if (debug == true) {
-						console.log(
+						console.info(
 							"$(#dwClass).change(function() - dwClass: " + dwClass + '\n' +
 							"$(#dwClass).change(function() - str: " + str + '\n' +
 							"$(#dwClass).change(function() - con: " + con)
@@ -766,12 +766,12 @@
 						str = parseInt(str, 10);
 						baseLoad = data[dwClass].baseLoad;
 						if (debug == true) {
-							console.log("$(#dwClass).change(function() - baseLoad: " + baseLoad)
+							console.info("$(#dwClass).change(function() - baseLoad: " + baseLoad)
 						};
 						baseLoad = parseInt(baseLoad, 10);
 						maxLoad = baseLoad + str;
 						if (debug == true) {
-							console.log("$(#dwClass).change(function() - maxLoad: " + maxLoad)
+							console.info("$(#dwClass).change(function() - maxLoad: " + maxLoad)
 						};
 						$("#maxLoad").val("/ " + maxLoad)
 					}
@@ -781,12 +781,12 @@
 						con = parseInt(con, 10);
 						baseHP = data[dwClass].baseHP;
 						if (debug == true) {
-							console.log("$(#dwClass).change(function() - baseHP: " + baseHP)
+							console.info("$(#dwClass).change(function() - baseHP: " + baseHP)
 						};
 						baseHP = parseInt(baseHP, 10);
 						maxHP = baseHP + con;
 						if (debug == true) {
-							console.log("$(#dwClass).change(function() - maxHP: " + maxHP)
+							console.info("$(#dwClass).change(function() - maxHP: " + maxHP)
 						};
 						$("#maxHP").val("/ " + maxHP)
 					}
@@ -794,7 +794,7 @@
 					// set damage based upon class
 					damage = data[dwClass].damage;
 					if (debug == true) {
-						console.log(
+						console.info(
 							"$(#dwClass).change(function() - damage: " + damage)
 					};
 					$("#damage").val(damage);
@@ -802,7 +802,7 @@
 					// set alignments based upon class
 					alignments = data[dwClass].alignments.split(",");
 					if (debug == true) {
-						console.log(
+						console.info(
 							"$(#dwClass).change(function() - alignments: " + alignments)
 					};
 					var $alignments = $("#alignment");
@@ -863,7 +863,7 @@
 					maxLoad = baseLoad + str;
 
 					if (debug == true) {
-						console.log(
+						console.info(
 							"$(#str).change(function() - dwClass: " + dwClass + '\n' +
 							"$(#str).change(function() - str: " + str + '\n' +
 							"$(#str).change(function() - baseLoad: " + baseLoad + '\n' +
@@ -891,7 +891,7 @@
 					maxHP = baseHP + con;
 
 					if (debug == true) {
-						console.log(
+						console.info(
 							"$(#con).change(function() - dwClass: " + dwClass + '\n' +
 							"$(#con).change(function() - con: " + con + '\n' +
 							"$(#con).change(function() - baseHP: " + baseHP + '\n' +
@@ -904,16 +904,26 @@
 
 			$("[id^=itemWeight]").change(function() {
 				//on change of any itemWeight elements add weight together and display in load
-				var tbl = document.getElementById(gearTable);
+				var tbl = document.getElementById("gearTable");
 				var tableBody = tbl.getElementsByTagName('tbody')[0];
 				var bodyRowCount = tableBody.getElementsByTagName('tr').length;
-				var load = 0;
+				if (debug == true) {
+					console.info("$([id^=itemWeight]).change(function() - gearTable bodyRowCount:" + bodyRowCount)
+				};
+				var totalload = 0;
 				var itemload = 0;
 				for (var i = 0; i < bodyRowCount; i++) {
 					itemload = $("#item" + i).val();
-					load = load + itemload
+					totalload = totalload + itemload
+					if (debug == true) {
+						console.info("$([id^=itemWeight]).change(function() - gearTable bodyRowCount:" + bodyRowCount + '\n' +
+							"$([id^=itemWeight]).change(function() - itemload:" + itemload + '\n' +
+							"$([id^=itemWeight]).change(function() - totalload:" + totalload
+						)
+					}
 				}
-				$("#load").val(load);
+				$("#load").val(totalload);
+
 			});
 
 		});
@@ -921,40 +931,40 @@
 		function reindexBodyRows(tableID) {
 
 			if (debug == true) {
-				console.log("reindexBodyRows() - Reindexing table body: " + tableID)
+				console.info("reindexBodyRows() - Reindexing table body: " + tableID)
 			};
 			var tbl = document.getElementById(tableID);
 			var tableBody = tbl.getElementsByTagName('tbody')[0];
 			var bodyRowCount = tableBody.getElementsByTagName('tr').length;
 			if (debug == true) {
-				console.log("reindexBodyRows() - bodyRowCount: " + bodyRowCount)
+				console.info("reindexBodyRows() - bodyRowCount: " + bodyRowCount)
 			};
 			var templateRow = tableBody.rows[0];
 			var bodyColCount = templateRow.cells.length;
 			if (debug == true) {
-				console.log("reindexBodyRows() - bodyColCount: " + bodyColCount)
+				console.info("reindexBodyRows() - bodyColCount: " + bodyColCount)
 			};
 
 			for (var i = 0; i < bodyRowCount; i++) {
 				for (var j = 0; j < bodyColCount; j++) {
 
 					if (debug == true) {
-						console.log("reindexBodyRows() - Row / Column: " + i + " / " + j)
+						console.info("reindexBodyRows() - Row / Column: " + i + " / " + j)
 					};
 					// set new ID based upon triming existing cellid of format itemN
 					var templateCell = templateRow.cells[j];
 					var templateCellID = templateCell.children[0].id;
 					if (debug == true) {
-						console.log("reindexBodyRows() - templateCellID: " + templateCellID)
+						console.info("reindexBodyRows() - templateCellID: " + templateCellID)
 					};
 					var templateCellIDPrefix = templateCellID.slice(0, -1);
 					if (debug == true) {
-						console.log("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix)
+						console.info("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix)
 					};
 					var cell = tableBody.rows[i].cells[j];
 					var newCellID = templateCellIDPrefix + i;
 					if (debug == true) {
-						console.log("reindexBodyRows() - newCellID: " + newCellID)
+						console.info("reindexBodyRows() - newCellID: " + newCellID)
 					};
 					cell.children[0].id = newCellID
 
@@ -962,15 +972,15 @@
 					if (cell.children[0].type == "button") {
 						var currentOnClick = document.getElementById(newCellID).getAttribute("onclick");
 						if (debug == true) {
-							console.log("reindexBodyRows() - currentOnClick: " + currentOnClick)
+							console.info("reindexBodyRows() - currentOnClick: " + currentOnClick)
 						};
 						var currentOnClickkPrefix = currentOnClick.slice(0, -2);
 						if (debug == true) {
-							console.log("reindexBodyRows() - currentOnClickkPrefix: " + currentOnClickkPrefix)
+							console.info("reindexBodyRows() - currentOnClickkPrefix: " + currentOnClickkPrefix)
 						};
 						var newOnClick = currentOnClickkPrefix + i + ")";
 						if (debug == true) {
-							console.log("reindexBodyRows() - newOnClick: " + newOnClick)
+							console.info("reindexBodyRows() - newOnClick: " + newOnClick)
 						};
 						document.getElementById(newCellID).setAttribute("onclick", newOnClick);
 					}
@@ -993,7 +1003,7 @@
 			var newRowID = bodyRowCount;
 
 			if (debug == true) {
-				console.log(
+				console.info(
 					"addRow() - tableID: " + tableID + '\n' +
 					"addRow() - bodyRowCount: " + bodyRowCount + '\n' +
 					"addRow() - newRowColCount: " + newRowColCount + '\n' +
@@ -1009,7 +1019,7 @@
 			for (var i = 0; i < newRowColCount; i++) {
 
 				if (debug == true) {
-					console.log("addRow() - column: " + i)
+					console.info("addRow() - column: " + i)
 				};
 
 				// to insert one column
@@ -1024,20 +1034,20 @@
 				var templateCellIDPrefix = templateCellID.slice(0, -1);
 				var newCellID = templateCellIDPrefix + newRowID;
 				if (debug == true) {
-					console.log("addRow() - templateCellID: " + templateCellID)
+					console.info("addRow() - templateCellID: " + templateCellID)
 				};
 				if (debug == true) {
-					console.log("addRow() - templateCellIDPrefix: " + templateCellIDPrefix)
+					console.info("addRow() - templateCellIDPrefix: " + templateCellIDPrefix)
 				};
 				if (debug == true) {
-					console.log("addRow() - newCellID: " + newCellID)
+					console.info("addRow() - newCellID: " + newCellID)
 				};
 				newCell.children[0].id = newCellID;
 
 				// set colspan
 				var templateCellColSpan = templateCell.getAttribute("colspan");
 				if (debug == true) {
-					console.log("addRow() - templateCellColSpan: " + templateCellColSpan)
+					console.info("addRow() - templateCellColSpan: " + templateCellColSpan)
 				};
 				newCell.setAttribute("colspan", templateCellColSpan);
 
@@ -1045,18 +1055,18 @@
 				if (newCell.children[0].type == "button") {
 					var currentOnClick = document.getElementById(newCellID).getAttribute("onclick");
 					if (debug == true) {
-						console.log("addRow() - newCell onclick: " + currentOnClick)
+						console.info("addRow() - newCell onclick: " + currentOnClick)
 					};
 					if (debug == true) {
-						console.log("addRow() - currentOnClick: " + currentOnClick)
+						console.info("addRow() - currentOnClick: " + currentOnClick)
 					};
 					var currentOnClickkPrefix = currentOnClick.slice(0, -2);
 					var newCellOnClick = currentOnClickkPrefix + newRowID + ")";
 					if (debug == true) {
-						console.log("addRow() - currentOnClickkPrefix: " + currentOnClickkPrefix)
+						console.info("addRow() - currentOnClickkPrefix: " + currentOnClickkPrefix)
 					};
 					if (debug == true) {
-						console.log("addRow() - newCellOnClick: " + newCellOnClick)
+						console.info("addRow() - newCellOnClick: " + newCellOnClick)
 					};
 					document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
 				}
@@ -1081,16 +1091,16 @@
 			var tableBody = tbl.getElementsByTagName('tbody')[0];
 			var bodyRowCount = tableBody.getElementsByTagName('tr').length;
 			if (debug == true) {
-				console.log("deleteRow() - bodyRowCount: " + bodyRowCount)
+				console.info("deleteRow() - bodyRowCount: " + bodyRowCount)
 			};
 			if (bodyRowCount != 1) {
 				if (debug == true) {
-					console.log("deleteRow() - Deleting Row: " + rowID)
+					console.info("deleteRow() - Deleting Row: " + rowID)
 				};
 				tableBody.deleteRow(rowID);
 				reindexBodyRows(tableID);
 			} else {
-				console.error("deleteRow() - Cannot delete last row: " + tableID);
+				console.warn("deleteRow() - Cannot delete last row: " + tableID);
 			};
 		}
 	</script>
