@@ -10,4 +10,3 @@
 - make pretty
 - default items?
 - default bonds?
-- seperate JS files
