@@ -762,7 +762,7 @@
 					var maxHP = 0;
 
 					// set MaxLoad based upon strength
-					if (! isNaN(str) ) {
+					if (str != null) {
 						str = parseInt(str, 10);
 						baseLoad = data[dwClass].baseLoad;
 						if (debug == true) {
@@ -777,7 +777,7 @@
 					}
 
 					// set MaxHP based upon constitution
-					if (! isNaN(con) ) {
+					if (con != null ) {
 						con = parseInt(con, 10);
 						baseHP = data[dwClass].baseHP;
 						if (debug == true) {
