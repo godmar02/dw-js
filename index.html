@@ -960,7 +960,7 @@
 
 					// set new onclick value for any buttons of format function(...N)
 					if (cell.children[0].type == "button") {
-						var currentOnClick = document.getElementById(cellID).getAttribute("onclick");
+						var currentOnClick = document.getElementById(newCellID).getAttribute("onclick");
 						if (debug == true) {
 							console.log("reindexBodyRows() - currentOnClick: " + currentOnClick)
 						};
@@ -972,7 +972,7 @@
 						if (debug == true) {
 							console.log("reindexBodyRows() - newOnClick: " + newOnClick)
 						};
-						document.getElementById(cellID).setAttribute("onclick", newOnClick);
+						document.getElementById(newCellID).setAttribute("onclick", newOnClick);
 					}
 				}
 			}
