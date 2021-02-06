@@ -737,7 +737,7 @@
 			});
 		}
 
-		$(function() {
+		$(document).ready(function() {
 
 			$("#dwClass").change(function() {
 				var $dwClass = $(this);
@@ -777,7 +777,7 @@
 					}
 
 					// set MaxHP based upon constitution
-					if (con != null ) {
+					if (con != null) {
 						con = parseInt(con, 10);
 						baseHP = data[dwClass].baseHP;
 						if (debug == true) {
@@ -902,18 +902,34 @@
 				});
 			});
 
+			$("[id^=itemWeight]").change(function() {
+				//on change of any itemWeight elements add weight together and display in load
+				var tbl = document.getElementById(gearTable);
+				var tableBody = tbl.getElementsByTagName('tbody')[0];
+				var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+				var load = 0;
+				var itemload = 0;
+				for (var i = 0; i < bodyRowCount; i++) {
+					itemload = $("#item" + i).val();
+					load = load + itemload
+				}
+				$("#load").val(load);
+			});
+
 		});
 
 		function reindexBodyRows(tableID) {
 
-		if (debug == true) {console.log("Reindexing table body: " + tableID) };
+			if (debug == true) {
+				console.log("Reindexing table body: " + tableID)
+			};
 			var tbl = document.getElementById(tableID);
 			var tableBody = tbl.getElementsByTagName('tbody')[0];
 			var bodyRowCount = tableBody.getElementsByTagName('tr').length;
 			var templateRow = tableBody.rows[0];
 			var colCount = templateRow.cells.length;
 
-			for (var i = 0; i < bodyRowCount; i++)
+			for (var i = 0; i < bodyRowCount; i++) {
 				for (var j = 0; i < colCount; i++) {
 
 					// set new ID based upon triming existing cellid of format itemN
@@ -941,6 +957,7 @@
 						document.getElementById(cellID).setAttribute("onclick", newOnClick);
 					}
 				}
+			}
 		}
 
 		function addRow(tableID) {
