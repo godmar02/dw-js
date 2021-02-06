@@ -532,30 +532,13 @@
 	</div>
 	<!--jQuery-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
-	<!-- SDKs and initialisation for Firebase: https://firebase.google.com/docs/web/setup#available-libraries-->
-	<!--<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+	<!--SDKs and initialisation for Firebase-->
+	<!--https://firebase.google.com/docs/web/setup#available-libraries-->
+	<!--
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
-	<script>
-		// Firebase configuration
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		var firebaseConfig = {
-			apiKey: "AIzaSyAIKYE0kZAcB5AzAmuiNB37BFjoiO6AY6g",
-			authDomain: "dungeon-world-45d46.firebaseapp.com",
-			projectId: "dungeon-world-45d46",
-			storageBucket: "dungeon-world-45d46.appspot.com",
-			messagingSenderId: "226498870916",
-			appId: "1:226498870916:web:7cbaa58a3a178f1afeccd1",
-			measurementId: "G-YTPKF0BTK9"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		firebase.analytics();
-
-		const firebase = require("firebase");
-		// Required for side-effects
-		require("firebase/firestore");
-	</script>-->
+	<script src="code/firebase.js"></script>
+	-->
 
 	<!-- Custom Scripting -->
 	<script>
@@ -762,7 +745,7 @@
 					var maxHP = 0;
 
 					// set MaxLoad based upon strength
-					if ($str != null) {
+					if (str != null) {
 						str = parseInt(str, 10);
 						baseLoad = data[dwClass].baseLoad;
 						if (debug == true) {
@@ -777,7 +760,7 @@
 					}
 
 					// set MaxHP based upon constitution
-					if ($con != null) {
+					if (con != null) {
 						con = parseInt(con, 10);
 						baseHP = data[dwClass].baseHP;
 						if (debug == true) {
@@ -902,7 +885,7 @@
 				});
 			});
 
-			$(document).on("change","[id^=itemWeight]",function() {
+			$(document).on("change", "[id^=itemWeight]", function() {
 				//on change of any itemWeight elements add weight together and display in load
 				var tbl = document.getElementById("gearTable");
 				var tableBody = tbl.getElementsByTagName('tbody')[0];
