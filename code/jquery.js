@@ -249,18 +249,46 @@ $(document).ready(function() {
   });
 
   $("#addBond").click(function() {
-    addRow('bondsTable')
+    $(this)
+    addRow('bondsTable');
   });
 
   $("#addItem").click(function() {
-    addRow('gearTable')
+    addRow('gearTable');
   });
 
   $("#addClassFeature").click(function() {
-    addRow('classFeaturesTable')
+    addRow('classFeaturesTable');
   });
 
-  //$("#").click(function() {});
+  $("#level").change(function() {
+    setMaxXP();
+  });
+
+  $("#str, #strAffliction").change(function() {
+    setModifier("str");
+  });
+
+  $("#dex, #dexAffliction").change(function() {
+    setModifier("dex");
+  });
+
+  $("#con, #conAffliction").change(function() {
+    setModifier("con");
+  });
+
+  $("#int, #intAffliction").change(function() {
+    setModifier("int");
+  });
+
+  $("#wis, #wisAffliction").change(function() {
+    setModifier("wis");
+  });
+
+    $("#char, #charAffliction").change(function() {
+      setModifier("char");
+    });
+  //onclick="deleteRow('bondsTable', 0)" id="deleteBond0"
 
   //$("#").click(function() {});
 
