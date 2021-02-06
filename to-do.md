@@ -1,6 +1,7 @@
 # TO DO
 - total WEIGHT
 - NaN error
+- re-calculate when changing values
 - expanding text entry / word wrap
 - Error checking (load, max xp, max hp)
 - save

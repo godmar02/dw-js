@@ -913,11 +913,11 @@
 				var totalload = 0;
 				var itemload = 0;
 				for (var i = 0; i < bodyRowCount; i++) {
-					itemID = "#item" + i;
 					if (debug == true) {
-						console.info("itemID: " + itemID)
+						console.info("itemID: itemWeight" + i)
 					};
-					itemload = $(itemID).val();
+					itemload = $("#itemWeight" + i).val();
+					itemload = parseInt(itemload, 10);
 					totalload = totalload + itemload
 					if (debug == true) {
 						console.info(
