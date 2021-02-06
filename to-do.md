@@ -1,7 +1,7 @@
 # TO DO
-- total WEIGHT
 - NaN error
-- re-calculate when changing values
+- simplify javascript with jQuery
+- testing of re-calculate when changing values or removing rows
 - expanding text entry / word wrap
 - Error checking (load, max xp, max hp)
 - save
