@@ -248,6 +248,20 @@ $(document).ready(function() {
     $("faq").hide();
   });
 
+  $("#addBond").click(function() {
+    addRow('bondsTable')
+  });
+
+  $("#addItem").click(function() {
+    addRow('gearTable')
+  });
+
+  $("#addClassFeature").click(function() {
+    addRow('classFeaturesTable')
+  });
+
+  //$("#").click(function() {});
+
   //$("#").click(function() {});
 
 });
