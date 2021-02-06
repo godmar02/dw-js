@@ -904,7 +904,7 @@
 
 		});
 
-		function arrangeRows(tableID) {
+		function reindexBodyRows(tableID) {
 			var tbl = document.getElementById(tableID);
 			var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
 			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
@@ -1055,7 +1055,7 @@
 					console.log("Deleting Row: " + rowID)
 				};
 				tableBody.deleteRow(rowID);
-				arrangeRows(tableID);
+				reindexBodyRows(tableID);
 			} else {
 				console.error("Cannot delete last row: " + tableID);
 			};
