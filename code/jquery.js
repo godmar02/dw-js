@@ -285,9 +285,9 @@ $(document).ready(function() {
     setModifier("wis");
   });
 
-    $("#char, #charAffliction").change(function() {
-      setModifier("char");
-    });
+  $("#char, #charAffliction").change(function() {
+    setModifier("char");
+  });
   //onclick="deleteRow('bondsTable', 0)" id="deleteBond0"
 
   //$("#").click(function() {});
