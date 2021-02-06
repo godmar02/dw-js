@@ -735,330 +735,331 @@
 
 		function clearCharacter() {
 			db.collection("users").get().then((querySnapshot) => {
-					querySnapshot.forEach((doc) => {
-							if (debug == true) {
-								console.log(`${doc.id} => ${doc.data()}`);
-							});
-					});
-			}
-
-			$(function() {
-
-				$("#dwClass").change(function() {
-					var $dwClass = $(this);
-					var $str = $("#str");
-					var $con = $("#con");
-
-					$.getJSON("data/classes.json", function(data) {
-						var dwClass = $dwClass.val();
-						var str = $str.val();
-						var con = $con.val();
-						var alignments = [];
-						var damage = "";
-						var baseLoad = 0;
-						var baseHP = 0;
-						var maxLoad = 0;
-						var maxHP = 0;
-
-						// set MaxLoad based upon strength
-						if (str !== null) {
-							str = parseInt(str, 10);
-							baseLoad = data[dwClass].baseLoad;
-							baseLoad = parseInt(baseLoad, 10);
-							maxLoad = baseLoad + str;
-							$("#maxLoad").val("/ " + maxLoad)
-						}
-
-						// set MaxHP based upon constitution
-						if (con !== null) {
-							con = parseInt(con, 10);
-							baseHP = data[dwClass].baseHP;
-							baseHP = parseInt(baseHP, 10);
-							maxHP = baseHP + con;
-							$("#maxHP").val("/ " + maxHP)
-						}
-
-						// set damage based upon class
-						damage = data[dwClass].damage;
-						$("#damage").val(damage);
-
-						// set alignments based upon class
-						alignments = data[dwClass].alignments.split(",");
-						var $alignments = $("#alignment");
-						$alignments.empty();
-						$.each(alignments, function(index, value) {
-							$alignments.append("<option>" + value + "</option>");
-						});
-
-						if (debug == true) {
-							console.log(
-								"dwClass: " + dwClass + '\n' +
-								"str: " + str + '\n' +
-								"con: " + con + '\n' +
-								"alignments: " + alignments + '\n' +
-								"damage: " + damage + '\n' +
-								"baseLoad: " + baseLoad + '\n' +
-								"maxLoad: " + maxLoad + '\n' +
-								"baseHP: " + baseHP + '\n' +
-								"maxHP: " + maxHP)
-						};
-
-					});
+				querySnapshot.forEach((doc) => {
+					if (debug == true) {
+						console.log(`${doc.id} => ${doc.data()}`)
+					};
 				});
+			});
+		}
 
-				$("#race").change(function() {
-					var $race = $(this);
-					var $dwClass = $("#dwClass");
+		$(function() {
 
-					$.getJSON("data/classes.json", function(data) {
+			$("#dwClass").change(function() {
+				var $dwClass = $(this);
+				var $str = $("#str");
+				var $con = $("#con");
 
-						var dwClass = $dwClass.val();
-						var race = $race.val();
-						var raceAttribute = "";
+				$.getJSON("data/classes.json", function(data) {
+					var dwClass = $dwClass.val();
+					var str = $str.val();
+					var con = $con.val();
+					var alignments = [];
+					var damage = "";
+					var baseLoad = 0;
+					var baseHP = 0;
+					var maxLoad = 0;
+					var maxHP = 0;
 
-						raceAttribute = data[dwClass].raceAttributes[race];
-
-						$("#raceAttribute").val(raceAttribute);
-					});
-				});
-
-				$("#alignment").change(function() {
-					var $alignment = $(this);
-					var $dwClass = $("#dwClass");
-
-					$.getJSON("data/classes.json", function(data) {
-
-						var dwClass = $dwClass.val();
-						var alignment = $alignment.val();
-						var alignmentAttribute = "";
-
-						alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
-
-						$("#alignmentAttribute").val(alignmentAttribute);
-					});
-				});
-
-				$("#str").change(function() {
-					var $str = $(this);
-					var $dwClass = $("#dwClass");
-
-					$.getJSON("data/classes.json", function(data) {
-
-						var dwClass = $dwClass.val();
-						var str = $str.val();
-						var baseLoad = 0;
-						var maxLoad = 0;
-
+					// set MaxLoad based upon strength
+					if (str !== null) {
 						str = parseInt(str, 10);
 						baseLoad = data[dwClass].baseLoad;
 						baseLoad = parseInt(baseLoad, 10);
 						maxLoad = baseLoad + str;
+						$("#maxLoad").val("/ " + maxLoad)
+					}
 
-						if (debug == true) {
-							console.log(
-								"dwClass: " + dwClass + '\n' +
-								"str: " + str + '\n' +
-								"baseLoad: " + baseLoad + '\n' +
-								"maxLoad: " + maxLoad)
-						};
-
-						$("#maxLoad").val("/ " + maxLoad);
-					});
-				});
-
-				$("#con").change(function() {
-					var $con = $(this);
-					var $dwClass = $("#dwClass");
-
-					$.getJSON("data/classes.json", function(data) {
-
-						var dwClass = $dwClass.val();
-						var con = $con.val();
-						var baseHP = 0;
-						var maxHP = 0;
-
+					// set MaxHP based upon constitution
+					if (con !== null) {
 						con = parseInt(con, 10);
 						baseHP = data[dwClass].baseHP;
 						baseHP = parseInt(baseHP, 10);
 						maxHP = baseHP + con;
-
-						if (debug == true) {
-							console.log(
-								"dwClass: " + dwClass + '\n' +
-								"con: " + con + '\n' +
-								"baseHP: " + baseHP + '\n' +
-								"maxHP: " + maxHP)
-						};
-
-						$("#maxHP").val("/ " + maxHP);
-					});
-				});
-
-			});
-
-			function arrangeRows(tableID) {
-				var tbl = document.getElementById(tableID);
-				var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
-				var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-				var templateRow = tbl.rows[headerRowCount];
-				var colCount = tbl.rows[headerRowCount].cells.length;
-
-				for (var i = headerRowCount; i < 1 + headerRowCount + bodyRowCount; i++)
-					for (var j = 0; i < colCount; i++) {
-
-						// set new ID based upon triming existing cellid of format itemN
-						var templateCellID = templateCell.children[0].id;
-						var templateCellIDPrefix = templateCellID.slice(0, -1);
-						var rowID = i - headerRowCount
-						var rowNum = i + 1
-						var cell = tbl.rows[i].cells[j];
-						var cellID = templateCellIDPrefix + rowID;
-						cell.children[0].id = cellID
-
-						// set new onclick value for any buttons of format function(...N)
-						if (cell.children[0].type == "button") {
-							var currentOnClick = document.getElementById(cellID).getAttribute("onclick");
-							var currentOnClickkPrefix = currentCellOnClick.slice(0, -2);
-							var newOnClick = currentOnClickkPrefix + rowNum + ")";
-							if (debug == true) {
-								console.log("currentOnClick: " + currentOnClick)
-							};
-							if (debug == true) {
-								console.log("currentOnClickkPrefix: " + currentOnClickkPrefix)
-							};
-							if (debug == true) {
-								console.log("newOnClick: " + newOnClick)
-							};
-							document.getElementById(cellID).setAttribute("onclick", newOnClick);
-						}
+						$("#maxHP").val("/ " + maxHP)
 					}
-			}
 
-			function addRow(tableID) {
+					// set damage based upon class
+					damage = data[dwClass].damage;
+					$("#damage").val(damage);
 
-				// This works for any generic row but also assumes that any table row cells
-				// you are copying has an id of format id="tableid0" etc and any buttons
-				// have an onclick format of onclick=function(stuff... , 0) so that both
-				// these numbers can be incremented by 1 each time
-				// Note table items are zero indexed
-				var tbl = document.getElementById(tableID);
-				var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-				var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
-				var footerRowCount = tbl.getElementsByTagName('tfoot')[0].getElementsByTagName('tr').length;
-				var templateRow = tbl.rows[headerRowCount];
-				var newRowColCount = templateRow.cells.length;
-				var newRowID = bodyRowCount;
-
-				if (debug == true) {
-					console.log(
-						"tableID: " + tableID + '\n' +
-						"headerRowCount: " + headerRowCount + '\n' +
-						"bodyRowCount: " + bodyRowCount + '\n' +
-						"footerRowCount: " + footerRowCount + '\n' +
-						"newRowColCount: " + newRowColCount + '\n' +
-						"newRowID: " + newRowID
-					)
-				};
-
-				// to insert single row at end of tbody
-				var tableBody = tbl.getElementsByTagName('tbody')[0];
-				var newRow = tableBody.insertRow(-1);
-
-				// to create columns in new row
-				for (var i = 0; i < newRowColCount; i++) {
+					// set alignments based upon class
+					alignments = data[dwClass].alignments.split(",");
+					var $alignments = $("#alignment");
+					$alignments.empty();
+					$.each(alignments, function(index, value) {
+						$alignments.append("<option>" + value + "</option>");
+					});
 
 					if (debug == true) {
-						console.log("column: " + i)
+						console.log(
+							"dwClass: " + dwClass + '\n' +
+							"str: " + str + '\n' +
+							"con: " + con + '\n' +
+							"alignments: " + alignments + '\n' +
+							"damage: " + damage + '\n' +
+							"baseLoad: " + baseLoad + '\n' +
+							"maxLoad: " + maxLoad + '\n' +
+							"baseHP: " + baseHP + '\n' +
+							"maxHP: " + maxHP)
 					};
 
-					// to insert one column
-					var newCell = newRow.insertCell(i);
-					var templateCell = templateRow.cells[i];
+				});
+			});
 
-					// set to same as first data row
-					newCell.innerHTML = templateCell.innerHTML;
+			$("#race").change(function() {
+				var $race = $(this);
+				var $dwClass = $("#dwClass");
+
+				$.getJSON("data/classes.json", function(data) {
+
+					var dwClass = $dwClass.val();
+					var race = $race.val();
+					var raceAttribute = "";
+
+					raceAttribute = data[dwClass].raceAttributes[race];
+
+					$("#raceAttribute").val(raceAttribute);
+				});
+			});
+
+			$("#alignment").change(function() {
+				var $alignment = $(this);
+				var $dwClass = $("#dwClass");
+
+				$.getJSON("data/classes.json", function(data) {
+
+					var dwClass = $dwClass.val();
+					var alignment = $alignment.val();
+					var alignmentAttribute = "";
+
+					alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
+
+					$("#alignmentAttribute").val(alignmentAttribute);
+				});
+			});
+
+			$("#str").change(function() {
+				var $str = $(this);
+				var $dwClass = $("#dwClass");
+
+				$.getJSON("data/classes.json", function(data) {
+
+					var dwClass = $dwClass.val();
+					var str = $str.val();
+					var baseLoad = 0;
+					var maxLoad = 0;
+
+					str = parseInt(str, 10);
+					baseLoad = data[dwClass].baseLoad;
+					baseLoad = parseInt(baseLoad, 10);
+					maxLoad = baseLoad + str;
+
+					if (debug == true) {
+						console.log(
+							"dwClass: " + dwClass + '\n' +
+							"str: " + str + '\n' +
+							"baseLoad: " + baseLoad + '\n' +
+							"maxLoad: " + maxLoad)
+					};
+
+					$("#maxLoad").val("/ " + maxLoad);
+				});
+			});
+
+			$("#con").change(function() {
+				var $con = $(this);
+				var $dwClass = $("#dwClass");
+
+				$.getJSON("data/classes.json", function(data) {
+
+					var dwClass = $dwClass.val();
+					var con = $con.val();
+					var baseHP = 0;
+					var maxHP = 0;
+
+					con = parseInt(con, 10);
+					baseHP = data[dwClass].baseHP;
+					baseHP = parseInt(baseHP, 10);
+					maxHP = baseHP + con;
+
+					if (debug == true) {
+						console.log(
+							"dwClass: " + dwClass + '\n' +
+							"con: " + con + '\n' +
+							"baseHP: " + baseHP + '\n' +
+							"maxHP: " + maxHP)
+					};
+
+					$("#maxHP").val("/ " + maxHP);
+				});
+			});
+
+		});
+
+		function arrangeRows(tableID) {
+			var tbl = document.getElementById(tableID);
+			var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
+			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+			var templateRow = tbl.rows[headerRowCount];
+			var colCount = tbl.rows[headerRowCount].cells.length;
+
+			for (var i = headerRowCount; i < 1 + headerRowCount + bodyRowCount; i++)
+				for (var j = 0; i < colCount; i++) {
 
 					// set new ID based upon triming existing cellid of format itemN
 					var templateCellID = templateCell.children[0].id;
 					var templateCellIDPrefix = templateCellID.slice(0, -1);
-					var newCellID = templateCellIDPrefix + newRowID;
-					if (debug == true) {
-						console.log("templateCellID: " + templateCellID)
-					};
-					if (debug == true) {
-						console.log("templateCellIDPrefix: " + templateCellIDPrefix)
-					};
-					if (debug == true) {
-						console.log("newCellID: " + newCellID)
-					};
-					if (debug == true) {
-						console.log("newCell class: " + document.getElementById(newCellID).class)
-					};
-					if (debug == true) {
-						console.log("newCell type: " + document.getElementById(newCellID).type)
-					};
-					newCell.children[0].id = newCellID;
-
-					// set colspan
-					var templateCellColSpan = templateCell.getAttribute("colspan");
-					if (debug == true) {
-						console.log("templateCellColSpan: " + templateCellColSpan)
-					};
-					newCell.setAttribute("colspan", templateCellColSpan);
+					var rowID = i - headerRowCount
+					var rowNum = i + 1
+					var cell = tbl.rows[i].cells[j];
+					var cellID = templateCellIDPrefix + rowID;
+					cell.children[0].id = cellID
 
 					// set new onclick value for any buttons of format function(...N)
-					if (newCell.children[0].type == "button") {
-						var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
+					if (cell.children[0].type == "button") {
+						var currentOnClick = document.getElementById(cellID).getAttribute("onclick");
+						var currentOnClickkPrefix = currentCellOnClick.slice(0, -2);
+						var newOnClick = currentOnClickkPrefix + rowNum + ")";
 						if (debug == true) {
-							console.log("newCell onclick: " + currentCellOnClick)
+							console.log("currentOnClick: " + currentOnClick)
 						};
 						if (debug == true) {
-							console.log("currentCellOnClick: " + currentCellOnClick)
-						};
-						var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
-						var newCellOnClick = currentCellOnClickkPrefix + newRowID + ")";
-						if (debug == true) {
-							console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix)
+							console.log("currentOnClickkPrefix: " + currentOnClickkPrefix)
 						};
 						if (debug == true) {
-							console.log("newCellOnClick: " + newCellOnClick)
+							console.log("newOnClick: " + newOnClick)
 						};
-						document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
-					}
-
-					// Blank or uncheck content
-					switch (newCell.children[0].type) {
-						case "text":
-							newCell.children[0].value = "";
-							break;
-						case "checkbox":
-							newCell.children[0].checked = false;
-							break;
-						case "select-one":
-							newCell.children[0].selectedIndex = 0;
-							break;
+						document.getElementById(cellID).setAttribute("onclick", newOnClick);
 					}
 				}
-			}
+		}
 
-			function deleteRow(tableID, rowID) {
-				var tbl = document.getElementById(tableID);
-				var tableBody = tbl.getElementsByTagName('tbody')[0];
-				var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+		function addRow(tableID) {
+
+			// This works for any generic row but also assumes that any table row cells
+			// you are copying has an id of format id="tableid0" etc and any buttons
+			// have an onclick format of onclick=function(stuff... , 0) so that both
+			// these numbers can be incremented by 1 each time
+			// Note table items are zero indexed
+			var tbl = document.getElementById(tableID);
+			var bodyRowCount = tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+			var headerRowCount = tbl.getElementsByTagName('thead')[0].getElementsByTagName('tr').length;
+			var footerRowCount = tbl.getElementsByTagName('tfoot')[0].getElementsByTagName('tr').length;
+			var templateRow = tbl.rows[headerRowCount];
+			var newRowColCount = templateRow.cells.length;
+			var newRowID = bodyRowCount;
+
+			if (debug == true) {
+				console.log(
+					"tableID: " + tableID + '\n' +
+					"headerRowCount: " + headerRowCount + '\n' +
+					"bodyRowCount: " + bodyRowCount + '\n' +
+					"footerRowCount: " + footerRowCount + '\n' +
+					"newRowColCount: " + newRowColCount + '\n' +
+					"newRowID: " + newRowID
+				)
+			};
+
+			// to insert single row at end of tbody
+			var tableBody = tbl.getElementsByTagName('tbody')[0];
+			var newRow = tableBody.insertRow(-1);
+
+			// to create columns in new row
+			for (var i = 0; i < newRowColCount; i++) {
+
 				if (debug == true) {
-					console.log("bodyRowCount: " + bodyRowCount)
+					console.log("column: " + i)
 				};
-				if (bodyRowCount != 1) {
+
+				// to insert one column
+				var newCell = newRow.insertCell(i);
+				var templateCell = templateRow.cells[i];
+
+				// set to same as first data row
+				newCell.innerHTML = templateCell.innerHTML;
+
+				// set new ID based upon triming existing cellid of format itemN
+				var templateCellID = templateCell.children[0].id;
+				var templateCellIDPrefix = templateCellID.slice(0, -1);
+				var newCellID = templateCellIDPrefix + newRowID;
+				if (debug == true) {
+					console.log("templateCellID: " + templateCellID)
+				};
+				if (debug == true) {
+					console.log("templateCellIDPrefix: " + templateCellIDPrefix)
+				};
+				if (debug == true) {
+					console.log("newCellID: " + newCellID)
+				};
+				if (debug == true) {
+					console.log("newCell class: " + document.getElementById(newCellID).class)
+				};
+				if (debug == true) {
+					console.log("newCell type: " + document.getElementById(newCellID).type)
+				};
+				newCell.children[0].id = newCellID;
+
+				// set colspan
+				var templateCellColSpan = templateCell.getAttribute("colspan");
+				if (debug == true) {
+					console.log("templateCellColSpan: " + templateCellColSpan)
+				};
+				newCell.setAttribute("colspan", templateCellColSpan);
+
+				// set new onclick value for any buttons of format function(...N)
+				if (newCell.children[0].type == "button") {
+					var currentCellOnClick = document.getElementById(newCellID).getAttribute("onclick");
 					if (debug == true) {
-						console.log("Deleting Row: " + rowID)
+						console.log("newCell onclick: " + currentCellOnClick)
 					};
-					tableBody.deleteRow(rowID);
-					//todo - rearrange remaining row ids etc
-					//arrangeRows(tableID);
-				} else {
-					console.error("Cannot delete last row: " + tableID);
+					if (debug == true) {
+						console.log("currentCellOnClick: " + currentCellOnClick)
+					};
+					var currentCellOnClickkPrefix = currentCellOnClick.slice(0, -2);
+					var newCellOnClick = currentCellOnClickkPrefix + newRowID + ")";
+					if (debug == true) {
+						console.log("currentCellOnClickkPrefix: " + currentCellOnClickkPrefix)
+					};
+					if (debug == true) {
+						console.log("newCellOnClick: " + newCellOnClick)
+					};
+					document.getElementById(newCellID).setAttribute("onclick", newCellOnClick);
+				}
+
+				// Blank or uncheck content
+				switch (newCell.children[0].type) {
+					case "text":
+						newCell.children[0].value = "";
+						break;
+					case "checkbox":
+						newCell.children[0].checked = false;
+						break;
+					case "select-one":
+						newCell.children[0].selectedIndex = 0;
+						break;
 				}
 			}
+		}
+
+		function deleteRow(tableID, rowID) {
+			var tbl = document.getElementById(tableID);
+			var tableBody = tbl.getElementsByTagName('tbody')[0];
+			var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+			if (debug == true) {
+				console.log("bodyRowCount: " + bodyRowCount)
+			};
+			if (bodyRowCount != 1) {
+				if (debug == true) {
+					console.log("Deleting Row: " + rowID)
+				};
+				tableBody.deleteRow(rowID);
+				//todo - rearrange remaining row ids etc
+				//arrangeRows(tableID);
+			} else {
+				console.error("Cannot delete last row: " + tableID);
+			};
+		}
 	</script>
 </body>
 
