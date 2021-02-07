@@ -72,15 +72,15 @@ function rollDice(sides, number) {
 }
 
 function expandall() {
-  var expandindicator = "";
-  var answercontainer = "";
+  var expandIndicator = "";
+  var answerContainer = "";
 
   for (i = 0; i < 3; i++) {
-    expandindicator = "expandindicator" + i;
-    answercontainer = "answercontainer" + i;
+    expandIndicator = "expandIndicator" + i;
+    answerContainer = "answerContainer" + i;
 
-    document.getElementById(expandindicator).innerHTML = "-";
-    document.getElementById(answercontainer).style.display = "block";
+    document.getElementById(expandIndicator).innerHTML = "-";
+    document.getElementById(answerContainer).style.display = "block";
   }
 
   for (i = 0; i < 1; i++) {
@@ -92,20 +92,20 @@ function expandall() {
 }
 
 function expandcontainer(identifier) {
-  var expandindicator = "expandindicator" + identifier;
-  var answercontainer = "answercontainer" + identifier;
+  var expandIndicator = "expandIndicator" + identifier;
+  var answerContainer = "answerContainer" + identifier;
 
-  if (document.getElementById(expandindicator).innerHTML == "+") {
-    document.getElementById(expandindicator).innerHTML = "-";
-    document.getElementById(answercontainer).style.display = "block";
+  if (document.getElementById(expandIndicator).innerHTML == "+") {
+    document.getElementById(expandIndicator).innerHTML = "-";
+    document.getElementById(answerContainer).style.display = "block";
     answersexpanded++;
     if (answersexpanded == 3) {
       document.getElementById("expandallindicator1").innerHTML = "- Collapse all";
       document.getElementById("expandallindicator2").innerHTML = "- Collapse all";
     }
   } else {
-    document.getElementById(expandindicator).innerHTML = "+";
-    document.getElementById(answercontainer).style.display = "none";
+    document.getElementById(expandIndicator).innerHTML = "+";
+    document.getElementById(answerContainer).style.display = "none";
     answersexpanded--;
     if (answersexpanded > 0) {
       document.getElementById("expandallindicator1").innerHTML = "+ Expand all";

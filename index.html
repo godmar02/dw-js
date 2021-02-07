@@ -41,21 +41,21 @@
 			background: url(images/icons/bin.png) center/15px no-repeat;
 		}
 
-		div.ans {
+		div.answerContainer {
 			border-bottom: 1px solid;
 			float: left;
 			width: 100%;
 			display: none;
 		}
 
-		div.expi {
+		div.expandIndicator {
 			text-align: right;
 			float: right;
 			padding-right: 8px;
 			width: 1%;
 		}
 
-		div.p {
+		div.questionText {
 			font-size: 17px;
 			float: left;
 			width: 92%;
@@ -478,18 +478,18 @@
 		<p><a href="javascript:;" class="textpress" style="float: left" target="_top" id="sheetLink">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress" id="expandall0" style="float: right">+ Expand all</a></p>
 
 		<div class="question" style="border-top: 1px solid; margin-top: 25px;">
-			<div class="p"><b>How do I use the Character Sheet?</b></div>
-			<div id="expandindicator0" class="expi">+</div>
+			<div class="questionText"><b>How do I use the Character Sheet?</b></div>
+			<div class="expandIndicator" id="expandIndicator0">+</div>
 		</div>
-		<div id="answercontainer0" class="ans">
+		<div class="answerContainer" id="answerContainer0">
 			<p>TBC.</p>
 		</div>
 
 		<div class="question">
-			<div class="p"><b>Can I use the Character Sheet offline?</b></div>
-			<div id="expandindicator1" class="expi">+</div>
+			<div class="questionText"><b>Can I use the Character Sheet offline?</b></div>
+			<div class="expandIndicator" id="expandIndicator1">+</div>
 		</div>
-		<div id="answercontainer1" class="ans">
+		<div class="answerContainer" id="answerContainer1">
 			<p>Yes you can. Follow these instructions:<br /><br />
 				<i>Any platform</i>: If you don't quit your browser app, you should be able to use the Character Sheet without internet access as long as the browser stays in memory. The Character Sheet is a static website and doesn't require the use of
 				bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br /><br />
@@ -502,14 +502,15 @@
 		</div>
 
 		<div class="question">
-			<div class="p"><b>Who are you?</b></div>
-			<div id="expandindicator2" class="expi">+</div>
+			<div class="questionText"><b>Who are you?</b></div>
+			<div class="expandIndicator" id="expandIndicator2">+</div>
 		</div>
-		<div id="answercontainer2" class="ans">
+		<div class="answerContainer" id="answerContainer2">
 			<p>Never you mind.</p>
 		</div>
 
-		<p><a href="javascript:;" class="textpress" id="expandall1" style="float: right">+ Expand all</a></p><br>
+		<p><a href="javascript:;" class="textpress" id="expandall1" style="float: right">+ Expand all</a></p>
+		<br>
 		<div style="float: left; position: relative; top: 6px; width: 100%">
 			<p><b>Links:</b></p>
 			<a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br />
