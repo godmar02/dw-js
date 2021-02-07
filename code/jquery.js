@@ -239,14 +239,14 @@ $(document).ready(function() {
   $("#faqLink").click(function() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     console.log("$(#faqLink).click() - ");
-    $("main").hide();
-    $("faq").show();
+    $("#main").hide();
+    $("#faq").show();
   });
 
   $("#sheetLink").click(function() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
-    $("main").show();
-    $("faq").hide();
+    $("#main").show();
+    $("#faq").hide();
   });
 
   $("#addBond").click(function() {
