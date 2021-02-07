@@ -71,44 +71,24 @@ function rollDice(sides, number) {
   return total;
 }
 
-function expandall(indicator) {
-  if (document.getElementById("expandallindicator1").innerHTML == "+ Expand all") {
-    var expandindicator = "";
-    var answercontainer = "";
+function expandall() {
+  var expandindicator = "";
+  var answercontainer = "";
 
-    for (i = 0; i < 3; i++) {
-      expandindicator = "expandindicator" + i;
-      answercontainer = "answercontainer" + i;
-      if (document.getElementById(expandindicator).innerHTML == "+") {
-        document.getElementById(expandindicator).innerHTML = "-";
-        document.getElementById(answercontainer).style.display = "block";
-      }
-    }
-    answersexpanded = 3;
-    document.getElementById("expandallindicator1").innerHTML = "- Collapse all";
-    document.getElementById("expandallindicator2").innerHTML = "- Collapse all";
-    if (indicator == 2) {
-      expandallindicator2.scrollIntoView(false);
-    }
-  } else {
-    var expandindicator = "";
-    var answercontainer = "";
+  for (i = 0; i < 3; i++) {
+    expandindicator = "expandindicator" + i;
+    answercontainer = "answercontainer" + i;
 
-    for (i = 0; i < 3; i++) {
-      expandindicator = "expandindicator" + i;
-      answercontainer = "answercontainer" + i;
-      if (document.getElementById(expandindicator).innerHTML == "-") {
-        document.getElementById(expandindicator).innerHTML = "+";
-        document.getElementById(answercontainer).style.display = "none";
-      }
-    }
-    answersexpanded = 0;
-    document.getElementById("expandallindicator1").innerHTML = "+ Expand all";
-    document.getElementById("expandallindicator2").innerHTML = "+ Expand all";
-    if (indicator == 2) {
-      expandallindicator2.scrollIntoView(false);
-    }
+    document.getElementById(expandindicator).innerHTML = "-";
+    document.getElementById(answercontainer).style.display = "block";
   }
+
+  for (i = 0; i < 1; i++) {
+    expandall = "expandall" + i;
+    document.getElementById(expandall).innerHTML = "- Collapse all";
+  }
+  answersexpanded = 3;
+  //expandallindicator2.scrollIntoView(false);
 }
 
 function expandcontainer(identifier) {

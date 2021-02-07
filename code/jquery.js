@@ -288,8 +288,16 @@ $(document).ready(function() {
   $("#char, #charAffliction").change(function() {
     setModifier("char");
   });
-  //onclick="deleteRow('bondsTable', 0)" id="deleteBond0"
 
+  $("#expandall1, #expandall2").click(function() {
+    expandall();
+  });
+
+  $(".question").click(function() {
+    expandcontainer(0);
+  });
+
+  //onclick="deleteRow('bondsTable', 0)" id="deleteBond0"
   //$("#").click(function() {});
 
 });
