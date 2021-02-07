@@ -1,4 +1,4 @@
-var answersexpanded = 0;
+var answersExpanded = 0;
 
 function calcModifier(value) {
 
@@ -71,24 +71,52 @@ function rollDice(sides, number) {
   return total;
 }
 
-function expandall() {
+function expandAll() {
   var expandIndicator = "";
   var answerContainer = "";
+  var questionCount = 3;
+  var expandAllCount = 2;
+  var expand = true;
 
-  for (i = 0; i < 3; i++) {
-    expandIndicator = "expandIndicator" + i;
-    answerContainer = "answerContainer" + i;
-
-    document.getElementById(expandIndicator).innerHTML = "-";
-    document.getElementById(answerContainer).style.display = "block";
+  if (document.getElementById("expandAll0").innerHTML == "+ Expand all") {
+    expand = true;
+  } else {
+    expand = false;
   }
 
-  for (i = 0; i < 1; i++) {
-    expandall = "expandall" + i;
-    document.getElementById(expandall).innerHTML = "- Collapse all";
+  if (expand == true) {
+    //Expand Everything
+    for (i = 0; i < questionCount; i++) {
+      expandIndicator = "expandIndicator" + i;
+      answerContainer = "answerContainer" + i;
+
+      document.getElementById(expandIndicator).innerHTML = "-";
+      document.getElementById(answerContainer).style.display = "block";
+    }
+
+    for (i = 0; i < expandAllCount; i++) {
+      expandAll = "expandAll" + i;
+      document.getElementById(expandAll).innerHTML = "- Collapse all";
+    }
+    answersExpanded = questionCount;
+    //expandAllindicator2.scrollIntoView(false);
+  } else {
+    //Collapse Everything
+    for (i = 0; i < questionCount; i++) {
+      expandIndicator = "expandIndicator" + i;
+      answerContainer = "answerContainer" + i;
+
+      document.getElementById(expandIndicator).innerHTML = "+";
+      document.getElementById(answerContainer).style.display = "none";
+    }
+
+    for (i = 0; i < expandAllCount; i++) {
+      expandAll = "expandAll" + i;
+      document.getElementById(expandAll).innerHTML = "+ Expand all";
+    }
+    answersExpanded = 0;
+    //expandAllindicator2.scrollIntoView(false);
   }
-  answersexpanded = 3;
-  //expandallindicator2.scrollIntoView(false);
 }
 
 function expandcontainer(identifier) {
@@ -96,20 +124,26 @@ function expandcontainer(identifier) {
   var answerContainer = "answerContainer" + identifier;
 
   if (document.getElementById(expandIndicator).innerHTML == "+") {
+    //Expand Answer Container
     document.getElementById(expandIndicator).innerHTML = "-";
     document.getElementById(answerContainer).style.display = "block";
-    answersexpanded++;
-    if (answersexpanded == 3) {
-      document.getElementById("expandallindicator1").innerHTML = "- Collapse all";
-      document.getElementById("expandallindicator2").innerHTML = "- Collapse all";
+    answersExpanded++;
+    if (answersExpanded == 3) {
+      for (i = 0; i < 1; i++) {
+        expandAll = "expandAll" + i;
+        document.getElementById(expandAll).innerHTML = "- Collapse all";
+      }
     }
   } else {
+    //Collapse Answer Container
     document.getElementById(expandIndicator).innerHTML = "+";
     document.getElementById(answerContainer).style.display = "none";
-    answersexpanded--;
-    if (answersexpanded > 0) {
-      document.getElementById("expandallindicator1").innerHTML = "+ Expand all";
-      document.getElementById("expandallindicator2").innerHTML = "+ Expand all";
+    answersExpanded--;
+    if (answersExpanded > 0) {
+      for (i = 0; i < 1; i++) {
+        expandAll = "expandAll" + i;
+        document.getElementById(expandAll).innerHTML = "- Collapse all";
+      }
     }
   }
 }
