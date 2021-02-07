@@ -307,30 +307,52 @@ function deleteRow(tableID, rowID) {
 
 $(document).ready(function() {
 
-  $("#dwClass").change(function() {
-    var $dwClass = $(this);
+  $("#class, #race, #alignment").change(function() {
+    var $race = $("#race");
+    var $dwClass = $("#dwClass");
+    var $alignment = $("#alignment");
     var $str = $("#str");
     var $con = $("#con");
 
     $.getJSON("data/classes.json", function(data) {
+      var race = $race.val();
       var dwClass = $dwClass.val();
+      var alignment = $alignment.val();
       var str = $str.val();
       var con = $con.val();
-      if (debug == true) {
-        console.info(
-          "$(#dwClass).change() - dwClass: " + dwClass + "\n" +
-          "$(#dwClass).change() - str: " + str + "\n" +
-          "$(#dwClass).change() - con: " + con);
-      }
+      var raceAttribute = "";
+      var alignmentAttribute = "";
       var alignments = [];
       var damage = "";
       var baseLoad = 0;
       var baseHP = 0;
       var maxLoad = 0;
       var maxHP = 0;
+      if (debug == true) {
+        console.info(
+          "$(#dwClass).change() - dwClass: " + dwClass + "\n" +
+          "$(#dwClass).change() - str: " + str + "\n" +
+          "$(#dwClass).change() - con: " + con);
+      }
 
-      // set MaxLoad based upon strength
-      if (str) {
+      // Set race attribute
+      if (dwClass && race) {
+        raceAttribute = data[dwClass].raceAttributes[race];
+        $("#raceAttribute").val(raceAttribute);
+      } else {
+        $("#raceAttribute").val("");
+      }
+
+      // Set alignment attribute
+      if (dwClass && alignment) {
+        alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
+        $("#alignmentAttribute").val(alignmentAttribute);
+      } else {
+        $("#alignmentAttribute").val("");
+      }
+
+      // Set MaxLoad
+      if (dwClass && str) {
         str = parseInt(str, 10);
         baseLoad = data[dwClass].baseLoad;
         if (debug == true) {
@@ -342,10 +364,12 @@ $(document).ready(function() {
           console.info("$(#dwClass).change() - maxLoad: " + maxLoad);
         }
         $("#maxLoad").val("/ " + maxLoad);
+      } else {
+        $("#maxLoad").val("");
       }
 
-      // set MaxHP based upon constitution
-      if (con) {
+      // Set MaxHP
+      if (dwClass && con) {
         con = parseInt(con, 10);
         baseHP = data[dwClass].baseHP;
         if (debug == true) {
@@ -357,59 +381,34 @@ $(document).ready(function() {
           console.info("$(#dwClass).change() - maxHP: " + maxHP);
         }
         $("#maxHP").val("/ " + maxHP);
+      } else {
+        $("#maxHP").val("");
       }
 
-      // set damage based upon class
-      damage = data[dwClass].damage;
-      if (debug == true) {
-        console.info("$(#dwClass).change() - damage: " + damage);
+      // Set damage
+      if (dwClass) {
+        damage = data[dwClass].damage;
+        if (debug == true) {
+          console.info("$(#dwClass).change() - damage: " + damage);
+        }
+        $("#damage").val(damage);
+      } else {
+        $("#damage").val("");
       }
-      $("#damage").val(damage);
 
-      // set alignments based upon class
-      alignments = data[dwClass].alignments.split(",");
-      if (debug == true) {
-        console.info(
-          "$(#dwClass).change() - alignments: " + alignments);
-      }
+      // Set alignment options
       var $alignments = $("#alignment");
       $alignments.empty();
-      $.each(alignments, function(index, value) {
-        $alignments.append("<option>" + value + "</option>");
-      });
-
-    });
-  });
-
-  $("#race").change(function() {
-    var $race = $(this);
-    var $dwClass = $("#dwClass");
-
-    $.getJSON("data/classes.json", function(data) {
-
-      var dwClass = $dwClass.val();
-      var race = $race.val();
-      var raceAttribute = "";
-
-      raceAttribute = data[dwClass].raceAttributes[race];
-
-      $("#raceAttribute").val(raceAttribute);
-    });
-  });
-
-  $("#alignment").change(function() {
-    var $alignment = $(this);
-    var $dwClass = $("#dwClass");
-
-    $.getJSON("data/classes.json", function(data) {
-
-      var dwClass = $dwClass.val();
-      var alignment = $alignment.val();
-      var alignmentAttribute = "";
-
-      alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
-
-      $("#alignmentAttribute").val(alignmentAttribute);
+      if (dwClass) {
+        alignments = data[dwClass].alignments.split(",");
+        if (debug == true) {
+          console.info(
+            "$(#dwClass).change() - alignments: " + alignments);
+        }
+        $.each(alignments, function(index, value) {
+          $alignments.append("<option>" + value + "</option>");
+        });
+      }
     });
   });
 
