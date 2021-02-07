@@ -554,29 +554,29 @@ $(document).ready(function() {
     setMaxXP();
   });
 
-  $("#XP").change(function() {
+  $("#XP, #maxXP").change(function() {
     var XP = $(this).val();
     var maxXP = $("#maxXP").val();
     if (XP > maxXP) {
-      event("XP exceeds maximum permitted value");
+      alert("XP exceeds maximum permitted value");
       $(this).val(maxXP);
     }
   });
 
-  $("#HP").change(function() {
+  $("#HP, #maxHP").change(function() {
     var HP = $(this).val();
     var maxXP = $("#maxHP").val();
     if (XP > maxHP) {
-      event("HP exceeds maximum permitted value");
+      alert("HP exceeds maximum permitted value");
       $(this).val(maxHP);
     }
   });
 
-  $("#load").change(function() {
+  $("#load, #maxLoad").change(function() {
     var load = $(this).val();
     var maxLoad = $("#maxLoad").val();
     if (load > maxLoad) {
-      event("Load exceeds maximum permitted value");
+      alert("Load exceeds maximum permitted value");
     }
   });
 
