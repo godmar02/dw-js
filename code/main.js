@@ -570,7 +570,7 @@ $(document).ready(function() {
   });
 
   $(".addRow").click(function() {
-    var tableID = $(this).id
+    var tableID = this.id
     if (debug == true) {
       console.info("$(.addRow).click() - tableID: " + tableID)
     };
@@ -578,7 +578,7 @@ $(document).ready(function() {
   });
 
   $(".deleteRow").click(function() {
-    var tableID = $(this).id
+    var tableID = this.id
     if (debug == true) {
       console.info("$(.deleteRow).click() - tableID: " + tableID)
     };
