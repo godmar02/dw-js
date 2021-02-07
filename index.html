@@ -177,7 +177,7 @@
 	<div id="main">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.10.3 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.10.4 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -317,49 +317,49 @@
 					<tbody>
 						<tr>
 							<td>
-								<input type="number" min="1" max="18" id="str"><br>
+								<input type="number" min="1" max="18" class="ability" id="str"><br>
 								<input type="text" class="grey tallfield" readonly id="strModifier"><br>
-								<select style="position: relative" tabindex="-1" id="strAffliction">
+								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="strAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Weak">Weak</option>
 								</select>
 							</td>
 							<td>
-								<input type="number" min="1" max="18" id="dex"><br>
+								<input type="number" min="1" max="18" class="ability" id="dex"><br>
 								<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
-								<select style="position: relative" tabindex="-1" id="dexAffliction">
+								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="dexAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Shaky</option>
 								</select>
 							</td>
 							<td>
-								<input type="number" min="1" max="18" id="con"><br>
+								<input type="number" min="1" max="18" class="ability" id="con"><br>
 								<input type="text" class="grey tallfield" readonly id="conModifier"><br>
-								<select style="position: relative" tabindex="-1" id="conAffliction">
+								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="conAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Sick</option>
 								</select>
 							</td>
 							<td>
-								<input type="number" min="1" max="18" id="int"><br>
+								<input type="number" min="1" max="18" class="ability" id="int"><br>
 								<input type="text" class="grey tallfield" readonly id="intModifier"><br>
-								<select style="position: relative" tabindex="-1" id="intAffliction">
+								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="intAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Stunned</option>
 								</select>
 							</td>
 							<td>
-								<input type="number" min="1" max="18" id="wis"><br>
+								<input type="number" min="1" max="18" class="ability" id="wis"><br>
 								<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
-								<select style="position: relative" tabindex="-1" id="wisAffliction">
+								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="wisAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Confused</option>
 								</select>
 							</td>
 							<td>
-								<input type="number" min="1" max="18" id="cha"><br>
+								<input type="number" min="1" max="18" class="ability" id="cha"><br>
 								<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
-								<select style="position: relative" tabindex="-1" id="chaAffliction">
+								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="chaAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Scarred</option>
 								</select>
@@ -401,7 +401,7 @@
 						<tr>
 							<th style="width: 100%;"><label for="bonds">BONDS</label></th>
 							<td>
-								<button type="button" id="addBond">+</button>
+								<button type="button" class="addRow" id="addBond">+</button>
 							</td>
 						</tr>
 					</thead>
@@ -423,7 +423,7 @@
 							<th style="width: 100%;"><label for="items">ITEM</label></th>
 							<th colspan="2"><label for="weight">WEIGHT</label></th>
 							<td>
-								<button type="button" id="addItem">+</button>
+								<button type="button" class="addRow" id="addItem">+</button>
 							</td>
 						</tr>
 					</thead>
@@ -448,7 +448,7 @@
 						<tr>
 							<th style="width: 100%;"><label for="classFeatures">CLASS FEATURES</label></th>
 							<td>
-								<button type="button" id="addClassFeature">+</button>
+								<button type="button" class="addRow" id="addClassFeature">+</button>
 							</td>
 						</tr>
 					</thead>
@@ -470,12 +470,12 @@
 				<button type="button" id="clearCharacter">Clear</button>
 			</div>
 		</form>
-		<p>For information on Character Sheet usage and useful guides or links, read the <a href="#top" target="_top" id="faqLink">FAQ</a>.</p>
+		<p>For information on Character Sheet usage and useful guides or links, read the <a href="#top" target="_top" class="faqLink" id="faqLink">FAQ</a>.</p>
 	</div>
 	<div id="faq" style="display:none; max-width: 800px">
 		<h2>Frequently Asked Questions</h2><br /><br />
 
-		<p><a href="javascript:;" class="textpress" style="float: left" target="_top" id="sheetLink">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress" id="expandAll0" style="float: right">+ Expand all</a></p>
+		<p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" id="expandAll0" style="float: right">+ Expand all</a></p>
 
 		<div class="question" style="border-top: 1px solid; margin-top: 25px;">
 			<div class="questionText"><b>How do I use the Character Sheet?</b></div>
@@ -509,7 +509,7 @@
 			<p>Never you mind.</p>
 		</div>
 
-		<p><a href="javascript:;" class="textpress" id="expandAll1" style="float: right">+ Expand all</a></p>
+		<p><a href="javascript:;" class="textpress expandAll" id="expandAll1" style="float: right">+ Expand all</a></p>
 		<br>
 		<div style="float: left; position: relative; top: 6px; width: 100%">
 			<p><b>Links:</b></p>
@@ -525,7 +525,7 @@
 			<a href="https://github.com/godmar02/godmar02.github.io" target="_blank">My GitHub</a><br />
 			<a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br /><br />
 
-			<a href="javascript:;" class="textpress" target="_top" id="sheetLink">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br />
+			<a href="javascript:;" class="textpress sheetLink" target="_top" id="sheetLink1">&lt;&lt;&lt; Back to the Character Sheet!</a></p><br />
 		</div>
 	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -533,7 +533,7 @@
 	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
 	<script src="code/firebase.js"></script>
 	-->
-	<script src="code/jquery.js"></script>
+	<script src="code/main.js"></script>
 	<script src="code/javascript.js"></script>
 </body>
 

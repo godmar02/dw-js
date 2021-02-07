@@ -236,60 +236,15 @@ $(document).ready(function() {
     });
   });
 
-  $("#faqLink").click(function() {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    $("#main").hide();
-    $("#faq").show();
-  });
-
-  $("#sheetLink").click(function() {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    $("#main").show();
-    $("#faq").hide();
-  });
-
-  $("#addBond").click(function() {
-    $(this)
-    addRow('bondsTable');
-  });
-
-  $("#addItem").click(function() {
-    addRow('gearTable');
-  });
-
-  $("#addClassFeature").click(function() {
-    addRow('classFeaturesTable');
-  });
-
   $("#level").change(function() {
     setMaxXP();
   });
 
-  $("#str, #strAffliction").change(function() {
-    setModifier("str");
-  });
-
-  $("#dex, #dexAffliction").change(function() {
+  $(".ability, .abilityAffliction").change(function() {
     setModifier("dex");
   });
 
-  $("#con, #conAffliction").change(function() {
-    setModifier("con");
-  });
-
-  $("#int, #intAffliction").change(function() {
-    setModifier("int");
-  });
-
-  $("#wis, #wisAffliction").change(function() {
-    setModifier("wis");
-  });
-
-  $("#char, #charAffliction").change(function() {
-    setModifier("char");
-  });
-
-  $("#expandall1, #expandall2").click(function() {
+  $(".expandAll").click(function() {
     expandall();
   });
 
@@ -297,7 +252,27 @@ $(document).ready(function() {
     expandcontainer(0);
   });
 
-  //onclick="deleteRow('bondsTable', 0)" id="deleteBond0"
+  $(".sheetLink").click(function() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $("#main").show();
+    $("#faq").hide();
+  });
+
+  $(".faqLink").click(function() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $("#main").hide();
+    $("#faq").show();
+  });
+
+  $(".addRow").click(function() {
+    $(this)
+    addRow('bondsTable');
+  });
+
+  $(".deleteRow").click(function() {
+    deleteRow('bondsTable', 0);
+  });
+
   //$("#").click(function() {});
 
 });
