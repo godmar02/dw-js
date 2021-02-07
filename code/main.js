@@ -570,19 +570,20 @@ $(document).ready(function() {
   });
 
   $(".addRow").click(function() {
-    var tableID = this.id
+    var tableID = $(this).closest('table').attr("id")
     if (debug == true) {
       console.info("$(.addRow).click() - tableID: " + tableID)
     };
-    addRow('bondsTable');
+    addRow(tableID);
   });
 
   $(".deleteRow").click(function() {
-    var tableID = this.id
+    var tableID = $(this).closest('table').attr("id")
+    var rowID = this.id
     if (debug == true) {
       console.info("$(.deleteRow).click() - tableID: " + tableID)
     };
-    deleteRow('bondsTable', 0);
+    deleteRow(tableID, 0);
   });
 
 });
