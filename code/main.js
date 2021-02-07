@@ -555,10 +555,14 @@ $(document).ready(function() {
 
   $(".question").click(function() {
     var question = this.id
+    var identifier = question.slice(-1);
     if (debug == true) {
-      console.info("$(.question).click() - question: " + question)
+      console.info("$(.question).click() - question: " + question + '\n' +
+        "$(.question).click() - identifier: " + identifier
+      )
     };
-    expandcontainer(0);
+
+    expandcontainer(identifier);
   });
 
   $(".sheetLink").click(function() {
