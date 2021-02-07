@@ -3,6 +3,7 @@
 - expanding text entry / word wrap
 - Error checking (load, max xp, max hp) event()
 - save
+- save prevent with errors
 - load
 - clear
 - dice roller

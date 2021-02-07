@@ -313,10 +313,10 @@ $(document).ready(function() {
     var $alignment = $("#alignment");
     var $str = $("#str");
     var $con = $("#con");
-    var $change = this.id;
+    var $change = $(this);
 
     $.getJSON("data/classes.json", function(data) {
-      var change = $change.val();
+      var change = $change.attr("id");
       var race = $race.val();
       var dwClass = $dwClass.val();
       var alignment = $alignment.val();
