@@ -554,6 +554,10 @@ $(document).ready(function() {
   });
 
   $(".question").click(function() {
+    var question = this.id
+    if (debug == true) {
+      console.info("$(.question).click() - question: " + question)
+    };
     expandcontainer(0);
   });
 
