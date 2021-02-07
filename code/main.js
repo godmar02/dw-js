@@ -590,9 +590,11 @@ $(document).ready(function() {
     var tableID = $(this).closest("table").attr("id");
     var rowID = this.id;
     if (debug == true) {
-      console.info("$(.deleteRow).click() - tableID: " + tableID);
+      console.info("$(.deleteRow).click() - tableID: " + tableID + "\n" +
+      "$(.deleteRow).click() - rowID: " + rowID
+    );
     }
-    deleteRow(tableID, 0);
+    deleteRow(tableID, rowID);
   });
 
 });
