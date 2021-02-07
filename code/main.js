@@ -585,6 +585,4 @@ $(document).ready(function() {
     deleteRow('bondsTable', 0);
   });
 
-  //$("#").click(function() {});
-
 });
