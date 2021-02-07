@@ -265,11 +265,18 @@ $(document).ready(function() {
   });
 
   $(".addRow").click(function() {
-    $(this)
+    var tableID = $(this).id
+    if (debug == true) {
+      console.info("$(.addRow).click() - tableID: " + tableID)
+    };
     addRow('bondsTable');
   });
 
   $(".deleteRow").click(function() {
+    var tableID = $(this).id
+    if (debug == true) {
+      console.info("$(.deleteRow).click() - tableID: " + tableID)
+    };
     deleteRow('bondsTable', 0);
   });
 
