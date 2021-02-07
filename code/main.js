@@ -305,9 +305,6 @@ function deleteRow(tableID, rowID) {
 
 $(document).ready(function() {
 
-  debug = true;
-  console.info("loadElements() - debug: " + debug);
-
   $("#dwClass").change(function() {
     var $dwClass = $(this);
     var $str = $("#str");

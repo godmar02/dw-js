@@ -161,7 +161,13 @@
 
 </head>
 
-<body>
+<body onload="loadElements()">
+	<script>
+		function loadElements() {
+			debug = true;
+			console.info("loadElements() - debug: " + debug);
+		}
+	</script>
 	<noscript>
 		<h2>Dungeon World Character Sheet</h2>
 		<i style="display: inline-block">(by Godmar02)</i>
@@ -470,7 +476,8 @@
 		<h2>Frequently Asked Questions</h2>
 		<br>
 		<br>
-		<p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" id="expandAll0" style="float: right">+ Expand all</a></p>
+		<p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" id="expandAll0" style="float: right">+ Expand
+				all</a></p>
 		<div class="question" style="border-top: 1px solid; margin-top: 25px;" id="questionContainer0">
 			<div class="questionText"><b>How do I use the Character Sheet?</b></div>
 			<div class="expandIndicator" id="expandIndicator0">+</div>
