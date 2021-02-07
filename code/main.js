@@ -307,14 +307,16 @@ function deleteRow(tableID, rowID) {
 
 $(document).ready(function() {
 
-  $("#class, #race, #alignment").change(function() {
+  $("#dwClass, #race, #alignment").change(function() {
     var $race = $("#race");
     var $dwClass = $("#dwClass");
     var $alignment = $("#alignment");
     var $str = $("#str");
     var $con = $("#con");
+    var $change = this.id;
 
     $.getJSON("data/classes.json", function(data) {
+      var change = $change.val();
       var race = $race.val();
       var dwClass = $dwClass.val();
       var alignment = $alignment.val();
@@ -328,11 +330,16 @@ $(document).ready(function() {
       var baseHP = 0;
       var maxLoad = 0;
       var maxHP = 0;
+
       if (debug == true) {
         console.info(
-          "$(#dwClass).change() - dwClass: " + dwClass + "\n" +
-          "$(#dwClass).change() - str: " + str + "\n" +
-          "$(#dwClass).change() - con: " + con);
+          "$(#dwClass, #race, #alignment).change() - change: " + change + "\n" +
+          "$(#dwClass, #race, #alignment).change() - race: " + race + "\n" +
+          "$(#dwClass, #race, #alignment).change() - dwClass: " + dwClass + "\n" +
+          "$(#dwClass, #race, #alignment).change() - alignment: " + alignment + "\n" +
+          "$(#dwClass, #race, #alignment).change() - str: " + str + "\n" +
+          "$(#dwClass, #race, #alignment).change() - con: " + con
+        );
       }
 
       // Set race attribute
@@ -397,17 +404,19 @@ $(document).ready(function() {
       }
 
       // Set alignment options
-      var $alignments = $("#alignment");
-      $alignments.empty();
-      if (dwClass) {
-        alignments = data[dwClass].alignments.split(",");
-        if (debug == true) {
-          console.info(
-            "$(#dwClass).change() - alignments: " + alignments);
+      if (change != "alignment") {
+        var $alignments = $("#alignment");
+        $alignments.empty();
+        if (dwClass) {
+          alignments = data[dwClass].alignments.split(",");
+          if (debug == true) {
+            console.info(
+              "$(#dwClass).change() - alignments: " + alignments);
+          }
+          $.each(alignments, function(index, value) {
+            $alignments.append("<option>" + value + "</option>");
+          });
         }
-        $.each(alignments, function(index, value) {
-          $alignments.append("<option>" + value + "</option>");
-        });
       }
     });
   });
