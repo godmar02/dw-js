@@ -589,6 +589,7 @@ $(document).ready(function() {
   $(".deleteRow").click(function() {
     var tableID = $(this).closest("table").attr("id");
     var rowID = this.id;
+    rowID = rowID.slice(-1);
     if (debug == true) {
       console.info("$(.deleteRow).click() - tableID: " + tableID + "\n" +
         "$(.deleteRow).click() - rowID: " + rowID
