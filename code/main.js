@@ -555,25 +555,25 @@ $(document).ready(function() {
   });
 
   $("#XP").change(function() {
-    var XP = this.val();
+    var XP = $(this).val();
     var maxXP = $("#maxXP").val();
     if (XP > maxXP) {
       event("XP exceeds maximum permitted value");
-      this.val(maxXP);
+      $(this).val(maxXP);
     }
   });
 
   $("#HP").change(function() {
-    var HP = this.val();
+    var HP = $(this).val();
     var maxXP = $("#maxHP").val();
     if (XP > maxHP) {
       event("HP exceeds maximum permitted value");
-      this.val(maxHP);
+      $(this).val(maxHP);
     }
   });
 
   $("#load").change(function() {
-    var load = this.val();
+    var load = $(this).val();
     var maxLoad = $("#maxLoad").val();
     if (load > maxLoad) {
       event("Load exceeds maximum permitted value");
@@ -582,7 +582,7 @@ $(document).ready(function() {
 
   $(".ability, .abilityAffliction").change(function() {
     // Set Ability modifiers
-    var ability = this.id;
+    var ability = $(this).attr("id");
     ability = ability.replace("Affliction", "");
     setModifier(ability);
   });
@@ -592,7 +592,7 @@ $(document).ready(function() {
   });
 
   $(".question").click(function() {
-    var question = this.id;
+    var question = $(this).attr("id");
     var identifier = question.slice(-1);
     if (debug == true) {
       console.info("$(.question).click() - question: " + question + "\n" +
@@ -625,7 +625,7 @@ $(document).ready(function() {
 
   $(".deleteRow").click(function() {
     var tableID = $(this).closest("table").attr("id");
-    var rowID = this.id;
+    var rowID = $(this).attr("id");
     var row = rowID.slice(-1);
     if (debug == true) {
       console.info("$(.deleteRow).click() - tableID: " + tableID + "\n" +
