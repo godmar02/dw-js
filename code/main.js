@@ -245,7 +245,7 @@ $(document).ready(function() {
   });
 
   $(".expandAll").click(function() {
-    expandall();
+    expandAll();
   });
 
   $(".question").click(function() {
