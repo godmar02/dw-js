@@ -554,6 +554,32 @@ $(document).ready(function() {
     setMaxXP();
   });
 
+  $("#XP").change(function() {
+    var XP = this.val();
+    var maxXP = $("#maxXP").val();
+    if (XP > maxXP) {
+      event("XP exceeds maximum permitted value");
+      this.val(maxXP);
+    }
+  });
+
+  $("#HP").change(function() {
+    var HP = this.val();
+    var maxXP = $("#maxHP").val();
+    if (XP > maxHP) {
+      event("HP exceeds maximum permitted value");
+      this.val(maxHP);
+    }
+  });
+
+  $("#load").change(function() {
+    var load = this.val();
+    var maxLoad = $("#maxLoad").val();
+    if (load > maxLoad) {
+      event("Load exceeds maximum permitted value");
+    }
+  });
+
   $(".ability, .abilityAffliction").change(function() {
     // Set Ability modifiers
     var ability = this.id;
