@@ -591,8 +591,8 @@ $(document).ready(function() {
     var rowID = this.id;
     if (debug == true) {
       console.info("$(.deleteRow).click() - tableID: " + tableID + "\n" +
-      "$(.deleteRow).click() - rowID: " + rowID
-    );
+        "$(.deleteRow).click() - rowID: " + rowID
+      );
     }
     deleteRow(tableID, rowID);
   });
