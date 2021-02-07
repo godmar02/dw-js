@@ -547,7 +547,10 @@ $(document).ready(function() {
   });
 
   $(".ability, .abilityAffliction").change(function() {
-    setModifier("dex");
+    // Set Ability modifiers
+    var ability = this.id;
+    ability = ability.replace("Affliction", "");
+    setModifier(ability);
   });
 
   $(".expandAll").click(function() {
