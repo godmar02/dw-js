@@ -238,6 +238,7 @@ $(document).ready(function() {
 
   $("#faqLink").click(function() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    console.log("$(#faqLink).click() - "
     $("main").hide();
     $("faq").show();
   });
