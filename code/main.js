@@ -4,41 +4,43 @@ function calcModifier(value) {
 
   var input = parseInt(value, 10);
   if ([1, 2, 3].indexOf(input) > -1) {
-    return -3
+    return -3;
   } else if ([4, 5].indexOf(input) > -1) {
-    return -2
+    return -2;
   } else if ([6, 7, 8].indexOf(input) > -1) {
-    return -1
+    return -1;
   } else if ([9, 10, 11, 12].indexOf(input) > -1) {
-    return 0
+    return 0;
   } else if ([13, 14, 15].indexOf(input) > -1) {
-    return 1
+    return 1;
   } else if ([16, 17].indexOf(input) > -1) {
-    return 2
+    return 2;
   } else if (input == 18) {
-    return 3
+    return 3;
   } else {
-    return "ERROR"
+    return "ERROR";
   }
 }
 
 function setModifier(ability) {
   var ab = document.getElementById(ability).value;
   var abAffliction = document.getElementById(ability + "Affliction").value;
+  var afflicted = "";
   if (ab) {
     /*-1 if afflicted*/
     if (abAffliction == "Unafflicted") {
-      var afflicted = 0;
+      afflicted = 0;
     } else {
-      var afflicted = 1;
+      afflicted = 1;
     }
 
     var modifier = calcModifier(ab) - afflicted;
+    var stringModifier = "";
 
     if (modifier > 0) {
-      var stringModifier = "+" + modifier
+      stringModifier = "+" + modifier;
     } else {
-      var stringModifier = modifier
+      stringModifier = modifier;
     }
 
     document.getElementById(ability + "Modifier").value = "[ " + stringModifier + " ]";
@@ -74,6 +76,7 @@ function rollDice(sides, number) {
 function expandAll() {
   var expandIndicator = "";
   var answerContainer = "";
+  var expanAllIndicator = "";
   var questionCount = 3;
   var expandAllCount = 2;
   var expand = true;
@@ -93,10 +96,10 @@ function expandAll() {
       document.getElementById(expandIndicator).innerHTML = "-";
       document.getElementById(answerContainer).style.display = "block";
     }
-
+    // change Expand All indicators
     for (i = 0; i < expandAllCount; i++) {
-      expandAll = "expandAll" + i;
-      document.getElementById(expandAll).innerHTML = "- Collapse all";
+      expanAllIndicator = "expandAll" + i;
+      document.getElementById(expanAllIndicator).innerHTML = "- Collapse all";
     }
     answersExpanded = questionCount;
     //expandAllindicator2.scrollIntoView(false);
@@ -111,8 +114,8 @@ function expandAll() {
     }
 
     for (i = 0; i < expandAllCount; i++) {
-      expandAll = "expandAll" + i;
-      document.getElementById(expandAll).innerHTML = "+ Expand all";
+      expanAllIndicator = "expandAll" + i;
+      document.getElementById(expanAllIndicator).innerHTML = "+ Expand all";
     }
     answersExpanded = 0;
     //expandAllindicator2.scrollIntoView(false);
@@ -130,8 +133,8 @@ function expandcontainer(identifier) {
     answersExpanded++;
     if (answersExpanded == 3) {
       for (i = 0; i < 1; i++) {
-        expandAll = "expandAll" + i;
-        document.getElementById(expandAll).innerHTML = "- Collapse all";
+        expandAllIndicator = "expandAll" + i;
+        document.getElementById(expandAllIndicator).innerHTML = "- Collapse all";
       }
     }
   } else {
@@ -141,8 +144,8 @@ function expandcontainer(identifier) {
     answersExpanded--;
     if (answersExpanded > 0) {
       for (i = 0; i < 1; i++) {
-        expandAll = "expandAll" + i;
-        document.getElementById(expandAll).innerHTML = "- Collapse all";
+        expandAllIndicator = "expandAll" + i;
+        document.getElementById(expandAllIndicator).innerHTML = "- Collapse all";
       }
     }
   }
@@ -151,57 +154,57 @@ function expandcontainer(identifier) {
 function reindexBodyRows(tableID) {
 
   if (debug == true) {
-    console.info("reindexBodyRows() - Reindexing table body: " + tableID)
-  };
+    console.info("reindexBodyRows() - Reindexing table body: " + tableID);
+  }
   var tbl = document.getElementById(tableID);
-  var tableBody = tbl.getElementsByTagName('tbody')[0];
-  var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+  var tableBody = tbl.getElementsByTagName("tbody")[0];
+  var bodyRowCount = tableBody.getElementsByTagName("tr").length;
   if (debug == true) {
-    console.info("reindexBodyRows() - bodyRowCount: " + bodyRowCount)
-  };
+    console.info("reindexBodyRows() - bodyRowCount: " + bodyRowCount);
+  }
   var templateRow = tableBody.rows[0];
   var bodyColCount = templateRow.cells.length;
   if (debug == true) {
-    console.info("reindexBodyRows() - bodyColCount: " + bodyColCount)
-  };
+    console.info("reindexBodyRows() - bodyColCount: " + bodyColCount);
+  }
 
   for (var i = 0; i < bodyRowCount; i++) {
     for (var j = 0; j < bodyColCount; j++) {
 
       if (debug == true) {
-        console.info("reindexBodyRows() - Row / Column: " + i + " / " + j)
-      };
+        console.info("reindexBodyRows() - Row / Column: " + i + " / " + j);
+      }
       // set new ID based upon triming existing cellid of format itemN
       var templateCell = templateRow.cells[j];
       var templateCellID = templateCell.children[0].id;
       if (debug == true) {
-        console.info("reindexBodyRows() - templateCellID: " + templateCellID)
-      };
+        console.info("reindexBodyRows() - templateCellID: " + templateCellID);
+      }
       var templateCellIDPrefix = templateCellID.slice(0, -1);
       if (debug == true) {
-        console.info("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix)
-      };
+        console.info("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix);
+      }
       var cell = tableBody.rows[i].cells[j];
       var newCellID = templateCellIDPrefix + i;
       if (debug == true) {
-        console.info("reindexBodyRows() - newCellID: " + newCellID)
-      };
-      cell.children[0].id = newCellID
+        console.info("reindexBodyRows() - newCellID: " + newCellID);
+      }
+      cell.children[0].id = newCellID;
 
       // set new onclick value for any buttons of format function(...N)
       if (cell.children[0].type == "button") {
         var currentOnClick = document.getElementById(newCellID).getAttribute("onclick");
         if (debug == true) {
-          console.info("reindexBodyRows() - currentOnClick: " + currentOnClick)
-        };
+          console.info("reindexBodyRows() - currentOnClick: " + currentOnClick);
+        }
         var currentOnClickkPrefix = currentOnClick.slice(0, -2);
         if (debug == true) {
-          console.info("reindexBodyRows() - currentOnClickkPrefix: " + currentOnClickkPrefix)
-        };
+          console.info("reindexBodyRows() - currentOnClickkPrefix: " + currentOnClickkPrefix);
+        }
         var newOnClick = currentOnClickkPrefix + i + ")";
         if (debug == true) {
-          console.info("reindexBodyRows() - newOnClick: " + newOnClick)
-        };
+          console.info("reindexBodyRows() - newOnClick: " + newOnClick);
+        }
         document.getElementById(newCellID).setAttribute("onclick", newOnClick);
       }
     }
@@ -215,31 +218,30 @@ function addRow(tableID) {
   // can be incremented by 1 each time
   // Note table items are zero indexed
   var tbl = document.getElementById(tableID);
-  var tableBody = tbl.getElementsByTagName('tbody')[0];
-  var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+  var tableBody = tbl.getElementsByTagName("tbody")[0];
+  var bodyRowCount = tableBody.getElementsByTagName("tr").length;
   var templateRow = tableBody.rows[0];
   var newRowColCount = templateRow.cells.length;
   var newRowID = bodyRowCount;
 
   if (debug == true) {
     console.info(
-      "addRow() - tableID: " + tableID + '\n' +
-      "addRow() - bodyRowCount: " + bodyRowCount + '\n' +
-      "addRow() - newRowColCount: " + newRowColCount + '\n' +
+      "addRow() - tableID: " + tableID + "\n" +
+      "addRow() - bodyRowCount: " + bodyRowCount + "\n" +
+      "addRow() - newRowColCount: " + newRowColCount + "\n" +
       "addRow() - newRowID: " + newRowID
-    )
-  };
+    );
+  }
 
   // to insert single row at end of tbody
-  var tableBody = tbl.getElementsByTagName('tbody')[0];
   var newRow = tableBody.insertRow(-1);
 
   // to create columns in new row
   for (var i = 0; i < newRowColCount; i++) {
 
     if (debug == true) {
-      console.info("addRow() - column: " + i)
-    };
+      console.info("addRow() - column: " + i);
+    }
 
     // to insert one column
     var newCell = newRow.insertCell(i);
@@ -253,21 +255,21 @@ function addRow(tableID) {
     var templateCellIDPrefix = templateCellID.slice(0, -1);
     var newCellID = templateCellIDPrefix + newRowID;
     if (debug == true) {
-      console.info("addRow() - templateCellID: " + templateCellID)
-    };
+      console.info("addRow() - templateCellID: " + templateCellID);
+    }
     if (debug == true) {
-      console.info("addRow() - templateCellIDPrefix: " + templateCellIDPrefix)
-    };
+      console.info("addRow() - templateCellIDPrefix: " + templateCellIDPrefix);
+    }
     if (debug == true) {
-      console.info("addRow() - newCellID: " + newCellID)
-    };
+      console.info("addRow() - newCellID: " + newCellID);
+    }
     newCell.children[0].id = newCellID;
 
     // set colspan
     var templateCellColSpan = templateCell.getAttribute("colspan");
     if (debug == true) {
-      console.info("addRow() - templateCellColSpan: " + templateCellColSpan)
-    };
+      console.info("addRow() - templateCellColSpan: " + templateCellColSpan);
+    }
     newCell.setAttribute("colspan", templateCellColSpan);
 
     // Blank or uncheck content
@@ -287,20 +289,20 @@ function addRow(tableID) {
 
 function deleteRow(tableID, rowID) {
   var tbl = document.getElementById(tableID);
-  var tableBody = tbl.getElementsByTagName('tbody')[0];
-  var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+  var tableBody = tbl.getElementsByTagName("tbody")[0];
+  var bodyRowCount = tableBody.getElementsByTagName("tr").length;
   if (debug == true) {
-    console.info("deleteRow() - bodyRowCount: " + bodyRowCount)
-  };
+    console.info("deleteRow() - bodyRowCount: " + bodyRowCount);
+  }
   if (bodyRowCount != 1) {
     if (debug == true) {
-      console.info("deleteRow() - Deleting Row: " + rowID)
-    };
+      console.info("deleteRow() - Deleting Row: " + rowID);
+    }
     tableBody.deleteRow(rowID);
     reindexBodyRows(tableID);
   } else {
     console.warn("deleteRow() - Cannot delete last row: " + tableID);
-  };
+  }
 }
 
 $(document).ready(function() {
@@ -316,10 +318,10 @@ $(document).ready(function() {
       var con = $con.val();
       if (debug == true) {
         console.info(
-          "$(#dwClass).change() - dwClass: " + dwClass + '\n' +
-          "$(#dwClass).change() - str: " + str + '\n' +
-          "$(#dwClass).change() - con: " + con)
-      };
+          "$(#dwClass).change() - dwClass: " + dwClass + "\n" +
+          "$(#dwClass).change() - str: " + str + "\n" +
+          "$(#dwClass).change() - con: " + con);
+      }
       var alignments = [];
       var damage = "";
       var baseLoad = 0;
@@ -332,14 +334,14 @@ $(document).ready(function() {
         str = parseInt(str, 10);
         baseLoad = data[dwClass].baseLoad;
         if (debug == true) {
-          console.info("$(#dwClass).change() - baseLoad: " + baseLoad)
-        };
+          console.info("$(#dwClass).change() - baseLoad: " + baseLoad);
+        }
         baseLoad = parseInt(baseLoad, 10);
         maxLoad = baseLoad + str;
         if (debug == true) {
-          console.info("$(#dwClass).change() - maxLoad: " + maxLoad)
-        };
-        $("#maxLoad").val("/ " + maxLoad)
+          console.info("$(#dwClass).change() - maxLoad: " + maxLoad);
+        }
+        $("#maxLoad").val("/ " + maxLoad);
       }
 
       // set MaxHP based upon constitution
@@ -347,30 +349,29 @@ $(document).ready(function() {
         con = parseInt(con, 10);
         baseHP = data[dwClass].baseHP;
         if (debug == true) {
-          console.info("$(#dwClass).change() - baseHP: " + baseHP)
-        };
+          console.info("$(#dwClass).change() - baseHP: " + baseHP);
+        }
         baseHP = parseInt(baseHP, 10);
         maxHP = baseHP + con;
         if (debug == true) {
-          console.info("$(#dwClass).change() - maxHP: " + maxHP)
-        };
-        $("#maxHP").val("/ " + maxHP)
+          console.info("$(#dwClass).change() - maxHP: " + maxHP);
+        }
+        $("#maxHP").val("/ " + maxHP);
       }
 
       // set damage based upon class
       damage = data[dwClass].damage;
       if (debug == true) {
-        console.info(
-          "$(#dwClass).change() - damage: " + damage)
-      };
+        console.info("$(#dwClass).change() - damage: " + damage);
+      }
       $("#damage").val(damage);
 
       // set alignments based upon class
       alignments = data[dwClass].alignments.split(",");
       if (debug == true) {
         console.info(
-          "$(#dwClass).change() - alignments: " + alignments)
-      };
+          "$(#dwClass).change() - alignments: " + alignments);
+      }
       var $alignments = $("#alignment");
       $alignments.empty();
       $.each(alignments, function(index, value) {
@@ -430,11 +431,11 @@ $(document).ready(function() {
 
         if (debug == true) {
           console.info(
-            "$(#str).change() - dwClass: " + dwClass + '\n' +
-            "$(#str).change() - str: " + str + '\n' +
-            "$(#str).change() - baseLoad: " + baseLoad + '\n' +
-            "$(#str).change() - maxLoad: " + maxLoad)
-        };
+            "$(#str).change() - dwClass: " + dwClass + "\n" +
+            "$(#str).change() - str: " + str + "\n" +
+            "$(#str).change() - baseLoad: " + baseLoad + "\n" +
+            "$(#str).change() - maxLoad: " + maxLoad);
+        }
 
         $("#maxLoad").val("/ " + maxLoad);
       } else {
@@ -461,11 +462,11 @@ $(document).ready(function() {
 
         if (debug == true) {
           console.info(
-            "$(#con).change() - dwClass: " + dwClass + '\n' +
-            "$(#con).change() - con: " + con + '\n' +
-            "$(#con).change() - baseHP: " + baseHP + '\n' +
-            "$(#con).change() - maxHP: " + maxHP)
-        };
+            "$(#con).change() - dwClass: " + dwClass + "\n" +
+            "$(#con).change() - con: " + con + "\n" +
+            "$(#con).change() - baseHP: " + baseHP + "\n" +
+            "$(#con).change() - maxHP: " + maxHP);
+        }
 
         $("#maxHP").val("/ " + maxHP);
       } else {
@@ -477,29 +478,29 @@ $(document).ready(function() {
   $(document).on("change", "[id^=itemWeight]", function() {
     //on change of any itemWeight elements add weight together and display in load
     var tbl = document.getElementById("gearTable");
-    var tableBody = tbl.getElementsByTagName('tbody')[0];
-    var bodyRowCount = tableBody.getElementsByTagName('tr').length;
+    var tableBody = tbl.getElementsByTagName("tbody")[0];
+    var bodyRowCount = tableBody.getElementsByTagName("tr").length;
     if (debug == true) {
-      console.info("itemWeight.change() - gearTable bodyRowCount:" + bodyRowCount)
-    };
+      console.info("itemWeight.change() - gearTable bodyRowCount:" + bodyRowCount);
+    }
     var totalload = 0;
     var itemload = 0;
     for (var i = 0; i < bodyRowCount; i++) {
       if (debug == true) {
-        console.info("itemID: itemWeight" + i)
-      };
+        console.info("itemID: itemWeight" + i);
+      }
       itemload = $("#itemWeight" + i).val();
       if (itemload) {
         itemload = parseInt(itemload, 10);
-        totalload = totalload + itemload
+        totalload = totalload + itemload;
         if (debug == true) {
           console.info(
-            "itemWeight.change() - itemload:" + itemload + '\n' +
+            "itemWeight.change() - itemload:" + itemload + "\n" +
             "itemWeight.change() - totalload:" + totalload
-          )
+          );
         }
       }
-    };
+    }
 
     $("#load").val(totalload);
 
@@ -513,8 +514,8 @@ $(document).ready(function() {
       })
       .then(function(docRef) {
         if (debug == true) {
-          console.info("saveCharacter() - Document written with ID: ", docRef.id)
-        };
+          console.info("saveCharacter() - Document written with ID: ", docRef.id);
+        }
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -525,8 +526,8 @@ $(document).ready(function() {
     db.collection("users").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (debug == true) {
-          console.info(`${doc.id} => ${doc.data()}`)
-        };
+          console.info(`${doc.id} => ${doc.data()}`);
+        }
       });
     });
   });
@@ -535,8 +536,8 @@ $(document).ready(function() {
     db.collection("users").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (debug == true) {
-          console.info(`${doc.id} => ${doc.data()}`)
-        };
+          console.info(`${doc.id} => ${doc.data()}`);
+        }
       });
     });
   });
@@ -554,13 +555,13 @@ $(document).ready(function() {
   });
 
   $(".question").click(function() {
-    var question = this.id
+    var question = this.id;
     var identifier = question.slice(-1);
     if (debug == true) {
-      console.info("$(.question).click() - question: " + question + '\n' +
+      console.info("$(.question).click() - question: " + question + "\n" +
         "$(.question).click() - identifier: " + identifier
-      )
-    };
+      );
+    }
 
     expandcontainer(identifier);
   });
@@ -578,19 +579,19 @@ $(document).ready(function() {
   });
 
   $(".addRow").click(function() {
-    var tableID = $(this).closest('table').attr("id")
+    var tableID = $(this).closest("table").attr("id");
     if (debug == true) {
-      console.info("$(.addRow).click() - tableID: " + tableID)
-    };
+      console.info("$(.addRow).click() - tableID: " + tableID);
+    }
     addRow(tableID);
   });
 
   $(".deleteRow").click(function() {
-    var tableID = $(this).closest('table').attr("id")
-    var rowID = this.id
+    var tableID = $(this).closest("table").attr("id");
+    var rowID = this.id;
     if (debug == true) {
-      console.info("$(.deleteRow).click() - tableID: " + tableID)
-    };
+      console.info("$(.deleteRow).click() - tableID: " + tableID);
+    }
     deleteRow(tableID, 0);
   });
 
