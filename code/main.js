@@ -1,4 +1,5 @@
 var answersExpanded = 0;
+var abilityErrors = false;
 
 function calcModifier(value) {
 
@@ -514,36 +515,6 @@ $(document).ready(function() {
 
   });
 
-  $("#saveCharacter").click(function() {
-    db.collection("users").add({
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      })
-      .then(function(docRef) {
-        if (debug == true) {
-          console.info("saveCharacter() - Document written with ID: ", docRef.id);
-        }
-      })
-      .catch(function(error) {
-        console.error("Error adding document: ", error);
-      });
-  });
-
-  $("#loadCharacter").click(function() {
-    db.collection("users").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (debug == true) {
-          console.info(`${doc.id} => ${doc.data()}`);
-        }
-      });
-    });
-  });
-
-  $("#clearCharacter").click(function() {
-    location.reload();
-  });
-
   $("#level").change(function() {
     setMaxXP();
   });
@@ -575,6 +546,25 @@ $(document).ready(function() {
     if (load && maxLoad && load > maxLoad) {
       alert(load + " weight exceeds maximum permitted value of " + maxLoad);
     }
+  });
+
+  $("#str, #dex, #con, #int, #wis, #cha").change(function() {
+    var str = $("#str").val();
+    var dex = $("#dex").val();
+    var con = $("#con").val();
+    var int = $("#int").val();
+    var wis = $("#wis").val();
+    var cha = $("#cha").val();
+    var maxAbility = 73; //16, 15, 13, 12, 9, 8
+    var totalAbility = str + dex + con + int + wis + cha;
+
+    if (str && dex && con && int && wis && cha && totalAbility != totalAbility) {
+      alert(totalAbility + " Ability Score does not match permitted value of " + maxAbility);
+      abilityErrors = true;
+    } else {
+      abilityErrors = false;
+    }
+
   });
 
   $(".ability, .abilityAffliction").change(function() {
@@ -631,6 +621,36 @@ $(document).ready(function() {
       );
     }
     deleteRow(tableID, row);
+  });
+
+  $("#saveCharacter").click(function() {
+    db.collection("users").add({
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      })
+      .then(function(docRef) {
+        if (debug == true) {
+          console.info("saveCharacter() - Document written with ID: ", docRef.id);
+        }
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+      });
+  });
+
+  $("#loadCharacter").click(function() {
+    db.collection("users").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (debug == true) {
+          console.info(`${doc.id} => ${doc.data()}`);
+        }
+      });
+    });
+  });
+
+  $("#clearCharacter").click(function() {
+    location.reload();
   });
 
 });

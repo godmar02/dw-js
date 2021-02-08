@@ -1,11 +1,12 @@
 # TO DO
-- testing of re-calculate when changing values or removing rows
+- Error checking (ability totals)
+- clear/reset
+- alignment / other fields set on initial load
+- double check testing of re-calculate when changing values or removing rows
 - expanding text entry / word wrap
-- Error checking (load, max xp, max hp) event()
 - save
-- save prevent with errors
+- prevent save with errors (item load & ability total)
 - load
-- clear
 - dice roller
 - make pretty
 - default items?
