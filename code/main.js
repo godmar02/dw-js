@@ -1,5 +1,6 @@
 var answersExpanded = 0;
 var abilityErrors = false;
+var loadErrors = false;
 
 function calcModifier(value) {
 
@@ -545,6 +546,9 @@ $(document).ready(function() {
     maxLoad = parseInt(maxLoad.replace("/ ", ""), 10);
     if (load && maxLoad && load > maxLoad) {
       alert(load + " weight exceeds maximum permitted value of " + maxLoad);
+      loadErrors = true;
+    } else {
+      loadErrors = false;
     }
   });
 
