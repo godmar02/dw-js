@@ -1,4 +1,4 @@
-// App version: v0.12.5
+// App version: v0.12.6
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -316,8 +316,8 @@ $(document).ready(function() {
     var race = $("#race").val();
     var dwClass = $("#dwClass").val();
     var alignment = $("#alignment").val();
-    var str = parseInt($("#str").val(),10);
-    var con = parseInt($("#con").val(),10);
+    var str = parseInt($("#str").val(), 10);
+    var con = parseInt($("#con").val(), 10);
     var change = $(this).attr("id");
     var raceAttribute = "";
     var alignmentAttribute = "";
@@ -328,18 +328,18 @@ $(document).ready(function() {
     var maxLoad = 0;
     var maxHP = 0;
 
-    $.getJSON("data/classes.json", function(data) {
+    if (debug == true) {
+      console.info(
+        "$(#dwClass, #race, #alignment).change() - change: " + change + "\n" +
+        "$(#dwClass, #race, #alignment).change() - race: " + race + "\n" +
+        "$(#dwClass, #race, #alignment).change() - dwClass: " + dwClass + "\n" +
+        "$(#dwClass, #race, #alignment).change() - alignment: " + alignment + "\n" +
+        "$(#dwClass, #race, #alignment).change() - str: " + str + "\n" +
+        "$(#dwClass, #race, #alignment).change() - con: " + con
+      );
+    }
 
-      if (debug == true) {
-        console.info(
-          "$(#dwClass, #race, #alignment).change() - change: " + change + "\n" +
-          "$(#dwClass, #race, #alignment).change() - race: " + race + "\n" +
-          "$(#dwClass, #race, #alignment).change() - dwClass: " + dwClass + "\n" +
-          "$(#dwClass, #race, #alignment).change() - alignment: " + alignment + "\n" +
-          "$(#dwClass, #race, #alignment).change() - str: " + str + "\n" +
-          "$(#dwClass, #race, #alignment).change() - con: " + con
-        );
-      }
+    $.getJSON("data/classes.json", function(data) {
 
       // Set race attribute
       if (dwClass && race) {
@@ -351,7 +351,7 @@ $(document).ready(function() {
 
       // Set MaxLoad
       if (dwClass && str) {
-        baseLoad = parseInt(data[dwClass].baseLoad,10);
+        baseLoad = parseInt(data[dwClass].baseLoad, 10);
         if (debug == true) {
           console.info("$(#dwClass).change() - baseLoad: " + baseLoad);
         }
@@ -392,8 +392,7 @@ $(document).ready(function() {
 
       // Set alignment options
       if (change != "alignment") {
-        var $alignments = $("#alignment");
-        $alignments.empty();
+        $("#alignment").empty();
         if (dwClass) {
           alignments = data[dwClass].alignments.split(",");
           if (debug == true) {
@@ -401,12 +400,13 @@ $(document).ready(function() {
               "$(#dwClass).change() - alignments: " + alignments);
           }
           $.each(alignments, function(index, value) {
-            $alignments.append("<option>" + value + "</option>");
+            $("#alignment").append("<option>" + value + "</option>");
           });
         }
       }
 
       // Set alignment attribute
+      alignment = $("#alignment").val();
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
         $("#alignmentAttribute").val(alignmentAttribute);
@@ -418,15 +418,13 @@ $(document).ready(function() {
   });
 
   $("#str").change(function() {
-    var $str = parseInt($(this).val(),10);
-    var $dwClass = $("#dwClass").val();
+    var str = parseInt($(this).val(), 10);
+    var dwClass = $("#dwClass").val();
+    var baseLoad = 0;
+    var maxLoad = 0;
 
     $.getJSON("data/classes.json", function(data) {
-
-      var dwClass = $dwClass;
-      var str = $str;
-      var baseLoad = 0;
-      var maxLoad = 0;
+      //Set maxLoad
       if (str) {
         baseLoad = parseInt(data[dwClass].baseLoad, 10);
         maxLoad = baseLoad + str;
@@ -447,17 +445,15 @@ $(document).ready(function() {
   });
 
   $("#con").change(function() {
-    var $con = parseInt($(this).val(),10);
-    var $dwClass = $("#dwClass").val();
+    var con = parseInt($(this).val(), 10);
+    var dwClass = $("#dwClass").val();
+    var baseHP = 0;
+    var maxHP = 0;
 
     $.getJSON("data/classes.json", function(data) {
 
-      var dwClass = $dwClass;
-      var con = $con;
-      var baseHP = 0;
-      var maxHP = 0;
       if (con) {
-        baseHP = parseInt(data[dwClass].baseHP,10);
+        baseHP = parseInt(data[dwClass].baseHP, 10);
         maxHP = baseHP + con;
 
         if (debug == true) {
@@ -489,7 +485,7 @@ $(document).ready(function() {
       if (debug == true) {
         console.info("itemID: itemWeight" + i);
       }
-      itemload = parseInt($("#itemWeight" + i).val(),10);
+      itemload = parseInt($("#itemWeight" + i).val(), 10);
       if (itemload) {
         totalload = totalload + itemload;
         if (debug == true) {
@@ -529,7 +525,7 @@ $(document).ready(function() {
 
   $("#load, #maxLoad").change(function() {
     var load = $(this).val();
-    var maxLoad =  parseInt($("#maxLoad").val().replace("/ ", ""), 10);
+    var maxLoad = parseInt($("#maxLoad").val().replace("/ ", ""), 10);
     if (load && maxLoad && load > maxLoad) {
       alert(load + " weight exceeds maximum permitted value of " + maxLoad);
       loadErrors = true;
@@ -539,12 +535,12 @@ $(document).ready(function() {
   });
 
   $("#str, #dex, #con, #int, #wis, #cha").change(function() {
-    var str = parseInt($("#str").val(),10);
-    var dex = parseInt($("#dex").val(),10);
-    var con = parseInt($("#con").val(),10);
-    var int = parseInt($("#int").val(),10);
-    var wis = parseInt($("#wis").val(),10);
-    var cha = parseInt($("#cha").val(),10);
+    var str = parseInt($("#str").val(), 10);
+    var dex = parseInt($("#dex").val(), 10);
+    var con = parseInt($("#con").val(), 10);
+    var int = parseInt($("#int").val(), 10);
+    var wis = parseInt($("#wis").val(), 10);
+    var cha = parseInt($("#cha").val(), 10);
     var maxAbility = 73; //16, 15, 13, 12, 9, 8
     var totalAbility = str + dex + con + int + wis + cha;
 
