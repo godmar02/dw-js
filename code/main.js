@@ -1,3 +1,6 @@
+// App version: v0.12.1
+// Author: Godmar02
+// App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
 var abilityErrors = false;
 var loadErrors = false;
