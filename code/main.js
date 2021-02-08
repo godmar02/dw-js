@@ -422,7 +422,7 @@ $(document).ready(function() {
 
     $.getJSON("data/classes.json", function(data) {
       //Set maxLoad
-      if (str) {
+      if (str && dwClass) {
         baseLoad = parseInt(data[dwClass].baseLoad, 10);
         maxLoad = baseLoad + str;
 
@@ -449,7 +449,7 @@ $(document).ready(function() {
 
     $.getJSON("data/classes.json", function(data) {
 
-      if (con) {
+      if (con && dwClass) {
         baseHP = parseInt(data[dwClass].baseHP, 10);
         maxHP = baseHP + con;
 
