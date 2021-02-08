@@ -349,14 +349,6 @@ $(document).ready(function() {
         $("#raceAttribute").val("");
       }
 
-      // Set alignment attribute
-      if (dwClass && alignment) {
-        alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
-        $("#alignmentAttribute").val(alignmentAttribute);
-      } else {
-        $("#alignmentAttribute").val("");
-      }
-
       // Set MaxLoad
       if (dwClass && str) {
         baseLoad = parseInt(data[dwClass].baseLoad,10);
@@ -413,6 +405,15 @@ $(document).ready(function() {
           });
         }
       }
+
+      // Set alignment attribute
+      if (dwClass && alignment) {
+        alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
+        $("#alignmentAttribute").val(alignmentAttribute);
+      } else {
+        $("#alignmentAttribute").val("");
+      }
+
     });
   });
 
