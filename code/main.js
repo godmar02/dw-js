@@ -1,4 +1,4 @@
-// App version: v0.12.3
+// App version: v0.12.4
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -313,20 +313,20 @@ function deleteRow(tableID, rowID) {
 $(document).ready(function() {
 
   $("#dwClass, #race, #alignment").change(function() {
-    var $race = $("#race");
-    var $dwClass = $("#dwClass");
-    var $alignment = $("#alignment");
-    var $str = $("#str");
-    var $con = $("#con");
-    var $change = $(this);
+    var $race = $("#race").val();
+    var $dwClass = $("#dwClass").val();
+    var $alignment = $("#alignment").val();
+    var $str = parseInt($("#str").val(),10);
+    var $con = parseInt($("#con").val(),10);
+    var $change = $(this).attr("id");
 
     $.getJSON("data/classes.json", function(data) {
-      var change = $change.attr("id");
-      var race = $race.val();
-      var dwClass = $dwClass.val();
-      var alignment = $alignment.val();
-      var str = $str.val();
-      var con = $con.val();
+      var change = $change;
+      var race = $race;
+      var dwClass = $dwClass;
+      var alignment = $alignment;
+      var str = $str;
+      var con = $con;
       var raceAttribute = "";
       var alignmentAttribute = "";
       var alignments = [];
@@ -365,12 +365,10 @@ $(document).ready(function() {
 
       // Set MaxLoad
       if (dwClass && str) {
-        str = parseInt(str, 10);
-        baseLoad = data[dwClass].baseLoad;
+        baseLoad = parseInt(data[dwClass].baseLoad,10);
         if (debug == true) {
           console.info("$(#dwClass).change() - baseLoad: " + baseLoad);
         }
-        baseLoad = parseInt(baseLoad, 10);
         maxLoad = baseLoad + str;
         if (debug == true) {
           console.info("$(#dwClass).change() - maxLoad: " + maxLoad);
@@ -382,12 +380,10 @@ $(document).ready(function() {
 
       // Set MaxHP
       if (dwClass && con) {
-        con = parseInt(con, 10);
-        baseHP = data[dwClass].baseHP;
+        baseHP = parseInt(data[dwClass].baseHP, 10);
         if (debug == true) {
           console.info("$(#dwClass).change() - baseHP: " + baseHP);
         }
-        baseHP = parseInt(baseHP, 10);
         maxHP = baseHP + con;
         if (debug == true) {
           console.info("$(#dwClass).change() - maxHP: " + maxHP);
@@ -427,19 +423,17 @@ $(document).ready(function() {
   });
 
   $("#str").change(function() {
-    var $str = $(this);
-    var $dwClass = $("#dwClass");
+    var $str = parseInt($(this).val(),10);
+    var $dwClass = $("#dwClass").val();
 
     $.getJSON("data/classes.json", function(data) {
 
-      var dwClass = $dwClass.val();
-      var str = $str.val();
+      var dwClass = $dwClass;
+      var str = $str;
       var baseLoad = 0;
       var maxLoad = 0;
       if (str) {
-        str = parseInt(str, 10);
-        baseLoad = data[dwClass].baseLoad;
-        baseLoad = parseInt(baseLoad, 10);
+        baseLoad = parseInt(data[dwClass].baseLoad, 10);
         maxLoad = baseLoad + str;
 
         if (debug == true) {
@@ -458,19 +452,17 @@ $(document).ready(function() {
   });
 
   $("#con").change(function() {
-    var $con = $(this);
-    var $dwClass = $("#dwClass");
+    var $con = parseInt($(this).val(),10);
+    var $dwClass = $("#dwClass").val();
 
     $.getJSON("data/classes.json", function(data) {
 
-      var dwClass = $dwClass.val();
-      var con = $con.val();
+      var dwClass = $dwClass;
+      var con = $con;
       var baseHP = 0;
       var maxHP = 0;
       if (con) {
-        con = parseInt(con, 10);
-        baseHP = data[dwClass].baseHP;
-        baseHP = parseInt(baseHP, 10);
+        baseHP = parseInt(data[dwClass].baseHP,10);
         maxHP = baseHP + con;
 
         if (debug == true) {
@@ -502,9 +494,8 @@ $(document).ready(function() {
       if (debug == true) {
         console.info("itemID: itemWeight" + i);
       }
-      itemload = $("#itemWeight" + i).val();
+      itemload = parseInt($("#itemWeight" + i).val(),10);
       if (itemload) {
-        itemload = parseInt(itemload, 10);
         totalload = totalload + itemload;
         if (debug == true) {
           console.info(
@@ -525,8 +516,7 @@ $(document).ready(function() {
 
   $("#XP, #maxXP").change(function() {
     var XP = $(this).val();
-    var maxXP = $("#maxXP").val();
-    maxXP = parseInt(maxXP.replace("/ ", ""), 10);
+    var maxXP = parseInt($("#maxXP").val().replace("/ ", ""), 10);
     if (XP && maxXP && XP > maxXP) {
       alert(XP + "XP exceeds maximum permitted value of " + maxXP);
       $(this).val(maxXP);
@@ -535,8 +525,7 @@ $(document).ready(function() {
 
   $("#HP, #maxHP").change(function() {
     var HP = $(this).val();
-    var maxHP = $("#maxHP").val();
-    maxHP = parseInt(maxHP.replace("/ ", ""), 10);
+    var maxHP = parseInt($("#maxHP").val().replace("/ ", ""), 10);
     if (HP && maxHP && HP > maxHP) {
       alert(HP + "HP exceeds maximum permitted value of " + maxHP);
       $(this).val(maxHP);
@@ -545,8 +534,7 @@ $(document).ready(function() {
 
   $("#load, #maxLoad").change(function() {
     var load = $(this).val();
-    var maxLoad = $("#maxLoad").val();
-    maxLoad = parseInt(maxLoad.replace("/ ", ""), 10);
+    var maxLoad =  parseInt($("#maxLoad").val().replace("/ ", ""), 10);
     if (load && maxLoad && load > maxLoad) {
       alert(load + " weight exceeds maximum permitted value of " + maxLoad);
       loadErrors = true;
@@ -556,22 +544,15 @@ $(document).ready(function() {
   });
 
   $("#str, #dex, #con, #int, #wis, #cha").change(function() {
-    var str = 0;
-    var dex = 0;
-    var con = 0;
-    var int = 0;
-    var wis = 0;
-    var cha = 0;
-
-    str = $("#str").val();
-    dex = $("#dex").val();
-    con = $("#con").val();
-    int = $("#int").val();
-    wis = $("#wis").val();
-    cha = $("#cha").val();
-
+    var str = parseInt($("#str").val(),10);
+    var dex = parseInt($("#dex").val(),10);
+    var con = parseInt($("#con").val(),10);
+    var int = parseInt($("#int").val(),10);
+    var wis = parseInt($("#wis").val(),10);
+    var cha = parseInt($("#cha").val(),10);
     var maxAbility = 73; //16, 15, 13, 12, 9, 8
     var totalAbility = str + dex + con + int + wis + cha;
+
     if (debug == true) {
       console.info(
         "$(#str, #dex, #con, #int, #wis, #cha).change() - str: " + str + "\n" +
@@ -596,8 +577,7 @@ $(document).ready(function() {
 
   $(".ability, .abilityAffliction").change(function() {
     // Set Ability modifiers
-    var ability = $(this).attr("id");
-    ability = ability.replace("Affliction", "");
+    var ability = $(this).attr("id").replace("Affliction", "");
     setModifier(ability);
   });
 
