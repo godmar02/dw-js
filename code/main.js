@@ -1,4 +1,4 @@
-// App version: v0.12.4
+// App version: v0.12.5
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
