@@ -563,7 +563,7 @@ $(document).ready(function() {
     var totalAbility = str + dex + con + int + wis + cha;
 
     if (str && dex && con && int && wis && cha && totalAbility != totalAbility) {
-      alert(totalAbility + " Ability Score does not match permitted value of " + maxAbility);
+      alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility);
       abilityErrors = true;
     } else {
       abilityErrors = false;
