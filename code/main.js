@@ -313,28 +313,22 @@ function deleteRow(tableID, rowID) {
 $(document).ready(function() {
 
   $("#dwClass, #race, #alignment").change(function() {
-    var $race = $("#race").val();
-    var $dwClass = $("#dwClass").val();
-    var $alignment = $("#alignment").val();
-    var $str = parseInt($("#str").val(),10);
-    var $con = parseInt($("#con").val(),10);
-    var $change = $(this).attr("id");
+    var race = $("#race").val();
+    var dwClass = $("#dwClass").val();
+    var alignment = $("#alignment").val();
+    var str = parseInt($("#str").val(),10);
+    var con = parseInt($("#con").val(),10);
+    var change = $(this).attr("id");
+    var raceAttribute = "";
+    var alignmentAttribute = "";
+    var alignments = [];
+    var damage = "";
+    var baseLoad = 0;
+    var baseHP = 0;
+    var maxLoad = 0;
+    var maxHP = 0;
 
     $.getJSON("data/classes.json", function(data) {
-      var change = $change;
-      var race = $race;
-      var dwClass = $dwClass;
-      var alignment = $alignment;
-      var str = $str;
-      var con = $con;
-      var raceAttribute = "";
-      var alignmentAttribute = "";
-      var alignments = [];
-      var damage = "";
-      var baseLoad = 0;
-      var baseHP = 0;
-      var maxLoad = 0;
-      var maxHP = 0;
 
       if (debug == true) {
         console.info(
