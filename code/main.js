@@ -34,6 +34,7 @@ function setModifier(ability) {
     } else {
       afflicted = 1;
     }
+
     var modifier = baseModifier - afflicted;
     var stringModifier = "";
 
@@ -41,6 +42,17 @@ function setModifier(ability) {
       stringModifier = "+" + modifier;
     } else {
       stringModifier = modifier;
+    }
+
+    if (debug == true) {
+      console.info(
+        "setModifier() - ability: " + ability + "\n" +
+        "setModifier() - abilityScore: " + abilityScore + "\n" +
+        "setModifier() - abilityAffliction: " + abilityAffliction + "\n" +
+        "setModifier() - afflicted: " + afflicted + "\n" +
+        "setModifier() - modifier: " + modifier + "\n" +
+        "setModifier() - stringModifier: " + stringModifier
+      );
     }
 
     $("#" + ability + "Modifier").val("[ " + stringModifier + " ]");
