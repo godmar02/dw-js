@@ -1,9 +1,9 @@
 # TO DO
 - Error checking (ability totals)
-- clear/reset
 - alignment / other fields set on initial load
 - double check testing of re-calculate when changing values or removing rows
 - expanding text entry / word wrap
+- clear/reset
 - save
 - prevent save with errors (item load & ability total)
 - load
