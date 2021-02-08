@@ -557,17 +557,19 @@ $(document).ready(function() {
   $("#XP, #maxXP").change(function() {
     var XP = $(this).val();
     var maxXP = $("#maxXP").val();
-    if (XP > maxXP) {
-      alert("XP exceeds maximum permitted value");
+    maxXP = parseInt(maxXP.replace("/ ", ""), 10);
+    if (XP && maxXP && XP > maxXP) {
+      alert(XP + "XP exceeds maximum permitted value of " + maxXP);
       $(this).val(maxXP);
     }
   });
 
   $("#HP, #maxHP").change(function() {
     var HP = $(this).val();
-    var maxXP = $("#maxHP").val();
-    if (XP > maxHP) {
-      alert("HP exceeds maximum permitted value");
+    var maxHP = $("#maxHP").val();
+    maxHP = parseInt(maxHP.replace("/ ", ""), 10);
+    if (HP && maxHP && HP > maxHP) {
+      alert(HP + "HP exceeds maximum permitted value of " + maxHP);
       $(this).val(maxHP);
     }
   });
@@ -575,8 +577,9 @@ $(document).ready(function() {
   $("#load, #maxLoad").change(function() {
     var load = $(this).val();
     var maxLoad = $("#maxLoad").val();
-    if (load > maxLoad) {
-      alert("Load exceeds maximum permitted value");
+    maxLoad = parseInt(maxLoad.replace("/ ", ""), 10);
+    if (load && maxLoad && load > maxLoad) {
+      alert(load + " weight exceeds maximum permitted value of " + maxLoad);
     }
   });
 
