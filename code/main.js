@@ -1,45 +1,40 @@
-// App version: v0.12.6
+// App version: v0.12.7
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
 var abilityErrors = false;
 var loadErrors = false;
 
-function calcModifier(value) {
-
-  var input = parseInt(value, 10);
-  if ([1, 2, 3].indexOf(input) > -1) {
-    return -3;
-  } else if ([4, 5].indexOf(input) > -1) {
-    return -2;
-  } else if ([6, 7, 8].indexOf(input) > -1) {
-    return -1;
-  } else if ([9, 10, 11, 12].indexOf(input) > -1) {
-    return 0;
-  } else if ([13, 14, 15].indexOf(input) > -1) {
-    return 1;
-  } else if ([16, 17].indexOf(input) > -1) {
-    return 2;
-  } else if (input == 18) {
-    return 3;
-  } else {
-    return "ERROR";
-  }
-}
-
 function setModifier(ability) {
-  var ab = document.getElementById(ability).value;
-  var abAffliction = document.getElementById(ability + "Affliction").value;
-  var afflicted = "";
-  if (ab) {
+  var abilityScore = parseInt($("#" + ability).val(), 10);
+  var abilityAffliction = parseInt($("#" + ability + "Affliction").val(), 10);
+  var afflicted = 0;
+
+  if (abilityScore) {
+    var baseModifier = 0;
+    if ([1, 2, 3].indexOf(abilityScore) > -1) {
+      baseModifier = -3;
+    } else if ([4, 5].indexOf(abilityScore) > -1) {
+      baseModifier = -2;
+    } else if ([6, 7, 8].indexOf(abilityScore) > -1) {
+      baseModifier = -1;
+    } else if ([9, 10, 11, 12].indexOf(abilityScore) > -1) {
+      baseModifier = 0;
+    } else if ([13, 14, 15].indexOf(abilityScore) > -1) {
+      baseModifier = 1;
+    } else if ([16, 17].indexOf(abilityScore) > -1) {
+      baseModifier = 2;
+    } else if (abilityScore == 18) {
+      baseModifier = 3;
+    }
+
     /*-1 if afflicted*/
-    if (abAffliction == "Unafflicted") {
+    if (abilityAffliction == "Unafflicted") {
       afflicted = 0;
     } else {
       afflicted = 1;
     }
-
-    var modifier = calcModifier(ab) - afflicted;
+    var modifier = baseModifier - afflicted;
     var stringModifier = "";
 
     if (modifier > 0) {
@@ -48,19 +43,9 @@ function setModifier(ability) {
       stringModifier = modifier;
     }
 
-    document.getElementById(ability + "Modifier").value = "[ " + stringModifier + " ]";
+    $("#" + ability + "Modifier").val("[ " + stringModifier + " ]");
   } else {
-    document.getElementById(ability + "Modifier").value = "";
-  }
-}
-
-function setMaxXP() {
-  var lvl = document.getElementById("level").value;
-  if (lvl) {
-    var maxXP = parseInt(lvl, 10) + 7;
-    document.getElementById("maxXP").value = "/ " + maxXP;
-  } else {
-    document.getElementById("maxXP").value = "";
+    $("#" + ability + "Modifier").val("");
   }
 }
 
@@ -473,7 +458,7 @@ $(document).ready(function() {
 
   $(document).on("change", "[id^=itemWeight]", function() {
     //on change of any itemWeight elements add weight together and display in load
-    var tbl = document.getElementById("gearTable");
+    var tbl = $("#gearTable");
     var tableBody = tbl.getElementsByTagName("tbody")[0];
     var bodyRowCount = tableBody.getElementsByTagName("tr").length;
     if (debug == true) {
@@ -502,7 +487,13 @@ $(document).ready(function() {
   });
 
   $("#level").change(function() {
-    setMaxXP();
+    var lvl = $("#level").val();
+    if (lvl) {
+      var maxXP = parseInt(lvl, 10) + 7;
+      $("#maxXP").val("/ " + maxXP);
+    } else {
+      $("#maxXP").val("");
+    }
   });
 
   $("#XP, #maxXP").change(function() {
