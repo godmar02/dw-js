@@ -1,4 +1,4 @@
-// App version: v0.12.7
+// App version: v0.12.8
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -7,7 +7,7 @@ var loadErrors = false;
 
 function setModifier(ability) {
   var abilityScore = parseInt($("#" + ability).val(), 10);
-  var abilityAffliction = parseInt($("#" + ability + "Affliction").val(), 10);
+  var abilityAffliction = $("#" + ability + "Affliction").val();
   var afflicted = 0;
 
   if (abilityScore) {
