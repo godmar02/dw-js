@@ -1,7 +1,5 @@
 # TO DO
-- Error checking (ability totals)
-- alignment / other fields set on initial load
-- double check testing of re-calculate when changing values or removing rows
+- extensive value based testing
 - expanding text entry / word wrap
 - clear/reset
 - save
