@@ -1,4 +1,4 @@
-// App version: v0.12.1
+// App version: v0.12.2
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -564,6 +564,18 @@ $(document).ready(function() {
     var cha = $("#cha").val();
     var maxAbility = 73; //16, 15, 13, 12, 9, 8
     var totalAbility = str + dex + con + int + wis + cha;
+    if (debug == true) {
+      console.info(
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - str: " + str + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - dex: " + dex + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - con: " + con + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - int: " + int + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - wis: " + wis + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - cha: " + cha + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - maxAbility: " + maxAbility + "\n" +
+        "$(#str, #dex, #con, #int, #wis, #cha).change() - totalAbility: " + totalAbility
+      );
+    }
 
     if (str && dex && con && int && wis && cha && totalAbility != totalAbility) {
       alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility);
