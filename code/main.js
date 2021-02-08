@@ -541,13 +541,7 @@ $(document).ready(function() {
   });
 
   $("#clearCharacter").click(function() {
-    db.collection("users").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (debug == true) {
-          console.info(`${doc.id} => ${doc.data()}`);
-        }
-      });
-    });
+    location.reload();
   });
 
   $("#level").change(function() {
