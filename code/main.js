@@ -1,4 +1,4 @@
-// App version: v0.12.2
+// App version: v0.12.3
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -556,12 +556,20 @@ $(document).ready(function() {
   });
 
   $("#str, #dex, #con, #int, #wis, #cha").change(function() {
-    var str = $("#str").val();
-    var dex = $("#dex").val();
-    var con = $("#con").val();
-    var int = $("#int").val();
-    var wis = $("#wis").val();
-    var cha = $("#cha").val();
+    var str = 0;
+    var dex = 0;
+    var con = 0;
+    var int = 0;
+    var wis = 0;
+    var cha = 0;
+
+    str = $("#str").val();
+    dex = $("#dex").val();
+    con = $("#con").val();
+    int = $("#int").val();
+    wis = $("#wis").val();
+    cha = $("#cha").val();
+
     var maxAbility = 73; //16, 15, 13, 12, 9, 8
     var totalAbility = str + dex + con + int + wis + cha;
     if (debug == true) {
@@ -577,7 +585,7 @@ $(document).ready(function() {
       );
     }
 
-    if (str && dex && con && int && wis && cha && totalAbility != totalAbility) {
+    if (str && dex && con && int && wis && cha && totalAbility != maxAbility) {
       alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility);
       abilityErrors = true;
     } else {
