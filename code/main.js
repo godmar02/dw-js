@@ -1,4 +1,4 @@
-// App version: v0.12.10
+// App version: v0.12.11
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -225,7 +225,7 @@ function addRow(tableID) {
     var templateCell = templateRow.cells[i];
 
     // set to same as first data row
-    newCell.text(templateCell.text());
+    newCell.innerHTML = templateCell.innerHTML;
 
     // set new ID based upon triming existing cellid of format itemN
     var templateCellID = templateCell.children[0].id;
