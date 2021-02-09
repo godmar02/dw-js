@@ -1,4 +1,4 @@
-// App version: v0.12.13
+// App version: v0.13.0
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -248,6 +248,35 @@ function addRow(tableID) {
   }
 }
 
+function totalLoad() {
+  //on change of any itemWeight elements add weight together and display in load
+  var tableBody = $("#gearTable tbody");
+  var bodyRows = tableBody.children("tr");
+  var bodyRowsCount = bodyRows.length;
+  if (debug == true) {
+    console.info("itemWeight.change() - gearTable bodyRowsCount:" + bodyRowsCount);
+  }
+  var totalload = 0;
+  var itemload = 0;
+  for (var i = 0; i < bodyRowsCount; i++) {
+    if (debug == true) {
+      console.info("itemID: itemWeight" + i);
+    }
+    itemload = parseInt($("#itemWeight" + i).val(), 10);
+    if (itemload) {
+      totalload = totalload + itemload;
+      if (debug == true) {
+        console.info(
+          "itemWeight.change() - itemload:" + itemload + "\n" +
+          "itemWeight.change() - totalload:" + totalload
+        );
+      }
+    }
+  }
+
+  $("#load").val(totalload);
+}
+
 function deleteRow(tableID, rowID) {
   var tableBody = $("#" + tableID + " tbody");
   var bodyRows = tableBody.children("tr");
@@ -428,33 +457,7 @@ $(document).ready(function() {
   });
 
   $(document).on("change", "[id^=itemWeight]", function() {
-    //on change of any itemWeight elements add weight together and display in load
-    var tableBody = $("#gearTable tbody");
-    var bodyRows = tableBody.children("tr");
-    var bodyRowsCount = bodyRows.length;
-    if (debug == true) {
-      console.info("itemWeight.change() - gearTable bodyRowsCount:" + bodyRowsCount);
-    }
-    var totalload = 0;
-    var itemload = 0;
-    for (var i = 0; i < bodyRowsCount; i++) {
-      if (debug == true) {
-        console.info("itemID: itemWeight" + i);
-      }
-      itemload = parseInt($("#itemWeight" + i).val(), 10);
-      if (itemload) {
-        totalload = totalload + itemload;
-        if (debug == true) {
-          console.info(
-            "itemWeight.change() - itemload:" + itemload + "\n" +
-            "itemWeight.change() - totalload:" + totalload
-          );
-        }
-      }
-    }
-
-    $("#load").val(totalload);
-
+    totalLoad();
   });
 
   $("#level").change(function() {
@@ -570,7 +573,7 @@ $(document).ready(function() {
     addRow(tableID);
   });
 
-  $(document).on("click",  ".deleteRow", function() {
+  $(document).on("click", ".deleteRow", function() {
     var tableID = $(this).closest("table").attr("id");
     var rowID = $(this).attr("id");
     var row = rowID.slice(-1);
@@ -581,6 +584,9 @@ $(document).ready(function() {
       );
     }
     deleteRow(tableID, row);
+    if (tableID == "gearTable") {
+      totalLoad();
+    }
   });
 
   $("#saveCharacter").click(function() {
