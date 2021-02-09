@@ -211,7 +211,7 @@ function addRow(tableID) {
   }
 
   // to insert single row at end of tbody
-  var newRow = tableBody.insertRow(-1);
+  var newRow = tableBody.get(0).insertRow(-1);
 
   // to create columns in new row
   for (var i = 0; i < newRowColCount; i++) {
@@ -275,7 +275,7 @@ function deleteRow(tableID, rowID) {
     if (debug == true) {
       console.info("deleteRow() - Deleting Row: " + rowID);
     }
-    tableBody.deleteRow(rowID);
+    tableBody.get(0).deleteRow(rowID);
     reindexBodyRows(tableID);
   } else {
     console.warn("deleteRow() - Cannot delete last row: " + tableID);
