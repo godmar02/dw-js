@@ -76,7 +76,6 @@ input, textarea {
 
 select {
   background: url(/images/icons/down_arrow.png) no-repeat right;
-  position: relative;
 }
 
 select::-ms-expand {
@@ -102,7 +101,10 @@ th {
   text-align: center;
   padding: 5px;
   border-radius: 5px;
+  border: 1px solid #A9A9A9;
+  margin: 0;
 }
+
 .checkmark {
   position: absolute;
   height: 18px;
