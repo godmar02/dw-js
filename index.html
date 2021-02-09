@@ -4,6 +4,7 @@
 <head>
 	<link rel="icon" href="images/icons/dw_icon_small.png?v=2" type="image/png" />
 	<link rel="apple-touch-icon" href="images/icons/dw_icon.png?v=2" type="image/png" />
+	<link rel="stylesheet" href="code/stylesheet.css"></link>
 
 	<meta charset="UTF-8" />
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
@@ -19,145 +20,6 @@
 	<meta property="og:image" content="https://github.com/godmar02/godmar02.github.io/images/icons/dw_icon.png" />
 
 	<title>Dungeon World Character Sheet</title>
-
-	<style>
-		button {
-			font-size: 17px;
-			background-color: #eee;
-			color: black;
-			padding: 7px 11px;
-			border: 1px solid #696969;
-			border-radius: 5px;
-			cursor: pointer;
-			height: 40px;
-			min-width: 40px;
-		}
-
-		button:active {
-			background-color: lightgray;
-		}
-
-		button.deleteRow {
-			background: url(images/icons/bin.png) center/15px no-repeat;
-		}
-
-		div.answerContainer {
-			border-bottom: 1px solid;
-			float: left;
-			width: 100%;
-			display: none;
-		}
-
-		div.expandIndicator {
-			text-align: right;
-			float: right;
-			padding-right: 8px;
-			width: 1%;
-		}
-
-		div.questionText {
-			font-size: 17px;
-			float: left;
-			width: 92%;
-		}
-
-		div.question {
-			border-bottom: 1px solid;
-			padding-top: 14px;
-			padding-bottom: 14px;
-			float: left;
-			width: 100%
-		}
-
-		h2 {
-			display: inline;
-		}
-
-		p {
-			max-height: 999999px;
-			font-size: 17px;
-		}
-
-		select,
-		input {
-			display: inline-block;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
-			position: relative;
-			box-sizing: border-box;
-			font-size: 17px;
-			width: 100%;
-			min-width: 100px;
-			height: 40px;
-			padding: 5px;
-			border: 1px solid #A9A9A9;
-			border-radius: 5px;
-			margin: 0;
-			text-align: center;
-		}
-
-		select {
-			background: url(images/icons/down_arrow.png) no-repeat right;
-		}
-
-		select::-ms-expand {
-			display: none;
-		}
-
-		table {
-			border-style: solid;
-			border-width: medium;
-			border-radius: 5px;
-		}
-
-		th {
-			background-color: black;
-			color: white;
-			font-size: 17px;
-			text-align: center;
-			padding: 5px;
-			border-radius: 5px;
-		}
-
-		.grey {
-			background-color: lightgrey;
-		}
-
-		.shortfield {
-			width: 80px;
-		}
-
-		.tallfield {
-			height: 80px;
-		}
-
-		.textpress {
-			padding-top: 4px;
-			padding-bottom: 4px;
-		}
-
-		.textpress:active {
-			background-color: lightgray;
-		}
-
-		.checkmark {
-			position: absolute;
-			height: 18px;
-			width: 18px;
-			top: 10px;
-			right: 2px;
-			background-color: #eee;
-			border: 1px solid #696969;
-			border-radius: 5px;
-		}
-
-		.checkmark:after {
-			content: "";
-			position: absolute;
-			display: none;
-		}
-	</style>
 
 </head>
 
@@ -177,7 +39,7 @@
 	<div id="main">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.13.1 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.13.2 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -224,7 +86,7 @@
 					</tr>
 					<tr>
 						<th><label for="look">LOOK</label></th>
-						<td><textarea rows="10" cols="30"id="look"></textarea></td>
+						<td><textarea rows="10" cols="30" id="look"></textarea></td>
 					</tr>
 
 				</table>
