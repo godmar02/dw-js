@@ -131,9 +131,9 @@ function reindexBodyRows(tableID) {
   if (debug == true) {
     console.info("reindexBodyRows() - Reindexing table body: " + tableID);
   }
-  var tbl = document.getElementById(tableID);
-  var tableBody = tbl.getElementsByTagName("tbody")[0];
-  var bodyRowCount = tableBody.getElementsByTagName("tr").length;
+  var tbl = $("#" + tableID);
+  var tableBody = tbl.children("tbody");
+  var bodyRowCount = tableBody.children("tr").length;
   if (debug == true) {
     console.info("reindexBodyRows() - bodyRowCount: " + bodyRowCount);
   }
@@ -192,9 +192,9 @@ function addRow(tableID) {
   // you are copying has an id of format id="tableid0" etc so that it
   // can be incremented by 1 each time
   // Note table items are zero indexed
-  var tbl = document.getElementById(tableID);
-  var tableBody = tbl.getElementsByTagName("tbody")[0];
-  var bodyRowCount = tableBody.getElementsByTagName("tr").length;
+  var tbl = $("#" + tableID);
+  var tableBody = tbl.children("tbody");
+  var bodyRowCount = tableBody.children("tr").length;
   var templateRow = tableBody.rows[0];
   var newRowColCount = templateRow.cells.length;
   var newRowID = bodyRowCount;
@@ -263,9 +263,9 @@ function addRow(tableID) {
 }
 
 function deleteRow(tableID, rowID) {
-  var tbl = document.getElementById(tableID);
-  var tableBody = tbl.getElementsByTagName("tbody")[0];
-  var bodyRowCount = tableBody.getElementsByTagName("tr").length;
+  var tbl = $("#" + tableID);
+  var tableBody = tbl.children("tbody");
+  var bodyRowCount = tableBody.children("tr").length;
   if (debug == true) {
     console.info("deleteRow() - bodyRowCount: " + bodyRowCount);
   }
@@ -444,8 +444,8 @@ $(document).ready(function() {
   $(document).on("change", "[id^=itemWeight]", function() {
     //on change of any itemWeight elements add weight together and display in load
     var tbl = $("#gearTable");
-    var tableBody = tbl.getElementsByTagName("tbody")[0];
-    var bodyRowCount = tableBody.getElementsByTagName("tr").length;
+    var tableBody = tbl.children("tbody");
+    var bodyRowCount = tableBody.children("tr").length;
     if (debug == true) {
       console.info("itemWeight.change() - gearTable bodyRowCount:" + bodyRowCount);
     }
