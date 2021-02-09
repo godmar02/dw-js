@@ -1,4 +1,4 @@
-// App version: v0.12.12
+// App version: v0.12.13
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -570,7 +570,7 @@ $(document).ready(function() {
     addRow(tableID);
   });
 
-  $(".deleteRow").click(function() {
+  $(document).on("click",  ".deleteRow", function() {
     var tableID = $(this).closest("table").attr("id");
     var rowID = $(this).attr("id");
     var row = rowID.slice(-1);
