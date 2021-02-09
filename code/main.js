@@ -1,4 +1,4 @@
-// App version: v0.13.0
+// App version: v0.13.1
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -234,17 +234,8 @@ function addRow(tableID) {
     newCell.setAttribute("colspan", templateCellColSpan);
 
     // Blank or uncheck content
-    switch (newCell.children[0].type) {
-      case "text":
-        newCell.children[0].value = "";
-        break;
-      case "checkbox":
-        newCell.children[0].checked = false;
-        break;
-      case "select-one":
-        newCell.children[0].selectedIndex = 0;
-        break;
-    }
+    newCell.children[0].value = "";
+
   }
 }
 

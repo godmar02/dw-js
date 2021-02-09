@@ -1,6 +1,6 @@
 # TO DO
-- extensive value based testing
 - expanding text entry / word wrap
+- extensive value based testing
 - clear/reset
 - save
 - prevent save with errors (item load & ability total)
