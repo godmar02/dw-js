@@ -1,4 +1,4 @@
-// App version: v0.12.11
+// App version: v0.12.12
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -168,22 +168,6 @@ function reindexBodyRows(tableID) {
       }
       cell.children[0].id = newCellID;
 
-      // set new onclick value for any buttons of format function(...N)
-      if (cell.children[0].type == "button") {
-        var currentOnClick = $("#" + newCellID).attr("onclick");
-        if (debug == true) {
-          console.info("reindexBodyRows() - currentOnClick: " + currentOnClick);
-        }
-        var currentOnClickkPrefix = currentOnClick.slice(0, -2);
-        if (debug == true) {
-          console.info("reindexBodyRows() - currentOnClickkPrefix: " + currentOnClickkPrefix);
-        }
-        var newOnClick = currentOnClickkPrefix + i + ")";
-        if (debug == true) {
-          console.info("reindexBodyRows() - newOnClick: " + newOnClick);
-        }
-        $("#" + newCellID).attr("onclick", newOnClick);
-      }
     }
   }
 }
