@@ -161,7 +161,7 @@ function reindexBodyRows(tableID) {
       if (debug == true) {
         console.info("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix);
       }
-      var cell = tableBody.rows[i].cells[j];
+      var cell = tableBody.get(0).rows[i].cells[j];
       var newCellID = templateCellIDPrefix + i;
       if (debug == true) {
         console.info("reindexBodyRows() - newCellID: " + newCellID);
