@@ -76,14 +76,10 @@ function rollDice(sides, number) {
 }
 
 function expandAll() {
-  var expandIndicator = "";
-  var answerContainer = "";
-  var expanAllIndicator = "";
   var questionCount = 3;
-  var expandAllCount = 2;
   var expand = true;
 
-  if (document.getElementById("expandAll0").innerHTML == "+ Expand all") {
+  if ($("#expandAll0").text() == "+ Expand all") {
     expand = true;
   } else {
     expand = false;
@@ -91,64 +87,41 @@ function expandAll() {
 
   if (expand == true) {
     //Expand Everything
-    for (i = 0; i < questionCount; i++) {
-      expandIndicator = "expandIndicator" + i;
-      answerContainer = "answerContainer" + i;
-
-      document.getElementById(expandIndicator).innerHTML = "-";
-      document.getElementById(answerContainer).style.display = "block";
-    }
     // change Expand All indicators
-    for (i = 0; i < expandAllCount; i++) {
-      expanAllIndicator = "expandAll" + i;
-      document.getElementById(expanAllIndicator).innerHTML = "- Collapse all";
-    }
+    $(".expandIndicator").text("-");
+    $(".answerContainer").attr("style", "display: block;");
+    $(".expandAll").text("- Collapse all");
     answersExpanded = questionCount;
-    //expandAllindicator2.scrollIntoView(false);
   } else {
     //Collapse Everything
-    for (i = 0; i < questionCount; i++) {
-      expandIndicator = "expandIndicator" + i;
-      answerContainer = "answerContainer" + i;
-
-      document.getElementById(expandIndicator).innerHTML = "+";
-      document.getElementById(answerContainer).style.display = "none";
-    }
-
-    for (i = 0; i < expandAllCount; i++) {
-      expanAllIndicator = "expandAll" + i;
-      document.getElementById(expanAllIndicator).innerHTML = "+ Expand all";
-    }
+    $(".expandIndicator").text("+");
+    $(".answerContainer").attr("style", "display: none;");
+    $(".expandAll").text("+ Expand all");
     answersExpanded = 0;
-    //expandAllindicator2.scrollIntoView(false);
   }
 }
 
 function expandcontainer(identifier) {
   var expandIndicator = "expandIndicator" + identifier;
   var answerContainer = "answerContainer" + identifier;
+  var answerCount = 3;
 
-  if (document.getElementById(expandIndicator).innerHTML == "+") {
+  if ($("#" + expandIndicator).text() == "+") {
     //Expand Answer Container
-    document.getElementById(expandIndicator).innerHTML = "-";
-    document.getElementById(answerContainer).style.display = "block";
+    $("#" + expandIndicator).text("-");
+    $("#" + answerContainer).attr("style", "display: block;");
     answersExpanded++;
-    if (answersExpanded == 3) {
-      for (i = 0; i < 1; i++) {
-        expandAllIndicator = "expandAll" + i;
-        document.getElementById(expandAllIndicator).innerHTML = "- Collapse all";
-      }
+    if (answersExpanded == answerCount) {
+      //All answers expanded
+      $(".expandAll").text("- Collapse all");
     }
   } else {
     //Collapse Answer Container
-    document.getElementById(expandIndicator).innerHTML = "+";
-    document.getElementById(answerContainer).style.display = "none";
+    $("#" + expandIndicator).text("+");
+    $("#" + answerContainer).attr("style", "display: none;");
     answersExpanded--;
-    if (answersExpanded > 0) {
-      for (i = 0; i < 1; i++) {
-        expandAllIndicator = "expandAll" + i;
-        document.getElementById(expandAllIndicator).innerHTML = "- Collapse all";
-      }
+    if (answersExpanded != answerCount) {
+      $(".expandAll").text("+ Expand all");
     }
   }
 }
@@ -195,7 +168,7 @@ function reindexBodyRows(tableID) {
 
       // set new onclick value for any buttons of format function(...N)
       if (cell.children[0].type == "button") {
-        var currentOnClick = document.getElementById(newCellID).getAttribute("onclick");
+        var currentOnClick = $("#" + newCellID).attr("onclick");
         if (debug == true) {
           console.info("reindexBodyRows() - currentOnClick: " + currentOnClick);
         }
@@ -207,7 +180,7 @@ function reindexBodyRows(tableID) {
         if (debug == true) {
           console.info("reindexBodyRows() - newOnClick: " + newOnClick);
         }
-        document.getElementById(newCellID).setAttribute("onclick", newOnClick);
+        $("#" + newCellID).attr("onclick", newOnClick);
       }
     }
   }
@@ -250,7 +223,7 @@ function addRow(tableID) {
     var templateCell = templateRow.cells[i];
 
     // set to same as first data row
-    newCell.innerHTML = templateCell.innerHTML;
+    newCell.text(templateCell.text());
 
     // set new ID based upon triming existing cellid of format itemN
     var templateCellID = templateCell.children[0].id;
