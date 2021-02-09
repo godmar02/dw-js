@@ -50,7 +50,7 @@
 							<label for="player">PLAYER</label>
 						</th>
 						<td>
-							<select style="position: relative" tabindex="-1" id="player">
+							<select tabindex="-1" id="player">
 								<option hidden disabled selected value></option>
 								<option value="Jon">Jon</option>
 								<option value="Mark">Mark</option>
@@ -66,7 +66,7 @@
 							<label for="adventure">ADVENTURE</label>
 						</th>
 						<td>
-							<select style="position: relative" tabindex="-1" id="adventure">
+							<select tabindex="-1" id="adventure">
 								<option hidden disabled selected value></option>
 								<option value="Grease Lightning">Grease Lightning</option>
 							</select>
@@ -82,11 +82,11 @@
 
 					<tr>
 						<th><label for="backstory">BACKSTORY</label></th>
-						<td><textarea rows="10" cols="30" resize="vertical" placeholder="Describe yourself here..." id="backstory"></textarea></td>
+						<td><textarea placeholder="Describe yourself here..." id="backstory"></textarea></td>
 					</tr>
 					<tr>
 						<th><label for="look">LOOK</label></th>
-						<td><textarea rows="10" cols="30" resize="vertical" placeholder="Describe yourself here..." id="look"></textarea></td>
+						<td><textarea placeholder="Describe yourself here..." id="look"></textarea></td>
 					</tr>
 
 				</table>
@@ -97,7 +97,7 @@
 							<label for="dwClass">CLASS</label>
 						</th>
 						<td>
-							<select style="position: relative" tabindex="-1" id="dwClass">
+							<select tabindex="-1" id="dwClass">
 								<option hidden disabled selected value></option>
 								<option value="Barbarian">Barbarian</option>
 								<option value="Bard">Bard</option>
@@ -117,7 +117,7 @@
 							<label for="race">RACE</label>
 						</th>
 						<td>
-							<select style="position: relative" tabindex="-1" id="race">
+							<select tabindex="-1" id="race">
 								<option hidden disabled selected value></option>
 								<option value="Dwarf">Dwarf</option>
 								<option value="Elf">Elf</option>
@@ -127,7 +127,7 @@
 							</select>
 						</td>
 						<td>
-							<textarea rows="10" cols="30" class="grey" readonly id="raceAttribute"></textarea>
+							<textarea class="grey" readonly id="raceAttribute"></textarea>
 						</td>
 					</tr>
 
@@ -136,11 +136,11 @@
 							<label for="alignment">ALIGNMENT</label>
 						</th>
 						<td>
-							<select style="position: relative" tabindex="-1" id="alignment">
+							<select tabindex="-1" id="alignment">
 							</select>
 						</td>
 						<td>
-							<textarea rows="10" cols="30" class="grey" readonly id="alignmentAttribute"></textarea>
+							<textarea class="grey" readonly id="alignmentAttribute"></textarea>
 						</td>
 					</tr>
 				</table>
@@ -181,7 +181,7 @@
 							<td>
 								<input type="number" min="1" max="18" class="ability" id="str"><br>
 								<input type="text" class="grey tallfield" readonly id="strModifier"><br>
-								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="strAffliction">
+								<select tabindex="-1" class="abilityAffliction" id="strAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Weak">Weak</option>
 								</select>
@@ -189,7 +189,7 @@
 							<td>
 								<input type="number" min="1" max="18" class="ability" id="dex"><br>
 								<input type="text" class="grey tallfield" readonly id="dexModifier"><br>
-								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="dexAffliction">
+								<select tabindex="-1" class="abilityAffliction" id="dexAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Shaky</option>
 								</select>
@@ -197,7 +197,7 @@
 							<td>
 								<input type="number" min="1" max="18" class="ability" id="con"><br>
 								<input type="text" class="grey tallfield" readonly id="conModifier"><br>
-								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="conAffliction">
+								<select tabindex="-1" class="abilityAffliction" id="conAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Sick</option>
 								</select>
@@ -205,7 +205,7 @@
 							<td>
 								<input type="number" min="1" max="18" class="ability" id="int"><br>
 								<input type="text" class="grey tallfield" readonly id="intModifier"><br>
-								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="intAffliction">
+								<select tabindex="-1" class="abilityAffliction" id="intAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Stunned</option>
 								</select>
@@ -213,7 +213,7 @@
 							<td>
 								<input type="number" min="1" max="18" class="ability" id="wis"><br>
 								<input type="text" class="grey tallfield" readonly id="wisModifier"><br>
-								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="wisAffliction">
+								<select tabindex="-1" class="abilityAffliction" id="wisAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Confused</option>
 								</select>
@@ -221,7 +221,7 @@
 							<td>
 								<input type="number" min="1" max="18" class="ability" id="cha"><br>
 								<input type="text" class="grey tallfield" readonly id="chaModifier"><br>
-								<select style="position: relative" tabindex="-1" class="abilityAffliction" id="chaAffliction">
+								<select tabindex="-1" class="abilityAffliction" id="chaAffliction">
 									<option value="Unafflicted">Unafflicted</option>
 									<option value="Shaky">Scarred</option>
 								</select>
@@ -269,7 +269,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><textarea rows="10" cols="30" placeholder="Add 2-3 bonds" id="bond0"></textarea></td>
+							<td><textarea placeholder="Add 2-3 bonds" id="bond0"></textarea></td>
 							<td><button type="button" class="deleteRow" id="deleteBond0"></button></td>
 						</tr>
 					</tbody>
@@ -317,7 +317,7 @@
 					<tbody>
 						<tr>
 							<td>
-								<textarea rows="10" cols="30" placeholder="Describe yourself here..." id="classFeature0"></textarea>
+								<textarea placeholder="Describe yourself here..." id="classFeature0"></textarea>
 							</td>
 							<td>
 								<button type="button" class="deleteRow" id="deleteClassFeature0"></button>
@@ -338,7 +338,7 @@
 		<h2>Frequently Asked Questions</h2>
 		<br>
 		<br>
-		<p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" style="float: right" id="expandAll0">+ Expand
+		<p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" id="expandAll0">+ Expand
 				all</a></p>
 		<div class="question" style="border-top: 1px solid; margin-top: 25px;" id="questionContainer0">
 			<div class="questionText"><b>How do I use the Character Sheet?</b></div>
@@ -375,7 +375,7 @@
 		<br>
 		<br>
 		<br>
-		<p><a href="javascript:;" class="textpress expandAll" style="float: right" id="expandAll1">+ Expand all</a></p>
+		<p><a href="javascript:;" class="textpress expandAll" id="expandAll1">+ Expand all</a></p>
 		<div style="float: left; position: relative; top: 6px; width: 100%">
 			<p><b>Links:</b></p>
 			<a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br />

@@ -76,6 +76,7 @@ input, textarea {
 
 select {
   background: url(images/icons/down_arrow.png) no-repeat right;
+  position: relative;
 }
 
 select::-ms-expand {
@@ -88,6 +89,12 @@ table {
   border-radius: 5px;
 }
 
+textarea {
+  resize: vertical;
+  rows: 10;
+  cols: 30;
+}
+
 th {
   background-color: black;
   color: white;
@@ -95,6 +102,27 @@ th {
   text-align: center;
   padding: 5px;
   border-radius: 5px;
+}
+.checkmark {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  top: 10px;
+  right: 2px;
+  background-color: #eee;
+  border: 1px solid #696969;
+  border-radius: 5px;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.expandAll {
+  border-top: 1px solid;
+  margin-top: 25px;
 }
 
 .grey {
@@ -116,21 +144,4 @@ th {
 
 .textpress:active {
   background-color: lightgray;
-}
-
-.checkmark {
-  position: absolute;
-  height: 18px;
-  width: 18px;
-  top: 10px;
-  right: 2px;
-  background-color: #eee;
-  border: 1px solid #696969;
-  border-radius: 5px;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
 }
