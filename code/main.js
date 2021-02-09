@@ -1,4 +1,4 @@
-// App version: v0.12.9
+// App version: v0.12.10
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -131,19 +131,21 @@ function reindexBodyRows(tableID) {
   if (debug == true) {
     console.info("reindexBodyRows() - Reindexing table body: " + tableID);
   }
-  var tbl = $("#" + tableID);
-  var tableBody = tbl.children("tbody");
-  var bodyRowCount = tableBody.children("tr").length;
-  if (debug == true) {
-    console.info("reindexBodyRows() - bodyRowCount: " + bodyRowCount);
-  }
-  var templateRow = tableBody.rows[0];
+
+  var tableBody = $("#" + tableID + " tbody");
+  var bodyRows = tableBody.children("tr");
+  var bodyRowsCount = bodyRows.length;
+  var templateRow = bodyRows.get(0);
   var bodyColCount = templateRow.cells.length;
+
+  if (debug == true) {
+    console.info("reindexBodyRows() - bodyRowsCount: " + bodyRowsCount);
+  }
   if (debug == true) {
     console.info("reindexBodyRows() - bodyColCount: " + bodyColCount);
   }
 
-  for (var i = 0; i < bodyRowCount; i++) {
+  for (var i = 0; i < bodyRowsCount; i++) {
     for (var j = 0; j < bodyColCount; j++) {
 
       if (debug == true) {
@@ -192,17 +194,17 @@ function addRow(tableID) {
   // you are copying has an id of format id="tableid0" etc so that it
   // can be incremented by 1 each time
   // Note table items are zero indexed
-  var tbl = $("#" + tableID);
-  var tableBody = tbl.children("tbody");
-  var bodyRowCount = tableBody.children("tr").length;
-  var templateRow = tableBody.rows[0];
+  var tableBody = $("#" + tableID + " tbody");
+  var bodyRows = tableBody.children("tr");
+  var bodyRowsCount = bodyRows.length;
+  var templateRow = bodyRows.get(0);
   var newRowColCount = templateRow.cells.length;
-  var newRowID = bodyRowCount;
+  var newRowID = bodyRowsCount;
 
   if (debug == true) {
     console.info(
       "addRow() - tableID: " + tableID + "\n" +
-      "addRow() - bodyRowCount: " + bodyRowCount + "\n" +
+      "addRow() - bodyRowsCount: " + bodyRowsCount + "\n" +
       "addRow() - newRowColCount: " + newRowColCount + "\n" +
       "addRow() - newRowID: " + newRowID
     );
@@ -263,13 +265,13 @@ function addRow(tableID) {
 }
 
 function deleteRow(tableID, rowID) {
-  var tbl = $("#" + tableID);
-  var tableBody = tbl.children("tbody");
-  var bodyRowCount = tableBody.children("tr").length;
+  var tableBody = $("#" + tableID + " tbody");
+  var bodyRows = tableBody.children("tr");
+  var bodyRowsCount = bodyRows.length;
   if (debug == true) {
-    console.info("deleteRow() - bodyRowCount: " + bodyRowCount);
+    console.info("deleteRow() - bodyRowsCount: " + bodyRowsCount);
   }
-  if (bodyRowCount != 1) {
+  if (bodyRowsCount != 1) {
     if (debug == true) {
       console.info("deleteRow() - Deleting Row: " + rowID);
     }
@@ -443,15 +445,15 @@ $(document).ready(function() {
 
   $(document).on("change", "[id^=itemWeight]", function() {
     //on change of any itemWeight elements add weight together and display in load
-    var tbl = $("#gearTable");
-    var tableBody = tbl.children("tbody");
-    var bodyRowCount = tableBody.children("tr").length;
+    var tableBody = $("#gearTable tbody");
+    var bodyRows = tableBody.children("tr");
+    var bodyRowsCount = bodyRows.length;
     if (debug == true) {
-      console.info("itemWeight.change() - gearTable bodyRowCount:" + bodyRowCount);
+      console.info("itemWeight.change() - gearTable bodyRowsCount:" + bodyRowsCount);
     }
     var totalload = 0;
     var itemload = 0;
-    for (var i = 0; i < bodyRowCount; i++) {
+    for (var i = 0; i < bodyRowsCount; i++) {
       if (debug == true) {
         console.info("itemID: itemWeight" + i);
       }
