@@ -15,7 +15,7 @@ button:active {
 }
 
 button.deleteRow {
-  background: url(images/icons/bin.png) center/15px no-repeat;
+  background: url(/images/icons/bin.png) center/15px no-repeat;
 }
 
 div.answerContainer {
@@ -75,7 +75,7 @@ input, textarea {
 }
 
 select {
-  background: url(images/icons/down_arrow.png) no-repeat right;
+  background: url(/images/icons/down_arrow.png) no-repeat right;
   position: relative;
 }
 
