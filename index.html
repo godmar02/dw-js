@@ -39,7 +39,7 @@
 	<div id="main">
 		<h2>Dungeon World Character Sheet</h2>
 		<br>
-		<span style="display: inline-block"><i>v0.14.0 by Godmar02</i></span>
+		<span style="display: inline-block"><i>v0.14.1 by Godmar02</i></span>
 		<br>
 		<br>
 		<form id="values">
@@ -75,11 +75,11 @@
 
 					<tr>
 						<th><label for="backstory">BACKSTORY</label></th>
-						<td><textarea placeholder="Describe yourself here..." id="backstory"></textarea></td>
+						<td><textarea placeholder="Describe your character's backstory and anything else about your characters identity here" id="backstory"></textarea></td>
 					</tr>
 					<tr>
 						<th><label for="look">LOOK</label></th>
-						<td><textarea placeholder="Describe yourself here..." id="look"></textarea></td>
+						<td><textarea placeholder="Describe your character's appearance here" id="look"></textarea></td>
 					</tr>
 
 				</table>
@@ -103,11 +103,6 @@
 						<td>
 							<select tabindex="-1" id="race">
 								<option hidden disabled selected value></option>
-								<option value="Dwarf">Dwarf</option>
-								<option value="Elf">Elf</option>
-								<option value="Goblin">Goblin</option>
-								<option value="Halfling">Halfling</option>
-								<option value="Human">Human</option>
 							</select>
 						</td>
 						<td>
@@ -253,7 +248,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><textarea placeholder="Add 2-3 bonds" id="bond0"></textarea></td>
+							<td><textarea placeholder="Add 2-3 bonds here" id="bond0"></textarea></td>
 							<td><button type="button" class="deleteRow" id="deleteBond0"></button></td>
 						</tr>
 					</tbody>
@@ -301,7 +296,7 @@
 					<tbody>
 						<tr>
 							<td>
-								<textarea placeholder="Describe yourself here..." id="classFeature0"></textarea>
+								<textarea placeholder="Add any Class Features here (e.g. Spell Lists, Poison Recipes, Druid Balance, Paladin Quests or anything else!)" id="classFeature0"></textarea>
 							</td>
 							<td>
 								<button type="button" class="deleteRow" id="deleteClassFeature0"></button>
