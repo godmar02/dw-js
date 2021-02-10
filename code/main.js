@@ -427,6 +427,7 @@ $(document).ready(function() {
       // Set alignment options
       if (change != "alignment") {
         $("#alignment").empty();
+        $("#alignment").append("<option hidden disabled selected></option>");
         if (dwClass) {
           alignments = data[dwClass].alignments;
           if (debug == true) {
