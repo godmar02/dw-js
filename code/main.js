@@ -1,9 +1,3 @@
-/*
-Version: v0.4
-Author: Godmar02
-Source code: https://github.com/godmar02/godmar02.github.io
-*/
-
 var answersExpanded = 0;
 var abilityErrors = false;
 var loadErrors = false;
@@ -657,7 +651,7 @@ $(document).ready(function() {
   $('textarea').on('input', function() {
     $(this)
       .height(40)
-      .height(this.scrollHeight);
+      .height(this.scrollHeight -20);
 
     if (debug == true) {
       console.info("textarea.on() - scrollHeight: ", this.scrollHeight + "\n" +
