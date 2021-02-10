@@ -1,6 +1,6 @@
 # TO DO
-- expanding text entry / word wrap
 - add checkboxes next to class features
+- expanding text entry / word wrap
 - extensive value based testing
 - save
 - prevent save with errors (item load & ability total)
