@@ -1,5 +1,5 @@
 /*
-Version: v0.2
+Version: v0.3
 Author: Godmar02
 Source code: https://github.com/godmar02/godmar02.github.io
 */
@@ -584,7 +584,7 @@ $(document).ready(function() {
     }
 
     if (str && dex && con && int && wis && cha && totalAbility != maxAbility) {
-      alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility);
+      alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility + "\n" + "Suggested values are 16, 15, 13, 12, 9, 8");
       abilityErrors = true;
     } else {
       abilityErrors = false;
