@@ -1,4 +1,4 @@
-// App version: v0.14.3
+// App version: v0.14.4
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -288,6 +288,8 @@ function deleteRow(tableID, rowID) {
 
 function setPlayerOptions() {
   $.getJSON("data/playerList.json", function(data) {
+    $("#player").empty();
+    $("#player").append("<option hidden disabled selected></option>");
     players = data.players;
     if (debug == true) {
       console.info(
@@ -301,6 +303,8 @@ function setPlayerOptions() {
 
 function setAdventureOptions() {
   $.getJSON("data/adventureList.json", function(data) {
+    $("#adventure").empty();
+    $("#adventure").append("<option hidden disabled selected></option>");
     adventures = data.adventures;
     if (debug == true) {
       console.info(
@@ -314,6 +318,8 @@ function setAdventureOptions() {
 
 function setDwClassOptions() {
   $.getJSON("data/classList.json", function(data) {
+    $("#dwClass").empty();
+    $("#dwClass").append("<option hidden disabled selected></option>");
     classes = data.classes;
     if (debug == true) {
       console.info(
@@ -327,6 +333,8 @@ function setDwClassOptions() {
 
 function setRaceOptions() {
   $.getJSON("data/raceList.json", function(data) {
+    $("#race").empty();
+    $("#race").append("<option hidden disabled selected></option>");
     races = data.races;
     if (debug == true) {
       console.info(
