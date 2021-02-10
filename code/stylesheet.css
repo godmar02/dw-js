@@ -75,6 +75,20 @@ input, textarea {
   text-align: center;
 }
 
+input.checkbox {
+  height: 18px;
+  width: 18px;
+  top: 10px;
+  right: 2px;
+  background-color: #eee;
+  border: 1px solid #696969;
+  border-radius: 5px;
+}
+
+input.checkbox:after {
+  content: "";
+}
+
 select {
   background: url(/images/icons/down_arrow.png) no-repeat right;
 }
@@ -104,23 +118,6 @@ th {
   border-radius: 5px;
   border: 1px solid #A9A9A9;
   margin: 0;
-}
-
-.checkbox {
-  position: absolute;
-  height: 18px;
-  width: 18px;
-  top: 10px;
-  right: 2px;
-  background-color: #eee;
-  border: 1px solid #696969;
-  border-radius: 5px;
-}
-
-.checkbox:after {
-  content: "";
-  position: absolute;
-  display: none;
 }
 
 .expandAll {
