@@ -127,8 +127,8 @@ function setHeight(textAreaID) {
   var textArea = $("#" + textAreaID);
   textArea.height(40);
   textArea.height(textArea.scrollHeight - 40);
-
   if (debug == true) {
+    console.info("textarea.on() - textAreaID: ", textAreaID);
     console.info("textarea.on() - textArea scrollHeight: ", textArea.scrollHeight);
   }
 }
@@ -356,8 +356,6 @@ function setRaceOptions() {
     });
   });
 }
-
-
 
 $(document).ready(function() {
 
