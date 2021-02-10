@@ -127,8 +127,8 @@ $(document).ready(function() {
 
   function setHeight(textAreaID) {
     var textArea = $("#" + textAreaID);
-    var newHeight = textArea.prop("scrollHeight");
     textArea.height(40);
+    var newHeight = textArea.prop("scrollHeight");
     textArea.height(newHeight);
     if (debug == true) {
       console.info("textarea.on() - textAreaID:", textAreaID);
