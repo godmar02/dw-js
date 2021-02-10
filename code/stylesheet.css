@@ -1,5 +1,5 @@
 /*
-Version: v0.2
+Version: v0.3
 Author: Godmar02
 Source code: https://github.com/godmar02/godmar02.github.io
 */
@@ -140,8 +140,6 @@ textarea {
   margin: 0;
   text-align: center;
   resize: none;
-  rows: 10;
-  cols: 30;
   overflow: hidden;
 }
 

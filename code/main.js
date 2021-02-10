@@ -1,5 +1,5 @@
 /*
-Version: v0.3
+Version: v0.4
 Author: Godmar02
 Source code: https://github.com/godmar02/godmar02.github.io
 */
@@ -656,8 +656,6 @@ $(document).ready(function() {
 
   $('textarea').on('input', function() {
     $(this)
-      .height(40)
-      .width(100+"%")
       .height(this.scrollHeight);
 
     if (debug == true) {
