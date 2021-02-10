@@ -1,4 +1,4 @@
-// App version: v0.14.2
+// App version: v0.14.3
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -294,7 +294,7 @@ function setPlayerOptions() {
         "setPlayerOptions() - players: " + players);
     }
     $.each(players, function(index, value) {
-      $("#player").append("<option>" + value + "</option>");
+      $("#player").append(new Option(value));
     });
   });
 }
@@ -307,7 +307,7 @@ function setAdventureOptions() {
         "setAdventureOptions() - adventures: " + adventures);
     }
     $.each(adventures, function(index, value) {
-      $("#adventure").append("<option>" + value + "</option>");
+      $("#adventure").append(new Option(value));
     });
   });
 }
@@ -320,7 +320,7 @@ function setDwClassOptions() {
         "setDwClassOptions() - classes: " + classes);
     }
     $.each(classes, function(index, value) {
-      $("#dwClass").append("<option>" + value + "</option>");
+      $("#dwClass").append(new Option(value));
     });
   });
 }
@@ -333,7 +333,7 @@ function setRaceOptions() {
         "setRaceOptions() - races: " + races);
     }
     $.each(races, function(index, value) {
-      $("#race").append("<option>" + value + "</option>");
+      $("#race").append(new Option(value));
     });
   });
 }
@@ -434,7 +434,7 @@ $(document).ready(function() {
               "$(#dwClass).change() - alignments: " + alignments);
           }
           $.each(alignments, function(index, value) {
-            $("#alignment").append("<option>" + value + "</option>");
+            $("#alignment").append(new Option(value));
           });
         }
       }
