@@ -288,7 +288,6 @@ function deleteRow(tableID, rowID) {
 
 function setPlayerOptions() {
   $.getJSON("data/playerList.json", function(data) {
-    $("#player").empty();
     players = data.players;
     if (debug == true) {
       console.info(
@@ -302,7 +301,6 @@ function setPlayerOptions() {
 
 function setAdventureOptions() {
   $.getJSON("data/adventureList.json", function(data) {
-    $("#adventure").empty();
     adventures = data.adventures;
     if (debug == true) {
       console.info(
@@ -316,7 +314,6 @@ function setAdventureOptions() {
 
 function setDwClassOptions() {
   $.getJSON("data/classList.json", function(data) {
-    $("#dwClass").empty();
     classes = data.classes;
     if (debug == true) {
       console.info(
@@ -330,7 +327,6 @@ function setDwClassOptions() {
 
 function setRaceOptions() {
   $.getJSON("data/raceList.json", function(data) {
-    $("#race").empty();
     races = data.races;
     if (debug == true) {
       console.info(

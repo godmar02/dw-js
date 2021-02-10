@@ -1,5 +1,6 @@
 # TO DO
 - expanding text entry / word wrap
+- add checkboxes next to class features
 - extensive value based testing
 - clear/reset
 - save
