@@ -129,6 +129,7 @@ textarea {
   font-size: 17px;
   width: 100%;
   min-width: 100px;
+  min-height: 40px;
   height: 40px;
   padding: 10px;
   border: 1px solid #A9A9A9;
