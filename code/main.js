@@ -123,6 +123,16 @@ function expandcontainer(identifier) {
   }
 }
 
+function setHeight(textAreaID) {
+  var textArea = $("#" + textAreaID);
+  textArea.height(40);
+  textArea.height(textArea.scrollHeight - 40);
+
+  if (debug == true) {
+    console.info("textarea.on() - textArea scrollHeight: ", textArea.scrollHeight);
+  }
+}
+
 function reindexBodyRows(tableID) {
 
   if (debug == true) {
@@ -233,6 +243,10 @@ function addRow(tableID) {
     // Blank or uncheck content
     newCell.children[0].value = "";
 
+    // Ensure textarea heights are reset
+    if (newCell.type == "textarea") {
+      setHeight(newCellID);
+    }
   }
 }
 
@@ -342,6 +356,8 @@ function setRaceOptions() {
     });
   });
 }
+
+
 
 $(document).ready(function() {
 
@@ -649,14 +665,7 @@ $(document).ready(function() {
   });
 
   $('textarea').on('input', function() {
-    $(this)
-      .height(40)
-      .height(this.scrollHeight - 40);
-
-    if (debug == true) {
-      console.info("textarea.on() - scrollHeight: ", this.scrollHeight + "\n" +
-        "textarea.on() - scrollWidth: ", this.scrollWidth);
-    }
+    setHeight(this.id);
   });
 
   $("#saveCharacter").click(function() {
