@@ -46,14 +46,12 @@ $(document).ready(function() {
       }
 
       if (debug == true) {
-        console.info(
-          "setModifier() - ability: " + ability + "\n" +
-          "setModifier() - abilityScore: " + abilityScore + "\n" +
-          "setModifier() - abilityAffliction: " + abilityAffliction + "\n" +
-          "setModifier() - afflicted: " + afflicted + "\n" +
-          "setModifier() - modifier: " + modifier + "\n" +
-          "setModifier() - stringModifier: " + stringModifier
-        );
+        console.info("setModifier() - ability:", ability);
+        console.info("setModifier() - abilityScore:", abilityScore);
+        console.info("setModifier() - abilityAffliction:", abilityAffliction);
+        console.info("setModifier() - afflicted:", afflicted);
+        console.info("setModifier() - modifier:", modifier);
+        console.info("setModifier() - stringModifier:", stringModifier);
       }
 
       $("#" + ability + "Modifier").val("[ " + stringModifier + " ]");
@@ -133,17 +131,17 @@ $(document).ready(function() {
     textArea.height(40);
     textArea.height(newHeight);
     if (debug == true) {
-      console.info("textarea.on() - textAreaID: ", textAreaID);
+      console.info("textarea.on() - textAreaID:", textAreaID);
       console.info("textarea.on() - textArea.scrollHeight", textArea.scrollHeight);
-      console.info("textarea.on() - newHeight: ", newHeight);
-      console.info("textarea.on() - textArea.height(): ", textArea.height());
+      console.info("textarea.on() - newHeight:", newHeight);
+      console.info("textarea.on() - textArea.height():", textArea.height());
     }
   }
 
   function reindexBodyRows(tableID) {
 
     if (debug == true) {
-      console.info("reindexBodyRows() - Reindexing table body: " + tableID);
+      console.info("reindexBodyRows() - Reindexing table body:", tableID);
     }
 
     var tableBody = $("#" + tableID + " tbody");
@@ -153,10 +151,10 @@ $(document).ready(function() {
     var bodyColCount = templateRow.cells.length;
 
     if (debug == true) {
-      console.info("reindexBodyRows() - bodyRowsCount: " + bodyRowsCount);
+      console.info("reindexBodyRows() - bodyRowsCount:", bodyRowsCount);
     }
     if (debug == true) {
-      console.info("reindexBodyRows() - bodyColCount: " + bodyColCount);
+      console.info("reindexBodyRows() - bodyColCount:", bodyColCount);
     }
 
     for (var i = 0; i < bodyRowsCount; i++) {
@@ -169,7 +167,7 @@ $(document).ready(function() {
         var templateCell = templateRow.cells[j];
         var templateCellID = templateCell.children[0].id;
         if (debug == true) {
-          console.info("reindexBodyRows() - templateCellID: " + templateCellID);
+          console.info("reindexBodyRows() - templateCellID:", templateCellID);
         }
         var templateCellIDPrefix = templateCellID.slice(0, -1);
         if (debug == true) {
@@ -178,7 +176,7 @@ $(document).ready(function() {
         var cell = tableBody.get(0).rows[i].cells[j];
         var newCellID = templateCellIDPrefix + i;
         if (debug == true) {
-          console.info("reindexBodyRows() - newCellID: " + newCellID);
+          console.info("reindexBodyRows() - newCellID:", newCellID);
         }
         cell.children[0].id = newCellID;
 
@@ -200,12 +198,10 @@ $(document).ready(function() {
     var newRowID = bodyRowsCount;
 
     if (debug == true) {
-      console.info(
-        "addRow() - tableID: " + tableID + "\n" +
-        "addRow() - bodyRowsCount: " + bodyRowsCount + "\n" +
-        "addRow() - newRowColCount: " + newRowColCount + "\n" +
-        "addRow() - newRowID: " + newRowID
-      );
+      console.info("addRow() - tableID:", tableID);
+      console.info("addRow() - bodyRowsCount:", bodyRowsCount);
+      console.info("addRow() - newRowColCount:", newRowColCount);
+      console.info("addRow() - newRowID:", newRowID);
     }
 
     // to insert single row at end of tbody
@@ -215,7 +211,7 @@ $(document).ready(function() {
     for (var i = 0; i < newRowColCount; i++) {
 
       if (debug == true) {
-        console.info("addRow() - column: " + i);
+        console.info("addRow() - column:", i);
       }
 
       // to insert one column
@@ -230,20 +226,20 @@ $(document).ready(function() {
       var templateCellIDPrefix = templateCellID.slice(0, -1);
       var newCellID = templateCellIDPrefix + newRowID;
       if (debug == true) {
-        console.info("addRow() - templateCellID: " + templateCellID);
+        console.info("addRow() - templateCellID:", templateCellID);
       }
       if (debug == true) {
-        console.info("addRow() - templateCellIDPrefix: " + templateCellIDPrefix);
+        console.info("addRow() - templateCellIDPrefix:", templateCellIDPrefix);
       }
       if (debug == true) {
-        console.info("addRow() - newCellID: " + newCellID);
+        console.info("addRow() - newCellID:", newCellID);
       }
       newCell.children[0].id = newCellID;
 
       // set colspan
       var templateCellColSpan = templateCell.getAttribute("colspan");
       if (debug == true) {
-        console.info("addRow() - templateCellColSpan: " + templateCellColSpan);
+        console.info("addRow() - templateCellColSpan:", templateCellColSpan);
       }
       newCell.setAttribute("colspan", templateCellColSpan);
 
@@ -275,10 +271,8 @@ $(document).ready(function() {
       if (itemload) {
         totalload = totalload + itemload;
         if (debug == true) {
-          console.info(
-            "itemWeight.change() - itemload:" + itemload + "\n" +
-            "itemWeight.change() - totalload:" + totalload
-          );
+          console.info("itemWeight.change() - itemload:", itemload);
+          console.info("itemWeight.change() - totalload:", totalload);
         }
       }
     }
@@ -291,16 +285,16 @@ $(document).ready(function() {
     var bodyRows = tableBody.children("tr");
     var bodyRowsCount = bodyRows.length;
     if (debug == true) {
-      console.info("deleteRow() - bodyRowsCount: " + bodyRowsCount);
+      console.info("deleteRow() - bodyRowsCount:", bodyRowsCount);
     }
     if (bodyRowsCount != 1) {
       if (debug == true) {
-        console.info("deleteRow() - Deleting Row: " + rowID);
+        console.info("deleteRow() - Deleting Row:", rowID);
       }
       tableBody.get(0).deleteRow(rowID);
       reindexBodyRows(tableID);
     } else {
-      console.warn("deleteRow() - Cannot delete last row: " + tableID);
+      console.warn("deleteRow() - Cannot delete last row:", tableID);
     }
   }
 
@@ -310,8 +304,7 @@ $(document).ready(function() {
       $("#player").append("<option hidden disabled selected></option>");
       players = data.players;
       if (debug == true) {
-        console.info(
-          "setPlayerOptions() - players: " + players);
+        console.info("setPlayerOptions() - players:", players);
       }
       $.each(players, function(index, value) {
         $("#player").append(new Option(value));
@@ -325,8 +318,7 @@ $(document).ready(function() {
       $("#adventure").append("<option hidden disabled selected></option>");
       adventures = data.adventures;
       if (debug == true) {
-        console.info(
-          "setAdventureOptions() - adventures: " + adventures);
+        console.info("setAdventureOptions() - adventures:", adventures);
       }
       $.each(adventures, function(index, value) {
         $("#adventure").append(new Option(value));
@@ -340,8 +332,7 @@ $(document).ready(function() {
       $("#dwClass").append("<option hidden disabled selected></option>");
       classes = data.classes;
       if (debug == true) {
-        console.info(
-          "setDwClassOptions() - classes: " + classes);
+        console.info("setDwClassOptions() - classes:", classes);
       }
       $.each(classes, function(index, value) {
         $("#dwClass").append(new Option(value));
@@ -355,8 +346,7 @@ $(document).ready(function() {
       $("#race").append("<option hidden disabled selected></option>");
       races = data.races;
       if (debug == true) {
-        console.info(
-          "setRaceOptions() - races: " + races);
+        console.info("setRaceOptions() - races:", races);
       }
       $.each(races, function(index, value) {
         $("#race").append(new Option(value));
@@ -388,14 +378,12 @@ $(document).ready(function() {
     var maxHP = 0;
 
     if (debug == true) {
-      console.info(
-        "$(#dwClass, #race, #alignment).change() - change: " + change + "\n" +
-        "$(#dwClass, #race, #alignment).change() - race: " + race + "\n" +
-        "$(#dwClass, #race, #alignment).change() - dwClass: " + dwClass + "\n" +
-        "$(#dwClass, #race, #alignment).change() - alignment: " + alignment + "\n" +
-        "$(#dwClass, #race, #alignment).change() - str: " + str + "\n" +
-        "$(#dwClass, #race, #alignment).change() - con: " + con
-      );
+      console.info("$(#dwClass, #race, #alignment).change() - change:", change);
+      console.info("$(#dwClass, #race, #alignment).change() - race:", race);
+      console.info("$(#dwClass, #race, #alignment).change() - dwClass:", dwClass);
+      console.info("$(#dwClass, #race, #alignment).change() - alignment:", alignment);
+      console.info("$(#dwClass, #race, #alignment).change() - str:", str);
+      console.info("$(#dwClass, #race, #alignment).change() - con:", con);
     }
 
     $.getJSON("data/classDetails.json", function(data) {
@@ -412,11 +400,11 @@ $(document).ready(function() {
       if (dwClass && str) {
         baseLoad = parseInt(data[dwClass].baseLoad, 10);
         if (debug == true) {
-          console.info("$(#dwClass).change() - baseLoad: " + baseLoad);
+          console.info("$(#dwClass).change() - baseLoad:", baseLoad);
         }
         maxLoad = baseLoad + str;
         if (debug == true) {
-          console.info("$(#dwClass).change() - maxLoad: " + maxLoad);
+          console.info("$(#dwClass).change() - maxLoad:", maxLoad);
         }
         $("#maxLoad").val("/ " + maxLoad);
       } else {
@@ -427,11 +415,11 @@ $(document).ready(function() {
       if (dwClass && con) {
         baseHP = parseInt(data[dwClass].baseHP, 10);
         if (debug == true) {
-          console.info("$(#dwClass).change() - baseHP: " + baseHP);
+          console.info("$(#dwClass).change() - baseHP:", baseHP);
         }
         maxHP = baseHP + con;
         if (debug == true) {
-          console.info("$(#dwClass).change() - maxHP: " + maxHP);
+          console.info("$(#dwClass).change() - maxHP:", maxHP);
         }
         $("#maxHP").val("/ " + maxHP);
       } else {
@@ -442,7 +430,7 @@ $(document).ready(function() {
       if (dwClass) {
         damage = data[dwClass].damage;
         if (debug == true) {
-          console.info("$(#dwClass).change() - damage: " + damage);
+          console.info("$(#dwClass).change() - damage:", damage);
         }
         $("#damage").val(damage);
       } else {
@@ -456,8 +444,7 @@ $(document).ready(function() {
         if (dwClass) {
           alignments = data[dwClass].alignments;
           if (debug == true) {
-            console.info(
-              "$(#dwClass).change() - alignments: " + alignments);
+            console.info("$(#dwClass).change() - alignments:", alignments);
           }
           $.each(alignments, function(index, value) {
             $("#alignment").append(new Option(value));
@@ -490,11 +477,10 @@ $(document).ready(function() {
         maxLoad = baseLoad + str;
 
         if (debug == true) {
-          console.info(
-            "$(#str).change() - dwClass: " + dwClass + "\n" +
-            "$(#str).change() - str: " + str + "\n" +
-            "$(#str).change() - baseLoad: " + baseLoad + "\n" +
-            "$(#str).change() - maxLoad: " + maxLoad);
+          console.info("$(#str).change() - dwClass:", dwClass);
+          console.info("$(#str).change() - str:", str);
+          console.info("$(#str).change() - baseLoad:", baseLoad);
+          console.info("$(#str).change() - maxLoad:", maxLoad);
         }
 
         $("#maxLoad").val("/ " + maxLoad);
@@ -517,11 +503,10 @@ $(document).ready(function() {
         maxHP = baseHP + con;
 
         if (debug == true) {
-          console.info(
-            "$(#con).change() - dwClass: " + dwClass + "\n" +
-            "$(#con).change() - con: " + con + "\n" +
-            "$(#con).change() - baseHP: " + baseHP + "\n" +
-            "$(#con).change() - maxHP: " + maxHP);
+          console.info("$(#con).change() - dwClass:", dwClass);
+          console.info("$(#con).change() - con:", con);
+          console.info("$(#con).change() - baseHP:", baseHP);
+          console.info("$(#con).change() - maxHP:", maxHP);
         }
 
         $("#maxHP").val("/ " + maxHP);
@@ -585,16 +570,14 @@ $(document).ready(function() {
     var totalAbility = str + dex + con + int + wis + cha;
 
     if (debug == true) {
-      console.info(
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - str: " + str + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - dex: " + dex + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - con: " + con + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - int: " + int + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - wis: " + wis + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - cha: " + cha + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - maxAbility: " + maxAbility + "\n" +
-        "$(#str, #dex, #con, #int, #wis, #cha).change() - totalAbility: " + totalAbility
-      );
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - str:", str);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - dex:", dex);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - con:", con);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - int:", int);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - wis:", wis);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - cha:", cha);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - maxAbility:", maxAbility);
+      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - totalAbility:", totalAbility);
     }
 
     if (str && dex && con && int && wis && cha && totalAbility != maxAbility) {
@@ -620,9 +603,8 @@ $(document).ready(function() {
     var question = $(this).attr("id");
     var identifier = question.slice(-1);
     if (debug == true) {
-      console.info("$(.question).click() - question: " + question + "\n" +
-        "$(.question).click() - identifier: " + identifier
-      );
+      console.info("$(.question).click() - question:", question);
+      console.info("$(.question).click() - identifier:", identifier);
     }
 
     expandcontainer(identifier);
@@ -643,7 +625,7 @@ $(document).ready(function() {
   $(".addRow").click(function() {
     var tableID = $(this).closest("table").attr("id");
     if (debug == true) {
-      console.info("$(.addRow).click() - tableID: " + tableID);
+      console.info("$(.addRow).click() - tableID:", tableID);
     }
     addRow(tableID);
   });
@@ -653,10 +635,9 @@ $(document).ready(function() {
     var rowID = $(this).attr("id");
     var row = rowID.slice(-1);
     if (debug == true) {
-      console.info("$(.deleteRow).click() - tableID: " + tableID + "\n" +
-        "$(.deleteRow).click() - rowID: " + rowID + "\n" +
-        "$(.deleteRow).click() - row: " + row
-      );
+      console.info("$(.deleteRow).click() - tableID:", tableID);
+      console.info("$(.deleteRow).click() - rowID:", rowID);
+      console.info("$(.deleteRow).click() - row:", row);
     }
     deleteRow(tableID, row);
     if (tableID == "gearTable") {
