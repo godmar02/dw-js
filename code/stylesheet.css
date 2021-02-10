@@ -106,7 +106,7 @@ th {
   margin: 0;
 }
 
-.checkmark {
+.checkbox {
   position: absolute;
   height: 18px;
   width: 18px;
@@ -117,7 +117,7 @@ th {
   border-radius: 5px;
 }
 
-.checkmark:after {
+.checkbox:after {
   content: "";
   position: absolute;
   display: none;
