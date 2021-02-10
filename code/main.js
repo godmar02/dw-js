@@ -656,6 +656,7 @@ $(document).ready(function() {
 
   $('textarea').on('input', function() {
     $(this)
+      .height(40)
       .height(this.scrollHeight);
 
     if (debug == true) {
