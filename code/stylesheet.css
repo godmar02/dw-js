@@ -139,6 +139,7 @@ textarea {
   border-radius: 5px;
   margin: 0;
   text-align: center;
+  resize: none;
   rows: 10;
   cols: 30;
   overflow: hidden;
