@@ -656,10 +656,15 @@ $(document).ready(function() {
 
   $('textarea').on('input', function() {
     $(this)
-      //.width(50)
-      //.height(50)
-      //.width(this.scrollWidth)
+      .width(50)
+      .height(50)
+      .width(this.scrollWidth)
       .height(this.scrollHeight);
+
+    if (debug == true) {
+      console.info("textarea.on() - scrollHeight: ", this.scrollHeight + "\n" +
+        "textarea.on() - scrollWidth: ", this.scrollWidth);
+    }
   });
 
   $("#saveCharacter").click(function() {
