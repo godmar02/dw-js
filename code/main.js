@@ -432,8 +432,8 @@ $(document).ready(function() {
         $("#damage").val("");
       }
 
-      // Set alignment options
-      if (change != "alignment") {
+      // Set alignment options if class is changing
+      if (change == "dwClass") {
         $("#alignment").empty();
         $("#alignment").append("<option hidden disabled selected></option>");
         if (dwClass) {
