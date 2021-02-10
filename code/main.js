@@ -127,15 +127,16 @@ $(document).ready(function() {
 
   function setHeight(textAreaID) {
     var textArea = $("#" + textAreaID);
-    textArea.height(40);
-    var newHeight = textArea.prop("scrollHeight");
-    textArea.height(newHeight);
     if (debug == true) {
       console.info("textarea.on() - textAreaID:", textAreaID);
+    }
+    textArea.height(40);
+    var newHeight = textArea.prop("scrollHeight");
+    if (debug == true) {
       console.info("textarea.on() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
       console.info("textarea.on() - newHeight:", newHeight);
-      console.info("textarea.on() - textArea.height():", textArea.height());
     }
+    textArea.height(newHeight);
   }
 
   function reindexBodyRows(tableID) {
