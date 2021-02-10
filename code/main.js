@@ -1,9 +1,11 @@
 $(document).ready(function() {
 
+  // variables
   var answersExpanded = 0;
   var abilityErrors = false;
   var loadErrors = false;
 
+  // generic functions
   function setModifier(ability) {
     var abilityScore = parseInt($("#" + ability).val(), 10);
     var abilityAffliction = $("#" + ability + "Affliction").val();
@@ -365,6 +367,7 @@ $(document).ready(function() {
   setDwClassOptions();
   setRaceOptions();
 
+  //listener functions
   $("#dwClass, #race, #alignment").change(function() {
     var race = $("#race").val();
     var dwClass = $("#dwClass").val();
