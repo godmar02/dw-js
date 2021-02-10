@@ -2,7 +2,6 @@
 - expanding text entry / word wrap
 - add checkboxes next to class features
 - extensive value based testing
-- clear/reset
 - save
 - prevent save with errors (item load & ability total)
 - load
