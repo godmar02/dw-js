@@ -646,7 +646,7 @@ $(document).ready(function() {
   });
 
   $("#clearCharacter").click(function() {
-    location.reload();
+    location.reload(true);
   });
 
   $('textarea').on('input', function() {
