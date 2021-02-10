@@ -129,11 +129,13 @@ $(document).ready(function() {
 
   function setHeight(textAreaID) {
     var textArea = $("#" + textAreaID);
+    var newHeight = textArea.scrollHeight - 40;
     textArea.height(40);
-    textArea.height(textArea.scrollHeight - 40);
+    textArea.height(newHeight);
     if (debug == true) {
       console.info("textarea.on() - textAreaID: ", textAreaID);
-      console.info("textarea.on() - textArea scrollHeight: ", textArea.scrollHeight);
+      console.info("textarea.on() - newHeight: ", newHeight);
+      console.info("textarea.on() - textArea.height(): ", textArea.height());
     }
   }
 
