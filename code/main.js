@@ -127,12 +127,12 @@ $(document).ready(function() {
 
   function setHeight(textAreaID) {
     var textArea = $("#" + textAreaID);
-    var newHeight = textArea.scrollTop();
+    var newHeight = textArea.prop("scrollHeight");
     textArea.height(40);
     textArea.height(newHeight);
     if (debug == true) {
       console.info("textarea.on() - textAreaID:", textAreaID);
-      console.info("textarea.on() - textArea.scrollTop()", textArea.scrollTop());
+      console.info("textarea.on() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
       console.info("textarea.on() - newHeight:", newHeight);
       console.info("textarea.on() - textArea.height():", textArea.height());
     }
