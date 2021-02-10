@@ -1,5 +1,5 @@
 /*
-Version: v0.1
+Version: v0.2
 Author: Godmar02
 Source code: https://github.com/godmar02/godmar02.github.io
 */
@@ -650,6 +650,18 @@ $(document).ready(function() {
     }
   });
 
+  $("#clearCharacter").click(function() {
+    location.reload();
+  });
+
+  $('textarea').on('input', function() {
+    $(this)
+      //.width(50)
+      //.height(50)
+      //.width(this.scrollWidth)
+      .height(this.scrollHeight);
+  });
+
   $("#saveCharacter").click(function() {
     db.collection("users").add({
         first: "Ada",
@@ -674,10 +686,6 @@ $(document).ready(function() {
         }
       });
     });
-  });
-
-  $("#clearCharacter").click(function() {
-    location.reload();
   });
 
 });

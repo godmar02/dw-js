@@ -1,11 +1,10 @@
 # TO DO
-- add checkboxes next to class features
 - expanding text entry / word wrap
+- formatting
 - extensive value based testing
 - save
 - prevent save with errors (item load & ability total)
 - load
 - dice roller
-- make pretty
-- default items?
-- default bonds?
+- default items
+- default bonds
