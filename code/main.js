@@ -131,7 +131,7 @@ $(document).ready(function() {
       console.info("textarea.on() - textAreaID:", textAreaID);
     }
     textArea.height(40);
-    var newHeight = textArea.prop("scrollHeight");
+    var newHeight = textArea.prop("scrollHeight") - 20 ;
     if (debug == true) {
       console.info("textarea.on() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
       console.info("textarea.on() - newHeight:", newHeight);
