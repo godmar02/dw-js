@@ -11,7 +11,8 @@ button {
   min-width: 40px;
 }
 
-button:active, .grey, .textpress:active {
+button:active,
+.grey {
   background-color: lightgrey;
 }
 
@@ -38,7 +39,7 @@ div.question {
   padding-top: 14px;
   padding-bottom: 14px;
   float: left;
-  width: 100%
+  width: 100%;
 }
 
 div.questionText {
@@ -84,7 +85,7 @@ input.checkbox {
   border-radius: 5px;
 }
 
-input.checkbox:after {
+input.checkbox::after {
   content: "";
 }
 
@@ -164,4 +165,8 @@ th {
 .textpress {
   padding-top: 4px;
   padding-bottom: 4px;
+}
+
+.textpress:active {
+  background-color: lightgrey;
 }
