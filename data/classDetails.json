@@ -3,10 +3,10 @@
     "damage": "d10",
     "baseHP": 8,
     "baseLoad": 8,
-    "alignments": "Chaotic,Neutral",
+    "alignments": ["Chaotic", "Neutral"],
     "alignmentAttributes": {
-       "Chaotic":"You eschew a convention of the civilized world.",
-       "Neutral":"Teach someone the ways of your people."
+      "Chaotic": "You eschew a convention of the civilized world.",
+      "Neutral": "Teach someone the ways of your people."
     },
     "raceAttributes": {
       "Dwarf": "You and your people are not from around here. At the beginning of each session, the GM will ask you something about your homeland, why you left, or what you left behind. If you answer them, mark XP",
@@ -23,7 +23,7 @@
     "damage": "d6",
     "baseHP": 6,
     "baseLoad": 9,
-    "alignments": "Good,Neutral,Chaotic",
+    "alignments": ["Good", "Neutral", "Chaotic"],
     "alignmentAttributes": {
       "Good": "Perform your art to aid someone else.",
       "Neutral": "Avoid a conflict or defuse a tense situation.",
@@ -44,7 +44,7 @@
     "damage": "d6",
     "baseHP": 6,
     "baseLoad": 10,
-    "alignments": "Good,Lawful,Evil",
+    "alignments": ["Good", "Lawful", "Evil"],
     "alignmentAttributes": {
       "Good": "Endanger yourself to heal another.",
       "Lawful": "Endanger yourself following the precepts of your church or god.",
@@ -57,7 +57,7 @@
       "Halfling": "Undefined",
       "Human": "Your faith is diverse. Choose one wizard spell. You can cast and be granted that spell as if it was a cleric spell."
     },
-    "startingMoves": ["Deity","Divine Guidance","Turn Undead","Commune","Cast a Spell"],
+    "startingMoves": ["Deity", "Divine Guidance", "Turn Undead", "Commune", "Cast a Spell"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   },
@@ -65,7 +65,7 @@
     "damage": "d6",
     "baseHP": 6,
     "baseLoad": 6,
-    "alignments": "Chaotic,Good,Neutral",
+    "alignments": ["Chaotic", "Good", "Neutral"],
     "alignmentAttributes": {
       "Chaotic": "Destroy a symbol of civilization.",
       "Good ": "Help something or someone grow.",
@@ -78,7 +78,7 @@
       "Halfling": "You sing the healing songs of spring and brook. When you make camp, you and your allies heal +1d6.",
       "Human": "As your people learned to bind animals to field and farm, so too are you bound to them. You may always take the shape of any domesticated animal, in addition to your normal options."
     },
-    "startingMoves": ["Born of the Soil","By Nature Sustained","Spirit Tongue","Shapeshifter"],
+    "startingMoves": ["Born of the Soil", "By Nature Sustained", "Spirit Tongue", "Shapeshifter"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   },
@@ -86,7 +86,7 @@
     "damage": "d10",
     "baseHP": 10,
     "baseLoad": 12,
-    "alignments": "Good,Neutral,Evil",
+    "alignments": ["Good", "Neutral", "Evil"],
     "alignmentAttributes": {
       "Good": "Defend those weaker than you.",
       "Neutral": "Defeat a worthy opponent.",
@@ -99,7 +99,7 @@
       "Halfling": "When you defy danger and use your small size to your advantage, take +1.",
       "Human": "Once per battle you may reroll a single damage roll (yours or someone else's)."
     },
-    "startingMoves": ["Bend Bars, Lift Gates","Armored","Signature Weapon"],
+    "startingMoves": ["Bend Bars, Lift Gates", "Armored", "Signature Weapon"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   },
@@ -107,7 +107,7 @@
     "damage": "d10",
     "baseHP": 10,
     "baseLoad": 12,
-    "alignments": "Lawful,Good",
+    "alignments": ["Lawful", "Good"],
     "alignmentAttributes": {
       "Lawful": "Deny mercy to a criminal or unbeliever.",
       "Good ": "Endanger yourself to protect someone weaker than you."
@@ -119,7 +119,7 @@
       "Halfling": "Undefined",
       "Human": "When you pray for guidance, even for a moment, and ask, 'What here is evil?'' the GM will tell you, honestly."
     },
-    "startingMoves": ["Lay on Hands (Cha)","Armored","I Am the Law","Quest"],
+    "startingMoves": ["Lay on Hands (Cha)", "Armored", "I Am the Law", "Quest"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   },
@@ -127,7 +127,7 @@
     "damage": "d8",
     "baseHP": 8,
     "baseLoad": 11,
-    "alignments": "Chaotic,Good,Neutral",
+    "alignments": ["Chaotic", "Good", "Neutral"],
     "alignmentAttributes": {
       "Chaotic": "Free someone from literal or figurative bonds.",
       "Good ": "Endanger yourself to combat an unnatural threat.",
@@ -140,7 +140,7 @@
       "Halfling": "Undefined",
       "Human": "When you make camp in a dungeon or city, you don't need to consume a ration."
     },
-    "startingMoves": ["Animal Companion","Command","Hunt and Track (Wis)","Called Shot"],
+    "startingMoves": ["Animal Companion", "Command", "Hunt and Track (Wis)", "Called Shot"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   },
@@ -148,7 +148,7 @@
     "damage": "d8",
     "baseHP": 6,
     "baseLoad": 9,
-    "alignments": "Chaotic,Neutral,Evil",
+    "alignments": ["Chaotic", "Neutral", "Evil"],
     "alignmentAttributes": {
       "Chaotic": "Leap into danger without a plan.",
       "Neutral": "Avoid detection or infiltrate a location.",
@@ -161,7 +161,7 @@
       "Halfling": "When you attack with a ranged weapon, deal +2 damage.",
       "Human": "You are a professional. When you spout lore or discern realities about criminal activities, take +1."
     },
-    "startingMoves": ["Trap Expert","Tricks of the Trade","Backstab","Flexible Morals","Poisoner"],
+    "startingMoves": ["Trap Expert", "Tricks of the Trade", "Backstab", "Flexible Morals", "Poisoner"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   },
@@ -169,7 +169,7 @@
     "damage": "d4",
     "baseHP": 4,
     "baseLoad": 7,
-    "alignments": "Good,Neutral,Evil",
+    "alignments": ["Good", "Neutral", "Evil"],
     "alignmentAttributes": {
       "Good": "Use magic to directly aid another.",
       "Neutral ": "Discover something about a magical mystery.",
@@ -182,7 +182,7 @@
       "Halfling": "Undefined",
       "Human": "Choose one cleric spell. You can cast it as if it was a wizard spell."
     },
-    "startingMoves": ["Spellbook","Prepare Spells","Cast a Spell (Int)","Spell Defense","Ritual"],
+    "startingMoves": ["Spellbook", "Prepare Spells", "Cast a Spell (Int)", "Spell Defense", "Ritual"],
     "advancedMoves2-5": [""],
     "advancedMoves6-10": [""]
   }

@@ -1,4 +1,4 @@
-// App version: v0.13.1
+// App version: v0.14.0
 // Author: Godmar02
 // App source code: https://github.com/godmar02/godmar02.github.io
 var answersExpanded = 0;
@@ -286,7 +286,69 @@ function deleteRow(tableID, rowID) {
   }
 }
 
+function setPlayerOptions() {
+  $.getJSON("data/playerList.json", function(data) {
+    $("#player").empty();
+    players = data.players;
+    if (debug == true) {
+      console.info(
+        "setPlayerOptions() - players: " + players);
+    }
+    $.each(players, function(index, value) {
+      $("#player").append("<option>" + value + "</option>");
+    });
+  });
+}
+
+function setAdventureOptions() {
+  $.getJSON("data/adventureList.json", function(data) {
+    $("#adventure").empty();
+    adventures = data.adventures;
+    if (debug == true) {
+      console.info(
+        "setAdventureOptions() - adventures: " + adventures);
+    }
+    $.each(adventures, function(index, value) {
+      $("#adventure").append("<option>" + value + "</option>");
+    });
+  });
+}
+
+function setDwClassOptions() {
+  $.getJSON("data/classList.json", function(data) {
+    $("#dwClass").empty();
+    classes = data.classes;
+    if (debug == true) {
+      console.info(
+        "setDwClassOptions() - classes: " + classes);
+    }
+    $.each(classes, function(index, value) {
+      $("#dwClass").append("<option>" + value + "</option>");
+    });
+  });
+}
+
+function setRaceOptions() {
+  $.getJSON("data/raceList.json", function(data) {
+    $("#race").empty();
+    races = data.races;
+    if (debug == true) {
+      console.info(
+        "setRaceOptions() - races: " + races);
+    }
+    $.each(races, function(index, value) {
+      $("#race").append("<option>" + value + "</option>");
+    });
+  });
+}
+
 $(document).ready(function() {
+
+  // Set various drop down options
+  setPlayerOptions();
+  setAdventureOptions();
+  setDwClassOptions();
+  setRaceOptions();
 
   $("#dwClass, #race, #alignment").change(function() {
     var race = $("#race").val();
@@ -315,7 +377,7 @@ $(document).ready(function() {
       );
     }
 
-    $.getJSON("data/classes.json", function(data) {
+    $.getJSON("data/classDetails.json", function(data) {
 
       // Set race attribute
       if (dwClass && race) {
@@ -370,7 +432,7 @@ $(document).ready(function() {
       if (change != "alignment") {
         $("#alignment").empty();
         if (dwClass) {
-          alignments = data[dwClass].alignments.split(",");
+          alignments = data[dwClass].alignments;
           if (debug == true) {
             console.info(
               "$(#dwClass).change() - alignments: " + alignments);
@@ -399,7 +461,7 @@ $(document).ready(function() {
     var baseLoad = 0;
     var maxLoad = 0;
 
-    $.getJSON("data/classes.json", function(data) {
+    $.getJSON("data/classDetails.json", function(data) {
       //Set maxLoad
       if (str && dwClass) {
         baseLoad = parseInt(data[dwClass].baseLoad, 10);
@@ -426,7 +488,7 @@ $(document).ready(function() {
     var baseHP = 0;
     var maxHP = 0;
 
-    $.getJSON("data/classes.json", function(data) {
+    $.getJSON("data/classDetails.json", function(data) {
 
       if (con && dwClass) {
         baseHP = parseInt(data[dwClass].baseHP, 10);
