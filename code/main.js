@@ -1,363 +1,363 @@
-var answersExpanded = 0;
-var abilityErrors = false;
-var loadErrors = false;
+$(document).ready(function() {
 
-function setModifier(ability) {
-  var abilityScore = parseInt($("#" + ability).val(), 10);
-  var abilityAffliction = $("#" + ability + "Affliction").val();
-  var afflicted = 0;
+  var answersExpanded = 0;
+  var abilityErrors = false;
+  var loadErrors = false;
 
-  if (abilityScore) {
-    var baseModifier = 0;
-    if ([1, 2, 3].indexOf(abilityScore) > -1) {
-      baseModifier = -3;
-    } else if ([4, 5].indexOf(abilityScore) > -1) {
-      baseModifier = -2;
-    } else if ([6, 7, 8].indexOf(abilityScore) > -1) {
-      baseModifier = -1;
-    } else if ([9, 10, 11, 12].indexOf(abilityScore) > -1) {
-      baseModifier = 0;
-    } else if ([13, 14, 15].indexOf(abilityScore) > -1) {
-      baseModifier = 1;
-    } else if ([16, 17].indexOf(abilityScore) > -1) {
-      baseModifier = 2;
-    } else if (abilityScore == 18) {
-      baseModifier = 3;
-    }
+  function setModifier(ability) {
+    var abilityScore = parseInt($("#" + ability).val(), 10);
+    var abilityAffliction = $("#" + ability + "Affliction").val();
+    var afflicted = 0;
 
-    /*-1 if afflicted*/
-    if (abilityAffliction == "Unafflicted") {
-      afflicted = 0;
+    if (abilityScore) {
+      var baseModifier = 0;
+      if ([1, 2, 3].indexOf(abilityScore) > -1) {
+        baseModifier = -3;
+      } else if ([4, 5].indexOf(abilityScore) > -1) {
+        baseModifier = -2;
+      } else if ([6, 7, 8].indexOf(abilityScore) > -1) {
+        baseModifier = -1;
+      } else if ([9, 10, 11, 12].indexOf(abilityScore) > -1) {
+        baseModifier = 0;
+      } else if ([13, 14, 15].indexOf(abilityScore) > -1) {
+        baseModifier = 1;
+      } else if ([16, 17].indexOf(abilityScore) > -1) {
+        baseModifier = 2;
+      } else if (abilityScore == 18) {
+        baseModifier = 3;
+      }
+
+      /*-1 if afflicted*/
+      if (abilityAffliction == "Unafflicted") {
+        afflicted = 0;
+      } else {
+        afflicted = 1;
+      }
+
+      var modifier = baseModifier - afflicted;
+      var stringModifier = "";
+
+      if (modifier > 0) {
+        stringModifier = "+" + modifier;
+      } else {
+        stringModifier = modifier;
+      }
+
+      if (debug == true) {
+        console.info(
+          "setModifier() - ability: " + ability + "\n" +
+          "setModifier() - abilityScore: " + abilityScore + "\n" +
+          "setModifier() - abilityAffliction: " + abilityAffliction + "\n" +
+          "setModifier() - afflicted: " + afflicted + "\n" +
+          "setModifier() - modifier: " + modifier + "\n" +
+          "setModifier() - stringModifier: " + stringModifier
+        );
+      }
+
+      $("#" + ability + "Modifier").val("[ " + stringModifier + " ]");
     } else {
-      afflicted = 1;
+      $("#" + ability + "Modifier").val("");
     }
+  }
 
-    var modifier = baseModifier - afflicted;
-    var stringModifier = "";
+  function singleRoll(sides) {
+    var roll = Math.floor(Math.random() * sides) + 1;
+    return roll;
+  }
 
-    if (modifier > 0) {
-      stringModifier = "+" + modifier;
+  function rollDice(sides, number) {
+    var i;
+    var total = 0;
+    for (i = 1; i == number; i++) {
+      total = total + singleRoll(sides);
+    }
+    return total;
+  }
+
+  function expandAll() {
+    var questionCount = 3;
+    var expand = true;
+
+    if ($("#expandAll0").text() == "+ Expand all") {
+      expand = true;
     } else {
-      stringModifier = modifier;
+      expand = false;
     }
+
+    if (expand == true) {
+      //Expand Everything
+      // change Expand All indicators
+      $(".expandIndicator").text("-");
+      $(".answerContainer").attr("style", "display: block;");
+      $(".expandAll").text("- Collapse all");
+      answersExpanded = questionCount;
+    } else {
+      //Collapse Everything
+      $(".expandIndicator").text("+");
+      $(".answerContainer").attr("style", "display: none;");
+      $(".expandAll").text("+ Expand all");
+      answersExpanded = 0;
+    }
+  }
+
+  function expandcontainer(identifier) {
+    var expandIndicator = "expandIndicator" + identifier;
+    var answerContainer = "answerContainer" + identifier;
+    var answerCount = 3;
+
+    if ($("#" + expandIndicator).text() == "+") {
+      //Expand Answer Container
+      $("#" + expandIndicator).text("-");
+      $("#" + answerContainer).attr("style", "display: block;");
+      answersExpanded++;
+      if (answersExpanded == answerCount) {
+        //All answers expanded
+        $(".expandAll").text("- Collapse all");
+      }
+    } else {
+      //Collapse Answer Container
+      $("#" + expandIndicator).text("+");
+      $("#" + answerContainer).attr("style", "display: none;");
+      answersExpanded--;
+      if (answersExpanded != answerCount) {
+        $(".expandAll").text("+ Expand all");
+      }
+    }
+  }
+
+  function setHeight(textAreaID) {
+    var textArea = $("#" + textAreaID);
+    textArea.height(40);
+    textArea.height(textArea.scrollHeight - 40);
+    if (debug == true) {
+      console.info("textarea.on() - textAreaID: ", textAreaID);
+      console.info("textarea.on() - textArea scrollHeight: ", textArea.scrollHeight);
+    }
+  }
+
+  function reindexBodyRows(tableID) {
+
+    if (debug == true) {
+      console.info("reindexBodyRows() - Reindexing table body: " + tableID);
+    }
+
+    var tableBody = $("#" + tableID + " tbody");
+    var bodyRows = tableBody.children("tr");
+    var bodyRowsCount = bodyRows.length;
+    var templateRow = bodyRows.get(0);
+    var bodyColCount = templateRow.cells.length;
+
+    if (debug == true) {
+      console.info("reindexBodyRows() - bodyRowsCount: " + bodyRowsCount);
+    }
+    if (debug == true) {
+      console.info("reindexBodyRows() - bodyColCount: " + bodyColCount);
+    }
+
+    for (var i = 0; i < bodyRowsCount; i++) {
+      for (var j = 0; j < bodyColCount; j++) {
+
+        if (debug == true) {
+          console.info("reindexBodyRows() - Row / Column: " + i + " / " + j);
+        }
+        // set new ID based upon triming existing cellid of format itemN
+        var templateCell = templateRow.cells[j];
+        var templateCellID = templateCell.children[0].id;
+        if (debug == true) {
+          console.info("reindexBodyRows() - templateCellID: " + templateCellID);
+        }
+        var templateCellIDPrefix = templateCellID.slice(0, -1);
+        if (debug == true) {
+          console.info("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix);
+        }
+        var cell = tableBody.get(0).rows[i].cells[j];
+        var newCellID = templateCellIDPrefix + i;
+        if (debug == true) {
+          console.info("reindexBodyRows() - newCellID: " + newCellID);
+        }
+        cell.children[0].id = newCellID;
+
+      }
+    }
+  }
+
+  function addRow(tableID) {
+
+    // This works for any generic row but also assumes that any table row cells
+    // you are copying has an id of format id="tableid0" etc so that it
+    // can be incremented by 1 each time
+    // Note table items are zero indexed
+    var tableBody = $("#" + tableID + " tbody");
+    var bodyRows = tableBody.children("tr");
+    var bodyRowsCount = bodyRows.length;
+    var templateRow = bodyRows.get(0);
+    var newRowColCount = templateRow.cells.length;
+    var newRowID = bodyRowsCount;
 
     if (debug == true) {
       console.info(
-        "setModifier() - ability: " + ability + "\n" +
-        "setModifier() - abilityScore: " + abilityScore + "\n" +
-        "setModifier() - abilityAffliction: " + abilityAffliction + "\n" +
-        "setModifier() - afflicted: " + afflicted + "\n" +
-        "setModifier() - modifier: " + modifier + "\n" +
-        "setModifier() - stringModifier: " + stringModifier
+        "addRow() - tableID: " + tableID + "\n" +
+        "addRow() - bodyRowsCount: " + bodyRowsCount + "\n" +
+        "addRow() - newRowColCount: " + newRowColCount + "\n" +
+        "addRow() - newRowID: " + newRowID
       );
     }
 
-    $("#" + ability + "Modifier").val("[ " + stringModifier + " ]");
-  } else {
-    $("#" + ability + "Modifier").val("");
-  }
-}
+    // to insert single row at end of tbody
+    var newRow = tableBody.get(0).insertRow(-1);
 
-function singleRoll(sides) {
-  var roll = Math.floor(Math.random() * sides) + 1;
-  return roll;
-}
-
-function rollDice(sides, number) {
-  var i;
-  var total = 0;
-  for (i = 1; i == number; i++) {
-    total = total + singleRoll(sides);
-  }
-  return total;
-}
-
-function expandAll() {
-  var questionCount = 3;
-  var expand = true;
-
-  if ($("#expandAll0").text() == "+ Expand all") {
-    expand = true;
-  } else {
-    expand = false;
-  }
-
-  if (expand == true) {
-    //Expand Everything
-    // change Expand All indicators
-    $(".expandIndicator").text("-");
-    $(".answerContainer").attr("style", "display: block;");
-    $(".expandAll").text("- Collapse all");
-    answersExpanded = questionCount;
-  } else {
-    //Collapse Everything
-    $(".expandIndicator").text("+");
-    $(".answerContainer").attr("style", "display: none;");
-    $(".expandAll").text("+ Expand all");
-    answersExpanded = 0;
-  }
-}
-
-function expandcontainer(identifier) {
-  var expandIndicator = "expandIndicator" + identifier;
-  var answerContainer = "answerContainer" + identifier;
-  var answerCount = 3;
-
-  if ($("#" + expandIndicator).text() == "+") {
-    //Expand Answer Container
-    $("#" + expandIndicator).text("-");
-    $("#" + answerContainer).attr("style", "display: block;");
-    answersExpanded++;
-    if (answersExpanded == answerCount) {
-      //All answers expanded
-      $(".expandAll").text("- Collapse all");
-    }
-  } else {
-    //Collapse Answer Container
-    $("#" + expandIndicator).text("+");
-    $("#" + answerContainer).attr("style", "display: none;");
-    answersExpanded--;
-    if (answersExpanded != answerCount) {
-      $(".expandAll").text("+ Expand all");
-    }
-  }
-}
-
-function setHeight(textAreaID) {
-  var textArea = $("#" + textAreaID);
-  textArea.height(40);
-  textArea.height(textArea.scrollHeight - 40);
-  if (debug == true) {
-    console.info("textarea.on() - textAreaID: ", textAreaID);
-    console.info("textarea.on() - textArea scrollHeight: ", textArea.scrollHeight);
-  }
-}
-
-function reindexBodyRows(tableID) {
-
-  if (debug == true) {
-    console.info("reindexBodyRows() - Reindexing table body: " + tableID);
-  }
-
-  var tableBody = $("#" + tableID + " tbody");
-  var bodyRows = tableBody.children("tr");
-  var bodyRowsCount = bodyRows.length;
-  var templateRow = bodyRows.get(0);
-  var bodyColCount = templateRow.cells.length;
-
-  if (debug == true) {
-    console.info("reindexBodyRows() - bodyRowsCount: " + bodyRowsCount);
-  }
-  if (debug == true) {
-    console.info("reindexBodyRows() - bodyColCount: " + bodyColCount);
-  }
-
-  for (var i = 0; i < bodyRowsCount; i++) {
-    for (var j = 0; j < bodyColCount; j++) {
+    // to create columns in new row
+    for (var i = 0; i < newRowColCount; i++) {
 
       if (debug == true) {
-        console.info("reindexBodyRows() - Row / Column: " + i + " / " + j);
+        console.info("addRow() - column: " + i);
       }
+
+      // to insert one column
+      var newCell = newRow.insertCell(i);
+      var templateCell = templateRow.cells[i];
+
+      // set to same as first data row
+      newCell.innerHTML = templateCell.innerHTML;
+
       // set new ID based upon triming existing cellid of format itemN
-      var templateCell = templateRow.cells[j];
       var templateCellID = templateCell.children[0].id;
-      if (debug == true) {
-        console.info("reindexBodyRows() - templateCellID: " + templateCellID);
-      }
       var templateCellIDPrefix = templateCellID.slice(0, -1);
+      var newCellID = templateCellIDPrefix + newRowID;
       if (debug == true) {
-        console.info("reindexBodyRows() - templateCellIDPrefix: " + templateCellIDPrefix);
+        console.info("addRow() - templateCellID: " + templateCellID);
       }
-      var cell = tableBody.get(0).rows[i].cells[j];
-      var newCellID = templateCellIDPrefix + i;
       if (debug == true) {
-        console.info("reindexBodyRows() - newCellID: " + newCellID);
+        console.info("addRow() - templateCellIDPrefix: " + templateCellIDPrefix);
       }
-      cell.children[0].id = newCellID;
+      if (debug == true) {
+        console.info("addRow() - newCellID: " + newCellID);
+      }
+      newCell.children[0].id = newCellID;
 
+      // set colspan
+      var templateCellColSpan = templateCell.getAttribute("colspan");
+      if (debug == true) {
+        console.info("addRow() - templateCellColSpan: " + templateCellColSpan);
+      }
+      newCell.setAttribute("colspan", templateCellColSpan);
+
+      // Blank or uncheck content
+      newCell.children[0].value = "";
+
+      // Ensure textarea heights are reset
+      if (newCell.type == "textarea") {
+        setHeight(newCellID);
+      }
     }
   }
-}
 
-function addRow(tableID) {
+  function totalLoad() {
+    //on change of any itemWeight elements add weight together and display in load
+    var tableBody = $("#gearTable tbody");
+    var bodyRows = tableBody.children("tr");
+    var bodyRowsCount = bodyRows.length;
+    if (debug == true) {
+      console.info("itemWeight.change() - gearTable bodyRowsCount:" + bodyRowsCount);
+    }
+    var totalload = 0;
+    var itemload = 0;
+    for (var i = 0; i < bodyRowsCount; i++) {
+      if (debug == true) {
+        console.info("itemID: itemWeight" + i);
+      }
+      itemload = parseInt($("#itemWeight" + i).val(), 10);
+      if (itemload) {
+        totalload = totalload + itemload;
+        if (debug == true) {
+          console.info(
+            "itemWeight.change() - itemload:" + itemload + "\n" +
+            "itemWeight.change() - totalload:" + totalload
+          );
+        }
+      }
+    }
 
-  // This works for any generic row but also assumes that any table row cells
-  // you are copying has an id of format id="tableid0" etc so that it
-  // can be incremented by 1 each time
-  // Note table items are zero indexed
-  var tableBody = $("#" + tableID + " tbody");
-  var bodyRows = tableBody.children("tr");
-  var bodyRowsCount = bodyRows.length;
-  var templateRow = bodyRows.get(0);
-  var newRowColCount = templateRow.cells.length;
-  var newRowID = bodyRowsCount;
-
-  if (debug == true) {
-    console.info(
-      "addRow() - tableID: " + tableID + "\n" +
-      "addRow() - bodyRowsCount: " + bodyRowsCount + "\n" +
-      "addRow() - newRowColCount: " + newRowColCount + "\n" +
-      "addRow() - newRowID: " + newRowID
-    );
+    $("#load").val(totalload);
   }
 
-  // to insert single row at end of tbody
-  var newRow = tableBody.get(0).insertRow(-1);
-
-  // to create columns in new row
-  for (var i = 0; i < newRowColCount; i++) {
-
+  function deleteRow(tableID, rowID) {
+    var tableBody = $("#" + tableID + " tbody");
+    var bodyRows = tableBody.children("tr");
+    var bodyRowsCount = bodyRows.length;
     if (debug == true) {
-      console.info("addRow() - column: " + i);
+      console.info("deleteRow() - bodyRowsCount: " + bodyRowsCount);
     }
-
-    // to insert one column
-    var newCell = newRow.insertCell(i);
-    var templateCell = templateRow.cells[i];
-
-    // set to same as first data row
-    newCell.innerHTML = templateCell.innerHTML;
-
-    // set new ID based upon triming existing cellid of format itemN
-    var templateCellID = templateCell.children[0].id;
-    var templateCellIDPrefix = templateCellID.slice(0, -1);
-    var newCellID = templateCellIDPrefix + newRowID;
-    if (debug == true) {
-      console.info("addRow() - templateCellID: " + templateCellID);
-    }
-    if (debug == true) {
-      console.info("addRow() - templateCellIDPrefix: " + templateCellIDPrefix);
-    }
-    if (debug == true) {
-      console.info("addRow() - newCellID: " + newCellID);
-    }
-    newCell.children[0].id = newCellID;
-
-    // set colspan
-    var templateCellColSpan = templateCell.getAttribute("colspan");
-    if (debug == true) {
-      console.info("addRow() - templateCellColSpan: " + templateCellColSpan);
-    }
-    newCell.setAttribute("colspan", templateCellColSpan);
-
-    // Blank or uncheck content
-    newCell.children[0].value = "";
-
-    // Ensure textarea heights are reset
-    if (newCell.type == "textarea") {
-      setHeight(newCellID);
+    if (bodyRowsCount != 1) {
+      if (debug == true) {
+        console.info("deleteRow() - Deleting Row: " + rowID);
+      }
+      tableBody.get(0).deleteRow(rowID);
+      reindexBodyRows(tableID);
+    } else {
+      console.warn("deleteRow() - Cannot delete last row: " + tableID);
     }
   }
-}
 
-function totalLoad() {
-  //on change of any itemWeight elements add weight together and display in load
-  var tableBody = $("#gearTable tbody");
-  var bodyRows = tableBody.children("tr");
-  var bodyRowsCount = bodyRows.length;
-  if (debug == true) {
-    console.info("itemWeight.change() - gearTable bodyRowsCount:" + bodyRowsCount);
-  }
-  var totalload = 0;
-  var itemload = 0;
-  for (var i = 0; i < bodyRowsCount; i++) {
-    if (debug == true) {
-      console.info("itemID: itemWeight" + i);
-    }
-    itemload = parseInt($("#itemWeight" + i).val(), 10);
-    if (itemload) {
-      totalload = totalload + itemload;
+  function setPlayerOptions() {
+    $.getJSON("data/playerList.json", function(data) {
+      $("#player").empty();
+      $("#player").append("<option hidden disabled selected></option>");
+      players = data.players;
       if (debug == true) {
         console.info(
-          "itemWeight.change() - itemload:" + itemload + "\n" +
-          "itemWeight.change() - totalload:" + totalload
-        );
+          "setPlayerOptions() - players: " + players);
       }
-    }
+      $.each(players, function(index, value) {
+        $("#player").append(new Option(value));
+      });
+    });
   }
 
-  $("#load").val(totalload);
-}
-
-function deleteRow(tableID, rowID) {
-  var tableBody = $("#" + tableID + " tbody");
-  var bodyRows = tableBody.children("tr");
-  var bodyRowsCount = bodyRows.length;
-  if (debug == true) {
-    console.info("deleteRow() - bodyRowsCount: " + bodyRowsCount);
+  function setAdventureOptions() {
+    $.getJSON("data/adventureList.json", function(data) {
+      $("#adventure").empty();
+      $("#adventure").append("<option hidden disabled selected></option>");
+      adventures = data.adventures;
+      if (debug == true) {
+        console.info(
+          "setAdventureOptions() - adventures: " + adventures);
+      }
+      $.each(adventures, function(index, value) {
+        $("#adventure").append(new Option(value));
+      });
+    });
   }
-  if (bodyRowsCount != 1) {
-    if (debug == true) {
-      console.info("deleteRow() - Deleting Row: " + rowID);
-    }
-    tableBody.get(0).deleteRow(rowID);
-    reindexBodyRows(tableID);
-  } else {
-    console.warn("deleteRow() - Cannot delete last row: " + tableID);
+
+  function setDwClassOptions() {
+    $.getJSON("data/classList.json", function(data) {
+      $("#dwClass").empty();
+      $("#dwClass").append("<option hidden disabled selected></option>");
+      classes = data.classes;
+      if (debug == true) {
+        console.info(
+          "setDwClassOptions() - classes: " + classes);
+      }
+      $.each(classes, function(index, value) {
+        $("#dwClass").append(new Option(value));
+      });
+    });
   }
-}
 
-function setPlayerOptions() {
-  $.getJSON("data/playerList.json", function(data) {
-    $("#player").empty();
-    $("#player").append("<option hidden disabled selected></option>");
-    players = data.players;
-    if (debug == true) {
-      console.info(
-        "setPlayerOptions() - players: " + players);
-    }
-    $.each(players, function(index, value) {
-      $("#player").append(new Option(value));
+  function setRaceOptions() {
+    $.getJSON("data/raceList.json", function(data) {
+      $("#race").empty();
+      $("#race").append("<option hidden disabled selected></option>");
+      races = data.races;
+      if (debug == true) {
+        console.info(
+          "setRaceOptions() - races: " + races);
+      }
+      $.each(races, function(index, value) {
+        $("#race").append(new Option(value));
+      });
     });
-  });
-}
-
-function setAdventureOptions() {
-  $.getJSON("data/adventureList.json", function(data) {
-    $("#adventure").empty();
-    $("#adventure").append("<option hidden disabled selected></option>");
-    adventures = data.adventures;
-    if (debug == true) {
-      console.info(
-        "setAdventureOptions() - adventures: " + adventures);
-    }
-    $.each(adventures, function(index, value) {
-      $("#adventure").append(new Option(value));
-    });
-  });
-}
-
-function setDwClassOptions() {
-  $.getJSON("data/classList.json", function(data) {
-    $("#dwClass").empty();
-    $("#dwClass").append("<option hidden disabled selected></option>");
-    classes = data.classes;
-    if (debug == true) {
-      console.info(
-        "setDwClassOptions() - classes: " + classes);
-    }
-    $.each(classes, function(index, value) {
-      $("#dwClass").append(new Option(value));
-    });
-  });
-}
-
-function setRaceOptions() {
-  $.getJSON("data/raceList.json", function(data) {
-    $("#race").empty();
-    $("#race").append("<option hidden disabled selected></option>");
-    races = data.races;
-    if (debug == true) {
-      console.info(
-        "setRaceOptions() - races: " + races);
-    }
-    $.each(races, function(index, value) {
-      $("#race").append(new Option(value));
-    });
-  });
-}
-
-$(document).ready(function() {
+  }
 
   // Set various drop down options
   setPlayerOptions();
