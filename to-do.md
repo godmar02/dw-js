@@ -1,11 +1,10 @@
 # TO DO
-- expanding text entry / word wrap (reset height on add row)
-- formatting
 - extensive value based testing
-- clear
 - save
 - prevent save with errors (item load & ability total)
 - load
+- formatting
 - dice roller
+- moves
 - default items
 - default bonds
