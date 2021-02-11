@@ -1,7 +1,3 @@
-* {
-  margin: 0;
-}
-
 button {
   font-size: 17px;
   background-color: #eee;
@@ -14,13 +10,13 @@ button {
   min-width: 40px;
 }
 
+button.deleteRow {
+  background: url(/images/icons/bin.png) center/15px no-repeat;
+}
+
 button:active,
 .grey {
   background-color: lightgrey;
-}
-
-button.deleteRow {
-  background: url(/images/icons/bin.png) center/15px no-repeat;
 }
 
 div.answerContainer {
@@ -60,13 +56,14 @@ p {
   font-size: 17px;
 }
 
-input {
+select,
+input,
+textarea {
+  box-sizing: border-box;
   display: inline-block;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  position: relative;
-  box-sizing: border-box;
   font-size: 17px;
   width: 100%;
   min-width: 100px;
@@ -75,6 +72,15 @@ input {
   border: 1px solid #A9A9A9;
   border-radius: 5px;
   text-align: center;
+  vertical-align: middle;
+}
+
+select {
+  background: url(/images/icons/down_arrow.png) no-repeat right;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 input.checkbox {
@@ -91,28 +97,6 @@ input.checkbox::after {
   content: "";
 }
 
-select {
-  display: inline-block;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-  box-sizing: border-box;
-  font-size: 17px;
-  width: 100%;
-  min-width: 100px;
-  height: 40px;
-  padding: 5px;
-  border: 1px solid #A9A9A9;
-  border-radius: 5px;
-  text-align: center;
-  background: url(/images/icons/down_arrow.png) no-repeat right;
-}
-
-select::-ms-expand {
-  display: none;
-}
-
 table {
   border-style: solid;
   border-width: medium;
@@ -120,21 +104,6 @@ table {
 }
 
 textarea {
-  display: inline-block;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-  box-sizing: border-box;
-  font-size: 17px;
-  width: 100%;
-  min-width: 100px;
-  min-height: 40px;
-  height: 40px;
-  padding: 10px;
-  border: 1px solid #A9A9A9;
-  border-radius: 5px;
-  text-align: center;
   resize: none;
   overflow: hidden;
 }
