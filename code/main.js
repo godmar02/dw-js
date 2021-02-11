@@ -5,6 +5,7 @@ $(document).ready(function() {
   var answersExpanded = 0;
   var abilityErrors = false;
   var loadErrors = false;
+  var db = firebase.firestore();
 
   // generic functions
   function setModifier(ability) {
