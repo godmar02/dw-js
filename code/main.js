@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   // variables
+  var debug = true;
   var answersExpanded = 0;
   var abilityErrors = false;
   var loadErrors = false;
