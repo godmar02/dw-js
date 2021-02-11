@@ -669,7 +669,7 @@ $(document).ready(function() {
     location.reload(true);
   });
 
-  $('textarea').on('input', function() {
+  $(document).on("change","textarea", function() {
     setHeight(this.id);
   });
 
