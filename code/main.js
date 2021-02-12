@@ -869,14 +869,14 @@ $(document).ready(function() {
               }
             }
           })
-          .then(function(docRef) {
+          .then(() => {
             if (debug == true) {
-              console.info("saveCharacter() - Document written with ID: ", docRef.id);
+              console.info("saveCharacter() - Document written with ID: ", characterSheet);
             }
             alert("Character Sheet succesfully saved!");
           })
-          .catch(function(error) {
-            console.error("Error adding document: ", error);
+          .catch((error) => {
+            console.error("Error writing document: ", error);
             alert("Failed to save Character Sheet, see console error");
           });
       } else {
