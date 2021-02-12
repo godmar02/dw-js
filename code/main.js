@@ -669,6 +669,10 @@ $(document).ready(function() {
     var charaName = $("#charaName").val();
 
     if (player && adventure && charaName) {
+      if (debug == true) {
+        console.info("$(#saveCharacter).click() - abilityErrors:", abilityErrors);
+        console.info("$(#saveCharacter).click() - loadErrors:", loadErrors);
+      }
       if (!abilityErrors || !loadErrors) {
         var backstory = $("#backstory").val();
         if (!backstory) {
