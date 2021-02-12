@@ -656,10 +656,15 @@ $(document).ready(function() {
   });
 
   $("#saveCharacter").click(function() {
+
+    var player =  $("#player").value();
+
     db.collection("characters").add({
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
+        "player": player,
+        "adventure": "Lovelace",
+        "character": {
+        "name": "test"
+        }
       })
       .then(function(docRef) {
         if (debug == true) {
