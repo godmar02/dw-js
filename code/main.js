@@ -813,7 +813,7 @@ $(document).ready(function() {
 
         // SAVE FUNCTION
         var doc = player + "_" + adventure + "_" + charaName;
-        doc = doc.replace(/ |\.|\(|\)|\"/g, "");
+        doc = doc.replace(/\W/g, "");
         if (debug == true) {
           console.info("doc: ", doc);
         }
@@ -897,7 +897,7 @@ $(document).ready(function() {
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
     var doc = player + "_" + adventure + "_" + charaName;
-    doc = doc.replace(/ |\.|\(|\)|\"/g, "");
+    doc = doc.replace(/\W/g, "");
     if (debug == true) {
       console.info("doc: ", doc);
     }
