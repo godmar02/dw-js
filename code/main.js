@@ -778,7 +778,7 @@ $(document).ready(function() {
         var itemsWeights = [];
         for (var j = 0; j < bodyRowsCount; j++) {
           items[j] = $("#item" + j).val();
-          if (!items[i]) {
+          if (!items[j]) {
             items[j] = null;
           }
           itemsWeights[j] = parseInt($("#itemWeight" + j).val(), 10);
