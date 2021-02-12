@@ -759,26 +759,31 @@ $(document).ready(function() {
       tableBody = $("#bondsTable tbody");
       bodyRows = tableBody.children("tr");
       bodyRowsCount = bodyRows.length;
+      var bond = [];
       for (var i = 0; i < bodyRowsCount; i++) {
-        //var bond + i = $("#bond" + i).val();
+        bond[i] = $("#bond" + i).val();
       }
 
       //gearTable
       tableBody = $("#gearTable tbody");
       bodyRows = tableBody.children("tr");
       bodyRowsCount = bodyRows.length;
+      var item = [];
+      var itemWeight = [];
       for (var j = 0; j < bodyRowsCount; j++) {
-        //var item + i = $("#item" + i).val();
-        //var itemWeight + i = parseInt($("#itemWeight" + i).val(), 10);
+        item[i] = $("#item" + i).val();
+        itemWeight[i] = parseInt($("#itemWeight" + i).val(), 10);
       }
 
       //classFeaturesTable
       tableBody = $("#classFeaturesTable tbody");
       bodyRows = tableBody.children("tr");
       bodyRowsCount = bodyRows.length;
+      var classFeature = [];
+      var classFeatureCheckbox = [];
       for (var k = 0; k < bodyRowsCount; k++) {
-        //var classFeatureCheckbox + i = $("#classFeatureCheckbox" + i).val();
-        //var classFeature + i = parseInt($("#classFeature" + i).val(), 10);
+        classFeatureCheckbox[i] = $("#classFeatureCheckbox" + i).val();
+        classFeature[i] = parseInt($("#classFeature" + i).val(), 10);
       }
 
       db.collection("characters").add({
@@ -792,18 +797,20 @@ $(document).ready(function() {
             "alignment": alignment,
             "level": level,
             "xp": xp,
-            "str": str,
-            "strAffliction": strAffliction,
-            "dex": dex,
-            "dexAffliction": dexAffliction,
-            "con": con,
-            "conAffliction": conAffliction,
-            "int": int,
-            "intAffliction": intAffliction,
-            "wis": wis,
-            "wisAffliction": wisAffliction,
-            "cha": cha,
-            "chaAffliction": chaAffliction,
+            "abilities": {
+              "str": str,
+              "strAffliction": strAffliction,
+              "dex": dex,
+              "dexAffliction": dexAffliction,
+              "con": con,
+              "conAffliction": conAffliction,
+              "int": int,
+              "intAffliction": intAffliction,
+              "wis": wis,
+              "wisAffliction": wisAffliction,
+              "cha": cha,
+              "chaAffliction": chaAffliction
+            },
             "armour": armour,
             "hp": hp,
             "funds": funds
