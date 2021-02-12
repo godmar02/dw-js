@@ -459,6 +459,7 @@ $(document).ready(function() {
       if (dwClass && race) {
         raceAttribute = data[dwClass].raceAttributes[race];
         $("#raceAttribute").val(raceAttribute);
+        setHeight(raceAttribute);
       } else {
         $("#raceAttribute").val("");
       }
@@ -526,6 +527,7 @@ $(document).ready(function() {
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
         $("#alignmentAttribute").val(alignmentAttribute);
+        setHeight(alignmentAttribute);
       } else {
         $("#alignmentAttribute").val("");
       }
