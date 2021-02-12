@@ -759,31 +759,31 @@ $(document).ready(function() {
       tableBody = $("#bondsTable tbody");
       bodyRows = tableBody.children("tr");
       bodyRowsCount = bodyRows.length;
-      var bond = [];
+      var bonds = [];
       for (var i = 0; i < bodyRowsCount; i++) {
-        bond[i] = $("#bond" + i).val();
+        bonds[i] = $("#bond" + i).val();
       }
 
       //gearTable
       tableBody = $("#gearTable tbody");
       bodyRows = tableBody.children("tr");
       bodyRowsCount = bodyRows.length;
-      var item = [];
-      var itemWeight = [];
+      var items = [];
+      var itemsWeights = [];
       for (var j = 0; j < bodyRowsCount; j++) {
-        item[i] = $("#item" + i).val();
-        itemWeight[i] = parseInt($("#itemWeight" + i).val(), 10);
+        items[i] = $("#item" + i).val();
+        itemsWeights[i] = parseInt($("#itemWeight" + i).val(), 10);
       }
 
       //classFeaturesTable
       tableBody = $("#classFeaturesTable tbody");
       bodyRows = tableBody.children("tr");
       bodyRowsCount = bodyRows.length;
-      var classFeature = [];
-      var classFeatureCheckbox = [];
+      var classFeatures = [];
+      var classFeaturesCheckboxes = [];
       for (var k = 0; k < bodyRowsCount; k++) {
-        classFeatureCheckbox[i] = $("#classFeatureCheckbox" + i).val();
-        classFeature[i] = parseInt($("#classFeature" + i).val(), 10);
+        classFeatures[i] = parseInt($("#classFeature" + i).val(), 10);
+        classFeaturesCheckboxes[i] = $("#classFeatureCheckbox" + i).val();
       }
 
       db.collection("characters").add({
@@ -825,9 +825,17 @@ $(document).ready(function() {
               "HP": HP,
               "funds": funds
             },
-            "bondsTable": {},
-            "gearTable": {},
-            "classFeaturesTable": {}
+            "bondsTable": {
+              "bonds": bonds
+            },
+            "gearTable": {
+              "items": items,
+              "itemsWeights": itemsWeights
+            },
+            "classFeaturesTable": {
+              "classFeatures": classFeatures,
+              "classFeaturesCheckboxes": classFeaturesCheckboxes
+            }
           }
         })
         .then(function(docRef) {
