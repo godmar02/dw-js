@@ -1,10 +1,10 @@
 # TO DO
-- extensive value based testing
-- checkbox size for firefox
-- max load error
+- validation checks
 - save validation
 - save replace
 - load
+- extensive value based testing
+- checkbox size for firefox
 - formatting
 - dice roller
 - moves
