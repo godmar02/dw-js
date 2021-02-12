@@ -794,7 +794,7 @@ $(document).ready(function() {
         var classFeatures = [];
         var classFeaturesCheckboxes = [];
         for (var k = 0; k < bodyRowsCount; k++) {
-          classFeatures[i] = parseInt($("#classFeature" + i).val(), 10);
+          classFeatures[i] = $("#classFeature" + i).val();
           if (!classFeatures[i]) {
             classFeatures[i] = null;
           }
