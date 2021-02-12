@@ -826,15 +826,15 @@ $(document).ready(function() {
               "funds": funds
             },
             "bondsTable": {
-              "bonds": bonds
+              "bonds": [bonds]
             },
             "gearTable": {
-              "items": items,
-              "itemsWeights": itemsWeights
+              "items": [items],
+              "itemsWeights": [itemsWeights]
             },
             "classFeaturesTable": {
-              "classFeatures": classFeatures,
-              "classFeaturesCheckboxes": classFeaturesCheckboxes
+              "classFeatures": [classFeatures],
+              "classFeaturesCheckboxes": [classFeaturesCheckboxes]
             }
           }
         })
