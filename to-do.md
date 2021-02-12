@@ -2,7 +2,6 @@
 - extensive value based testing
 - checkbox size for firefox
 - save
-- prevent save with errors (item load & ability total)
 - save replace
 - load
 - formatting

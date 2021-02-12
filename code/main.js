@@ -875,7 +875,11 @@ $(document).ready(function() {
             alert("Failed to save Character Sheet, see console error");
           });
       } else {
-        alert("Cannot save if total Item Weight or total Ability Score exceed maximum permitted values");
+        alert("Cannot save if total Item Weight or total Ability Score are invalid");
+        if (debug == true) {
+          console.warn("abilityErrors", abilityErrors);
+          console.warn("loadErrors", loadErrors);
+        }
       }
     } else {
       alert("Cannot save unless Player, Adventure and Character are completed");
