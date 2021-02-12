@@ -673,7 +673,7 @@ $(document).ready(function() {
         console.info("$(#saveCharacter).click() - abilityErrors:", abilityErrors);
         console.info("$(#saveCharacter).click() - loadErrors:", loadErrors);
       }
-      if (!abilityErrors || !loadErrors) {
+      if (!abilityErrors && !loadErrors) {
         var backstory = $("#backstory").val();
         if (!backstory) {
           backstory = null;
