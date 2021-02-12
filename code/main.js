@@ -559,6 +559,7 @@ $(document).ready(function() {
     } else {
       loadErrors = false;
     }
+    if (debug == true) {console.info("$(#load, #maxLoad).change() - loadErrors:",loadErrors);}
   });
 
   $("#str, #dex, #con, #int, #wis, #cha").change(function() {
@@ -588,6 +589,7 @@ $(document).ready(function() {
     } else {
       abilityErrors = false;
     }
+    if (debug == true) {console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - abilityErrors:",abilityErrors);}
 
   });
 
