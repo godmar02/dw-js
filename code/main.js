@@ -533,6 +533,21 @@ $(document).ready(function() {
     });
   });
 
+  $("#level").change(function() {
+    var lvl = $("#level").val();
+    if (lvl) {
+      var maxXP = parseInt(lvl, 10) + 7;
+      $("#maxXP").val("/ " + maxXP);
+      validateXP();
+    } else {
+      $("#maxXP").val("");
+    }
+  });
+
+  $("#XP").change(function() {
+    validateXP();
+  });
+
   $("#str").change(function() {
     var str = parseInt($(this).val(), 10);
     var dwClass = $("#dwClass").val();
@@ -587,30 +602,6 @@ $(document).ready(function() {
     });
   });
 
-  $(document).on("change", "[id^=itemWeight]", function() {
-    totalLoad();
-    validateLoad();
-  });
-
-  $("#level").change(function() {
-    var lvl = $("#level").val();
-    if (lvl) {
-      var maxXP = parseInt(lvl, 10) + 7;
-      $("#maxXP").val("/ " + maxXP);
-      validateXP();
-    } else {
-      $("#maxXP").val("");
-    }
-  });
-
-  $("#XP").change(function() {
-    validateXP();
-  });
-
-  $("#HP").change(function() {
-    validateHP();
-  });
-
   $(".ability, .abilityAffliction").change(function() {
     // Set Ability modifiers
     var ability = $(this).attr("id").replace("Affliction", "");
@@ -618,31 +609,13 @@ $(document).ready(function() {
     validateAbilityScore();
   });
 
-  $(".expandAll").click(function() {
-    expandAll();
+  $("#HP").change(function() {
+    validateHP();
   });
 
-  $(".question").click(function() {
-    var question = $(this).attr("id");
-    var identifier = question.slice(-1);
-    if (debug == true) {
-      console.info("$(.question).click() - question:", question);
-      console.info("$(.question).click() - identifier:", identifier);
-    }
-
-    expandcontainer(identifier);
-  });
-
-  $(".sheetLink").click(function() {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    $("#main").show();
-    $("#faq").hide();
-  });
-
-  $(".faqLink").click(function() {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    $("#main").hide();
-    $("#faq").show();
+  $(document).on("change", "[id^=itemWeight]", function() {
+    totalLoad();
+    validateLoad();
   });
 
   $(".addRow").click(function() {
@@ -668,12 +641,12 @@ $(document).ready(function() {
     }
   });
 
-  $("#clearCharacter").click(function() {
-    location.reload(true);
-  });
-
   $(document).on("change", "textarea", function() {
     setHeight(this.id);
+  });
+
+  $("#clearCharacter").click(function() {
+    location.reload(true);
   });
 
   $("#saveCharacter").click(function() {
@@ -921,4 +894,30 @@ $(document).ready(function() {
     });
   });
 
+  $(".faqLink").click(function() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $("#main").hide();
+    $("#faq").show();
+  });
+
+  $(".expandAll").click(function() {
+    expandAll();
+  });
+
+  $(".question").click(function() {
+    var question = $(this).attr("id");
+    var identifier = question.slice(-1);
+    if (debug == true) {
+      console.info("$(.question).click() - question:", question);
+      console.info("$(.question).click() - identifier:", identifier);
+    }
+
+    expandcontainer(identifier);
+  });
+
+  $(".sheetLink").click(function() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $("#main").show();
+    $("#faq").hide();
+  });
 });
