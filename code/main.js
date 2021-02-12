@@ -812,12 +812,12 @@ $(document).ready(function() {
         }
 
         // SAVE FUNCTION
-        var doc = player + "_" + adventure + "_" + charaName;
-        doc = doc.replace(/\W/g, "");
+        var characterSheet = player + "_" + adventure + "_" + charaName;
+        characterSheet = characterSheet.replace(/\W/g, "");
         if (debug == true) {
-          console.info("doc: ", doc);
+          console.info("characterSheet: ", characterSheet);
         }
-        db.collection("characters").doc(doc).set({
+        db.collection("characters").doc(characterSheet).set({
             "characterSheet": {
               "sheetHeaderTable": {
                 "player": player,
@@ -896,14 +896,14 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var doc = player + "_" + adventure + "_" + charaName;
-    doc = doc.replace(/\W/g, "");
+    var characterSheet = player + "_" + adventure + "_" + charaName;
+    characterSheet = characterSheet.replace(/\W/g, "");
     if (debug == true) {
-      console.info("doc: ", doc);
+      console.info("characterSheet: ", characterSheet);
     }
 
     if (player && adventure && charaName) {
-      db.collection("characters").doc(doc).get().then((doc) => {
+      db.collection("characters").doc(characterSheet).get().then((doc) => {
         if (doc.exists) {
           if (debug == true) {
             console.info("Document data:", doc.data());
