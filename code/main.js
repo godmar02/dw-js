@@ -567,10 +567,6 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on("change", "#load, #maxLoad", function() {
-
-  });
-
   $("#str, #dex, #con, #int, #wis, #cha").change(function() {
     var str = parseInt($("#str").val(), 10);
     var dex = parseInt($("#dex").val(), 10);
