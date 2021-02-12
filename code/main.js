@@ -846,7 +846,7 @@ $(document).ready(function() {
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
-          alert("Failed to save Character Sheet, see console error")
+          alert("Failed to save Character Sheet, see console error");
         });
     } else {
       alert("Cannot save unless Player, Adventure and Character are completed");
