@@ -1,28 +1,10 @@
 $(document).ready(function() {
 
-  // Require Firebase
-  //const firebase = require("firebase");
-
-  // Required for side-effects
-  //require("firebase/firestore");
-
-  // Initialise Firebase
-  /*firebase.initializeApp({
-    apiKey: "AIzaSyAIKYE0kZAcB5AzAmuiNB37BFjoiO6AY6g",
-    authDomain: "dungeon-world-45d46.firebaseapp.com",
-    projectId: "dungeon-world-45d46",
-    storageBucket: "dungeon-world-45d46.appspot.com",
-    messagingSenderId: "226498870916",
-    appId: "1:226498870916:web:7cbaa58a3a178f1afeccd1",
-    measurementId: "G-YTPKF0BTK9"
-  });*/
-
   // variables
   var debug = true;
   var answersExpanded = 0;
   var abilityErrors = false;
   var loadErrors = false;
-  //var db = firebase.firestore();
 
   // generic functions
   function setModifier(ability) {
@@ -674,7 +656,7 @@ $(document).ready(function() {
   });
 
   $("#saveCharacter").click(function() {
-    db.collection("users").add({
+    db.collection("characters").add({
         first: "Ada",
         last: "Lovelace",
         born: 1815
@@ -690,7 +672,7 @@ $(document).ready(function() {
   });
 
   $("#loadCharacter").click(function() {
-    db.collection("users").get().then((querySnapshot) => {
+    db.collection("characters").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (debug == true) {
           console.info(`${doc.id} => ${doc.data()}`);
