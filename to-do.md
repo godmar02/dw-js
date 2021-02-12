@@ -1,6 +1,7 @@
 # TO DO
-- validation checks
-- save validation
+- extending bug for adding rows
+- extending field bug for race and alignment
+- extending field bug (on keypress not on moving off field)
 - save replace
 - load
 - extensive value based testing
