@@ -665,23 +665,22 @@ $(document).ready(function() {
     var dwClass = $("#dwClass").val();
     var race = $("#race").val();
     var alignment = $("#alignment").val();
-    var level = $("#level").val();
-    var xp = $("#xp").val();
-    var str = $("#str").val();
-    var dex = $("#dex").val();
-    var con = $("#con").val();
-    var int = $("#int").val();
-    var wis = $("#wis").val();
-    var cha = $("#cha").val();
-    var strAffliction = $("#strAffliction").val();
+    var level = parseInt($("#level").val(), 10);
+    var xp = parseInt($("#xp").val(), 10);
+    var str = parseInt($("#str").val(), 10);
+    var dex = parseInt($("#dex").val(), 10);
+    var con = parseInt($("#con").val(), 10);
+    var int = parseInt($("#int").val(), 10);
+    var wis = parseInt($("#wis").val(), 10);
+    var cha = parseInt($("#cha").val(), 10);
     var dexAffliction = $("#dexAffliction").val();
     var conAffliction = $("#conAffliction").val();
     var intAffliction = $("#intAffliction").val();
     var wisAffliction = $("#wisAffliction").val();
     var chaAffliction = $("#chaAffliction").val();
-    var armour = $("#armour").val();
-    var hp = $("#hp").val();
-    var funds = $("#funds").val();
+    var armour = parseInt($("#armour").val(), 10);
+    var hp = parseInt($("#hp").val(), 10);
+    var funds = parseInt($("#funds").val(), 10);
     var tableBody;
     var bodyRows = 0;
     var bodyRowsCount = 0;
@@ -714,9 +713,30 @@ $(document).ready(function() {
 
     db.collection("characters").add({
         "player": player,
-        "adventure": "Lovelace",
+        "adventure": adventure,
         "character": {
-          "name": "test"
+          "character": character,
+          "look": look,
+          "dwClass": dwClass,
+          "race": race,
+          "alignment": alignment,
+          "level": level,
+          "xp": xp,
+          "str": str,
+          "strAffliction": strAffliction,
+          "dex": dex,
+          "dexAffliction": dexAffliction,
+          "con": con,
+          "conAffliction": conAffliction,
+          "int": int,
+          "intAffliction": intAffliction,
+          "wis": wis,
+          "wisAffliction": wisAffliction,
+          "cha": cha,
+          "chaAffliction": chaAffliction,
+          "armour": armour,
+          "hp": hp,
+          "funds": funds
         }
       })
       .then(function(docRef) {
