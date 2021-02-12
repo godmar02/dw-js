@@ -812,7 +812,7 @@ $(document).ready(function() {
         }
 
         // SAVE FUNCTION
-        var characterSheet = player + "_" + adventure + "_" + charaName;
+        var characterSheet = player + adventure + charaName;
         characterSheet = characterSheet.replace(/\W/g, "");
         if (debug == true) {
           console.info("characterSheet: ", characterSheet);
@@ -896,7 +896,7 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var characterSheet = player + "_" + adventure + "_" + charaName;
+    var characterSheet = player + adventure + charaName;
     characterSheet = characterSheet.replace(/\W/g, "");
     if (debug == true) {
       console.info("characterSheet: ", characterSheet);
