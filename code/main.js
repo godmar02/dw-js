@@ -132,7 +132,7 @@ $(document).ready(function() {
       console.info("textarea.on() - textAreaID:", textAreaID);
     }
     textArea.outerHeight(40);
-    var newHeight = textArea.prop("scrollHeight") + 2 ;
+    var newHeight = textArea.prop("scrollHeight") + 2;
     if (debug == true) {
       console.info("textarea.on() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
       console.info("textarea.on() - newHeight:", newHeight);
@@ -651,19 +651,72 @@ $(document).ready(function() {
     location.reload(true);
   });
 
-  $(document).on("change","textarea", function() {
+  $(document).on("change", "textarea", function() {
     setHeight(this.id);
   });
 
   $("#saveCharacter").click(function() {
 
-    var player =  $("#player").value();
+    var player = $("#player").val();
+    var adventure = $("#adventure").val();
+    var character = $("#character").val();
+    var backstory = $("#backstory").val();
+    var look = $("#look").val();
+    var dwClass = $("#dwClass").val();
+    var race = $("#race").val();
+    var alignment = $("#alignment").val();
+    var level = $("#level").val();
+    var xp = $("#xp").val();
+    var str = $("#str").val();
+    var dex = $("#dex").val();
+    var con = $("#con").val();
+    var int = $("#int").val();
+    var wis = $("#wis").val();
+    var cha = $("#cha").val();
+    var strAffliction = $("#strAffliction").val();
+    var dexAffliction = $("#dexAffliction").val();
+    var conAffliction = $("#conAffliction").val();
+    var intAffliction = $("#intAffliction").val();
+    var wisAffliction = $("#wisAffliction").val();
+    var chaAffliction = $("#chaAffliction").val();
+    var armour = $("#armour").val();
+    var hp = $("#hp").val();
+    var funds = $("#funds").val();
+    var tableBody;
+    var bodyRows = 0;
+    var bodyRowsCount = 0;
+
+    //bondsTable
+    tableBody = $("#bondsTable tbody");
+    bodyRows = tableBody.children("tr");
+    bodyRowsCount = bodyRows.length;
+    for (var i = 0; i < bodyRowsCount; i++) {
+      //var bond + i = $("#bond" + i).val();
+    }
+
+    //gearTable
+    tableBody = $("#gearTable tbody");
+    bodyRows = tableBody.children("tr");
+    bodyRowsCount = bodyRows.length;
+    for (var j = 0; j < bodyRowsCount; j++) {
+      //var item + i = $("#item" + i).val();
+      //var itemWeight + i = parseInt($("#itemWeight" + i).val(), 10);
+    }
+
+    //classFeaturesTable
+    tableBody = $("#classFeaturesTable tbody");
+    bodyRows = tableBody.children("tr");
+    bodyRowsCount = bodyRows.length;
+    for (var k = 0; k < bodyRowsCount; k++) {
+      //var classFeatureCheckbox + i = $("#classFeatureCheckbox" + i).val();
+      //var classFeature + i = parseInt($("#classFeature" + i).val(), 10);
+    }
 
     db.collection("characters").add({
         "player": player,
         "adventure": "Lovelace",
         "character": {
-        "name": "test"
+          "name": "test"
         }
       })
       .then(function(docRef) {
