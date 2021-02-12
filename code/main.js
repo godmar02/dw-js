@@ -812,7 +812,7 @@ $(document).ready(function() {
         }
 
         // SAVE FUNCTION
-        var doc = player + "/" + adventure + "/" + charaName;
+        var doc = player + "." + adventure + "." + charaName;
         db.collection("characters").doc(doc).set({
             "characterSheet": {
               "sheetHeaderTable": {
@@ -892,28 +892,28 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var doc = player + "/" + adventure + "/" + charaName;
+    var doc = player + "." + adventure + "." + charaName;
 
-    if (player && adventure && charaName){
-
-    db.collection("characters").doc().get().then((doc) => {
-      if (doc.exists) {
-        if (debug == true) {
-          console.info("Document data:", doc.data());
+    if (player && adventure && charaName) {
+      db.collection("characters").doc(doc).get().then((doc) => {
+        if (doc.exists) {
+          if (debug == true) {
+            console.info("Document data:", doc.data());
+          }
+        } else {
+          // doc.data() will be undefined in this case
+          if (debug == true) {
+            alert("No Character Sheet found");
+            console.warn("No such document in collection", doc);
+          }
         }
-      } else {
-        // doc.data() will be undefined in this case
+      }).catch((error) => {
         if (debug == true) {
-          alert("No Character Sheet found");
-          console.warn("No such document in collection", doc);
+          alert("Failed to load character, see console error");
+          console.error("Error getting document:", error);
         }
-      }
-    }).catch((error) => {
-      if (debug == true) {
-        alert("Failed to load character, see console error");
-        console.error("Error getting document:", error);
-      }
-    });} else {
+      });
+    } else {
       alert("Cannot load unless Player, Adventure and Character are completed");
     }
   });
