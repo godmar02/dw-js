@@ -403,6 +403,24 @@ $(document).ready(function() {
     }
   }
 
+  function validateXP() {
+    var XP = $(this).val();
+    var maxXP = parseInt($("#maxXP").val().replace("/ ", ""), 10);
+    if (XP && maxXP && XP > maxXP) {
+      alert(XP + "XP exceeds maximum permitted value of " + maxXP);
+      $(this).val(maxXP);
+    }
+  }
+
+  function validateHP() {
+    var HP = $(this).val();
+    var maxHP = parseInt($("#maxHP").val().replace("/ ", ""), 10);
+    if (HP && maxHP && HP > maxHP) {
+      alert(HP + "HP exceeds maximum permitted value of " + maxHP);
+      $(this).val(maxHP);
+    }
+  }
+
   // Set various drop down options
   setPlayerOptions();
   setAdventureOptions();
@@ -472,6 +490,7 @@ $(document).ready(function() {
           console.info("$(#dwClass).change() - maxHP:", maxHP);
         }
         $("#maxHP").val("/ " + maxHP);
+        validateXP();
       } else {
         $("#maxHP").val("");
       }
@@ -561,6 +580,7 @@ $(document).ready(function() {
         }
 
         $("#maxHP").val("/ " + maxHP);
+        validateXP();
       } else {
         $("#maxHP").val("");
       }
@@ -577,37 +597,25 @@ $(document).ready(function() {
     if (lvl) {
       var maxXP = parseInt(lvl, 10) + 7;
       $("#maxXP").val("/ " + maxXP);
+      validateXP();
     } else {
       $("#maxXP").val("");
     }
   });
 
-  $("#XP, #maxXP").change(function() {
-    var XP = $(this).val();
-    var maxXP = parseInt($("#maxXP").val().replace("/ ", ""), 10);
-    if (XP && maxXP && XP > maxXP) {
-      alert(XP + "XP exceeds maximum permitted value of " + maxXP);
-      $(this).val(maxXP);
-    }
+  $("#XP").change(function() {
+    validateXP();
   });
 
-  $("#HP, #maxHP").change(function() {
-    var HP = $(this).val();
-    var maxHP = parseInt($("#maxHP").val().replace("/ ", ""), 10);
-    if (HP && maxHP && HP > maxHP) {
-      alert(HP + "HP exceeds maximum permitted value of " + maxHP);
-      $(this).val(maxHP);
-    }
-  });
-
-  $("#str, #dex, #con, #int, #wis, #cha").change(function() {
-    validateAbilityScore();
+  $("#HP").change(function() {
+    validateHP();
   });
 
   $(".ability, .abilityAffliction").change(function() {
     // Set Ability modifiers
     var ability = $(this).attr("id").replace("Affliction", "");
     setModifier(ability);
+    validateAbilityScore();
   });
 
   $(".expandAll").click(function() {
