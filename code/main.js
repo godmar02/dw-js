@@ -641,7 +641,7 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on("change", "textarea", function() {
+  $(document).on("onKeyPress", "textarea", function() {
     setHeight(this.id);
   });
 
