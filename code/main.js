@@ -370,6 +370,39 @@ $(document).ready(function() {
     }
   }
 
+  function validateAbilityScore() {
+    var str = parseInt($("#str").val(), 10);
+    var dex = parseInt($("#dex").val(), 10);
+    var con = parseInt($("#con").val(), 10);
+    var int = parseInt($("#int").val(), 10);
+    var wis = parseInt($("#wis").val(), 10);
+    var cha = parseInt($("#cha").val(), 10);
+    var maxAbility = 73; //16, 15, 13, 12, 9, 8
+    var totalAbility = str + dex + con + int + wis + cha;
+
+    if (debug == true) {
+      console.info("validateAbilityScore() - str:", str);
+      console.info("validateAbilityScore() - dex:", dex);
+      console.info("validateAbilityScore() - con:", con);
+      console.info("validateAbilityScore() - int:", int);
+      console.info("validateAbilityScore() - wis:", wis);
+      console.info("validateAbilityScore() - cha:", cha);
+      console.info("validateAbilityScore() - maxAbility:", maxAbility);
+      console.info("validateAbilityScore() - totalAbility:", totalAbility);
+    }
+
+    if (str && dex && con && int && wis && cha && totalAbility != maxAbility) {
+      alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility + "\n" + "Suggested values are 16, 15, 13, 12, 9, 8");
+      abilityErrors = true;
+    } else {
+      abilityErrors = false;
+    }
+
+    if (debug == true) {
+      console.info("validateAbilityScore() - abilityErrors:", abilityErrors);
+    }
+  }
+
   // Set various drop down options
   setPlayerOptions();
   setAdventureOptions();
@@ -568,37 +601,7 @@ $(document).ready(function() {
   });
 
   $("#str, #dex, #con, #int, #wis, #cha").change(function() {
-    var str = parseInt($("#str").val(), 10);
-    var dex = parseInt($("#dex").val(), 10);
-    var con = parseInt($("#con").val(), 10);
-    var int = parseInt($("#int").val(), 10);
-    var wis = parseInt($("#wis").val(), 10);
-    var cha = parseInt($("#cha").val(), 10);
-    var maxAbility = 73; //16, 15, 13, 12, 9, 8
-    var totalAbility = str + dex + con + int + wis + cha;
-
-    if (debug == true) {
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - str:", str);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - dex:", dex);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - con:", con);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - int:", int);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - wis:", wis);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - cha:", cha);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - maxAbility:", maxAbility);
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - totalAbility:", totalAbility);
-    }
-
-    if (str && dex && con && int && wis && cha && totalAbility != maxAbility) {
-      alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility + "\n" + "Suggested values are 16, 15, 13, 12, 9, 8");
-      abilityErrors = true;
-    } else {
-      abilityErrors = false;
-    }
-
-    if (debug == true) {
-      console.info("$(#str, #dex, #con, #int, #wis, #cha).change() - abilityErrors:", abilityErrors);
-    }
-
+    validateAbilityScore();
   });
 
   $(".ability, .abilityAffliction").change(function() {
