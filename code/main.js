@@ -762,6 +762,7 @@ $(document).ready(function() {
       var bonds = [];
       for (var i = 0; i < bodyRowsCount; i++) {
         bonds[i] = $("#bond" + i).val();
+        if (!bonds[i]) {bonds[i] = null; }
       }
 
       //gearTable
@@ -772,7 +773,9 @@ $(document).ready(function() {
       var itemsWeights = [];
       for (var j = 0; j < bodyRowsCount; j++) {
         items[i] = $("#item" + i).val();
+        if (!items[i]) {items[i] = null; }
         itemsWeights[i] = parseInt($("#itemWeight" + i).val(), 10);
+        if (!itemsWeights[i]) {itemsWeights[i] = null; }
       }
 
       //classFeaturesTable
@@ -783,8 +786,12 @@ $(document).ready(function() {
       var classFeaturesCheckboxes = [];
       for (var k = 0; k < bodyRowsCount; k++) {
         classFeatures[i] = parseInt($("#classFeature" + i).val(), 10);
+        if (!classFeatures[i]) {classFeatures[i] = null; }
         classFeaturesCheckboxes[i] = $("#classFeatureCheckbox" + i).val();
+        if (!classFeaturesCheckboxes[i]) {classFeaturesCheckboxes[i] = null; }
       }
+
+      //array debug
       if (debug == true) {
         console.info("bonds",bonds);
         console.info("items",items);
@@ -793,6 +800,7 @@ $(document).ready(function() {
         console.info("classFeaturesCheckboxes",classFeaturesCheckboxes);
       }
 
+      // SAVE FUNCTION
       db.collection("characters").add({
           "characterSheet": {
             "sheetHeaderTable": {
