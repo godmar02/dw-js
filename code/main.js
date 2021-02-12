@@ -357,7 +357,7 @@ $(document).ready(function() {
   }
 
   function validateLoad() {
-    var load = parseInt($("#Load").val(), 10);
+    var load = parseInt($("#load").val(), 10);
     var maxLoad = parseInt($("#maxLoad").val().replace("/ ", ""), 10);
     if (load && maxLoad && load > maxLoad) {
       alert(load + " weight exceeds maximum permitted value of " + maxLoad);
