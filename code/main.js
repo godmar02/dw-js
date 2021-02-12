@@ -660,93 +660,166 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var backstory = $("#backstory").val();
-    var look = $("#look").val();
-    var dwClass = $("#dwClass").val();
-    var race = $("#race").val();
-    var alignment = $("#alignment").val();
-    var level = parseInt($("#level").val(), 10);
-    var xp = parseInt($("#xp").val(), 10);
-    var str = parseInt($("#str").val(), 10);
-    var dex = parseInt($("#dex").val(), 10);
-    var con = parseInt($("#con").val(), 10);
-    var int = parseInt($("#int").val(), 10);
-    var wis = parseInt($("#wis").val(), 10);
-    var cha = parseInt($("#cha").val(), 10);
-    var dexAffliction = $("#dexAffliction").val();
-    var conAffliction = $("#conAffliction").val();
-    var intAffliction = $("#intAffliction").val();
-    var wisAffliction = $("#wisAffliction").val();
-    var chaAffliction = $("#chaAffliction").val();
-    var armour = parseInt($("#armour").val(), 10);
-    var hp = parseInt($("#hp").val(), 10);
-    var funds = parseInt($("#funds").val(), 10);
-    var tableBody;
-    var bodyRows = 0;
-    var bodyRowsCount = 0;
 
-    //bondsTable
-    tableBody = $("#bondsTable tbody");
-    bodyRows = tableBody.children("tr");
-    bodyRowsCount = bodyRows.length;
-    for (var i = 0; i < bodyRowsCount; i++) {
-      //var bond + i = $("#bond" + i).val();
+    if (player && adventure && charaName) {
+      var backstory = $("#backstory").val();
+      if (!backstory) {
+        backstory = null;
+      }
+      var look = $("#look").val();
+      if (!look) {
+        look = null;
+      }
+      var dwClass = $("#dwClass").val();
+      if (!dwClass) {
+        dwClass = null;
+      }
+      var race = $("#race").val();
+      if (!race) {
+        race = null;
+      }
+      var alignment = $("#alignment").val();
+      if (!alignment) {
+        alignment = null;
+      }
+      var level = parseInt($("#level").val(), 10);
+      if (!level) {
+        level = null;
+      }
+      var xp = parseInt($("#xp").val(), 10);
+      if (!xp) {
+        xp = null;
+      }
+      var str = parseInt($("#str").val(), 10);
+      if (!str) {
+        str = null;
+      }
+      var dex = parseInt($("#dex").val(), 10);
+      if (!dex) {
+        dex = null;
+      }
+      var con = parseInt($("#con").val(), 10);
+      if (!con) {
+        con = null;
+      }
+      var int = parseInt($("#int").val(), 10);
+      if (!int) {
+        int = null;
+      }
+      var wis = parseInt($("#wis").val(), 10);
+      if (!wis) {
+        wis = null;
+      }
+      var cha = parseInt($("#cha").val(), 10);
+      if (!cha) {
+        cha = null;
+      }
+      var strAffliction = $("#strAffliction").val();
+      if (!strAffliction) {
+        strAffliction = null;
+      }
+      var dexAffliction = $("#dexAffliction").val();
+      if (!dexAffliction) {
+        dexAffliction = null;
+      }
+      var conAffliction = $("#conAffliction").val();
+      if (!conAffliction) {
+        conAffliction = null;
+      }
+      var intAffliction = $("#intAffliction").val();
+      if (!intAffliction) {
+        intAffliction = null;
+      }
+      var wisAffliction = $("#wisAffliction").val();
+      if (!wisAffliction) {
+        wisAffliction = null;
+      }
+      var chaAffliction = $("#chaAffliction").val();
+      if (!chaAffliction) {
+        chaAffliction = null;
+      }
+      var armour = parseInt($("#armour").val(), 10);
+      if (!armour) {
+        armour = null;
+      }
+      var hp = parseInt($("#hp").val(), 10);
+      if (!hp) {
+        hp = null;
+      }
+      var funds = parseInt($("#funds").val(), 10);
+      if (!funds) {
+        funds = null;
+      }
+
+      var tableBody;
+      var bodyRows = 0;
+      var bodyRowsCount = 0;
+
+      //bondsTable
+      tableBody = $("#bondsTable tbody");
+      bodyRows = tableBody.children("tr");
+      bodyRowsCount = bodyRows.length;
+      for (var i = 0; i < bodyRowsCount; i++) {
+        //var bond + i = $("#bond" + i).val();
+      }
+
+      //gearTable
+      tableBody = $("#gearTable tbody");
+      bodyRows = tableBody.children("tr");
+      bodyRowsCount = bodyRows.length;
+      for (var j = 0; j < bodyRowsCount; j++) {
+        //var item + i = $("#item" + i).val();
+        //var itemWeight + i = parseInt($("#itemWeight" + i).val(), 10);
+      }
+
+      //classFeaturesTable
+      tableBody = $("#classFeaturesTable tbody");
+      bodyRows = tableBody.children("tr");
+      bodyRowsCount = bodyRows.length;
+      for (var k = 0; k < bodyRowsCount; k++) {
+        //var classFeatureCheckbox + i = $("#classFeatureCheckbox" + i).val();
+        //var classFeature + i = parseInt($("#classFeature" + i).val(), 10);
+      }
+
+      db.collection("characters").add({
+          "player": player,
+          "adventure": adventure,
+          "character": {
+            "charaName": charaName,
+            "look": look,
+            "dwClass": dwClass,
+            "race": race,
+            "alignment": alignment,
+            "level": level,
+            "xp": xp,
+            "str": str,
+            "strAffliction": strAffliction,
+            "dex": dex,
+            "dexAffliction": dexAffliction,
+            "con": con,
+            "conAffliction": conAffliction,
+            "int": int,
+            "intAffliction": intAffliction,
+            "wis": wis,
+            "wisAffliction": wisAffliction,
+            "cha": cha,
+            "chaAffliction": chaAffliction,
+            "armour": armour,
+            "hp": hp,
+            "funds": funds
+          }
+        })
+        .then(function(docRef) {
+          if (debug == true) {
+            console.info("saveCharacter() - Document written with ID: ", docRef.id);
+          }
+        })
+        .catch(function(error) {
+          console.error("Error adding document: ", error);
+        });
+    } else {
+      alert("Cannot save unless Player, Adventure and Character are completed");
     }
-
-    //gearTable
-    tableBody = $("#gearTable tbody");
-    bodyRows = tableBody.children("tr");
-    bodyRowsCount = bodyRows.length;
-    for (var j = 0; j < bodyRowsCount; j++) {
-      //var item + i = $("#item" + i).val();
-      //var itemWeight + i = parseInt($("#itemWeight" + i).val(), 10);
-    }
-
-    //classFeaturesTable
-    tableBody = $("#classFeaturesTable tbody");
-    bodyRows = tableBody.children("tr");
-    bodyRowsCount = bodyRows.length;
-    for (var k = 0; k < bodyRowsCount; k++) {
-      //var classFeatureCheckbox + i = $("#classFeatureCheckbox" + i).val();
-      //var classFeature + i = parseInt($("#classFeature" + i).val(), 10);
-    }
-
-    db.collection("characters").add({
-        "player": player,
-        "adventure": adventure,
-        "character": {
-          "charaName": charaName,
-          "look": look,
-          "dwClass": dwClass,
-          "race": race,
-          "alignment": alignment,
-          "level": level,
-          "xp": xp,
-          "str": str,
-          "strAffliction": strAffliction,
-          "dex": dex,
-          "dexAffliction": dexAffliction,
-          "con": con,
-          "conAffliction": conAffliction,
-          "int": int,
-          "intAffliction": intAffliction,
-          "wis": wis,
-          "wisAffliction": wisAffliction,
-          "cha": cha,
-          "chaAffliction": chaAffliction,
-          "armour": armour,
-          "hp": hp,
-          "funds": funds
-        }
-      })
-      .then(function(docRef) {
-        if (debug == true) {
-          console.info("saveCharacter() - Document written with ID: ", docRef.id);
-        }
-      })
-      .catch(function(error) {
-        console.error("Error adding document: ", error);
-      });
   });
 
   $("#loadCharacter").click(function() {
