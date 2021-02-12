@@ -662,7 +662,7 @@ $(document).ready(function() {
     var charaName = $("#charaName").val();
 
     if (player && adventure && charaName) {
-      if (abilityErrors || loadErrors) {
+      if (!abilityErrors || !loadErrors) {
         var backstory = $("#backstory").val();
         if (!backstory) {
           backstory = null;
