@@ -812,7 +812,8 @@ $(document).ready(function() {
         }
 
         // SAVE FUNCTION
-        var doc = player + "." + adventure + "." + charaName;
+        var doc = player + "_" + adventure + "_" + charaName;
+        doc = doc.replace(" ", "");
         db.collection("characters").doc(doc).set({
             "characterSheet": {
               "sheetHeaderTable": {
@@ -892,7 +893,8 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var doc = player + "." + adventure + "." + charaName;
+    var doc = player + "_" + adventure + "_" + charaName;
+    doc = doc.replace(" ", "");
 
     if (player && adventure && charaName) {
       db.collection("characters").doc(doc).get().then((doc) => {
