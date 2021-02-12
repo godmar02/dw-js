@@ -404,7 +404,7 @@ $(document).ready(function() {
   }
 
   function validateXP() {
-    var XP = $(this).val();
+    var XP = $("#XP").val();
     var maxXP = parseInt($("#maxXP").val().replace("/ ", ""), 10);
     if (XP && maxXP && XP > maxXP) {
       alert(XP + "XP exceeds maximum permitted value of " + maxXP);
@@ -413,7 +413,7 @@ $(document).ready(function() {
   }
 
   function validateHP() {
-    var HP = $(this).val();
+    var HP = $("#HP").val();
     var maxHP = parseInt($("#maxHP").val().replace("/ ", ""), 10);
     if (HP && maxHP && HP > maxHP) {
       alert(HP + "HP exceeds maximum permitted value of " + maxHP);
