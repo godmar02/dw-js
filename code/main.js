@@ -550,7 +550,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#load, #maxLoad").change(function() {
+  $(document).on("change", "#load, #maxLoad", function() {
     var load = $(this).val();
     var maxLoad = parseInt($("#maxLoad").val().replace("/ ", ""), 10);
     if (load && maxLoad && load > maxLoad) {
