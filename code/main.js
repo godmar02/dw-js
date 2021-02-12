@@ -686,9 +686,9 @@ $(document).ready(function() {
       if (!level) {
         level = null;
       }
-      var xp = parseInt($("#xp").val(), 10);
-      if (!xp) {
-        xp = null;
+      var XP = parseInt($("#XP").val(), 10);
+      if (!XP) {
+        XP = null;
       }
       var str = parseInt($("#str").val(), 10);
       if (!str) {
@@ -742,9 +742,9 @@ $(document).ready(function() {
       if (!armour) {
         armour = null;
       }
-      var hp = parseInt($("#hp").val(), 10);
-      if (!hp) {
-        hp = null;
+      var HP = parseInt($("#HP").val(), 10);
+      if (!HP) {
+        HP = null;
       }
       var funds = parseInt($("#funds").val(), 10);
       if (!funds) {
@@ -787,17 +787,26 @@ $(document).ready(function() {
       }
 
       db.collection("characters").add({
-          "player": player,
-          "adventure": adventure,
-          "character": {
-            "charaName": charaName,
-            "look": look,
-            "dwClass": dwClass,
-            "race": race,
-            "alignment": alignment,
-            "level": level,
-            "xp": xp,
-            "abilities": {
+          "characterSheet": {
+            "sheetHeaderTable": {
+              "player": player,
+              "adventure": adventure
+            },
+            "basicInfoTable": {
+              "charaName": charaName,
+              "look": look,
+              "backstory": backstory
+            },
+            "additionalInfoTable": {
+              "dwClass": dwClass,
+              "race": race,
+              "alignment": alignment
+            },
+            "basicAttributesTable": {
+              "level": level,
+              "XP": XP
+            },
+            "abilitiesTable": {
               "str": str,
               "strAffliction": strAffliction,
               "dex": dex,
@@ -811,15 +820,21 @@ $(document).ready(function() {
               "cha": cha,
               "chaAffliction": chaAffliction
             },
-            "armour": armour,
-            "hp": hp,
-            "funds": funds
+            "damageArmourFundsTable": {
+              "armour": armour,
+              "HP": HP,
+              "funds": funds
+            },
+            "bondsTable": {},
+            "gearTable": {},
+            "classFeaturesTable": {}
           }
         })
         .then(function(docRef) {
           if (debug == true) {
             console.info("saveCharacter() - Document written with ID: ", docRef.id);
           }
+          alert("Character succesfully saved!");
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
