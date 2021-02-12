@@ -812,7 +812,8 @@ $(document).ready(function() {
         }
 
         // SAVE FUNCTION
-        db.collection("characters").add({
+        var doc = player + "/" + adventure + "/" + character ;
+        db.collection("characters").doc(doc).set({
             "characterSheet": {
               "sheetHeaderTable": {
                 "player": player,
