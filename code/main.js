@@ -659,7 +659,7 @@ $(document).ready(function() {
 
     var player = $("#player").val();
     var adventure = $("#adventure").val();
-    var character = $("#character").val();
+    var charaName = $("#charaName").val();
     var backstory = $("#backstory").val();
     var look = $("#look").val();
     var dwClass = $("#dwClass").val();
@@ -715,7 +715,7 @@ $(document).ready(function() {
         "player": player,
         "adventure": adventure,
         "character": {
-          "character": charaName,
+          "charaName": charaName,
           "look": look,
           "dwClass": dwClass,
           "race": race,
