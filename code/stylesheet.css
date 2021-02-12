@@ -11,7 +11,16 @@ button {
 }
 
 button.deleteRow {
-  background: url(/images/icons/bin.png) center/15px no-repeat;
+  background: #eee url(/images/icons/bin.png) center/15px no-repeat;
+  opacity: 0.5;
+}
+
+button.addRow {
+  opacity: 0.5;
+}
+
+button.deleteRow:hover, button.addRow:hover {
+  opacity: 1.0;
 }
 
 button:active,
