@@ -826,7 +826,7 @@ $(document).ready(function() {
               "funds": funds
             },
             "bondsTable": {
-              "bonds": [bonds]
+              "bonds": bonds
             },
             "gearTable": {
               "items": items,
