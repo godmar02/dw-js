@@ -777,13 +777,13 @@ $(document).ready(function() {
         var items = [];
         var itemsWeights = [];
         for (var j = 0; j < bodyRowsCount; j++) {
-          items[i] = $("#item" + i).val();
+          items[j] = $("#item" + j).val();
           if (!items[i]) {
-            items[i] = null;
+            items[j] = null;
           }
-          itemsWeights[i] = parseInt($("#itemWeight" + i).val(), 10);
-          if (!itemsWeights[i]) {
-            itemsWeights[i] = null;
+          itemsWeights[j] = parseInt($("#itemWeight" + j).val(), 10);
+          if (!itemsWeights[j]) {
+            itemsWeights[j] = null;
           }
         }
 
@@ -794,13 +794,13 @@ $(document).ready(function() {
         var classFeatures = [];
         var classFeaturesCheckboxes = [];
         for (var k = 0; k < bodyRowsCount; k++) {
-          classFeatures[i] = $("#classFeature" + i).val();
-          if (!classFeatures[i]) {
-            classFeatures[i] = null;
+          classFeatures[k] = $("#classFeature" + k).val();
+          if (!classFeatures[k]) {
+            classFeatures[k] = null;
           }
-          classFeaturesCheckboxes[i] = $("#classFeatureCheckbox" + i).val();
-          if (!classFeaturesCheckboxes[i]) {
-            classFeaturesCheckboxes[i] = null;
+          classFeaturesCheckboxes[k] = $("#classFeatureCheckbox" + k).val();
+          if (!classFeaturesCheckboxes[k]) {
+            classFeaturesCheckboxes[k] = null;
           }
         }
 
