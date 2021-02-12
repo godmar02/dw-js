@@ -715,7 +715,7 @@ $(document).ready(function() {
         "player": player,
         "adventure": adventure,
         "character": {
-          "character": character,
+          "character": charaName,
           "look": look,
           "dwClass": dwClass,
           "race": race,
