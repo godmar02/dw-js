@@ -785,6 +785,13 @@ $(document).ready(function() {
         classFeatures[i] = parseInt($("#classFeature" + i).val(), 10);
         classFeaturesCheckboxes[i] = $("#classFeatureCheckbox" + i).val();
       }
+      if (debug == true) {
+        console.info("bonds",bonds);
+        console.info("items",items);
+        console.info("itemsWeights",itemsWeights);
+        console.info("classFeatures",classFeatures);
+        console.info("classFeaturesCheckboxes",classFeaturesCheckboxes);
+      }
 
       db.collection("characters").add({
           "characterSheet": {
@@ -826,15 +833,15 @@ $(document).ready(function() {
               "funds": funds
             },
             "bondsTable": {
-              "bonds": bonds
+              "bonds": null
             },
             "gearTable": {
-              "items": items,
-              "itemsWeights": itemsWeights
+              "items": null,
+              "itemsWeights": null
             },
             "classFeaturesTable": {
-              "classFeatures": classFeatures,
-              "classFeaturesCheckboxes": classFeaturesCheckboxes
+              "classFeatures": null,
+              "classFeaturesCheckboxes": null
             }
           }
         })
