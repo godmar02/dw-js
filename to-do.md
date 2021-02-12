@@ -1,7 +1,8 @@
 # TO DO
 - extensive value based testing
 - checkbox size for firefox
-- save
+- max load error
+- save validation
 - save replace
 - load
 - formatting
