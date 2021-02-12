@@ -8,18 +8,14 @@ button {
   cursor: pointer;
   height: 40px;
   min-width: 40px;
+  opacity: 0.5;
 }
 
 button.deleteRow {
   background: #eee url(/images/icons/bin.png) center/15px no-repeat;
-  opacity: 0.5;
 }
 
-button.addRow {
-  opacity: 0.5;
-}
-
-button.deleteRow:hover, button.addRow:hover {
+button:hover {
   opacity: 1.0;
 }
 
