@@ -812,7 +812,7 @@ $(document).ready(function() {
         }
 
         // SAVE FUNCTION
-        var doc = player + "/" + adventure + "/" + character ;
+        var doc = player + "/" + adventure + "/" + charaName;
         db.collection("characters").doc(doc).set({
             "characterSheet": {
               "sheetHeaderTable": {
@@ -888,12 +888,29 @@ $(document).ready(function() {
   });
 
   $(document).on("click", "#loadCharacter", function() {
-    db.collection("characters").get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
+
+    var player = $("#player").val();
+    var adventure = $("#adventure").val();
+    var charaName = $("#charaName").val();
+    var doc = player + "/" + adventure + "/" + charaName;
+
+    db.collection("characters").doc().get().then((doc) => {
+      if (doc.exists) {
         if (debug == true) {
-          console.info(`${doc.id} => ${doc.data()}`);
+          console.info("Document data:", doc.data());
         }
-      });
+      } else {
+        // doc.data() will be undefined in this case
+        if (debug == true) {
+          alert("No Character Sheet found");
+          console.warn("No such document in collection", doc);
+        }
+      }
+    }).catch((error) => {
+      if (debug == true) {
+        alert("Failed to load character, see console error");
+        console.error("Error getting document:", error);
+      }
     });
   });
 
