@@ -894,6 +894,8 @@ $(document).ready(function() {
     var charaName = $("#charaName").val();
     var doc = player + "/" + adventure + "/" + charaName;
 
+    if (player && adventure && charaName){
+
     db.collection("characters").doc().get().then((doc) => {
       if (doc.exists) {
         if (debug == true) {
@@ -911,7 +913,9 @@ $(document).ready(function() {
         alert("Failed to load character, see console error");
         console.error("Error getting document:", error);
       }
-    });
+    });} else {
+      alert("Cannot load unless Player, Adventure and Character are completed");
+    }
   });
 
   $(document).on("click", ".faqLink", function() {
