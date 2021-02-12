@@ -428,7 +428,7 @@ $(document).ready(function() {
   setRaceOptions();
 
   //listener functions
-  $("#dwClass, #race, #alignment").change(function() {
+  $(document).on("change", "#dwClass, #race, #alignment", function() {
     var race = $("#race").val();
     var dwClass = $("#dwClass").val();
     var alignment = $("#alignment").val();
@@ -533,7 +533,7 @@ $(document).ready(function() {
     });
   });
 
-  $("#level").change(function() {
+  $(document).on("change", "#level", function() {
     var lvl = $("#level").val();
     if (lvl) {
       var maxXP = parseInt(lvl, 10) + 7;
@@ -544,11 +544,11 @@ $(document).ready(function() {
     }
   });
 
-  $("#XP").change(function() {
+  $(document).on("change", "#XP", function() {
     validateXP();
   });
 
-  $("#str").change(function() {
+  $(document).on("change", "#str", function() {
     var str = parseInt($(this).val(), 10);
     var dwClass = $("#dwClass").val();
     var baseLoad = 0;
@@ -575,7 +575,7 @@ $(document).ready(function() {
     });
   });
 
-  $("#con").change(function() {
+  $(document).on("change", "#con", function() {
     var con = parseInt($(this).val(), 10);
     var dwClass = $("#dwClass").val();
     var baseHP = 0;
@@ -602,14 +602,14 @@ $(document).ready(function() {
     });
   });
 
-  $(".ability, .abilityAffliction").change(function() {
+  $(document).on("change", ".ability, .abilityAffliction", function() {
     // Set Ability modifiers
     var ability = $(this).attr("id").replace("Affliction", "");
     setModifier(ability);
     validateAbilityScore();
   });
 
-  $("#HP").change(function() {
+  $(document).on("change", "#HP", function() {
     validateHP();
   });
 
@@ -618,7 +618,7 @@ $(document).ready(function() {
     validateLoad();
   });
 
-  $(".addRow").click(function() {
+  $(document).on("click", ".addRow", function() {
     var tableID = $(this).closest("table").attr("id");
     if (debug == true) {
       console.info("$(.addRow).click() - tableID:", tableID);
@@ -645,11 +645,11 @@ $(document).ready(function() {
     setHeight(this.id);
   });
 
-  $("#clearCharacter").click(function() {
+  $(document).on("click", "#clearCharacter", function() {
     location.reload(true);
   });
 
-  $("#saveCharacter").click(function() {
+  $(document).on("click", "#saveCharacter", function() {
 
     var player = $("#player").val();
     var adventure = $("#adventure").val();
@@ -884,7 +884,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#loadCharacter").click(function() {
+  $(document).on("click", "#loadCharacter", function() {
     db.collection("characters").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         if (debug == true) {
@@ -894,17 +894,17 @@ $(document).ready(function() {
     });
   });
 
-  $(".faqLink").click(function() {
+  $(document).on("click", ".faqLink", function() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     $("#main").hide();
     $("#faq").show();
   });
 
-  $(".expandAll").click(function() {
+  $(document).on("click", ".expandAll", function() {
     expandAll();
   });
 
-  $(".question").click(function() {
+  $(document).on("click", ".question", function() {
     var question = $(this).attr("id");
     var identifier = question.slice(-1);
     if (debug == true) {
@@ -915,7 +915,7 @@ $(document).ready(function() {
     expandcontainer(identifier);
   });
 
-  $(".sheetLink").click(function() {
+  $(document).on("click", ".sheetLink", function() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     $("#main").show();
     $("#faq").hide();
