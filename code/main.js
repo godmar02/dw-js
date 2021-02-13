@@ -566,11 +566,14 @@ $(document).ready(function() {
     });
   }
 
-  // Set various drop down options
+  // Set various drop down options and size cells
   setPlayerOptions();
   setAdventureOptions();
   setDwClassOptions();
   setRaceOptions();
+  setHeight(bond0);
+  setHeight(item0);
+  setHeight(classFeature0);
 
   //listener functions
   $(document).on("change", "#dwClass, #race, #alignment", function() {
