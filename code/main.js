@@ -250,9 +250,9 @@ $(document).ready(function() {
 
       // Ensure textarea heights are reset
       if (debug == true) {
-        console.info("addRow() - newCell.type:", newCell.type);
+        console.info("addRow() - newCell.children[0].type:", newCell.children[0].type);
       }
-      if (newCell.type == "textarea") {
+      if (newCell.children[0].type == "textarea") {
         if (debug == true) {
           console.info("addRow() - resetting height:", true);
         }
