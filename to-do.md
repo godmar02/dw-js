@@ -5,9 +5,9 @@
 - save replace
 - load
 - extensive value based testing
+- moves tab
 - checkbox size for firefox
 - formatting
 - dice roller
-- moves
 - default items
 - default bonds

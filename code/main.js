@@ -470,7 +470,8 @@ $(document).ready(function() {
         if (debug == true) {
           console.info("$(#dwClass).change() - baseLoad:", baseLoad);
         }
-        maxLoad = baseLoad + str;
+        var strModifier =parseInt($("#strModifier").val().replace(/\W/g, ""),10);
+        maxLoad = baseLoad + strModifier;
         if (debug == true) {
           console.info("$(#dwClass).change() - maxLoad:", maxLoad);
         }
@@ -796,7 +797,7 @@ $(document).ready(function() {
           if (!classFeatures[k]) {
             classFeatures[k] = null;
           }
-          classFeaturesCheckboxes[k] = $("#classFeatureCheckbox" + k).val();
+          classFeaturesCheckboxes[k] = $("#classFeatureCheckbox" + k).is(':checked');
           if (!classFeaturesCheckboxes[k]) {
             classFeaturesCheckboxes[k] = null;
           }
