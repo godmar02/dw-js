@@ -848,9 +848,7 @@ $(document).ready(function() {
               "armour": armour,
               "HP": HP,
               "funds": funds,
-              "bonds": {
-                "bonds": bonds
-              },
+              "bonds": bonds,
               "gear": {
                 "items": items,
                 "itemsWeights": itemsWeights
@@ -929,7 +927,23 @@ $(document).ready(function() {
           $("#HP").val(chara.HP);
           $("#funds").val(chara.funds);
 
-          //TO DO ARRAYS
+          //TO DO ARRAYS (BONDS, ITEMS, FEATURES)
+          //$.each(chara.bonds, function(index, value) {
+          //  $("#bond" + i).val(Option(value));;
+          //});
+          //$.each(chara.gear.items, function(index, value) {
+          //  $("#item" + i).val(Option(value));;
+          //});
+          //$.each(chara.gear.itemsWeights, function(index, value) {
+          //  $("#itemWeight" + i).val(Option(value));;
+          //});
+          //$.each(chara.classFeatures.classFeatures, function(index, value) {
+          //  $("#classFeature" + i).val(Option(value));;
+          //});
+          //$.each(chara.classFeatures.classFeaturesCheckboxes, function(index, value) {
+          //  $("#classFeatureCheckbox" + i).val(Option(value));;
+          //});
+
         } else {
           // doc.data() will be undefined in this case
           if (debug == true) {
