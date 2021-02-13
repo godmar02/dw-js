@@ -249,6 +249,9 @@ $(document).ready(function() {
       newCell.children[0].value = "";
 
       // Ensure textarea heights are reset
+      if (debug == true) {
+        console.info("addRow() - newCell.type:", newCell.type);
+      }
       if (newCell.type == "textarea") {
         if (debug == true) {
           console.info("addRow() - resetting height:", true);
