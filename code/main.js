@@ -916,8 +916,7 @@ $(document).ready(function() {
             console.info("Document data:", doc.data());
           }
           var chara = loadedData.characterSheet;
-          location.reload(true);
-
+          
           $("#player").val(chara.player);
           $("#adventure").val(chara.adventure);
           $("#charaName").val(chara.charaName);
