@@ -571,9 +571,9 @@ $(document).ready(function() {
   setAdventureOptions();
   setDwClassOptions();
   setRaceOptions();
-  setHeight(bond0);
-  setHeight(item0);
-  setHeight(classFeature0);
+  //setHeight(bond0);
+  //setHeight(item0);
+  //setHeight(classFeature0);
 
   //listener functions
   $(document).on("change", "#dwClass, #race, #alignment", function() {
