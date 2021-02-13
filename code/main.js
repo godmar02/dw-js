@@ -911,7 +911,7 @@ $(document).ready(function() {
     if (player && adventure && charaName) {
       db.collection("characters").doc(characterSheet).get().then((doc) => {
         if (doc.exists) {
-          var loadedData = JSON.parse(doc.data());
+          var loadedData = doc.data();
           if (debug == true) {
             console.info("Document data:", doc.data());
           }
