@@ -1,12 +1,11 @@
 # TO DO
-- extending bug for adding rows
 - load
 - extensive value based testing
 - character drop down / add new character?
 - moves tab
 - campaign notes tab
 - checkbox size for firefox
-- formatting
+- formatting (inc sizing for default rows)
 - dice roller
 - default items
 - default bonds

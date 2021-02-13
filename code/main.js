@@ -261,26 +261,26 @@ $(document).ready(function() {
     }
   }
 
-  function totalLoad() {
+  function setTotalLoad() {
     //on change of any itemWeight elements add weight together and display in load
     var tableBody = $("#gearTable tbody");
     var bodyRows = tableBody.children("tr");
     var bodyRowsCount = bodyRows.length;
     if (debug == true) {
-      console.info("totalLoad() - gearTable bodyRowsCount:" + bodyRowsCount);
+      console.info("setTotalLoad() - gearTable bodyRowsCount:" + bodyRowsCount);
     }
     var totalload = 0;
     var itemload = 0;
     for (var i = 0; i < bodyRowsCount; i++) {
       if (debug == true) {
-        console.info("totalLoad() - itemID: itemWeight" + i);
+        console.info("setTotalLoad() - itemID: itemWeight" + i);
       }
       itemload = parseInt($("#itemWeight" + i).val(), 10);
       if (itemload) {
         totalload = totalload + itemload;
         if (debug == true) {
-          console.info("totalLoad() - itemload:", itemload);
-          console.info("totalLoad() - totalload:", totalload);
+          console.info("setTotalLoad() - itemload:", itemload);
+          console.info("setTotalLoad() - totalload:", totalload);
         }
       }
     }
@@ -628,7 +628,7 @@ $(document).ready(function() {
   });
 
   $(document).on("change", "[id^=itemWeight]", function() {
-    totalLoad();
+    setTotalLoad();
     validateLoad();
   });
 
@@ -651,7 +651,7 @@ $(document).ready(function() {
     }
     deleteRow(tableID, row);
     if (tableID == "gearTable") {
-      totalLoad();
+      setTotalLoad();
     }
   });
 
@@ -916,7 +916,7 @@ $(document).ready(function() {
             console.info("Document data:", doc.data());
           }
           var chara = loadedData.characterSheet;
-          
+
           $("#player").val(chara.player);
           $("#adventure").val(chara.adventure);
           $("#charaName").val(chara.charaName);
@@ -925,9 +925,9 @@ $(document).ready(function() {
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
           $("#alignment").val(chara.alignment);
-          $("#level").val(chara.level);
-          $("#XP").val(chara.XP);
-          $("#str").val(chara.abilities.tr);
+          $("#level").val(chara.basicAttributes.level);
+          $("#XP").val(chara.basicAttributes.XP);
+          $("#str").val(chara.abilities.str);
           $("#dex").val(chara.abilities.dex);
           $("#con").val(chara.abilities.con);
           $("#int").val(chara.abilities.int);
@@ -959,6 +959,19 @@ $(document).ready(function() {
           //$.each(chara.classFeatures.classFeaturesCheckboxes, function(index, value) {
           //  $("#classFeatureCheckbox" + i).val(Option(value));;
           //});
+
+          // Recalculating sheet
+          setMaxHP();
+          setMaxXP();
+          setDamage();
+          setTotalLoad();
+          setMaxLoad();
+          setModifier(str);
+          setModifier(dex);
+          setModifier(con);
+          setModifier(int);
+          setModifier(wis);
+          setModifier(cha);
 
         } else {
           // doc.data() will be undefined in this case
