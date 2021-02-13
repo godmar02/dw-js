@@ -1,11 +1,10 @@
 # TO DO
 - extending bug for adding rows
-- extending field bug for race and alignment
-- extending field bug (on keypress not on moving off field)
-- save replace
 - load
 - extensive value based testing
+- character drop down / add new character?
 - moves tab
+- campaign notes tab
 - checkbox size for firefox
 - formatting
 - dice roller

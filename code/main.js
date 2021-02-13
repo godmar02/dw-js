@@ -250,6 +250,9 @@ $(document).ready(function() {
 
       // Ensure textarea heights are reset
       if (newCell.type == "textarea") {
+        if (debug == true) {
+          console.info("addRow() - resetting height:", true);
+        }
         setHeight(newCellID);
       }
     }
