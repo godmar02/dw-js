@@ -127,7 +127,7 @@ $(document).ready(function() {
   }
 
   function setHeight(textAreaID) {
-    var textArea = $("#" + textAreaID);
+    var textArea = $(textAreaID);
     if (debug == true) {
       console.info("textarea.on() - textAreaID:", textAreaID);
     }
@@ -459,7 +459,7 @@ $(document).ready(function() {
       if (dwClass && race) {
         raceAttribute = data[dwClass].raceAttributes[race];
         $("#raceAttribute").val(raceAttribute);
-        setHeight(raceAttribute);
+        setHeight("#raceAttribute");
       } else {
         $("#raceAttribute").val("");
       }
@@ -527,7 +527,7 @@ $(document).ready(function() {
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
         $("#alignmentAttribute").val(alignmentAttribute);
-        setHeight(alignmentAttribute);
+        setHeight("#alignmentAttribute");
       } else {
         $("#alignmentAttribute").val("");
       }
