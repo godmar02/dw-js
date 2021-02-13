@@ -647,7 +647,11 @@ $(document).ready(function() {
   });
 
   $(document).on("onKeyPress", "textarea", function() {
-    setHeight("#" + this.id);
+    var textAreaID = "#" + this.id ;
+    if (debug == true) {
+      console.info("textarea.onKeyPress() - textAreaID:", textAreaID);
+    }
+    setHeight(textAreaID);
   });
 
   $(document).on("click", "#clearCharacter", function() {
