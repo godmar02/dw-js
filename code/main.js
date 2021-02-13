@@ -470,7 +470,7 @@ $(document).ready(function() {
         if (debug == true) {
           console.info("$(#dwClass).change() - baseLoad:", baseLoad);
         }
-        var strModifier =parseInt($("#strModifier").val().replace(/\W/g, ""),10);
+        var strModifier =parseInt($("#strModifier").val().replace(/\[|\]/g, ""),10);
         maxLoad = baseLoad + strModifier;
         if (debug == true) {
           console.info("$(#dwClass).change() - maxLoad:", maxLoad);
