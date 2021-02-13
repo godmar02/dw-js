@@ -126,18 +126,18 @@ $(document).ready(function() {
     }
   }
 
-  function setHeight(textAreaID) {
-    var textArea = $(textAreaID);
+  function setHeight(textareaID) {
+    var textarea = $("#" + textareaID);
     if (debug == true) {
-      console.info("setHeight() - textAreaID:", textAreaID);
+      console.info("setHeight() - textareaID:", textareaID);
     }
-    textArea.outerHeight(40);
-    var newHeight = textArea.prop("scrollHeight") + 2;
+    textarea.outerHeight(40);
+    var newHeight = textarea.prop("scrollHeight") + 2;
     if (debug == true) {
-      console.info("setHeight() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
+      console.info("setHeight() - textarea.prop(scrollHeight):", textarea.prop("scrollHeight"));
       console.info("setHeight() - newHeight:", newHeight);
     }
-    textArea.outerHeight(newHeight);
+    textarea.outerHeight(newHeight);
   }
 
   function reindexBodyRows(tableID) {
@@ -496,7 +496,7 @@ $(document).ready(function() {
       if (dwClass && race) {
         raceAttribute = data[dwClass].raceAttributes[race];
         $("#raceAttribute").val(raceAttribute);
-        setHeight("#raceAttribute");
+        setHeight("raceAttribute");
       } else {
         $("#raceAttribute").val("");
       }
@@ -552,7 +552,7 @@ $(document).ready(function() {
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
         $("#alignmentAttribute").val(alignmentAttribute);
-        setHeight("#alignmentAttribute");
+        setHeight("alignmentAttribute");
       } else {
         $("#alignmentAttribute").val("");
       }
@@ -647,11 +647,11 @@ $(document).ready(function() {
   });
 
   $(document).on("onKeyPress", "textarea", function() {
-    var textAreaID = "#" + this.id ;
+    var textareaID = this.id;
     if (debug == true) {
-      console.info("textarea.onKeyPress() - textAreaID:", textAreaID);
+      console.info("textarea.onKeyPress() - textareaID:", textareaID);
     }
-    setHeight(textAreaID);
+    setHeight(textareaID);
   });
 
   $(document).on("click", "#clearCharacter", function() {
