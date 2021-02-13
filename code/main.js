@@ -646,10 +646,10 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on("onKeyPress", "textarea", function() {
+  $(document).on("keypress", "textarea", function() {
     var textareaID = this.id;
     if (debug == true) {
-      console.info("textarea.onKeyPress() - textareaID:", textareaID);
+      console.info("textarea.keypress() - textareaID:", textareaID);
     }
     setHeight(textareaID);
   });
