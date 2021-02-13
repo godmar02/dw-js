@@ -129,13 +129,13 @@ $(document).ready(function() {
   function setHeight(textAreaID) {
     var textArea = $(textAreaID);
     if (debug == true) {
-      console.info("textarea.on() - textAreaID:", textAreaID);
+      console.info("setHeight() - textAreaID:", textAreaID);
     }
     textArea.outerHeight(40);
     var newHeight = textArea.prop("scrollHeight") + 2;
     if (debug == true) {
-      console.info("textarea.on() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
-      console.info("textarea.on() - newHeight:", newHeight);
+      console.info("setHeight() - textArea.prop(scrollHeight):", textArea.prop("scrollHeight"));
+      console.info("setHeight() - newHeight:", newHeight);
     }
     textArea.outerHeight(newHeight);
   }
@@ -261,20 +261,20 @@ $(document).ready(function() {
     var bodyRows = tableBody.children("tr");
     var bodyRowsCount = bodyRows.length;
     if (debug == true) {
-      console.info("itemWeight.change() - gearTable bodyRowsCount:" + bodyRowsCount);
+      console.info("totalLoad() - gearTable bodyRowsCount:" + bodyRowsCount);
     }
     var totalload = 0;
     var itemload = 0;
     for (var i = 0; i < bodyRowsCount; i++) {
       if (debug == true) {
-        console.info("itemID: itemWeight" + i);
+        console.info("totalLoad() - itemID: itemWeight" + i);
       }
       itemload = parseInt($("#itemWeight" + i).val(), 10);
       if (itemload) {
         totalload = totalload + itemload;
         if (debug == true) {
-          console.info("itemWeight.change() - itemload:", itemload);
-          console.info("itemWeight.change() - totalload:", totalload);
+          console.info("totalLoad() - itemload:", itemload);
+          console.info("totalLoad() - totalload:", totalload);
         }
       }
     }
@@ -423,7 +423,7 @@ $(document).ready(function() {
 
   function setMaxLoad() {
     var str = parseInt($("#str").val(), 10);
-    var strModifier = parseInt($("#strModifier").val().replace(/\[|\]/g, ""),10);
+    var strModifier = parseInt($("#strModifier").val().replace(/\[|\]/g, ""), 10);
     var dwClass = $("#dwClass").val();
     var baseLoad = 0;
     var maxLoad = 0;
@@ -450,41 +450,49 @@ $(document).ready(function() {
     });
   }
 
-  // Set various drop down options
-  setPlayerOptions();
-  setAdventureOptions();
-  setDwClassOptions();
-  setRaceOptions();
+  function setMaxHP() {
 
-  //listener functions
-  $(document).on("change", "#dwClass, #race, #alignment", function() {
-    var race = $("#race").val();
     var dwClass = $("#dwClass").val();
-    var alignment = $("#alignment").val();
-    var str = parseInt($("#str").val(), 10);
     var con = parseInt($("#con").val(), 10);
-    var change = $(this).attr("id");
-    var raceAttribute = "";
-    var alignmentAttribute = "";
-    var alignments = [];
-    var damage = "";
-    var baseLoad = 0;
     var baseHP = 0;
-    var maxLoad = 0;
     var maxHP = 0;
 
-    if (debug == true) {
-      console.info("$(#dwClass, #race, #alignment).change() - change:", change);
-      console.info("$(#dwClass, #race, #alignment).change() - race:", race);
-      console.info("$(#dwClass, #race, #alignment).change() - dwClass:", dwClass);
-      console.info("$(#dwClass, #race, #alignment).change() - alignment:", alignment);
-      console.info("$(#dwClass, #race, #alignment).change() - str:", str);
-      console.info("$(#dwClass, #race, #alignment).change() - con:", con);
+    $.getJSON("data/classDetails.json", function(data) {
+      if (dwClass && con) {
+        baseHP = parseInt(data[dwClass].baseHP, 10);
+        if (debug == true) {
+          console.info("setMaxHP() - baseHP:", baseHP);
+        }
+        maxHP = baseHP + con;
+        if (debug == true) {
+          console.info("setMaxHP() - maxHP:", maxHP);
+        }
+        $("#maxHP").val("/ " + maxHP);
+        validateXP();
+      } else {
+        $("#maxHP").val("");
+      }
+    });
+  }
+
+  function setMaxXP() {
+    var lvl = $("#level").val();
+    if (lvl) {
+      var maxXP = parseInt(lvl, 10) + 7;
+      $("#maxXP").val("/ " + maxXP);
+      validateXP();
+    } else {
+      $("#maxXP").val("");
     }
+  }
+
+  function setRaceAttribute() {
+
+    var dwClass = $("#dwClass").val();
+    var race = $("#race").val();
+    var raceAttribute = "";
 
     $.getJSON("data/classDetails.json", function(data) {
-
-      // Set race attribute
       if (dwClass && race) {
         raceAttribute = data[dwClass].raceAttributes[race];
         $("#raceAttribute").val(raceAttribute);
@@ -492,53 +500,54 @@ $(document).ready(function() {
       } else {
         $("#raceAttribute").val("");
       }
+    });
+  }
 
-      // Set MaxLoad
-      setMaxLoad();
+  function setDamage() {
 
-      // Set MaxHP
-      if (dwClass && con) {
-        baseHP = parseInt(data[dwClass].baseHP, 10);
-        if (debug == true) {
-          console.info("$(#dwClass).change() - baseHP:", baseHP);
-        }
-        maxHP = baseHP + con;
-        if (debug == true) {
-          console.info("$(#dwClass).change() - maxHP:", maxHP);
-        }
-        $("#maxHP").val("/ " + maxHP);
-        validateXP();
-      } else {
-        $("#maxHP").val("");
-      }
+    var dwClass = $("#dwClass").val();
+    var damage = "";
 
-      // Set damage
+    $.getJSON("data/classDetails.json", function(data) {
       if (dwClass) {
         damage = data[dwClass].damage;
         if (debug == true) {
-          console.info("$(#dwClass).change() - damage:", damage);
+          console.info("setDamage() - damage:", damage);
         }
         $("#damage").val(damage);
       } else {
         $("#damage").val("");
       }
+    });
+  }
 
-      // Set alignment options if class is changing
-      if (change == "dwClass") {
-        $("#alignment").empty();
-        $("#alignment").append("<option hidden disabled selected></option>");
-        if (dwClass) {
-          alignments = data[dwClass].alignments;
-          if (debug == true) {
-            console.info("$(#dwClass).change() - alignments:", alignments);
-          }
-          $.each(alignments, function(index, value) {
-            $("#alignment").append(new Option(value));
-          });
+  function setAlignmentOptions() {
+
+    var dwClass = $("#dwClass").val();
+    var alignments = [];
+
+    $.getJSON("data/classDetails.json", function(data) {
+      $("#alignment").empty();
+      $("#alignment").append("<option hidden disabled selected></option>");
+      if (dwClass) {
+        alignments = data[dwClass].alignments;
+        if (debug == true) {
+          console.info("setAlignmentOptions() - alignments:", alignments);
         }
+        $.each(alignments, function(index, value) {
+          $("#alignment").append(new Option(value));
+        });
       }
+    });
+  }
 
-      // Set alignment attribute
+  function setAlignmentAttribute() {
+
+    var dwClass = $("#dwClass").val();
+    var alignmentAttribute = "";
+    var alignment = $("#alignment").val();
+
+    $.getJSON("data/classDetails.json", function(data) {
       alignment = $("#alignment").val();
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
@@ -549,17 +558,41 @@ $(document).ready(function() {
       }
 
     });
+  }
+
+  // Set various drop down options
+  setPlayerOptions();
+  setAdventureOptions();
+  setDwClassOptions();
+  setRaceOptions();
+
+  //listener functions
+  $(document).on("change", "#dwClass, #race, #alignment", function() {
+
+    var change = $(this).attr("id");
+
+    if (debug == true) {
+      console.info("$(#dwClass, #race, #alignment).change() - change:", change);
+    }
+
+    // Set stuff
+    setRaceAttribute();
+    setMaxLoad();
+    setMaxHP();
+    setDamage();
+
+    // Set alignment options if class is changing
+    if (change == "dwClass") {
+      setAlignmentOptions();
+    }
+
+    // Set alignment attribute
+    setAlignmentAttribute();
+
   });
 
   $(document).on("change", "#level", function() {
-    var lvl = $("#level").val();
-    if (lvl) {
-      var maxXP = parseInt(lvl, 10) + 7;
-      $("#maxXP").val("/ " + maxXP);
-      validateXP();
-    } else {
-      $("#maxXP").val("");
-    }
+    setMaxXP();
   });
 
   $(document).on("change", "#XP", function() {
@@ -578,30 +611,7 @@ $(document).ready(function() {
   });
 
   $(document).on("change", "#con", function() {
-    var con = parseInt($(this).val(), 10);
-    var dwClass = $("#dwClass").val();
-    var baseHP = 0;
-    var maxHP = 0;
-
-    $.getJSON("data/classDetails.json", function(data) {
-
-      if (con && dwClass) {
-        baseHP = parseInt(data[dwClass].baseHP, 10);
-        maxHP = baseHP + con;
-
-        if (debug == true) {
-          console.info("$(#con).change() - dwClass:", dwClass);
-          console.info("$(#con).change() - con:", con);
-          console.info("$(#con).change() - baseHP:", baseHP);
-          console.info("$(#con).change() - maxHP:", maxHP);
-        }
-
-        $("#maxHP").val("/ " + maxHP);
-        validateXP();
-      } else {
-        $("#maxHP").val("");
-      }
-    });
+    setMaxHP();
   });
 
   $(document).on("change", "#HP", function() {
