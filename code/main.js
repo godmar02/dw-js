@@ -924,6 +924,8 @@ $(document).ready(function() {
           $("#look").val(chara.look);
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
+          // Needs to be set prior to option being set
+          setAlignmentOptions();
           $("#alignment").val(chara.alignment);
           $("#level").val(chara.basicAttributes.level);
           $("#XP").val(chara.basicAttributes.XP);
