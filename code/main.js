@@ -903,71 +903,33 @@ $(document).ready(function() {
           if (debug == true) {
             console.info("Document data:", doc.data());
           }
-          /*
+          $("#player").val(chara.player);
+          $("#adventure").val(chara.adventure);
+          $("#charaName").val(chara.charaName);
+          $("#backstory").val(chara.backstory);
+          $("#look").val(chara.look);
+          $("#dwClass").val(chara.dwClass);
+          $("#race").val(chara.race);
+          $("#alignment").val(chara.alignment);
+          $("#level").val(chara.level);
+          $("#XP").val(chara.XP);
+          $("#str").val(chara.abilities.tr);
+          $("#dex").val(chara.abilities.dex);
+          $("#con").val(chara.abilities.con);
+          $("#int").val(chara.abilities.int);
+          $("#wis").val(chara.abilities.wis);
+          $("#cha").val(chara.abilities.cha);
+          $("#strAffliction").val(chara.abilities.strAffliction);
+          $("#dexAffliction").val(chara.abilities.dexAffliction);
+          $("#conAffliction").val(chara.abilities.conAffliction);
+          $("#intAffliction").val(chara.abilities.intAffliction);
+          $("#wisAffliction").val(chara.abilities.wisAffliction);
+          $("#chaAffliction").val(chara.abilities.chaAffliction);
+          $("#armour").val(chara.armour);
+          $("#HP").val(chara.HP);
+          $("#funds").val(chara.funds);
 
-                    $("#player").val(chara.player);
-                    $("#adventure").val(chara.adventure);
-                    $("#charaName").val(chara.charaName);
-                    $("#backstory").val(chara.backstory);
-                    $("#look").val();
-                    $("#dwClass").val();
-                    $("#race").val();
-                    var alignment = $("#alignment").val();
-                    var level = parseInt($("#level").val(), 10);
-                    var XP = parseInt($("#XP").val(), 10);
-                    var str = parseInt($("#str").val(), 10);
-                    var dex = parseInt($("#dex").val(), 10);
-                    var con = parseInt($("#con").val(), 10);
-                    var int = parseInt($("#int").val(), 10);
-                    if (!int) {
-                      int = null;
-                    }
-                    var wis = parseInt($("#wis").val(), 10);
-                    if (!wis) {
-                      wis = null;
-                    }
-                    var cha = parseInt($("#cha").val(), 10);
-                    if (!cha) {
-                      cha = null;
-                    }
-                    var strAffliction = $("#strAffliction").val();
-                    if (!strAffliction) {
-                      strAffliction = null;
-                    }
-                    var dexAffliction = $("#dexAffliction").val();
-                    if (!dexAffliction) {
-                      dexAffliction = null;
-                    }
-                    var conAffliction = $("#conAffliction").val();
-                    if (!conAffliction) {
-                      conAffliction = null;
-                    }
-                    var intAffliction = $("#intAffliction").val();
-                    if (!intAffliction) {
-                      intAffliction = null;
-                    }
-                    var wisAffliction = $("#wisAffliction").val();
-                    if (!wisAffliction) {
-                      wisAffliction = null;
-                    }
-                    var chaAffliction = $("#chaAffliction").val();
-                    if (!chaAffliction) {
-                      chaAffliction = null;
-                    }
-                    var armour = parseInt($("#armour").val(), 10);
-                    if (!armour) {
-                      armour = null;
-                    }
-                    var HP = parseInt($("#HP").val(), 10);
-                    if (!HP) {
-                      HP = null;
-                    }
-                    var funds = parseInt($("#funds").val(), 10);
-                    if (!funds) {
-                      funds = null;
-                    }
-
-          */
+          //TO DO ARRAYS
         } else {
           // doc.data() will be undefined in this case
           if (debug == true) {
