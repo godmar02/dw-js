@@ -266,11 +266,11 @@ $(document).ready(function() {
     var tableBody = $("#gearTable tbody");
     var bodyRows = tableBody.children("tr");
     var bodyRowsCount = bodyRows.length;
+    var totalload = 0;
+    var itemload = 0;
     if (debug == true) {
       console.info("setTotalLoad() - gearTable bodyRowsCount:" + bodyRowsCount);
     }
-    var totalload = 0;
-    var itemload = 0;
     for (var i = 0; i < bodyRowsCount; i++) {
       if (debug == true) {
         console.info("setTotalLoad() - itemID: itemWeight" + i);
@@ -965,13 +965,13 @@ $(document).ready(function() {
           setMaxXP();
           setDamage();
           setTotalLoad();
+          setModifier("str");
+          setModifier("dex");
+          setModifier("con");
+          setModifier("int");
+          setModifier("wis");
+          setModifier("cha");
           setMaxLoad();
-          setModifier(str);
-          setModifier(dex);
-          setModifier(con);
-          setModifier(int);
-          setModifier(wis);
-          setModifier(cha);
 
         } else {
           // doc.data() will be undefined in this case
