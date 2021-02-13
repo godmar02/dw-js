@@ -647,7 +647,7 @@ $(document).ready(function() {
   });
 
   $(document).on("onKeyPress", "textarea", function() {
-    setHeight(this.id);
+    setHeight("#" + this.id);
   });
 
   $(document).on("click", "#clearCharacter", function() {
@@ -899,11 +899,12 @@ $(document).ready(function() {
       db.collection("characters").doc(characterSheet).get().then((doc) => {
         if (doc.exists) {
           var loadedData = JSON.parse(doc.data());
-          var chara = loadedData.characterSheet;
-          location.reload(true);
           if (debug == true) {
             console.info("Document data:", doc.data());
           }
+          var chara = loadedData.characterSheet;
+          location.reload(true);
+
           $("#player").val(chara.player);
           $("#adventure").val(chara.adventure);
           $("#charaName").val(chara.charaName);
