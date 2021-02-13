@@ -421,6 +421,35 @@ $(document).ready(function() {
     }
   }
 
+  function setMaxLoad() {
+    var str = parseInt($("#str").val(), 10);
+    var strModifier = parseInt($("#strModifier").val().replace(/\[|\]/g, ""),10);
+    var dwClass = $("#dwClass").val();
+    var baseLoad = 0;
+    var maxLoad = 0;
+
+    $.getJSON("data/classDetails.json", function(data) {
+      //Set maxLoad
+      if (str && dwClass) {
+        baseLoad = parseInt(data[dwClass].baseLoad, 10);
+        maxLoad = baseLoad + strModifier;
+
+        if (debug == true) {
+          console.info("setMaxLoad() - dwClass:", dwClass);
+          console.info("setMaxLoad() - str:", str);
+          console.info("setMaxLoad() - strModifier:", strModifier);
+          console.info("setMaxLoad() - baseLoad:", baseLoad);
+          console.info("setMaxLoad() - maxLoad:", maxLoad);
+        }
+
+        $("#maxLoad").val("/ " + maxLoad);
+        validateLoad();
+      } else {
+        $("#maxLoad").val("");
+      }
+    });
+  }
+
   // Set various drop down options
   setPlayerOptions();
   setAdventureOptions();
@@ -465,21 +494,7 @@ $(document).ready(function() {
       }
 
       // Set MaxLoad
-      if (dwClass && str) {
-        baseLoad = parseInt(data[dwClass].baseLoad, 10);
-        if (debug == true) {
-          console.info("$(#dwClass).change() - baseLoad:", baseLoad);
-        }
-        var strModifier =parseInt($("#strModifier").val().replace(/\[|\]/g, ""),10);
-        maxLoad = baseLoad + strModifier;
-        if (debug == true) {
-          console.info("$(#dwClass).change() - maxLoad:", maxLoad);
-        }
-        $("#maxLoad").val("/ " + maxLoad);
-        validateLoad();
-      } else {
-        $("#maxLoad").val("");
-      }
+      setMaxLoad();
 
       // Set MaxHP
       if (dwClass && con) {
@@ -551,31 +566,15 @@ $(document).ready(function() {
     validateXP();
   });
 
+  $(document).on("change", ".ability, .abilityAffliction", function() {
+    // Set Ability modifiers
+    var ability = $(this).attr("id").replace("Affliction", "");
+    setModifier(ability);
+    validateAbilityScore();
+  });
+
   $(document).on("change", "#str", function() {
-    var str = parseInt($(this).val(), 10);
-    var dwClass = $("#dwClass").val();
-    var baseLoad = 0;
-    var maxLoad = 0;
-
-    $.getJSON("data/classDetails.json", function(data) {
-      //Set maxLoad
-      if (str && dwClass) {
-        baseLoad = parseInt(data[dwClass].baseLoad, 10);
-        maxLoad = baseLoad + str;
-
-        if (debug == true) {
-          console.info("$(#str).change() - dwClass:", dwClass);
-          console.info("$(#str).change() - str:", str);
-          console.info("$(#str).change() - baseLoad:", baseLoad);
-          console.info("$(#str).change() - maxLoad:", maxLoad);
-        }
-
-        $("#maxLoad").val("/ " + maxLoad);
-        validateLoad();
-      } else {
-        $("#maxLoad").val("");
-      }
-    });
+    setMaxLoad();
   });
 
   $(document).on("change", "#con", function() {
@@ -603,13 +602,6 @@ $(document).ready(function() {
         $("#maxHP").val("");
       }
     });
-  });
-
-  $(document).on("change", ".ability, .abilityAffliction", function() {
-    // Set Ability modifiers
-    var ability = $(this).attr("id").replace("Affliction", "");
-    setModifier(ability);
-    validateAbilityScore();
   });
 
   $(document).on("change", "#HP", function() {
