@@ -974,6 +974,8 @@ $(document).ready(function() {
           setModifier("wis");
           setModifier("cha");
           setMaxLoad();
+          setRaceAttribute();
+          setAlignmentAttribute();
 
         } else {
           // doc.data() will be undefined in this case
