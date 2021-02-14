@@ -261,7 +261,6 @@ $(document).ready(function() {
   }
 
   function setTotalLoad() {
-    console.log("HERE2");
     //add weight together and display in load
     var tableBody = $("#gearTable tbody");
     var bodyRows = tableBody.children("tr");
@@ -644,9 +643,6 @@ $(document).ready(function() {
           setMaxHP();
           setMaxXP();
           setDamage();
-          console.log("HERE");
-          setTotalLoad();
-          console.log("HERE3");
           setMaxLoad();
 
           var bondsCount = chara.bonds.length;
@@ -676,6 +672,7 @@ $(document).ready(function() {
             $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
             setHeight("item" + j);
           }
+          setTotalLoad();
 
           var classFeaturesCount = chara.classFeatures.classFeatures.length;
           clearRows("classFeaturesTable");
