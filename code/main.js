@@ -751,7 +751,7 @@ $(document).ready(function() {
           level = null;
         }
         var XP = parseInt($("#XP").val(), 10);
-        if (!XP) {
+        if (!XP && XP != 0) {
           XP = null;
         }
         var str = parseInt($("#str").val(), 10);
@@ -803,7 +803,7 @@ $(document).ready(function() {
           chaAffliction = null;
         }
         var armour = parseInt($("#armour").val(), 10);
-        if (!armour) {
+        if (!armour && armour != 0) {
           armour = null;
         }
         var HP = parseInt($("#HP").val(), 10);
@@ -843,7 +843,7 @@ $(document).ready(function() {
             items[j] = null;
           }
           itemsWeights[j] = parseInt($("#itemWeight" + j).val(), 10);
-          if (!itemsWeights[j]) {
+          if (!itemsWeights[j] && itemsWeights[j] != 0) {
             itemsWeights[j] = null;
           }
         }
