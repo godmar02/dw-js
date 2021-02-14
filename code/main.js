@@ -616,6 +616,7 @@ $(document).ready(function() {
           setRaceAttribute();
           setAlignmentOptions();
           $("#alignment").val(chara.alignment);
+          console.log($("#alignment").val());
           setAlignmentAttribute();
           $("#level").val(chara.basicAttributes.level);
           $("#XP").val(chara.basicAttributes.XP);

@@ -1,7 +1,5 @@
 # TO DO
 - load alignment
-- load arrays
-- add buttons at top
 - extensive value based testing
 - character drop down / add new character functionality
 - moves tab
