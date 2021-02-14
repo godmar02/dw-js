@@ -616,9 +616,10 @@ $(document).ready(function() {
           setRaceAttribute();
           setAlignmentOptions();
           //BROKEN
-          $("#alignment option:selected").prop('selected', false);
           console.log("broken: ", $("#alignment option:selected").val());
-          $("#alignment").val(chara.alignment);
+          $("document #alignment option:selected").prop('selected', false);
+          console.log("broken: ", $("#alignment option:selected").val());
+          $("document #alignment").val(chara.alignment);
           console.log("broken: ", $("#alignment option:selected").val());
           //BROKEN
           setAlignmentAttribute();
