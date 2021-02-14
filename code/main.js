@@ -1068,4 +1068,11 @@ $(document).ready(function() {
     $("#main").show();
     $("#faq").hide();
   });
+
+  $(".profPicture").hover(function(){
+      $(".profDetails").show();
+  }, function(){
+      $(".profDetails").hide();
+  });
+
 });
