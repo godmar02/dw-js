@@ -994,10 +994,10 @@ $(document).ready(function() {
               addRow("gearTable");
             }
             if (debug == true) {
-              console.info("loadChacter - chara.gear.item["+ j + "]:", chara.gear.item[j]);
+              console.info("loadChacter - chara.gear.items["+ j + "]:", chara.gear.items[j]);
               console.info("loadChacter - chara.gear.itemsWeights["+ j + "]:", chara.gear.itemsWeights[j]);
             }
-            $("#item" + j).val(chara.gear.item[j]);
+            $("#item" + j).val(chara.gear.items[j]);
             $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
             setHeight("item" + j);
           }
