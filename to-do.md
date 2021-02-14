@@ -1,5 +1,6 @@
 # TO DO
-- load
+- load alignment
+- load arrays
 - extensive value based testing
 - character drop down / add new character?
 - moves tab

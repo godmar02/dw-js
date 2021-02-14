@@ -12,7 +12,7 @@ $(document).ready(function() {
     var abilityAffliction = $("#" + ability + "Affliction").val();
     var afflicted = 0;
 
-    if (abilityScore) {
+    if (abilityScore && abilityAffliction) {
       var baseModifier = 0;
       if ([1, 2, 3].indexOf(abilityScore) > -1) {
         baseModifier = -3;
@@ -262,7 +262,7 @@ $(document).ready(function() {
   }
 
   function setTotalLoad() {
-    //on change of any itemWeight elements add weight together and display in load
+    //add weight together and display in load
     var tableBody = $("#gearTable tbody");
     var bodyRows = tableBody.children("tr");
     var bodyRowsCount = bodyRows.length;
@@ -428,7 +428,6 @@ $(document).ready(function() {
   }
 
   function setMaxLoad() {
-    var str = parseInt($("#str").val(), 10);
     var strModifier = parseInt($("#strModifier").val().replace(/\[|\]/g, ""), 10);
     var dwClass = $("#dwClass").val();
     var baseLoad = 0;
@@ -436,7 +435,7 @@ $(document).ready(function() {
 
     $.getJSON("data/classDetails.json", function(data) {
       //Set maxLoad
-      if (str && dwClass) {
+      if (dwClass && strModifier) {
         baseLoad = parseInt(data[dwClass].baseLoad, 10);
         maxLoad = baseLoad + strModifier;
 
@@ -507,6 +506,7 @@ $(document).ready(function() {
         $("#raceAttribute").val("");
       }
     });
+    setHeight("raceAttribute");
   }
 
   function setDamage() {
@@ -558,19 +558,23 @@ $(document).ready(function() {
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
         $("#alignmentAttribute").val(alignmentAttribute);
-        setHeight("alignmentAttribute");
       } else {
         $("#alignmentAttribute").val("");
       }
 
     });
+    setHeight("alignmentAttribute");
+  }
+
+  function setOptions() {
+    setPlayerOptions();
+    setAdventureOptions();
+    setDwClassOptions();
+    setRaceOptions();
   }
 
   // Set various drop down options and size cells
-  setPlayerOptions();
-  setAdventureOptions();
-  setDwClassOptions();
-  setRaceOptions();
+  setOptions();
   //setHeight(bond0);
   //setHeight(item0);
   //setHeight(classFeature0);
@@ -609,7 +613,6 @@ $(document).ready(function() {
   });
 
   $(document).on("change", ".ability, .abilityAffliction", function() {
-    // Set Ability modifiers
     var ability = $(this).attr("id").replace("Affliction", "");
     setModifier(ability);
     validateAbilityScore();
@@ -974,8 +977,11 @@ $(document).ready(function() {
           setModifier("wis");
           setModifier("cha");
           setMaxLoad();
+          setHeight("backstory");
+          setHeight("look");
           setRaceAttribute();
           setAlignmentAttribute();
+
 
         } else {
           // doc.data() will be undefined in this case
