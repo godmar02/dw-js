@@ -581,7 +581,7 @@ $(document).ready(function() {
     var newRowID = bodyRowsCount;
 
     for (var i = 0; i < bodyRowsCount - 1; i++) {
-      deleteRow(tableID, i);
+      deleteRow(tableID, 0);
     }
   }
 
@@ -980,6 +980,9 @@ $(document).ready(function() {
             if (i != 0) {
               addRow("bondsTable");
             }
+            if (debug == true) {
+              console.info("loadChacter - chara.bonds["+ i + "]:", chara.bonds[i]);
+            }
             $("#bond" + i).val(chara.bonds[i]);
             setHeight("bond" + i);
           }
@@ -989,6 +992,10 @@ $(document).ready(function() {
           for (var j = 0; j < itemCount; j++) {
             if (j != 0) {
               addRow("gearTable");
+            }
+            if (debug == true) {
+              console.info("loadChacter - chara.gear.item["+ j + "]:", chara.gear.item[j]);
+              console.info("loadChacter - chara.gear.itemsWeights["+ j + "]:", chara.gear.itemsWeights[j]);
             }
             $("#item" + j).val(chara.gear.item[j]);
             $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
@@ -1000,6 +1007,10 @@ $(document).ready(function() {
           for (var k = 0; k < itemCount; k++) {
             if (k != 0) {
               addRow("classFeaturesTable");
+            }
+            if (debug == true) {
+              console.info("loadChacter - chara.classFeatures.classFeatures["+ k + "]:", chara.classFeatures.classFeatures[k]);
+              console.info("loadChacter - chara.classFeatures.classFeaturesCheckboxes["+ k + "]:", chara.classFeatures.classFeaturesCheckboxes[k]);
             }
             $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
             $("#classFeatureCheckbox" + k).val(chara.classFeatures.classFeaturesCheckboxes[k]);

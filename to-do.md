@@ -10,3 +10,4 @@
 - dice roller
 - default items
 - default bonds
+- clever things with armour or items?
