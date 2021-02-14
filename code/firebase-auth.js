@@ -14,7 +14,7 @@ firebase.auth()
     var user = result.user;
 
     // Set username and profile picture
-    $("#user").val(user.displayName);
+    $("#userName").val(user.displayName);
     $("#userPicture").attr("src", user.photoURL);
 
   }).catch((error) => {
