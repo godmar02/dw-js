@@ -678,11 +678,11 @@ $(document).ready(function() {
     setHeight(textareaID);
   });
 
-  $(document).on("click", "#clearCharacter", function() {
+  $(document).on("click", ".clearCharacter", function() {
     location.reload(true);
   });
 
-  $(document).on("click", "#saveCharacter", function() {
+  $(document).on("click", ".saveCharacter", function() {
 
     var player = $("#player").val();
     var adventure = $("#adventure").val();
@@ -912,7 +912,7 @@ $(document).ready(function() {
     }
   });
 
-  $(document).on("click", "#loadCharacter", function() {
+  $(document).on("click", ".loadCharacter", function() {
 
     var player = $("#player").val();
     var adventure = $("#adventure").val();
