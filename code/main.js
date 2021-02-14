@@ -306,7 +306,7 @@ $(document).ready(function() {
   }
 
   function setPlayerOptions() {
-    $.getJSON("data/playerList.json", function(data) {
+    $.getJSON("/data/playerList.json", function(data) {
       $("#player").empty();
       $("#player").append("<option hidden disabled selected></option>");
       players = data.players;
@@ -320,7 +320,7 @@ $(document).ready(function() {
   }
 
   function setAdventureOptions() {
-    $.getJSON("data/adventureList.json", function(data) {
+    $.getJSON("/data/adventureList.json", function(data) {
       $("#adventure").empty();
       $("#adventure").append("<option hidden disabled selected></option>");
       adventures = data.adventures;
@@ -334,7 +334,7 @@ $(document).ready(function() {
   }
 
   function setDwClassOptions() {
-    $.getJSON("data/classList.json", function(data) {
+    $.getJSON("/data/classList.json", function(data) {
       $("#dwClass").empty();
       $("#dwClass").append("<option hidden disabled selected></option>");
       classes = data.classes;
@@ -348,7 +348,7 @@ $(document).ready(function() {
   }
 
   function setRaceOptions() {
-    $.getJSON("data/raceList.json", function(data) {
+    $.getJSON("/data/raceList.json", function(data) {
       $("#race").empty();
       $("#race").append("<option hidden disabled selected></option>");
       races = data.races;
@@ -432,7 +432,7 @@ $(document).ready(function() {
     var baseLoad = 0;
     var maxLoad = 0;
 
-    $.getJSON("data/classDetails.json", function(data) {
+    $.getJSON("/data/classDetails.json", function(data) {
       //Set maxLoad
       if (dwClass && strModifier) {
         baseLoad = parseInt(data[dwClass].baseLoad, 10);
@@ -460,7 +460,7 @@ $(document).ready(function() {
     var baseHP = 0;
     var maxHP = 0;
 
-    $.getJSON("data/classDetails.json", function(data) {
+    $.getJSON("/data/classDetails.json", function(data) {
       if (dwClass && con) {
         baseHP = parseInt(data[dwClass].baseHP, 10);
         if (debug == true) {
@@ -495,7 +495,7 @@ $(document).ready(function() {
     var race = $("#race").val();
     var raceAttribute = "";
 
-    $.getJSON("data/classDetails.json", function(data) {
+    $.getJSON("/data/classDetails.json", function(data) {
       if (dwClass && race) {
         raceAttribute = data[dwClass].raceAttributes[race];
         $("#raceAttribute").val(raceAttribute);
@@ -512,7 +512,7 @@ $(document).ready(function() {
     var dwClass = $("#dwClass").val();
     var damage = "";
 
-    $.getJSON("data/classDetails.json", function(data) {
+    $.getJSON("/data/classDetails.json", function(data) {
       if (dwClass) {
         damage = data[dwClass].damage;
         if (debug == true) {
@@ -530,7 +530,7 @@ $(document).ready(function() {
     var dwClass = $("#dwClass").val();
     var alignments = [];
 
-    $.getJSON("data/classDetails.json", function(data) {
+    $.getJSON("/data/classDetails.json", function(data) {
       $("#alignment").empty();
       $("#alignment").append("<option hidden disabled selected></option>");
       if (dwClass) {
@@ -551,7 +551,7 @@ $(document).ready(function() {
     var alignmentAttribute = "";
     var alignment = $("#alignment").val();
 
-    $.getJSON("data/classDetails.json", function(data) {
+    $.getJSON("/data/classDetails.json", function(data) {
       alignment = $("#alignment").val();
       if (dwClass && alignment) {
         alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
@@ -936,6 +936,30 @@ $(document).ready(function() {
       alert("Cannot save unless Player, Adventure and Character are completed");
     }
   }
+
+  //auth
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
 
   // Set various drop down options and size cells
   setOptions();
