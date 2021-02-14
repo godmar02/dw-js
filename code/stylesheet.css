@@ -16,7 +16,7 @@ button.deleteRow {
 }
 
 button:hover {
-  opacity: 1.0;
+  opacity: 1;
 }
 
 button:active,
@@ -97,6 +97,7 @@ input.checkbox {
   background-color: #eee;
   border: 1px solid #696969;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 input.checkbox::after {
