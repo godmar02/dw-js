@@ -572,7 +572,7 @@ $(document).ready(function() {
   }
 
   function clearRows(tableID) {
-    // delete all rows but last and
+    // delete all rows but last in a table
     var tableBody = $("#" + tableID + " tbody");
     var bodyRows = tableBody.children("tr");
     var bodyRowsCount = bodyRows.length;
