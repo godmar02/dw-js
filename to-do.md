@@ -2,7 +2,7 @@
 - load alignment
 - load arrays
 - extensive value based testing
-- character drop down / add new character?
+- character drop down / add new character functionality
 - moves tab
 - campaign notes tab
 - checkbox size for firefox
