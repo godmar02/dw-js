@@ -67,9 +67,8 @@ $(document).ready(function() {
   }
 
   function rollDice(sides, number) {
-    var i;
     var total = 0;
-    for (i = 1; i == number; i++) {
+    for (var i = 1; i == number; i++) {
       total = total + singleRoll(sides);
     }
     return total;
@@ -573,6 +572,20 @@ $(document).ready(function() {
     setRaceOptions();
   }
 
+  function clearRows(tableID) {
+    // delete all rows but last and
+    var tableBody = $("#" + tableID + " tbody");
+    var bodyRows = tableBody.children("tr");
+    var bodyRowsCount = bodyRows.length;
+    var templateRow = bodyRows.get(0);
+    var newRowColCount = templateRow.cells.length;
+    var newRowID = bodyRowsCount;
+
+    for (var i = 0; i < bodyRowsCount - 1; i++) {
+      deleteRow(tableID, i);
+    }
+  }
+
   // Set various drop down options and size cells
   setOptions();
   //setHeight(bond0);
@@ -924,64 +937,69 @@ $(document).ready(function() {
           $("#adventure").val(chara.adventure);
           $("#charaName").val(chara.charaName);
           $("#backstory").val(chara.backstory);
+          setHeight("backstory");
           $("#look").val(chara.look);
+          setHeight("look");
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
-          // Needs to be set prior to option being set
+          setRaceAttribute();
           setAlignmentOptions();
           $("#alignment").val(chara.alignment);
+          setAlignmentAttribute();
           $("#level").val(chara.basicAttributes.level);
           $("#XP").val(chara.basicAttributes.XP);
           $("#str").val(chara.abilities.str);
-          $("#dex").val(chara.abilities.dex);
-          $("#con").val(chara.abilities.con);
-          $("#int").val(chara.abilities.int);
-          $("#wis").val(chara.abilities.wis);
-          $("#cha").val(chara.abilities.cha);
           $("#strAffliction").val(chara.abilities.strAffliction);
+          setModifier("str");
+          $("#dex").val(chara.abilities.dex);
           $("#dexAffliction").val(chara.abilities.dexAffliction);
+          setModifier("dex");
+          $("#con").val(chara.abilities.con);
           $("#conAffliction").val(chara.abilities.conAffliction);
+          setModifier("con");
+          $("#int").val(chara.abilities.int);
           $("#intAffliction").val(chara.abilities.intAffliction);
+          setModifier("int");
+          $("#wis").val(chara.abilities.wis);
           $("#wisAffliction").val(chara.abilities.wisAffliction);
+          setModifier("wis");
+          $("#cha").val(chara.abilities.cha);
           $("#chaAffliction").val(chara.abilities.chaAffliction);
+          setModifier("cha");
           $("#armour").val(chara.armour);
           $("#HP").val(chara.HP);
           $("#funds").val(chara.funds);
-
-          //TO DO ARRAYS (BONDS, ITEMS, FEATURES)
-          //$.each(chara.bonds, function(index, value) {
-          //  $("#bond" + i).val(Option(value));;
-          //});
-          //$.each(chara.gear.items, function(index, value) {
-          //  $("#item" + i).val(Option(value));;
-          //});
-          //$.each(chara.gear.itemsWeights, function(index, value) {
-          //  $("#itemWeight" + i).val(Option(value));;
-          //});
-          //$.each(chara.classFeatures.classFeatures, function(index, value) {
-          //  $("#classFeature" + i).val(Option(value));;
-          //});
-          //$.each(chara.classFeatures.classFeaturesCheckboxes, function(index, value) {
-          //  $("#classFeatureCheckbox" + i).val(Option(value));;
-          //});
-
-          // Recalculating sheet
           setMaxHP();
           setMaxXP();
           setDamage();
           setTotalLoad();
-          setModifier("str");
-          setModifier("dex");
-          setModifier("con");
-          setModifier("int");
-          setModifier("wis");
-          setModifier("cha");
           setMaxLoad();
-          setHeight("backstory");
-          setHeight("look");
-          setRaceAttribute();
-          setAlignmentAttribute();
 
+          var bondsCount = chara.bonds.length;
+          clearRows("bondsTable");
+          for (var i = 0; i < bondsCount; i++) {
+            if (i != 0) { addRow("bondsTable");}
+            $("#bond" + i).val(value);
+            setHeight("bond" + i);
+          }
+
+          var itemCount = chara.gear.items.length;
+          clearRows("gearTable");
+          for (var j = 0; j < itemCount; j++) {
+            if (j != 0) { addRow("gearTable");}
+            $("#item" + j).val(chara.gear.item[j]);
+            $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
+            setHeight("item" + j);
+          }
+
+          var classFeaturesCount = chara.classFeatures.classFeatures.length;
+          clearRows("classFeaturesTable");
+          for (var k = 0; k < itemCount; k++) {
+            if (k != 0) { addRow("classFeaturesTable");}
+            $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
+            $("#classFeatureCheckbox" + k).val(chara.classFeatures.classFeaturesCheckboxes[k]);
+            setHeight("classFeature" + k);
+          }
 
         } else {
           // doc.data() will be undefined in this case
