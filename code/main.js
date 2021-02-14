@@ -585,105 +585,129 @@ $(document).ready(function() {
     }
   }
 
-  // Set various drop down options and size cells
-  setOptions();
-  //setHeight(bond0);
-  //setHeight(item0);
-  //setHeight(classFeature0);
-
-  //listener functions
-  $(document).on("change", "#dwClass, #race, #alignment", function() {
-
-    var change = $(this).attr("id");
-
+  function loadCharacter() {
+    var player = $("#player").val();
+    var adventure = $("#adventure").val();
+    var charaName = $("#charaName").val();
+    var characterSheet = player + adventure + charaName;
+    characterSheet = characterSheet.replace(/\W/g, "");
     if (debug == true) {
-      console.info("$(#dwClass, #race, #alignment).change() - change:", change);
+      console.info("characterSheet: ", characterSheet);
     }
 
-    // Set stuff
-    setRaceAttribute();
-    setMaxLoad();
-    setMaxHP();
-    setDamage();
+    if (player && adventure && charaName) {
+      db.collection("characters").doc(characterSheet).get().then((doc) => {
+        if (doc.exists) {
+          var loadedData = doc.data();
+          if (debug == true) {
+            console.info("Document data:", doc.data());
+          }
+          var chara = loadedData.characterSheet;
 
-    // Set alignment options if class is changing
-    if (change == "dwClass") {
-      setAlignmentOptions();
+          $("#player").val(chara.player);
+          $("#adventure").val(chara.adventure);
+          $("#charaName").val(chara.charaName);
+          $("#backstory").val(chara.backstory);
+          setHeight("backstory");
+          $("#look").val(chara.look);
+          setHeight("look");
+          $("#dwClass").val(chara.dwClass);
+          $("#race").val(chara.race);
+          setRaceAttribute();
+          setAlignmentOptions();
+          $("#alignment").val(chara.alignment);
+          setAlignmentAttribute();
+          $("#level").val(chara.basicAttributes.level);
+          $("#XP").val(chara.basicAttributes.XP);
+          $("#str").val(chara.abilities.str);
+          $("#strAffliction").val(chara.abilities.strAffliction);
+          setModifier("str");
+          $("#dex").val(chara.abilities.dex);
+          $("#dexAffliction").val(chara.abilities.dexAffliction);
+          setModifier("dex");
+          $("#con").val(chara.abilities.con);
+          $("#conAffliction").val(chara.abilities.conAffliction);
+          setModifier("con");
+          $("#int").val(chara.abilities.int);
+          $("#intAffliction").val(chara.abilities.intAffliction);
+          setModifier("int");
+          $("#wis").val(chara.abilities.wis);
+          $("#wisAffliction").val(chara.abilities.wisAffliction);
+          setModifier("wis");
+          $("#cha").val(chara.abilities.cha);
+          $("#chaAffliction").val(chara.abilities.chaAffliction);
+          setModifier("cha");
+          $("#armour").val(chara.armour);
+          $("#HP").val(chara.HP);
+          $("#funds").val(chara.funds);
+          setMaxHP();
+          setMaxXP();
+          setDamage();
+          setTotalLoad();
+          setMaxLoad();
+
+          var bondsCount = chara.bonds.length;
+          clearRows("bondsTable");
+          for (var i = 0; i < bondsCount; i++) {
+            if (i != 0) {
+              addRow("bondsTable");
+            }
+            if (debug == true) {
+              console.info("loadChacter - chara.bonds[" + i + "]:", chara.bonds[i]);
+            }
+            $("#bond" + i).val(chara.bonds[i]);
+            setHeight("bond" + i);
+          }
+
+          var itemCount = chara.gear.items.length;
+          clearRows("gearTable");
+          for (var j = 0; j < itemCount; j++) {
+            if (j != 0) {
+              addRow("gearTable");
+            }
+            if (debug == true) {
+              console.info("loadChacter - chara.gear.items[" + j + "]:", chara.gear.items[j]);
+              console.info("loadChacter - chara.gear.itemsWeights[" + j + "]:", chara.gear.itemsWeights[j]);
+            }
+            $("#item" + j).val(chara.gear.items[j]);
+            $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
+            setHeight("item" + j);
+          }
+
+          var classFeaturesCount = chara.classFeatures.classFeatures.length;
+          clearRows("classFeaturesTable");
+          for (var k = 0; k < itemCount; k++) {
+            if (k != 0) {
+              addRow("classFeaturesTable");
+            }
+            if (debug == true) {
+              console.info("loadChacter - chara.classFeatures.classFeatures[" + k + "]:", chara.classFeatures.classFeatures[k]);
+              console.info("loadChacter - chara.classFeatures.classFeaturesCheckboxes[" + k + "]:", chara.classFeatures.classFeaturesCheckboxes[k]);
+            }
+            $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
+            $("#classFeatureCheckbox" + k).val(chara.classFeatures.classFeaturesCheckboxes[k]);
+            setHeight("classFeature" + k);
+          }
+
+        } else {
+          // doc.data() will be undefined in this case
+          if (debug == true) {
+            alert("No Character Sheet found");
+            console.warn("No such document in collection", doc);
+          }
+        }
+      }).catch((error) => {
+        if (debug == true) {
+          alert("Failed to load character, see console error");
+          console.error("Error getting document:", error);
+        }
+      });
+    } else {
+      alert("Cannot load unless Player, Adventure and Character are completed");
     }
+  }
 
-    // Set alignment attribute
-    setAlignmentAttribute();
-
-  });
-
-  $(document).on("change", "#level", function() {
-    setMaxXP();
-  });
-
-  $(document).on("change", "#XP", function() {
-    validateXP();
-  });
-
-  $(document).on("change", ".ability, .abilityAffliction", function() {
-    var ability = $(this).attr("id").replace("Affliction", "");
-    setModifier(ability);
-    validateAbilityScore();
-  });
-
-  $(document).on("change", "#str", function() {
-    setMaxLoad();
-  });
-
-  $(document).on("change", "#con", function() {
-    setMaxHP();
-  });
-
-  $(document).on("change", "#HP", function() {
-    validateHP();
-  });
-
-  $(document).on("change", "[id^=itemWeight]", function() {
-    setTotalLoad();
-    validateLoad();
-  });
-
-  $(document).on("click", ".addRow", function() {
-    var tableID = $(this).closest("table").attr("id");
-    if (debug == true) {
-      console.info("$(.addRow).click() - tableID:", tableID);
-    }
-    addRow(tableID);
-  });
-
-  $(document).on("click", ".deleteRow", function() {
-    var tableID = $(this).closest("table").attr("id");
-    var rowID = $(this).attr("id");
-    var row = rowID.slice(-1);
-    if (debug == true) {
-      console.info("$(.deleteRow).click() - tableID:", tableID);
-      console.info("$(.deleteRow).click() - rowID:", rowID);
-      console.info("$(.deleteRow).click() - row:", row);
-    }
-    deleteRow(tableID, row);
-    if (tableID == "gearTable") {
-      setTotalLoad();
-    }
-  });
-
-  $(document).on("keypress", "textarea", function() {
-    var textareaID = this.id;
-    if (debug == true) {
-      console.info("textarea.keypress() - textareaID:", textareaID);
-    }
-    setHeight(textareaID);
-  });
-
-  $(document).on("click", ".clearCharacter", function() {
-    location.reload(true);
-  });
-
-  $(document).on("click", ".saveCharacter", function() {
-
+  function saveCharacter() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
@@ -910,129 +934,111 @@ $(document).ready(function() {
     } else {
       alert("Cannot save unless Player, Adventure and Character are completed");
     }
+  }
+
+  // Set various drop down options and size cells
+  setOptions();
+  //setHeight(bond0);
+  //setHeight(item0);
+  //setHeight(classFeature0);
+
+  //listener functions
+  $(document).on("change", "#dwClass, #race, #alignment", function() {
+
+    var change = $(this).attr("id");
+
+    if (debug == true) {
+      console.info("$(#dwClass, #race, #alignment).change() - change:", change);
+    }
+
+    // Set stuff
+    setRaceAttribute();
+    setMaxLoad();
+    setMaxHP();
+    setDamage();
+
+    // Set alignment options if class is changing
+    if (change == "dwClass") {
+      setAlignmentOptions();
+    }
+
+    // Set alignment attribute
+    setAlignmentAttribute();
+
+  });
+
+  $(document).on("change", "#level", function() {
+    setMaxXP();
+  });
+
+  $(document).on("change", "#XP", function() {
+    validateXP();
+  });
+
+  $(document).on("change", ".ability, .abilityAffliction", function() {
+    var ability = $(this).attr("id").replace("Affliction", "");
+    setModifier(ability);
+    validateAbilityScore();
+  });
+
+  $(document).on("change", "#str", function() {
+    setMaxLoad();
+  });
+
+  $(document).on("change", "#con", function() {
+    setMaxHP();
+  });
+
+  $(document).on("change", "#HP", function() {
+    validateHP();
+  });
+
+  $(document).on("change", "[id^=itemWeight]", function() {
+    setTotalLoad();
+    validateLoad();
+  });
+
+  $(document).on("click", ".addRow", function() {
+    var tableID = $(this).closest("table").attr("id");
+    if (debug == true) {
+      console.info("$(.addRow).click() - tableID:", tableID);
+    }
+    addRow(tableID);
+  });
+
+  $(document).on("click", ".deleteRow", function() {
+    var tableID = $(this).closest("table").attr("id");
+    var rowID = $(this).attr("id");
+    var row = rowID.slice(-1);
+    if (debug == true) {
+      console.info("$(.deleteRow).click() - tableID:", tableID);
+      console.info("$(.deleteRow).click() - rowID:", rowID);
+      console.info("$(.deleteRow).click() - row:", row);
+    }
+    deleteRow(tableID, row);
+    if (tableID == "gearTable") {
+      setTotalLoad();
+    }
+  });
+
+  $(document).on("keypress", "textarea", function() {
+    var textareaID = this.id;
+    if (debug == true) {
+      console.info("textarea.keypress() - textareaID:", textareaID);
+    }
+    setHeight(textareaID);
+  });
+
+  $(document).on("click", ".clearCharacter", function() {
+    location.reload(true);
+  });
+
+  $(document).on("click", ".saveCharacter", function() {
+    saveCharacter();
   });
 
   $(document).on("click", ".loadCharacter", function() {
-
-    var player = $("#player").val();
-    var adventure = $("#adventure").val();
-    var charaName = $("#charaName").val();
-    var characterSheet = player + adventure + charaName;
-    characterSheet = characterSheet.replace(/\W/g, "");
-    if (debug == true) {
-      console.info("characterSheet: ", characterSheet);
-    }
-
-    if (player && adventure && charaName) {
-      db.collection("characters").doc(characterSheet).get().then((doc) => {
-        if (doc.exists) {
-          var loadedData = doc.data();
-          if (debug == true) {
-            console.info("Document data:", doc.data());
-          }
-          var chara = loadedData.characterSheet;
-
-          $("#player").val(chara.player);
-          $("#adventure").val(chara.adventure);
-          $("#charaName").val(chara.charaName);
-          $("#backstory").val(chara.backstory);
-          setHeight("backstory");
-          $("#look").val(chara.look);
-          setHeight("look");
-          $("#dwClass").val(chara.dwClass);
-          $("#race").val(chara.race);
-          setRaceAttribute();
-          setAlignmentOptions();
-          $("#alignment").val(chara.alignment);
-          setAlignmentAttribute();
-          $("#level").val(chara.basicAttributes.level);
-          $("#XP").val(chara.basicAttributes.XP);
-          $("#str").val(chara.abilities.str);
-          $("#strAffliction").val(chara.abilities.strAffliction);
-          setModifier("str");
-          $("#dex").val(chara.abilities.dex);
-          $("#dexAffliction").val(chara.abilities.dexAffliction);
-          setModifier("dex");
-          $("#con").val(chara.abilities.con);
-          $("#conAffliction").val(chara.abilities.conAffliction);
-          setModifier("con");
-          $("#int").val(chara.abilities.int);
-          $("#intAffliction").val(chara.abilities.intAffliction);
-          setModifier("int");
-          $("#wis").val(chara.abilities.wis);
-          $("#wisAffliction").val(chara.abilities.wisAffliction);
-          setModifier("wis");
-          $("#cha").val(chara.abilities.cha);
-          $("#chaAffliction").val(chara.abilities.chaAffliction);
-          setModifier("cha");
-          $("#armour").val(chara.armour);
-          $("#HP").val(chara.HP);
-          $("#funds").val(chara.funds);
-          setMaxHP();
-          setMaxXP();
-          setDamage();
-          setTotalLoad();
-          setMaxLoad();
-
-          var bondsCount = chara.bonds.length;
-          clearRows("bondsTable");
-          for (var i = 0; i < bondsCount; i++) {
-            if (i != 0) {
-              addRow("bondsTable");
-            }
-            if (debug == true) {
-              console.info("loadChacter - chara.bonds["+ i + "]:", chara.bonds[i]);
-            }
-            $("#bond" + i).val(chara.bonds[i]);
-            setHeight("bond" + i);
-          }
-
-          var itemCount = chara.gear.items.length;
-          clearRows("gearTable");
-          for (var j = 0; j < itemCount; j++) {
-            if (j != 0) {
-              addRow("gearTable");
-            }
-            if (debug == true) {
-              console.info("loadChacter - chara.gear.items["+ j + "]:", chara.gear.items[j]);
-              console.info("loadChacter - chara.gear.itemsWeights["+ j + "]:", chara.gear.itemsWeights[j]);
-            }
-            $("#item" + j).val(chara.gear.items[j]);
-            $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
-            setHeight("item" + j);
-          }
-
-          var classFeaturesCount = chara.classFeatures.classFeatures.length;
-          clearRows("classFeaturesTable");
-          for (var k = 0; k < itemCount; k++) {
-            if (k != 0) {
-              addRow("classFeaturesTable");
-            }
-            if (debug == true) {
-              console.info("loadChacter - chara.classFeatures.classFeatures["+ k + "]:", chara.classFeatures.classFeatures[k]);
-              console.info("loadChacter - chara.classFeatures.classFeaturesCheckboxes["+ k + "]:", chara.classFeatures.classFeaturesCheckboxes[k]);
-            }
-            $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
-            $("#classFeatureCheckbox" + k).val(chara.classFeatures.classFeaturesCheckboxes[k]);
-            setHeight("classFeature" + k);
-          }
-
-        } else {
-          // doc.data() will be undefined in this case
-          if (debug == true) {
-            alert("No Character Sheet found");
-            console.warn("No such document in collection", doc);
-          }
-        }
-      }).catch((error) => {
-        if (debug == true) {
-          alert("Failed to load character, see console error");
-          console.error("Error getting document:", error);
-        }
-      });
-    } else {
-      alert("Cannot load unless Player, Adventure and Character are completed");
-    }
+    loadCharacter();
   });
 
   $(document).on("click", ".faqLink", function() {
