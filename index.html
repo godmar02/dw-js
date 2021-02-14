@@ -1,398 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <link rel="icon" href="/images/icons/dw_icon_small.png?v=2" type="image/png" />
-    <link rel="apple-touch-icon" href="/images/icons/dw_icon.png?v=2" type="image/png" />
-    <link rel="stylesheet" href="/code/stylesheet.css" />
+<head>
+  <link rel="icon" href="/images/icons/dw_icon_small.png?v=2" type="image/png" />
+  <link rel="apple-touch-icon" href="/images/icons/dw_icon.png?v=2" type="image/png" />
+  <link rel="stylesheet" href="/code/stylesheet.css" />
 
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta name="description" content="Welcome to the unofficial Dungeon World Character Sheet!" />
-    <meta name="author" content="Godmar02" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta name="description" content="Welcome to the unofficial Dungeon World Character Sheet!" />
+  <meta name="author" content="Godmar02" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="og:url" content="https://github.com/godmar02/godmar02.github.io" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Dungeon World Character Sheet" />
-    <meta property="og:description" content="Welcome to the unofficial Dungeon World Character Sheet!" />
-    <meta property="og:image" content="https://github.com/godmar02/godmar02.github.io/images/icons/dw_icon.png" />
+  <meta property="og:url" content="https://github.com/godmar02/godmar02.github.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dungeon World Character Sheet" />
+  <meta property="og:description" content="Welcome to the unofficial Dungeon World Character Sheet!" />
+  <meta property="og:image" content="https://github.com/godmar02/godmar02.github.io/images/icons/dw_icon.png" />
 
-    <title>Dungeon World Character Sheet</title>
+  <title>Dungeon World Character Sheet</title>
 
-  </head>
+</head>
 
-  <body>
-    <noscript>
-      <h2>Dungeon World Character Sheet</h2>
-      <i style="display: inline-block">(by Godmar02)</i>
-      <p>Javascript is required to use the Character Sheet</p>
-      <p>If you are worried about potential security issues, you can always review the code at the project's <a href="https://github.com/godmar02/godmar02.github.io/index.html">GitHub repository</a>.</p>
-    </noscript>
-    <div id="main">
-      <h2>Dungeon World Character Sheet</h2>
-      <br>
-      <span style="display: inline-block"><i>v0.17.0 by Godmar02</i></span>
-      <br>
-      <br>
-      <form id="values">
-        <div id="attvalues">
-          <table style="width: 75%;" id="sheetHeaderTable">
-            <tr>
-              <th style="width: 33%;">
-                <label for="player">PLAYER</label>
-              </th>
-              <td>
-                <select tabindex="-1" id="player"></select>
-              </td>
-            </tr>
-            <tr>
-              <th style="width: 25%;">
-                <label for="adventure">ADVENTURE</label>
-              </th>
-              <td>
-                <select tabindex="-1" id="adventure"></select>
-              </td>
-            </tr>
-            <tr>
-              <th style="width: 25%;"><label for="charaName">CHARACTER</label></th>
-              <td><input type="text" id="charaName"></td>
-            </tr>
-          </table>
-          <br>
-          <button type="button" class="saveCharacter" id="saveCharacter0">Save</button>
-          <button type="button" class="loadCharacter" id="loadCharacter0">Load</button>
-          <button type="button" class="clearCharacter" id="clearCharacter0">Clear</button>
-          <br>
-          <br>
-          <table style="width: 100%;" id="basicInfoTable">
-            <tr>
-              <th style="width: 25%;"><label for="backstory">BACKSTORY</label></th>
-              <td><textarea placeholder="Describe your character's backstory and anything else about your characters identity here" id="backstory"></textarea></td>
-            </tr>
-            <tr>
-              <th style="width: 25%;"><label for="look">LOOK</label></th>
-              <td><textarea placeholder="Describe your character's appearance here" id="look"></textarea></td>
-            </tr>
+<body>
+  <noscript>
+    <h2>Dungeon World Character Sheet</h2>
+    <i style="display: inline-block">(by Godmar02)</i>
+    <p>Javascript is required to use the Character Sheet</p>
+    <p>If you are worried about potential security issues, you can always review the code at the project's <a href="https://github.com/godmar02/godmar02.github.io/index.html">GitHub repository</a>.</p>
+  </noscript>
+  <div id="main">
+    <h2>Dungeon World Character Sheet</h2>
+    <br>
+    <span style="display: inline-block"><i>v0.17.0 by Godmar02</i></span>
+    <br>
+    <br>
+    <form id="values">
+      <div id="attvalues">
+        <table style="width: 75%;" id="sheetHeaderTable">
+          <tr>
+            <th style="width: 33%;">
+              <label for="player">PLAYER</label>
+            </th>
+            <td>
+              <select tabindex="-1" id="player"></select>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 25%;">
+              <label for="adventure">ADVENTURE</label>
+            </th>
+            <td>
+              <select tabindex="-1" id="adventure"></select>
+            </td>
+          </tr>
+          <tr>
+            <th style="width: 25%;"><label for="charaName">CHARACTER</label></th>
+            <td><input type="text" id="charaName"></td>
+          </tr>
+        </table>
+        <br>
+        <button type="button" class="saveCharacter" id="saveCharacter0">Save</button>
+        <button type="button" class="loadCharacter" id="loadCharacter0">Load</button>
+        <button type="button" class="clearCharacter" id="clearCharacter0">Clear</button>
+        <br>
+        <input type="text" readonly id="userName">
+        <img id="userPicture">
+        </img>
+        <br>
+        <table style="width: 100%;" id="basicInfoTable">
+          <tr>
+            <th style="width: 25%;"><label for="backstory">BACKSTORY</label></th>
+            <td><textarea placeholder="Describe your character's backstory and anything else about your characters identity here" id="backstory"></textarea></td>
+          </tr>
+          <tr>
+            <th style="width: 25%;"><label for="look">LOOK</label></th>
+            <td><textarea placeholder="Describe your character's appearance here" id="look"></textarea></td>
+          </tr>
 
-          </table>
-          <br>
-          <table style="width: 100%;" id="additionalInfoTable">
-            <tr>
-              <th>
-                <label style="width: 25%;" for="dwClass">CLASS</label>
-              </th>
-              <td style="width: 25%;">
-                <select tabindex="-1" id="dwClass"></select>
-              </td>
-              <td style="width: 50%;"></td>
-            </tr>
+        </table>
+        <br>
+        <table style="width: 100%;" id="additionalInfoTable">
+          <tr>
+            <th>
+              <label style="width: 25%;" for="dwClass">CLASS</label>
+            </th>
+            <td style="width: 25%;">
+              <select tabindex="-1" id="dwClass"></select>
+            </td>
+            <td style="width: 50%;"></td>
+          </tr>
 
-            <tr>
-              <th>
-                <label for="race">RACE</label>
-              </th>
-              <td>
-                <select tabindex="-1" id="race"></select>
-              </td>
-              <td>
-                <textarea class="grey" readonly id="raceAttribute"></textarea>
-              </td>
-            </tr>
+          <tr>
+            <th>
+              <label for="race">RACE</label>
+            </th>
+            <td>
+              <select tabindex="-1" id="race"></select>
+            </td>
+            <td>
+              <textarea class="grey" readonly id="raceAttribute"></textarea>
+            </td>
+          </tr>
 
+          <tr>
+            <th>
+              <label for="alignment">ALIGNMENT</label>
+            </th>
+            <td>
+              <select tabindex="-1" id="alignment"></select>
+            </td>
+            <td>
+              <textarea class="grey" readonly id="alignmentAttribute"></textarea>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table id="basicAttributes">
+          <tr>
+            <th>
+              <label for="level">LEVEL</label>
+            </th>
+            <td>
+              <input type="number" min="1" class="shortfield" value="1" id="level">
+            </td>
+            <th>
+              <label for="XP">XP</label>
+            </th>
+            <td>
+              <input type="number" min="0" class="shortfield" value="0" id="XP">
+            </td>
+            <td>
+              <input type="text" class="shortfield grey" readonly id="maxXP">
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table style="width: 100%;" id="abilitiesTable">
+          <thead>
             <tr>
-              <th>
-                <label for="alignment">ALIGNMENT</label>
-              </th>
+              <th><label for="str">STR</label></th>
+              <th><label for="dex">DEX</label></th>
+              <th><label for="con">CON</label></th>
+              <th><label for="int">INT</label></th>
+              <th><label for="wis">WIS</label></th>
+              <th><label for="cha">CHA</label></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
               <td>
-                <select tabindex="-1" id="alignment"></select>
-              </td>
+                <input type="number" min="1" max="18" class="ability" id="str"></td>
               <td>
-                <textarea class="grey" readonly id="alignmentAttribute"></textarea>
+                <input type="number" min="1" max="18" class="ability" id="dex"></td>
+              <td>
+                <input type="number" min="1" max="18" class="ability" id="con"></td>
+              <td>
+                <input type="number" min="1" max="18" class="ability" id="int"></td>
+              <td>
+                <input type="number" min="1" max="18" class="ability" id="wis"></td>
+              <td>
+                <input type="number" min="1" max="18" class="ability" id="cha">
               </td>
             </tr>
-          </table>
-          <br>
-          <table id="basicAttributes">
             <tr>
-              <th>
-                <label for="level">LEVEL</label>
-              </th>
               <td>
-                <input type="number" min="1" class="shortfield" value="1" id="level">
-              </td>
-              <th>
-                <label for="XP">XP</label>
-              </th>
-              <td>
-                <input type="number" min="0" class="shortfield" value="0" id="XP">
+                <input type="text" class="grey tallfield" readonly id="strModifier">
               </td>
               <td>
-                <input type="text" class="shortfield grey" readonly id="maxXP">
+                <input type="text" class="grey tallfield" readonly id="dexModifier">
+              </td>
+              <td>
+                <input type="text" class="grey tallfield" readonly id="conModifier">
+              </td>
+              <td>
+                <input type="text" class="grey tallfield" readonly id="intModifier">
+              </td>
+              <td>
+                <input type="text" class="grey tallfield" readonly id="wisModifier">
+              </td>
+              <td>
+                <input type="text" class="grey tallfield" readonly id="chaModifier">
               </td>
             </tr>
-          </table>
-          <br>
-          <table style="width: 100%;" id="abilitiesTable">
-            <thead>
-              <tr>
-                <th><label for="str">STR</label></th>
-                <th><label for="dex">DEX</label></th>
-                <th><label for="con">CON</label></th>
-                <th><label for="int">INT</label></th>
-                <th><label for="wis">WIS</label></th>
-                <th><label for="cha">CHA</label></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="number" min="1" max="18" class="ability" id="str"></td>
-                <td>
-                  <input type="number" min="1" max="18" class="ability" id="dex"></td>
-                <td>
-                  <input type="number" min="1" max="18" class="ability" id="con"></td>
-                <td>
-                  <input type="number" min="1" max="18" class="ability" id="int"></td>
-                <td>
-                  <input type="number" min="1" max="18" class="ability" id="wis"></td>
-                <td>
-                  <input type="number" min="1" max="18" class="ability" id="cha">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="text" class="grey tallfield" readonly id="strModifier">
-                </td>
-                <td>
-                  <input type="text" class="grey tallfield" readonly id="dexModifier">
-                </td>
-                <td>
-                  <input type="text" class="grey tallfield" readonly id="conModifier">
-                </td>
-                <td>
-                  <input type="text" class="grey tallfield" readonly id="intModifier">
-                </td>
-                <td>
-                  <input type="text" class="grey tallfield" readonly id="wisModifier">
-                </td>
-                <td>
-                  <input type="text" class="grey tallfield" readonly id="chaModifier">
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <select tabindex="-1" class="abilityAffliction" id="strAffliction">
-                    <option>Unafflicted</option>
-                    <option>Weak</option>
-                  </select>
-                </td>
-                <td>
-                  <select tabindex="-1" class="abilityAffliction" id="dexAffliction">
-                    <option>Unafflicted</option>
-                    <option>Shaky</option>
-                  </select>
-                </td>
-                <td>
-                  <select tabindex="-1" class="abilityAffliction" id="conAffliction">
-                    <option>Unafflicted</option>
-                    <option>Sick</option>
-                  </select>
-                </td>
-                <td>
-                  <select tabindex="-1" class="abilityAffliction" id="intAffliction">
-                    <option>Unafflicted</option>
-                    <option>Stunned</option>
-                  </select>
-                </td>
-                <td>
-                  <select tabindex="-1" class="abilityAffliction" id="wisAffliction">
-                    <option>Unafflicted</option>
-                    <option>Confused</option>
-                  </select>
-                </td>
-                <td>
-                  <select tabindex="-1" class="abilityAffliction" id="chaAffliction">
-                    <option>Unafflicted</option>
-                    <option>Scarred</option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-          <table id="damageArmourFundsTable">
-            <thead>
-              <tr>
-                <th><label for="damage">DAMAGE</label></th>
-                <th><label for="armour">ARMOUR</label></th>
-                <th colspan="2"><label for="HP">HP</label></th>
-                <th><label for="funds">FUNDS</label></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="text" class="shortfield grey" readonly id="damage">
-                </td>
-                <td>
-                  <input type="number" min="0" class="shortfield" value="0" id="armour">
-                </td>
-                <td>
-                  <input type="number" min="0" class="shortfield" id="HP">
-                </td>
-                <td>
-                  <input type="text" class="shortfield grey" readonly id="maxHP">
-                </td>
-                <td><input type="number" class="shortfield" min="0" value="0" id="funds"></td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-          <table style="width: 100%;" id="bondsTable">
-            <thead>
-              <tr>
-                <th style="width: 100%;"><label>BONDS</label></th>
-                <td>
-                  <button type="button" class="addRow" id="addBond">+</button>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><textarea placeholder="Add 2-3 bonds here" id="bond0"></textarea></td>
-                <td><button type="button" class="deleteRow" id="deleteBond0"></button></td>
-              </tr>
-            </tbody>
-            <tfoot></tfoot>
-          </table>
-          <br>
-          <table style="width: 100%;" id="gearTable">
-            <thead>
-              <tr>
-                <th colspan="4"><label>GEAR</label></th>
-              </tr>
-              <tr>
-                <th style="width: 100%;"><label>ITEM</label></th>
-                <th colspan="2"><label>WEIGHT</label></th>
-                <td>
-                  <button type="button" class="addRow" id="addItem">+</button>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <textarea placeholder="Add any items and descriptions here" id="item0"></textarea>
-                </td>
-                <td colspan="2"><input type="number" min="0" id="itemWeight0"></td>
-                <td><button type="button" class="deleteRow" id="deleteItem0"></button></td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th><label for="load">LOAD</label></th>
-                <td><input type="text" class="grey" readonly id="load"></td>
-                <td><input type="text" class="grey" readonly id="maxLoad"></td>
-                <td></td>
-              </tr>
-            </tfoot>
-          </table>
-          <br>
-          <table style="width: 100%;" id="classFeaturesTable">
-            <thead>
-              <tr>
-                <th colspan="2" style="width: 100%;"><label>CLASS FEATURES</label></th>
-                <td>
-                  <button type="button" class="addRow" id="addClassFeature">+</button>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <input type="checkbox" class="checkbox" id="classFeatureCheckbox0">
-                </td>
-                <td>
-                  <textarea placeholder="Add any Class Features here (e.g. Spell Lists, Poison Recipes, Druid Balance, Paladin Quests or anything else!)" id="classFeature0"></textarea>
-                </td>
-                <td>
-                  <button type="button" class="deleteRow" id="deleteClassFeature0"></button>
-                </td>
-              </tr>
-            </tbody>
-            <tfoot></tfoot>
-          </table>
-          <br>
-          <button type="button" class="saveCharacter" id="saveCharacter1">Save</button>
-          <button type="button" class="loadCharacter" id="loadCharacter1">Load</button>
-          <button type="button" class="clearCharacter" id="clearCharacter1">Clear</button>
-        </div>
-      </form>
-      <p>For information on Character Sheet usage and useful guides or links, read the <a href="#top" target="_top" class="faqLink" id="faqLink">FAQ</a>.</p>
+            <tr>
+              <td>
+                <select tabindex="-1" class="abilityAffliction" id="strAffliction">
+                  <option>Unafflicted</option>
+                  <option>Weak</option>
+                </select>
+              </td>
+              <td>
+                <select tabindex="-1" class="abilityAffliction" id="dexAffliction">
+                  <option>Unafflicted</option>
+                  <option>Shaky</option>
+                </select>
+              </td>
+              <td>
+                <select tabindex="-1" class="abilityAffliction" id="conAffliction">
+                  <option>Unafflicted</option>
+                  <option>Sick</option>
+                </select>
+              </td>
+              <td>
+                <select tabindex="-1" class="abilityAffliction" id="intAffliction">
+                  <option>Unafflicted</option>
+                  <option>Stunned</option>
+                </select>
+              </td>
+              <td>
+                <select tabindex="-1" class="abilityAffliction" id="wisAffliction">
+                  <option>Unafflicted</option>
+                  <option>Confused</option>
+                </select>
+              </td>
+              <td>
+                <select tabindex="-1" class="abilityAffliction" id="chaAffliction">
+                  <option>Unafflicted</option>
+                  <option>Scarred</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <table id="damageArmourFundsTable">
+          <thead>
+            <tr>
+              <th><label for="damage">DAMAGE</label></th>
+              <th><label for="armour">ARMOUR</label></th>
+              <th colspan="2"><label for="HP">HP</label></th>
+              <th><label for="funds">FUNDS</label></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="text" class="shortfield grey" readonly id="damage">
+              </td>
+              <td>
+                <input type="number" min="0" class="shortfield" value="0" id="armour">
+              </td>
+              <td>
+                <input type="number" min="0" class="shortfield" id="HP">
+              </td>
+              <td>
+                <input type="text" class="shortfield grey" readonly id="maxHP">
+              </td>
+              <td><input type="number" class="shortfield" min="0" value="0" id="funds"></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <table style="width: 100%;" id="bondsTable">
+          <thead>
+            <tr>
+              <th style="width: 100%;"><label>BONDS</label></th>
+              <td>
+                <button type="button" class="addRow" id="addBond">+</button>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><textarea placeholder="Add 2-3 bonds here" id="bond0"></textarea></td>
+              <td><button type="button" class="deleteRow" id="deleteBond0"></button></td>
+            </tr>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+        <br>
+        <table style="width: 100%;" id="gearTable">
+          <thead>
+            <tr>
+              <th colspan="4"><label>GEAR</label></th>
+            </tr>
+            <tr>
+              <th style="width: 100%;"><label>ITEM</label></th>
+              <th colspan="2"><label>WEIGHT</label></th>
+              <td>
+                <button type="button" class="addRow" id="addItem">+</button>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <textarea placeholder="Add any items and descriptions here" id="item0"></textarea>
+              </td>
+              <td colspan="2"><input type="number" min="0" id="itemWeight0"></td>
+              <td><button type="button" class="deleteRow" id="deleteItem0"></button></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th><label for="load">LOAD</label></th>
+              <td><input type="text" class="grey" readonly id="load"></td>
+              <td><input type="text" class="grey" readonly id="maxLoad"></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        <br>
+        <table style="width: 100%;" id="classFeaturesTable">
+          <thead>
+            <tr>
+              <th colspan="2" style="width: 100%;"><label>CLASS FEATURES</label></th>
+              <td>
+                <button type="button" class="addRow" id="addClassFeature">+</button>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" class="checkbox" id="classFeatureCheckbox0">
+              </td>
+              <td>
+                <textarea placeholder="Add any Class Features here (e.g. Spell Lists, Poison Recipes, Druid Balance, Paladin Quests or anything else!)" id="classFeature0"></textarea>
+              </td>
+              <td>
+                <button type="button" class="deleteRow" id="deleteClassFeature0"></button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+        <br>
+        <button type="button" class="saveCharacter" id="saveCharacter1">Save</button>
+        <button type="button" class="loadCharacter" id="loadCharacter1">Load</button>
+        <button type="button" class="clearCharacter" id="clearCharacter1">Clear</button>
+      </div>
+    </form>
+    <p>For information on Character Sheet usage and useful guides or links, read the <a href="#top" target="_top" class="faqLink" id="faqLink">FAQ</a>.</p>
+  </div>
+  <div style="display:none; max-width: 800px" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <br>
+    <br>
+    <p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" id="expandAll0">+ Expand
+        all</a></p>
+    <div class="question" style="border-top: 1px solid; margin-top: 25px;" id="questionContainer0">
+      <div class="questionText"><b>How do I use the Character Sheet?</b></div>
+      <div class="expandIndicator" id="expandIndicator0">+</div>
     </div>
-    <div style="display:none; max-width: 800px" id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <br>
-      <br>
-      <p><a href="javascript:;" class="textpress sheetLink" style="float: left" target="_top" id="sheetLink0">&lt;&lt;&lt; Back to the Character Sheet!</a><a href="javascript:;" class="textpress expandAll" id="expandAll0">+ Expand
-          all</a></p>
-      <div class="question" style="border-top: 1px solid; margin-top: 25px;" id="questionContainer0">
-        <div class="questionText"><b>How do I use the Character Sheet?</b></div>
-        <div class="expandIndicator" id="expandIndicator0">+</div>
-      </div>
-      <div class="answerContainer" id="answerContainer0">
-        <p>TBC.</p>
-      </div>
-      <div class="question" id="questionContainer1">
-        <div class="questionText"><b>Can I use the Character Sheet offline?</b></div>
-        <div class="expandIndicator" id="expandIndicator1">+</div>
-      </div>
-      <div class="answerContainer" id="answerContainer1">
-        <p>Sort of. Follow these instructions:<br /><br />
-          <i>Any platform</i>: If you don't quit your browser app, you should be able to use the Character Sheet without internet access as long as the browser stays in memory. The Character Sheet is a static website and doesn't require the use of
-          bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br /><br />
-          <i>PC</i>: Go to the Character Sheet website, right-click on any empty space and press Save as... or Save Page As... to get the index.html file. Alternatively, you can download the file from <a href="https://github.com/godmar02/godmar02.github.io" target="_blank">GitHub</a>. After you downloaded it, simply drag the .html file into your browser to run the Character Sheet.<br /><br />
-          <i>iOS</i>: Repeat the PC process. Download an app called HTML Viewer Q by Spica. Connect your device to iTunes. In iTunes, select your device and go to File Sharing. Select HTML Viewer, press Add File and find the .html file you downloaded
-          on your PC. Disconnect your device, run HTML Viewer and press on a book-like icon at the bottom right. Switch from Bookmarks to Files and select the downloaded .html file.<br /><br />
-          <i>Android</i>: Repeat the PC process. If you used the PC, connect your device and transfer the .html file to it. Download the HTML Viewer app by Yogev Haham and run it. Press the paper-like icon at the upper right. Find and select the
-          downloaded .html file, then press the browser view icon in the upper right.</p>
-      </div>
-      <div class="question" id="questionContainer2">
-        <div class="questionText"><b>Who are you?</b></div>
-        <div class="expandIndicator" id="expandIndicator2">+</div>
-      </div>
-      <div class="answerContainer" id="answerContainer2">
-        <p>Never you mind.</p>
-      </div>
-      <br>
-      <p><a href="javascript:;" class="textpress expandAll" id="expandAll1">+ Expand all</a></p>
-      <div style="float: left; position: relative; top: 6px; width: 100%">
-        <p><b>Links:</b></p>
-        <a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br />
-        <a href="https://www.reddit.com/r/DungeonWorld/" target="_blank">Reddit</a><br /><br />
-
-        <a href="https://dungeon-world.com/" target="_blank">Official Game Website</a><br />
-        <a href="https://a-dungeon-world.fandom.com/wiki/Free_Playbooks" target="_blank">Free Playbooks</a><br />
-        <a href="https://drive.google.com/file/d/1O3-dNuIxoiVkIrH20LIzzA38r9sVsiEI/view?usp=sharing" target="_blank">Dungeon World First Edition by Sage LaTorra and Adam Koebel</a><br />
-        <a href="https://drive.google.com/file/d/1uAJBlTFUbpPcNRBI7iHQ3eD2QT5Hxhu3/view?usp=sharing" target="_blank">Dungeon World Playbooks v2.0 Designed by Stefan Grambart</a><br />
-        <a href="https://drive.google.com/file/d/1S2ntGyK17puyC01XfxSGIIaq-1w86gkd/view?usp=sharing" target="_blank">Truncheon World: The Truncated Dungeon World by Sage LaTorra and Adam Koebel</a><br /><br />
-
-        <a href="https://github.com/godmar02/godmar02.github.io" target="_blank">My GitHub</a><br />
-        <a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br /><br />
-
-        <a href="javascript:;" class="textpress sheetLink" target="_top" id="sheetLink1">&lt;&lt;&lt; Back to the Character Sheet!</a><br />
-      </div>
+    <div class="answerContainer" id="answerContainer0">
+      <p>TBC.</p>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- FOR OFFLINE MODE
+    <div class="question" id="questionContainer1">
+      <div class="questionText"><b>Can I use the Character Sheet offline?</b></div>
+      <div class="expandIndicator" id="expandIndicator1">+</div>
+    </div>
+    <div class="answerContainer" id="answerContainer1">
+      <p>Sort of. Follow these instructions:<br /><br />
+        <i>Any platform</i>: If you don't quit your browser app, you should be able to use the Character Sheet without internet access as long as the browser stays in memory. The Character Sheet is a static website and doesn't require the use of
+        bandwith. Otherwise, most desktop browsers support saving pages so you can store them offline for later use. Some mobile browsers like Chrome also support this.<br /><br />
+        <i>PC</i>: Go to the Character Sheet website, right-click on any empty space and press Save as... or Save Page As... to get the index.html file. Alternatively, you can download the file from <a
+          href="https://github.com/godmar02/godmar02.github.io" target="_blank">GitHub</a>. After you downloaded it, simply drag the .html file into your browser to run the Character Sheet.<br /><br />
+        <i>iOS</i>: Repeat the PC process. Download an app called HTML Viewer Q by Spica. Connect your device to iTunes. In iTunes, select your device and go to File Sharing. Select HTML Viewer, press Add File and find the .html file you downloaded
+        on your PC. Disconnect your device, run HTML Viewer and press on a book-like icon at the bottom right. Switch from Bookmarks to Files and select the downloaded .html file.<br /><br />
+        <i>Android</i>: Repeat the PC process. If you used the PC, connect your device and transfer the .html file to it. Download the HTML Viewer app by Yogev Haham and run it. Press the paper-like icon at the upper right. Find and select the
+        downloaded .html file, then press the browser view icon in the upper right.</p>
+    </div>
+    <div class="question" id="questionContainer2">
+      <div class="questionText"><b>Who are you?</b></div>
+      <div class="expandIndicator" id="expandIndicator2">+</div>
+    </div>
+    <div class="answerContainer" id="answerContainer2">
+      <p>Never you mind.</p>
+    </div>
+    <br>
+    <p><a href="javascript:;" class="textpress expandAll" id="expandAll1">+ Expand all</a></p>
+    <div style="float: left; position: relative; top: 6px; width: 100%">
+      <p><b>Links:</b></p>
+      <a href="https://a-dungeon-world.fandom.com/wiki/A_Dungeon_World_Wiki" target="_blank">Wiki</a><br />
+      <a href="https://www.reddit.com/r/DungeonWorld/" target="_blank">Reddit</a><br /><br />
+
+      <a href="https://dungeon-world.com/" target="_blank">Official Game Website</a><br />
+      <a href="https://a-dungeon-world.fandom.com/wiki/Free_Playbooks" target="_blank">Free Playbooks</a><br />
+      <a href="https://drive.google.com/file/d/1O3-dNuIxoiVkIrH20LIzzA38r9sVsiEI/view?usp=sharing" target="_blank">Dungeon World First Edition by Sage LaTorra and Adam Koebel</a><br />
+      <a href="https://drive.google.com/file/d/1uAJBlTFUbpPcNRBI7iHQ3eD2QT5Hxhu3/view?usp=sharing" target="_blank">Dungeon World Playbooks v2.0 Designed by Stefan Grambart</a><br />
+      <a href="https://drive.google.com/file/d/1S2ntGyK17puyC01XfxSGIIaq-1w86gkd/view?usp=sharing" target="_blank">Truncheon World: The Truncated Dungeon World by Sage LaTorra and Adam Koebel</a><br /><br />
+
+      <a href="https://github.com/godmar02/godmar02.github.io" target="_blank">My GitHub</a><br />
+      <a href="https://github.com/godmar02/godmar02.github.io/blob/master/Changelog.md" target="_blank">Changelog</a><br /><br />
+
+      <a href="javascript:;" class="textpress sheetLink" target="_top" id="sheetLink1">&lt;&lt;&lt; Back to the Character Sheet!</a><br />
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- FOR OFFLINE MODE
 	<script src="libraries/jquery-3.5.1.min.js"></script>
   -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-    <script src="/code/firebase-init.js"></script>
-    <script src="/code/firebase-auth.js"></script>
-    <script src="/code/main.js"></script>
-  </body>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="/code/firebase-init.js"></script>
+  <script src="/code/firebase-auth.js"></script>
+  <script src="/code/main.js"></script>
+</body>
 
 </html>
