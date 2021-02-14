@@ -1,6 +1,6 @@
 // FirebaseUI config.
  var uiConfig = {
-   signInSuccessUrl: '<url-to-redirect-to-on-success>',
+   signInSuccessUrl: 'https://godmar02.github.io',
    signInOptions: [
      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
      firebase.auth.EmailAuthProvider.PROVIDER_ID
