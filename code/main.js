@@ -615,6 +615,9 @@ $(document).ready(function() {
           $("#race").val(chara.race);
           setRaceAttribute();
           setAlignmentOptions();
+          // BROKEN WILL NOT SET OPTION
+          $("#alignment").val(chara.alignment);
+          setAlignmentAttribute();
           $("#level").val(chara.basicAttributes.level);
           $("#XP").val(chara.basicAttributes.XP);
           $("#str").val(chara.abilities.str);
@@ -638,11 +641,6 @@ $(document).ready(function() {
           $("#armour").val(chara.armour);
           $("#HP").val(chara.HP);
           $("#funds").val(chara.funds);
-          //BROKEN
-          console.log("chara.alignment:", chara.alignment);
-          $("#alignment").val(chara.alignment);
-
-          setAlignmentAttribute();
           setMaxHP();
           setMaxXP();
           setDamage();
