@@ -617,7 +617,9 @@ $(document).ready(function() {
           setAlignmentOptions();
           //BROKEN
           $("#alignment option:selected").prop('selected', false);
+          console.log("broken: ", $("#alignment option:selected").val());
           $("#alignment").val(chara.alignment);
+          console.log("broken: ", $("#alignment option:selected").val());
           //BROKEN
           setAlignmentAttribute();
           $("#level").val(chara.basicAttributes.level);
