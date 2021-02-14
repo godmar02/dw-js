@@ -688,7 +688,7 @@ $(document).ready(function() {
               console.info("loadChacter - chara.classFeatures.classFeaturesCheckboxes[" + k + "]:", chara.classFeatures.classFeaturesCheckboxes[k]);
             }
             $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
-            $("#classFeatureCheckbox" + k).val(chara.classFeatures.classFeaturesCheckboxes[k]);
+            $("#classFeatureCheckbox" + k).prop("checked", chara.classFeatures.classFeaturesCheckboxes[k]);
             setHeight("classFeature" + k);
           }
 
