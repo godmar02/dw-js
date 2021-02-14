@@ -427,8 +427,8 @@ $(document).ready(function() {
   }
 
   function setMaxLoad() {
-    var strModifier = parseInt($("#strModifier").val().replace(/\[|\]/g, ""), 10);
     var dwClass = $("#dwClass").val();
+    var strModifier = parseInt($("#strModifier").val().replace(/\[|\]/g, ""), 10);
     var baseLoad = 0;
     var maxLoad = 0;
 
@@ -440,7 +440,6 @@ $(document).ready(function() {
 
         if (debug == true) {
           console.info("setMaxLoad() - dwClass:", dwClass);
-          console.info("setMaxLoad() - str:", str);
           console.info("setMaxLoad() - strModifier:", strModifier);
           console.info("setMaxLoad() - baseLoad:", baseLoad);
           console.info("setMaxLoad() - maxLoad:", maxLoad);
@@ -978,15 +977,19 @@ $(document).ready(function() {
           var bondsCount = chara.bonds.length;
           clearRows("bondsTable");
           for (var i = 0; i < bondsCount; i++) {
-            if (i != 0) { addRow("bondsTable");}
-            $("#bond" + i).val(value);
+            if (i != 0) {
+              addRow("bondsTable");
+            }
+            $("#bond" + i).val(chara.bonds[i]);
             setHeight("bond" + i);
           }
 
           var itemCount = chara.gear.items.length;
           clearRows("gearTable");
           for (var j = 0; j < itemCount; j++) {
-            if (j != 0) { addRow("gearTable");}
+            if (j != 0) {
+              addRow("gearTable");
+            }
             $("#item" + j).val(chara.gear.item[j]);
             $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
             setHeight("item" + j);
@@ -995,7 +998,9 @@ $(document).ready(function() {
           var classFeaturesCount = chara.classFeatures.classFeatures.length;
           clearRows("classFeaturesTable");
           for (var k = 0; k < itemCount; k++) {
-            if (k != 0) { addRow("classFeaturesTable");}
+            if (k != 0) {
+              addRow("classFeaturesTable");
+            }
             $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
             $("#classFeatureCheckbox" + k).val(chara.classFeatures.classFeaturesCheckboxes[k]);
             setHeight("classFeature" + k);
