@@ -618,7 +618,7 @@ $(document).ready(function() {
 
           //BROKEN
           console.log("chara.alignment: ", chara.alignment);
-          //$("#alignment").val(chara.alignment);
+          $("#alignment").val(chara.alignment);
           //BROKEN
 
           setAlignmentAttribute();
