@@ -615,8 +615,8 @@ $(document).ready(function() {
           $("#race").val(chara.race);
           setRaceAttribute();
           setAlignmentOptions();
-          $("#alignment").val(chara.alignment);
-          console.log($("#alignment").val());
+          //$("#alignment").val(chara.alignment);
+          $("#alignment option:contains(" + chara.alignment + ")").prop('selected', true);
           setAlignmentAttribute();
           $("#level").val(chara.basicAttributes.level);
           $("#XP").val(chara.basicAttributes.XP);
