@@ -592,7 +592,7 @@ $(document).ready(function() {
     var characterSheet = player + adventure + charaName;
     characterSheet = characterSheet.replace(/\W/g, "");
     if (debug == true) {
-      console.info("characterSheet: ", characterSheet);
+      console.info("loadCharacter() - characterSheet:", characterSheet);
     }
 
     if (player && adventure && charaName) {
@@ -617,7 +617,7 @@ $(document).ready(function() {
           setAlignmentOptions();
 
           //BROKEN
-          console.log("chara.alignment: ", chara.alignment);
+          console.log("chara.alignment:", chara.alignment);
           $("#alignment").val(chara.alignment);
           //BROKEN
 
@@ -875,7 +875,7 @@ $(document).ready(function() {
         var characterSheet = player + adventure + charaName;
         characterSheet = characterSheet.replace(/\W/g, "");
         if (debug == true) {
-          console.info("characterSheet: ", characterSheet);
+          console.info("characterSheet:", characterSheet);
         }
         db.collection("characters").doc(characterSheet).set({
             "characterSheet": {
@@ -921,12 +921,12 @@ $(document).ready(function() {
           })
           .then(() => {
             if (debug == true) {
-              console.info("saveCharacter() - Document written with ID: ", characterSheet);
+              console.info("saveCharacter() - Document written with ID:", characterSheet);
             }
             alert("Character Sheet succesfully saved!");
           })
           .catch((error) => {
-            console.error("Error writing document: ", error);
+            console.error("Error writing document:", error);
             alert("Failed to save Character Sheet, see console error");
           });
       } else {
