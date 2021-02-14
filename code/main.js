@@ -676,7 +676,7 @@ $(document).ready(function() {
 
           var classFeaturesCount = chara.classFeatures.classFeatures.length;
           clearRows("classFeaturesTable");
-          for (var k = 0; k < itemCount; k++) {
+          for (var k = 0; k < classFeaturesCount; k++) {
             if (k != 0) {
               addRow("classFeaturesTable");
             }
