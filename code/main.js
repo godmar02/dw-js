@@ -615,6 +615,7 @@ $(document).ready(function() {
           $("#race").val(chara.race);
           setRaceAttribute();
           setAlignmentOptions();
+
           //BROKEN
           console.log("broken: ", $("#alignment option:selected").val());
           $("document #alignment option:selected").prop('selected', false);
@@ -622,6 +623,7 @@ $(document).ready(function() {
           $("document #alignment").val(chara.alignment);
           console.log("broken: ", $("#alignment option:selected").val());
           //BROKEN
+
           setAlignmentAttribute();
           $("#level").val(chara.basicAttributes.level);
           $("#XP").val(chara.basicAttributes.XP);
@@ -809,7 +811,7 @@ $(document).ready(function() {
           HP = null;
         }
         var funds = parseInt($("#funds").val(), 10);
-        if (!funds) {
+        if (!funds && funds != 0) {
           funds = null;
         }
 
