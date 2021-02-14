@@ -12,8 +12,6 @@
    var token = credential.accessToken;
    // The signed-in user info.
    var user = result.user;
-
-   console.info("signed in:", user);
  }).catch((error) => {
    // Handle Errors here.
    var errorCode = error.code;
@@ -24,3 +22,5 @@
    var credential = error.credential;
    // ...
  });
+
+    console.info("signed in:", user);
