@@ -617,11 +617,11 @@ $(document).ready(function() {
           setAlignmentOptions();
 
           //BROKEN
-          console.log("broken: ", $("#alignment option:selected").val());
-          $("document #alignment option:selected").prop('selected', false);
-          console.log("broken: ", $("#alignment option:selected").val());
-          $("document #alignment").val(chara.alignment);
-          console.log("broken: ", $("#alignment option:selected").val());
+          console.log("broken: ", $("#alignment option").html());
+          $("#alignment option:selected").prop('selected', false);
+          console.log("broken: ", $("#alignment option").html());
+          $("#alignment").val(chara.alignment);
+          console.log("broken: ", $("#alignment option").html());
           //BROKEN
 
           setAlignmentAttribute();
