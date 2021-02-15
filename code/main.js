@@ -721,8 +721,8 @@ $(document).ready(function() {
 
     if (player && adventure && charaName && owner) {
       if (debug == true) {
-        console.info("saveCharacter.click() - abilityErrors:", abilityErrors);
-        console.info("saveCharacter.click() - loadErrors:", loadErrors);
+        console.info("saveCharacter() - abilityErrors:", abilityErrors);
+        console.info("saveCharacter() - loadErrors:", loadErrors);
       }
       if (!abilityErrors && !loadErrors) {
         var backstory = $("#backstory").val();
@@ -864,20 +864,21 @@ $(document).ready(function() {
           }
         }
 
-        //array debug
+        // debug
         if (debug == true) {
-          console.info("bonds", bonds);
-          console.info("items", items);
-          console.info("itemsWeights", itemsWeights);
-          console.info("classFeatures", classFeatures);
-          console.info("classFeaturesCheckboxes", classFeaturesCheckboxes);
+          console.info("saveCharacter() - xp", xp);
+          console.info("saveCharacter() - bonds", bonds);
+          console.info("saveCharacter() - items", items);
+          console.info("saveCharacter() - itemsWeights", itemsWeights);
+          console.info("saveCharacter() - classFeatures", classFeatures);
+          console.info("saveCharacter() - classFeaturesCheckboxes", classFeaturesCheckboxes);
         }
 
         // SAVE FUNCTION
         var characterSheet = player + adventure + charaName;
         characterSheet = characterSheet.replace(/\W/g, "");
         if (debug == true) {
-          console.info("characterSheet:", characterSheet);
+          console.info("saveCharacter() - characterSheet:", characterSheet);
         }
         db.collection("characters").doc(characterSheet).set({
             "characterSheet": {
