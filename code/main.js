@@ -620,6 +620,7 @@ $(document).ready(function() {
           console.log("loadCharacter() - chara.alignment",chara.alignment);
           console.log("loadCharacter() - #alignment",$("#alignment"));
           $("#alignment").val(chara.alignment);
+          console.log("loadCharacter() - #alignment",$("#alignment"));
           setAlignmentAttribute();
           $("#level").val(chara.level);
           $("#xp").val(chara.xp);
