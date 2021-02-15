@@ -1,4 +1,5 @@
 # TO DO
+- auth (add all users)
 - load alignment bug
 - extensive value based testing
 - character drop down / add new character functionality

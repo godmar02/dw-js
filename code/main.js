@@ -690,6 +690,8 @@ $(document).ready(function() {
             setHeight("classFeature" + k);
           }
 
+          alert("Character Sheet succesfully loaded!");
+
         } else {
           // doc.data() will be undefined in this case
           if (debug == true) {
@@ -699,7 +701,7 @@ $(document).ready(function() {
         }
       }).catch((error) => {
         if (debug == true) {
-          alert("Failed to load character, see console error");
+          alert("Failed to load character correctly, see console error");
           console.error("Error getting document:", error);
         }
       });
