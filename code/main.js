@@ -619,8 +619,8 @@ $(document).ready(function() {
           // BROKEN WILL NOT SET OPTION
           $("#alignment").val(chara.alignment);
           setAlignmentAttribute();
-          $("#level").val(chara.basicAttributes.level);
-          $("#XP").val(chara.basicAttributes.XP);
+          $("#level").val(chara.level);
+          $("#XP").val(chara.XP);
           $("#str").val(chara.abilities.str);
           $("#strAffliction").val(chara.abilities.strAffliction);
           setModifier("str");
@@ -888,10 +888,8 @@ $(document).ready(function() {
               "dwClass": dwClass,
               "race": race,
               "alignment": alignment,
-              "basicAttributes": {
-                "level": level,
-                "XP": XP
-              },
+              "level": level,
+              "XP": XP,
               "abilities": {
                 "str": str,
                 "strAffliction": strAffliction,
@@ -1074,10 +1072,10 @@ $(document).ready(function() {
     $("#faq").hide();
   });
 
-  $(".profPicture").hover(function(){
-      $(".profDetails").show();
-  }, function(){
-      $(".profDetails").hide();
+  $(".profPicture").hover(function() {
+    $(".profDetails").show();
+  }, function() {
+    $(".profDetails").hide();
   });
 
 });
