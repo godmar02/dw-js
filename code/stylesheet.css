@@ -80,6 +80,10 @@ textarea {
   vertical-align: middle;
 }
 
+input.charaName {
+  text-align: left;
+}
+
 select {
   background: url(/images/icons/down_arrow.png) no-repeat right;
 }
