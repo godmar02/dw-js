@@ -315,7 +315,7 @@ $(document).ready(function() {
         console.info("setPlayerOptions() - players:", players);
       }
       $.each(players, function(index, value) {
-        $("#player").append(new Option(value));
+        $("#player").append(new Option(value, value));
       });
     });
   }
@@ -329,7 +329,7 @@ $(document).ready(function() {
         console.info("setAdventureOptions() - adventures:", adventures);
       }
       $.each(adventures, function(index, value) {
-        $("#adventure").append(new Option(value));
+        $("#adventure").append(new Option(value, value));
       });
     });
   }
@@ -343,7 +343,7 @@ $(document).ready(function() {
         console.info("setDwClassOptions() - classes:", classes);
       }
       $.each(classes, function(index, value) {
-        $("#dwClass").append(new Option(value));
+        $("#dwClass").append(new Option(value, value));
       });
     });
   }
@@ -357,7 +357,7 @@ $(document).ready(function() {
         console.info("setRaceOptions() - races:", races);
       }
       $.each(races, function(index, value) {
-        $("#race").append(new Option(value));
+        $("#race").append(new Option(value, value));
       });
     });
   }
