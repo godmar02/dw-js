@@ -1,5 +1,6 @@
 # TO DO
 - auth (add all users)
+- auth (prevent users saving over others sheets)
 - load alignment bug
 - extensive value based testing
 - character drop down / add new character functionality

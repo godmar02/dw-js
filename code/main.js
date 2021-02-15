@@ -714,8 +714,9 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
+    var owner = user.email;
 
-    if (player && adventure && charaName) {
+    if (player && adventure && charaName && owner) {
       if (debug == true) {
         console.info("saveCharacter.click() - abilityErrors:", abilityErrors);
         console.info("saveCharacter.click() - loadErrors:", loadErrors);
@@ -877,6 +878,7 @@ $(document).ready(function() {
         }
         db.collection("characters").doc(characterSheet).set({
             "characterSheet": {
+              "owner": owner,
               "player": player,
               "adventure": adventure,
               "charaName": charaName,
@@ -935,7 +937,7 @@ $(document).ready(function() {
         }
       }
     } else {
-      alert("Cannot save unless Player, Adventure and Character are completed");
+      alert("Cannot save unless user is authenticated and Player, Adventure and Character are completed");
     }
   }
 
