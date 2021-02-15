@@ -646,6 +646,7 @@ $(document).ready(function() {
           setMaxXp();
           setDamage();
           setMaxLoad();
+          $("#alignment").val("Chaotic");
 
           var bondsCount = chara.bonds.length;
           clearRows("bondsTable");
