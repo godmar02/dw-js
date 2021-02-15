@@ -601,7 +601,7 @@ $(document).ready(function() {
         if (doc.exists) {
           var loadedData = doc.data();
           if (debug == true) {
-            console.info("Document data:", doc.data());
+            console.info("loadCharacter() - Document data:", doc.data());
           }
           var chara = loadedData.characterSheet;
 
