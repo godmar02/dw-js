@@ -1,7 +1,7 @@
 {
   "Barbarian": {
     "damage": "d10",
-    "baseHP": 8,
+    "baseHp": 8,
     "baseLoad": 8,
     "alignments": ["Chaotic", "Neutral"],
     "alignmentAttributes": {
@@ -21,7 +21,7 @@
   },
   "Bard": {
     "damage": "d6",
-    "baseHP": 6,
+    "baseHp": 6,
     "baseLoad": 9,
     "alignments": ["Good", "Neutral", "Chaotic"],
     "alignmentAttributes": {
@@ -42,7 +42,7 @@
   },
   "Cleric": {
     "damage": "d6",
-    "baseHP": 6,
+    "baseHp": 6,
     "baseLoad": 10,
     "alignments": ["Good", "Lawful", "Evil"],
     "alignmentAttributes": {
@@ -63,7 +63,7 @@
   },
   "Druid": {
     "damage": "d6",
-    "baseHP": 6,
+    "baseHp": 6,
     "baseLoad": 6,
     "alignments": ["Chaotic", "Good", "Neutral"],
     "alignmentAttributes": {
@@ -84,7 +84,7 @@
   },
   "Fighter": {
     "damage": "d10",
-    "baseHP": 10,
+    "baseHp": 10,
     "baseLoad": 12,
     "alignments": ["Good", "Neutral", "Evil"],
     "alignmentAttributes": {
@@ -105,7 +105,7 @@
   },
   "Paladin": {
     "damage": "d10",
-    "baseHP": 10,
+    "baseHp": 10,
     "baseLoad": 12,
     "alignments": ["Lawful", "Good"],
     "alignmentAttributes": {
@@ -125,7 +125,7 @@
   },
   "Ranger": {
     "damage": "d8",
-    "baseHP": 8,
+    "baseHp": 8,
     "baseLoad": 11,
     "alignments": ["Chaotic", "Good", "Neutral"],
     "alignmentAttributes": {
@@ -146,7 +146,7 @@
   },
   "Thief": {
     "damage": "d8",
-    "baseHP": 6,
+    "baseHp": 6,
     "baseLoad": 9,
     "alignments": ["Chaotic", "Neutral", "Evil"],
     "alignmentAttributes": {
@@ -167,7 +167,7 @@
   },
   "Wizard": {
     "damage": "d4",
-    "baseHP": 4,
+    "baseHp": 4,
     "baseLoad": 7,
     "alignments": ["Good", "Neutral", "Evil"],
     "alignmentAttributes": {
