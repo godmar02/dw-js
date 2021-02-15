@@ -646,7 +646,6 @@ $(document).ready(function() {
           setMaxXp();
           setDamage();
           setMaxLoad();
-          $("#alignment").val("Chaotic");
 
           var bondsCount = chara.bonds.length;
           clearRows("bondsTable");
@@ -691,7 +690,7 @@ $(document).ready(function() {
             $("#classFeatureCheckbox" + k).prop("checked", chara.classFeatures.classFeaturesCheckboxes[k]);
             setHeight("classFeature" + k);
           }
-
+          $("#alignment").val("Chaotic");
           alert("Character Sheet succesfully loaded!");
 
         } else {
