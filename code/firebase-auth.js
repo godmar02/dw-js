@@ -18,7 +18,7 @@ firebase.auth()
     $("#userName").text(user.displayName);
     $("#userEmail").text(user.email);
 
-    console.log("request.auth.uid:", request.auth.uid);
+    console.info("Authenticated with UID:", user.uid);
 
   }).catch((error) => {
     // Handle Errors here.
