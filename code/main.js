@@ -619,7 +619,7 @@ $(document).ready(function() {
           // BROKEN WILL NOT SET OPTION
           console.log("loadCharacter() - chara.alignment",chara.alignment);
           console.log("loadCharacter() - #alignment",$("#alignment").val());
-          $("#alignment").val("Choatic");
+          $("#alignment").val("Chaotic");
           console.log("loadCharacter() - #alignment",$("#alignment").val());
           setAlignmentAttribute();
           $("#level").val(chara.level);
