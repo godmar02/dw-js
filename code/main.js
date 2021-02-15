@@ -527,13 +527,10 @@ $(document).ready(function() {
   }
 
   function setAlignmentOptions() {
-
-    var dwClass = $("#dwClass").val();
-    var alignments = [];
-
     $.getJSON("/data/classDetails.json", function(data) {
       $("#alignment").empty();
       $("#alignment").append("<option hidden disabled selected value='null'></option>");
+      var dwClass = $("#dwClass").val();
       if (dwClass) {
         alignments = data[dwClass].alignments;
         if (debug == true) {
@@ -617,10 +614,10 @@ $(document).ready(function() {
           setRaceAttribute();
           setAlignmentOptions();
           // BROKEN WILL NOT SET OPTION
-          console.log("loadCharacter() - chara.alignment",chara.alignment);
-          console.log("loadCharacter() - #alignment",$("#alignment").val());
-          $("#alignment").val("Chaotic");
-          console.log("loadCharacter() - #alignment",$("#alignment").val());
+          //console.log("loadCharacter() - chara.alignment",chara.alignment);
+          //console.log("loadCharacter() - #alignment",$("#alignment").val());
+          //$("#alignment").val("Chaotic");
+          //console.log("loadCharacter() - #alignment",$("#alignment").val());
           setAlignmentAttribute();
           $("#level").val(chara.level);
           $("#xp").val(chara.xp);
