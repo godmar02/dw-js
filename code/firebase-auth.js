@@ -15,7 +15,8 @@ firebase.auth()
 
     // Set username and profile picture
     $("#userPicture").attr("src", user.photoURL);
-    $("#userPicture").attr("alt", user.displayName);
+    $("#userName").val(user.displayName);
+    $("#userEmail").val(user.displayName);
 
   }).catch((error) => {
     // Handle Errors here.
@@ -27,3 +28,11 @@ firebase.auth()
     var credential = error.credential;
     // ...
   });
+
+function googSignOut() {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+}
