@@ -159,7 +159,7 @@ th {
   width: 32px;
   z-index: 0;
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 20px;
   padding: 5px;
 }
@@ -172,7 +172,7 @@ th {
   margin: 0;
   position: absolute;
   top: 50px;
-  right: 30px;
+  right: 20px;
   padding: 5px;
   color: #bdc1c6;
   background-color: rgba(60,64,67,0.90);;
