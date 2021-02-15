@@ -690,7 +690,7 @@ $(document).ready(function() {
             $("#classFeatureCheckbox" + k).prop("checked", chara.classFeatures.classFeaturesCheckboxes[k]);
             setHeight("classFeature" + k);
           }
-          $("#alignment").val("Chaotic");
+
           alert("Character Sheet succesfully loaded!");
 
         } else {
@@ -709,6 +709,7 @@ $(document).ready(function() {
     } else {
       alert("Cannot load unless Player, Adventure and Character are completed");
     }
+    $("#alignment").val("Chaotic");
   }
 
   function saveCharacter() {
