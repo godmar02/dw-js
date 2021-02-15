@@ -409,21 +409,21 @@ $(document).ready(function() {
     }
   }
 
-  function validateXP() {
-    var XP = $("#XP").val();
-    var maxXP = parseInt($("#maxXP").val().replace("/ ", ""), 10);
-    if (XP && maxXP && XP > maxXP) {
-      alert(XP + "XP exceeds maximum permitted value of " + maxXP);
-      $("#XP").val(maxXP);
+  function validateXp() {
+    var xp = $("#xp").val();
+    var maxXp = parseInt($("#maxXp").val().replace("/ ", ""), 10);
+    if (xp && maxXp && xp > maxXp) {
+      alert(xp + "xp exceeds maximum permitted value of " + maxXp);
+      $("#xp").val(maxXp);
     }
   }
 
-  function validateHP() {
-    var HP = $("#HP").val();
-    var maxHP = parseInt($("#maxHP").val().replace("/ ", ""), 10);
-    if (HP && maxHP && HP > maxHP) {
-      alert(HP + "HP exceeds maximum permitted value of " + maxHP);
-      $("#HP").val(maxHP);
+  function validateHp() {
+    var hp = $("#hp").val();
+    var maxHp = parseInt($("#maxHp").val().replace("/ ", ""), 10);
+    if (hp && maxHp && hp > maxHp) {
+      alert(hp + "hp exceeds maximum permitted value of " + maxHp);
+      $("#hp").val(maxHp);
     }
   }
 
@@ -454,39 +454,39 @@ $(document).ready(function() {
     });
   }
 
-  function setMaxHP() {
+  function setMaxHp() {
 
     var dwClass = $("#dwClass").val();
     var con = parseInt($("#con").val(), 10);
-    var baseHP = 0;
-    var maxHP = 0;
+    var baseHp = 0;
+    var maxHp = 0;
 
     $.getJSON("/data/classDetails.json", function(data) {
       if (dwClass && con) {
-        baseHP = parseInt(data[dwClass].baseHP, 10);
+        baseHp = parseInt(data[dwClass].baseHp, 10);
         if (debug == true) {
-          console.info("setMaxHP() - baseHP:", baseHP);
+          console.info("setMaxHp() - baseHp:", baseHp);
         }
-        maxHP = baseHP + con;
+        maxHp = baseHp + con;
         if (debug == true) {
-          console.info("setMaxHP() - maxHP:", maxHP);
+          console.info("setMaxHp() - maxHp:", maxHp);
         }
-        $("#maxHP").val("/ " + maxHP);
-        validateXP();
+        $("#maxHp").val("/ " + maxHp);
+        validateXp();
       } else {
-        $("#maxHP").val("");
+        $("#maxHp").val("");
       }
     });
   }
 
-  function setMaxXP() {
+  function setMaxXp() {
     var lvl = $("#level").val();
     if (lvl) {
-      var maxXP = parseInt(lvl, 10) + 7;
-      $("#maxXP").val("/ " + maxXP);
-      validateXP();
+      var maxXp = parseInt(lvl, 10) + 7;
+      $("#maxXp").val("/ " + maxXp);
+      validateXp();
     } else {
-      $("#maxXP").val("");
+      $("#maxXp").val("");
     }
   }
 
@@ -622,7 +622,7 @@ $(document).ready(function() {
           $("#alignment").val(chara.alignment);
           setAlignmentAttribute();
           $("#level").val(chara.level);
-          $("#XP").val(chara.XP);
+          $("#xp").val(chara.xp);
           $("#str").val(chara.abilities.str);
           $("#strAffliction").val(chara.abilities.strAffliction);
           setModifier("str");
@@ -642,10 +642,10 @@ $(document).ready(function() {
           $("#chaAffliction").val(chara.abilities.chaAffliction);
           setModifier("cha");
           $("#armour").val(chara.armour);
-          $("#HP").val(chara.HP);
+          $("#hp").val(chara.hp);
           $("#funds").val(chara.funds);
-          setMaxHP();
-          setMaxXP();
+          setMaxHp();
+          setMaxXp();
           setDamage();
           setMaxLoad();
 
@@ -749,9 +749,9 @@ $(document).ready(function() {
         if (!level) {
           level = null;
         }
-        var XP = parseInt($("#XP").val(), 10);
-        if (!XP && XP != 0) {
-          XP = null;
+        var xp = parseInt($("#xp").val(), 10);
+        if (!xp && xp != 0) {
+          xp = null;
         }
         var str = parseInt($("#str").val(), 10);
         if (!str) {
@@ -805,9 +805,9 @@ $(document).ready(function() {
         if (!armour && armour != 0) {
           armour = null;
         }
-        var HP = parseInt($("#HP").val(), 10);
-        if (!HP) {
-          HP = null;
+        var hp = parseInt($("#hp").val(), 10);
+        if (!hp) {
+          hp = null;
         }
         var funds = parseInt($("#funds").val(), 10);
         if (!funds && funds != 0) {
@@ -891,7 +891,7 @@ $(document).ready(function() {
               "race": race,
               "alignment": alignment,
               "level": level,
-              "XP": XP,
+              "xp": xp,
               "abilities": {
                 "str": str,
                 "strAffliction": strAffliction,
@@ -907,7 +907,7 @@ $(document).ready(function() {
                 "chaAffliction": chaAffliction
               },
               "armour": armour,
-              "HP": HP,
+              "hp": hp,
               "funds": funds,
               "bonds": bonds,
               "gear": {
@@ -960,7 +960,7 @@ $(document).ready(function() {
     // Set stuff
     setRaceAttribute();
     setMaxLoad();
-    setMaxHP();
+    setMaxHp();
     setDamage();
 
     // Set alignment options if class is changing
@@ -974,11 +974,11 @@ $(document).ready(function() {
   });
 
   $(document).on("change", "#level", function() {
-    setMaxXP();
+    setMaxXp();
   });
 
-  $(document).on("change", "#XP", function() {
-    validateXP();
+  $(document).on("change", "#xp", function() {
+    validateXp();
   });
 
   $(document).on("change", ".ability, .abilityAffliction", function() {
@@ -992,11 +992,11 @@ $(document).ready(function() {
   });
 
   $(document).on("change", "#con", function() {
-    setMaxHP();
+    setMaxHp();
   });
 
-  $(document).on("change", "#HP", function() {
-    validateHP();
+  $(document).on("change", "#hp", function() {
+    validateHp();
   });
 
   $(document).on("change", "[id^=itemWeight]", function() {
