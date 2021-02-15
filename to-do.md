@@ -1,6 +1,7 @@
 # TO DO
 - load alignment bug
 - allow admins to edit anything without saving over owner
+- optimistic locking
 - extensive value based testing
 - character drop down / add new character functionality
 - moves tab

@@ -309,7 +309,7 @@ $(document).ready(function() {
   function setPlayerOptions() {
     $.getJSON("/data/playerList.json", function(data) {
       $("#player").empty();
-      $("#player").append("<option hidden disabled selected></option>");
+      $("#player").append("<option hidden disabled selected value='null'></option>");
       players = data.players;
       if (debug == true) {
         console.info("setPlayerOptions() - players:", players);
@@ -323,7 +323,7 @@ $(document).ready(function() {
   function setAdventureOptions() {
     $.getJSON("/data/adventureList.json", function(data) {
       $("#adventure").empty();
-      $("#adventure").append("<option hidden disabled selected></option>");
+      $("#adventure").append("<option hidden disabled selected value='null'></option>");
       adventures = data.adventures;
       if (debug == true) {
         console.info("setAdventureOptions() - adventures:", adventures);
@@ -337,7 +337,7 @@ $(document).ready(function() {
   function setDwClassOptions() {
     $.getJSON("/data/classList.json", function(data) {
       $("#dwClass").empty();
-      $("#dwClass").append("<option hidden disabled selected></option>");
+      $("#dwClass").append("<option hidden disabled selected value='null'></option>");
       classes = data.classes;
       if (debug == true) {
         console.info("setDwClassOptions() - classes:", classes);
@@ -351,7 +351,7 @@ $(document).ready(function() {
   function setRaceOptions() {
     $.getJSON("/data/raceList.json", function(data) {
       $("#race").empty();
-      $("#race").append("<option hidden disabled selected></option>");
+      $("#race").append("<option hidden disabled selected value='null'></option>");
       races = data.races;
       if (debug == true) {
         console.info("setRaceOptions() - races:", races);
@@ -533,7 +533,7 @@ $(document).ready(function() {
 
     $.getJSON("/data/classDetails.json", function(data) {
       $("#alignment").empty();
-      $("#alignment").append("<option hidden disabled selected></option>");
+      $("#alignment").append("<option hidden disabled selected value='null'></option>");
       if (dwClass) {
         alignments = data[dwClass].alignments;
         if (debug == true) {
@@ -657,7 +657,7 @@ $(document).ready(function() {
               addRow("bondsTable");
             }
             if (debug == true) {
-              console.info("loadChacter - chara.bonds[" + i + "]:", chara.bonds[i]);
+              console.info("loadCharacter - chara.bonds[" + i + "]:", chara.bonds[i]);
             }
             $("#bond" + i).val(chara.bonds[i]);
             setHeight("bond" + i);
@@ -670,8 +670,8 @@ $(document).ready(function() {
               addRow("gearTable");
             }
             if (debug == true) {
-              console.info("loadChacter - chara.gear.items[" + j + "]:", chara.gear.items[j]);
-              console.info("loadChacter - chara.gear.itemsWeights[" + j + "]:", chara.gear.itemsWeights[j]);
+              console.info("loadCharacter - chara.gear.items[" + j + "]:", chara.gear.items[j]);
+              console.info("loadCharacter - chara.gear.itemsWeights[" + j + "]:", chara.gear.itemsWeights[j]);
             }
             $("#item" + j).val(chara.gear.items[j]);
             $("#itemWeight" + j).val(chara.gear.itemsWeights[j]);
@@ -686,8 +686,8 @@ $(document).ready(function() {
               addRow("classFeaturesTable");
             }
             if (debug == true) {
-              console.info("loadChacter - chara.classFeatures.classFeatures[" + k + "]:", chara.classFeatures.classFeatures[k]);
-              console.info("loadChacter - chara.classFeatures.classFeaturesCheckboxes[" + k + "]:", chara.classFeatures.classFeaturesCheckboxes[k]);
+              console.info("loadCharacter - chara.classFeatures.classFeatures[" + k + "]:", chara.classFeatures.classFeatures[k]);
+              console.info("loadCharacter - chara.classFeatures.classFeaturesCheckboxes[" + k + "]:", chara.classFeatures.classFeaturesCheckboxes[k]);
             }
             $("#classFeature" + k).val(chara.classFeatures.classFeatures[k]);
             $("#classFeatureCheckbox" + k).prop("checked", chara.classFeatures.classFeaturesCheckboxes[k]);
