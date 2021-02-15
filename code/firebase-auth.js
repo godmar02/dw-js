@@ -23,6 +23,8 @@ firebase.auth()
     console.info("Authenticated user UID:", user.uid);
     console.info("Authenticated user email:", user.email);
 
+    userEmail = user.email;
+
   }).catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;

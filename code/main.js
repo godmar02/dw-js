@@ -715,7 +715,7 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var owner = user.email;
+    var owner = userEmail;
 
     if (player && adventure && charaName && owner) {
       if (debug == true) {
