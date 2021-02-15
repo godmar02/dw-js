@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 //Create an instance of the Google provider object:
 var provider = new firebase.auth.GoogleAuthProvider();
 
