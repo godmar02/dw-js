@@ -540,7 +540,7 @@ $(document).ready(function() {
           console.info("setAlignmentOptions() - alignments:", alignments);
         }
         $.each(alignments, function(index, value) {
-          $("#alignment").append(new Option(value));
+          $("#alignment").append(new Option(value, value));
         });
       }
     });
