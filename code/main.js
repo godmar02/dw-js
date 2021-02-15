@@ -618,6 +618,7 @@ $(document).ready(function() {
           setAlignmentOptions();
           // BROKEN WILL NOT SET OPTION
           console.log("chara.alignment",chara.alignment);
+          console.log("#alignment",$("#alignment"));
           $("#alignment").val(chara.alignment);
           setAlignmentAttribute();
           $("#level").val(chara.level);
