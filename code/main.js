@@ -617,6 +617,7 @@ $(document).ready(function() {
           setRaceAttribute();
           setAlignmentOptions();
           // BROKEN WILL NOT SET OPTION
+          console.log("chara.alignment",chara.alignment);
           $("#alignment").val(chara.alignment);
           setAlignmentAttribute();
           $("#level").val(chara.level);
