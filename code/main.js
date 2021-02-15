@@ -609,12 +609,11 @@ $(document).ready(function() {
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
           setRaceAttribute();
-          //setAlignmentOptions();
+          setAlignmentOptions();
           // BROKEN WILL NOT SET OPTION
-          console.log("loadCharacter() - chara.alignment",chara.alignment);
-          console.log("loadCharacter() - #alignment",$("#alignment").val());
+          console.log("loadCharacter() - $(#alignment).val()",$("#alignment").val());
           $("#alignment").val("Chaotic");
-          console.log("loadCharacter() - #alignment",$("#alignment").val());
+          console.log("loadCharacter() - $(#alignment).val()",$("#alignment").val());
           setAlignmentAttribute();
           $("#level").val(chara.level);
           $("#xp").val(chara.xp);
