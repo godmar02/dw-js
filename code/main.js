@@ -602,9 +602,6 @@ $(document).ready(function() {
           }
           var chara = loadedData.characterSheet;
 
-          $("#player").val(chara.player);
-          $("#adventure").val(chara.adventure);
-          $("#charaName").val(chara.charaName);
           $("#backstory").val(chara.backstory);
           setHeight("backstory");
           $("#look").val(chara.look);
@@ -612,7 +609,7 @@ $(document).ready(function() {
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
           setRaceAttribute();
-          setAlignmentOptions();
+          //setAlignmentOptions();
           // BROKEN WILL NOT SET OPTION
           console.log("loadCharacter() - chara.alignment",chara.alignment);
           console.log("loadCharacter() - #alignment",$("#alignment").val());
@@ -709,7 +706,6 @@ $(document).ready(function() {
     } else {
       alert("Cannot load unless Player, Adventure and Character are completed");
     }
-    $("#alignment").val("Chaotic");
   }
 
   function saveCharacter() {
