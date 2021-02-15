@@ -18,7 +18,8 @@ firebase.auth()
     $("#userName").text(user.displayName);
     $("#userEmail").text(user.email);
 
-    console.info("Authenticated with UID:", user.uid);
+    console.info("Authenticated user UID:", user.uid);
+    console.info("Authenticated user email:", user.email);
 
   }).catch((error) => {
     // Handle Errors here.
