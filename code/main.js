@@ -587,13 +587,13 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var characterSheet = player + adventure + charaName;
-    characterSheet = characterSheet.replace(/\W/g, "");
-    if (debug == true) {
-      console.info("loadCharVer() - characterSheet:", characterSheet);
-    }
 
     if (player && adventure && charaName) {
+      var characterSheet = player + adventure + charaName;
+      characterSheet = characterSheet.replace(/\W/g, "");
+      if (debug == true) {
+        console.info("loadCharVer() - characterSheet:", characterSheet);
+      }
       db.collection("characters").doc(characterSheet).get().then((doc) => {
         if (doc.exists) {
           var loadedData = doc.data();
@@ -627,13 +627,13 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var characterSheet = player + adventure + charaName;
-    characterSheet = characterSheet.replace(/\W/g, "");
-    if (debug == true) {
-      console.info("loadCharacter() - characterSheet:", characterSheet);
-    }
 
     if (player && adventure && charaName) {
+      var characterSheet = player + adventure + charaName;
+      characterSheet = characterSheet.replace(/\W/g, "");
+      if (debug == true) {
+        console.info("loadCharacter() - characterSheet:", characterSheet);
+      }
       db.collection("characters").doc(characterSheet).get().then((doc) => {
         if (doc.exists) {
           var loadedData = doc.data();
@@ -749,10 +749,6 @@ $(document).ready(function() {
   }
 
   function saveCharacter() {
-    var player = $("#player").val();
-    var adventure = $("#adventure").val();
-    var charaName = $("#charaName").val();
-    var owner = userEmail;
     var dbVer = parseInt(loadCharVer(), 10);
     var version = parseInt($("#charVer").val(), 10);
     if (!version && version != 0) {
@@ -767,7 +763,16 @@ $(document).ready(function() {
     //check that the version being saved matches that in database
     if (version == dbVer) {
       version = version++;
+      var player = $("#player").val();
+      var adventure = $("#adventure").val();
+      var charaName = $("#charaName").val();
+      var owner = userEmail;
       if (player && adventure && charaName && owner) {
+        var characterSheet = player + adventure + charaName;
+        characterSheet = characterSheet.replace(/\W/g, "");
+        if (debug == true) {
+          console.info("saveCharacter() - characterSheet:", characterSheet);
+        }
         if (debug == true) {
           console.info("saveCharacter() - abilityErrors:", abilityErrors);
           console.info("saveCharacter() - loadErrors:", loadErrors);
@@ -923,11 +928,6 @@ $(document).ready(function() {
           }
 
           // SAVE FUNCTION
-          var characterSheet = player + adventure + charaName;
-          characterSheet = characterSheet.replace(/\W/g, "");
-          if (debug == true) {
-            console.info("saveCharacter() - characterSheet:", characterSheet);
-          }
           db.collection("characters").doc(characterSheet).set({
               "characterSheet": {
                 "owner": owner,
