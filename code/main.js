@@ -964,6 +964,7 @@ $(document).ready(function() {
               if (debug == true) {
                 console.info("saveCharacter() - Document written with ID:", characterSheet);
               }
+              $("#charVer").val(version);
               alert("saveCharacter() - Character Sheet succesfully saved!");
             })
             .catch((error) => {
