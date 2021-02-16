@@ -748,13 +748,12 @@ $(document).ready(function() {
           }
         } else {
           // doc.data() will be undefined in this case so it is a new character
-          dbVer = 0;
           if (debug == true) {
             console.info("saveCharacter() - Character does not exist in db - dbVer", dbVer);
           }
         }
 
-        if (!(dbVer)) {
+        if (!dbVer && dbVer != 0) {
           alert("saveCharacter() - Cannot save because dbVer cannot be retrieved");
         } else if (version != dbVer) {
           alert("saveCharacter() - Cannot save because Character has been updated, please re-load and try again");
