@@ -658,6 +658,7 @@ $(document).ready(function() {
           $("#race").val(chara.race);
           setRaceAttribute();
           setAlignmentOptions();
+          $("#alignment").val(chara.alignment);
           setAlignmentAttribute();
           $("#level").val(chara.level);
           $("#xp").val(chara.xp);
