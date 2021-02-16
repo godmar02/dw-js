@@ -770,9 +770,6 @@ $(document).ready(function() {
     } else {
       version = version++;
       if (debug == true) {
-        console.info("saveCharacter() - characterSheet:", characterSheet);
-      }
-      if (debug == true) {
         console.info("saveCharacter() - abilityErrors:", abilityErrors);
         console.info("saveCharacter() - loadErrors:", loadErrors);
       }
