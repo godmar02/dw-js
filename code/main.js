@@ -771,15 +771,12 @@ $(document).ready(function() {
       alert("Cannot save because user is not authenticated");
     } else if (!(player && adventure && charaName)) {
       alert("Cannot save because Player, Adventure and Character are not populated");
-    } else if (!abilityErrors && !loadErrors) {
-      alert("Cannot save because total Item Weight or total Ability Score are invalid");
-      if (debug == true) {
-        console.warn("saveCharacter() - abilityErrors", abilityErrors);
-        console.warn("saveCharacter() - loadErrors", loadErrors);
-      }
+    } else if (abilityErrors) {
+      alert("Cannot save because the total Ability Score is invalid");
+    } else if (loadErrors) {
+      alert("Cannot save because total Item Weight exceeds maximum load");
     } else {
       version = version++;
-
       var characterSheet = player + adventure + charaName;
       characterSheet = characterSheet.replace(/\W/g, "");
       if (debug == true) {
