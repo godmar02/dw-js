@@ -311,7 +311,6 @@ $(document).ready(function() {
       url: "/data/playerList.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         $("#player").empty();
         $("#player").append("<option hidden disabled selected value='null'></option>");
@@ -331,7 +330,6 @@ $(document).ready(function() {
       url: "/data/adventureList.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         $("#adventure").empty();
         $("#adventure").append("<option hidden disabled selected value='null'></option>");
@@ -351,7 +349,6 @@ $(document).ready(function() {
       url: "/data/classList.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         $("#dwClass").empty();
         $("#dwClass").append("<option hidden disabled selected value='null'></option>");
@@ -371,7 +368,6 @@ $(document).ready(function() {
       url: "/data/raceList.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         $("#race").empty();
         $("#race").append("<option hidden disabled selected value='null'></option>");
@@ -461,7 +457,6 @@ $(document).ready(function() {
       url: "/data/classDetails.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         //Set maxLoad
         if (dwClass && strModifier) {
@@ -495,7 +490,6 @@ $(document).ready(function() {
       url: "/data/classDetails.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         if (dwClass && con) {
           baseHp = parseInt(data[dwClass].baseHp, 10);
@@ -536,7 +530,6 @@ $(document).ready(function() {
       url: "/data/classDetails.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         if (dwClass && race) {
           raceAttribute = data[dwClass].raceAttributes[race];
@@ -558,7 +551,6 @@ $(document).ready(function() {
       url: "/data/classDetails.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         if (dwClass) {
           damage = data[dwClass].damage;
@@ -578,7 +570,6 @@ $(document).ready(function() {
       url: "/data/classDetails.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         $("#alignment").empty();
         $("#alignment").append("<option hidden disabled selected value='null'></option>");
@@ -606,7 +597,6 @@ $(document).ready(function() {
       url: "/data/classDetails.json",
       dataType: 'json',
       async: false,
-      data: myData,
       success: function(data) {
         alignment = $("#alignment").val();
         if (dwClass && alignment) {
