@@ -609,12 +609,22 @@ $(document).ready(function() {
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
           setRaceAttribute();
-          // setAlignmentOptions();
-          // BROKEN WILL NOT SET OPTION
-          console.log("loadCharacter() - $(#alignment).val()", $("#alignment").val());
-          $("#alignment").val("Chaotic");
-          console.log("loadCharacter() - $(#alignment).val()", $("#alignment").val());
-          setAlignmentAttribute();
+          $.getJSON("/data/classDetails.json", function(data) {
+            $("#alignment").empty();
+            $("#alignment").append("<option hidden disabled selected value='null'></option>");
+            var dwClass = $("#dwClass").val();
+            alignments = data[dwClass].alignments;
+            if (debug == true) {
+              console.info("setAlignmentOptions() - alignments:", alignments);
+            }
+            $.each(alignments, function(index, value) {
+                $("#alignment").append(new Option(value, value));
+              }
+            );
+            // BROKEN WILL NOT SET OPTION
+            $("#alignment").val("Chaotic");
+            setAlignmentAttribute();
+          });
           $("#level").val(chara.level);
           $("#xp").val(chara.xp);
           $("#str").val(chara.abilities.str);
