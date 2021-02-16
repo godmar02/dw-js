@@ -1,8 +1,6 @@
 # TO DO
-- load alignment bug
 - allow admins to edit anything without saving over owner
-- optimistic locking
-- extensive value based testing
+- extensive testing
 - character drop down / add new character functionality
 - inline auth in page
 - moves tab
