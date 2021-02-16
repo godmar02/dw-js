@@ -590,7 +590,7 @@ $(document).ready(function() {
     var characterSheet = player + adventure + charaName;
     characterSheet = characterSheet.replace(/\W/g, "");
     if (debug == true) {
-      console.info("loadCharacter() - characterSheet:", characterSheet);
+      console.info("loadCharVer() - characterSheet:", characterSheet);
     }
 
     if (player && adventure && charaName) {
@@ -598,12 +598,17 @@ $(document).ready(function() {
         if (doc.exists) {
           var loadedData = doc.data();
           var chara = loadedData.characterSheet;
+          if (debug == true) {
+            console.info("loadCharVer() - chara.version:", chara.version);
+          }
           return chara.version;
-
         } else {
           // doc.data() will be undefined in this case
           if (debug == true) {
             // new character
+            if (debug == true) {
+              console.info("loadCharVer() - Character does not exist in db");
+            }
             return 0;
           }
         }
