@@ -755,7 +755,7 @@ $(document).ready(function() {
       version = 0;
     }
 
-    if (version != dbver) {
+    if (version != dbVer) {
       version = version++;
       if (player && adventure && charaName && owner) {
         if (debug == true) {
