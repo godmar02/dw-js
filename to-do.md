@@ -4,6 +4,7 @@
 - optimistic locking
 - extensive value based testing
 - character drop down / add new character functionality
+- inline auth in page
 - moves tab
 - campaign notes tab
 - checkbox size for firefox
