@@ -764,7 +764,7 @@ $(document).ready(function() {
       console.info("saveCharacter() - version:", version);
     }
 
-    if (dbVer) {
+    if (!(dbVer)) {
       alert("saveCharacter() - Cannot save because dbVer cannot be retrieved");
     } else if (version != dbVer) {
       alert("saveCharacter() - Cannot save because Character has been updated, please re-load and try again");
