@@ -748,6 +748,7 @@ $(document).ready(function() {
           }
         } else {
           // doc.data() will be undefined in this case so it is a new character
+          dbVer = 0;
           if (debug == true) {
             console.info("saveCharacter() - Character does not exist in db - dbVer", dbVer);
           }
