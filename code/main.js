@@ -720,7 +720,6 @@ $(document).ready(function() {
       version = 0;
     }
     if (debug == true) {
-      console.info("saveCharacter() - dbVer:", dbVer);
       console.info("saveCharacter() - version:", version);
     }
 
@@ -758,8 +757,7 @@ $(document).ready(function() {
         } else {
           version = version++;
           if (debug == true) {
-            console.info("saveCharacter() - abilityErrors:", abilityErrors);
-            console.info("saveCharacter() - loadErrors:", loadErrors);
+            console.info("saveCharacter() - newVersion -", version);
           }
           var backstory = $("#backstory").val();
           if (!backstory) {
