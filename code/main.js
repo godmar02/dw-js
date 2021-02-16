@@ -366,7 +366,7 @@ $(document).ready(function() {
     var load = parseInt($("#load").val(), 10);
     var maxLoad = parseInt($("#maxLoad").val().replace("/ ", ""), 10);
     if (load && maxLoad && load > maxLoad) {
-      alert(load + " weight exceeds maximum permitted value of " + maxLoad);
+      alert("validateLoad() - " + load + " weight exceeds maximum permitted value of " + maxLoad);
       loadErrors = true;
     } else {
       loadErrors = false;
@@ -398,7 +398,7 @@ $(document).ready(function() {
     }
 
     if (str && dex && con && int && wis && cha && totalAbility != maxAbility) {
-      alert(totalAbility + " Ability Score does not match total permitted value of " + maxAbility + "\n" + "Suggested values are 16, 15, 13, 12, 9, 8");
+      alert("validateAbilityScore() - " + totalAbility + " Ability Score does not match total permitted value of " + maxAbility + "\n" + "Suggested values are 16, 15, 13, 12, 9, 8");
       abilityErrors = true;
     } else {
       abilityErrors = false;
@@ -413,7 +413,7 @@ $(document).ready(function() {
     var xp = $("#xp").val();
     var maxXp = parseInt($("#maxXp").val().replace("/ ", ""), 10);
     if (xp && maxXp && xp > maxXp) {
-      alert(xp + "xp exceeds maximum permitted value of " + maxXp);
+      alert("validateXp() - " + xp + "xp exceeds maximum permitted value of " + maxXp);
       $("#xp").val(maxXp);
     }
   }
@@ -422,7 +422,7 @@ $(document).ready(function() {
     var hp = $("#hp").val();
     var maxHp = parseInt($("#maxHp").val().replace("/ ", ""), 10);
     if (hp && maxHp && hp > maxHp) {
-      alert(hp + "hp exceeds maximum permitted value of " + maxHp);
+      alert("validateHp() - " + hp + "hp exceeds maximum permitted value of " + maxHp);
       $("#hp").val(maxHp);
     }
   }
@@ -614,12 +614,12 @@ $(document).ready(function() {
         }
       }).catch((error) => {
         if (debug == true) {
-          alert("Failed to load character correctly, see console error");
+          alert("loadCharVer() - Failed to load character version data correctly, see console error");
           console.error("loadCharVer() - Error getting document:", error);
         }
       });
     } else {
-      alert("Cannot load data unless Player, Adventure and Character are completed");
+      alert("loadCharVer() - Cannot load database Character Sheet version because Player, Adventure and Character are not populated");
     }
   }
 
@@ -728,23 +728,23 @@ $(document).ready(function() {
             setHeight("classFeature" + k);
           }
 
-          alert("Character Sheet succesfully loaded!");
+          alert("loadCharacter() - Character Sheet succesfully loaded!");
 
         } else {
           // doc.data() will be undefined in this case
           if (debug == true) {
-            alert("No Character Sheet found");
-            console.warn("No such document in collection", doc);
+            alert("loadCharacter() - No Character Sheet found");
+            console.warn("loadCharacter() - No such document in collection", doc);
           }
         }
       }).catch((error) => {
         if (debug == true) {
-          alert("Failed to load character correctly, see console error");
-          console.error("Error getting document:", error);
+          alert("loadCharacter() - Failed to load character correctly, see console error");
+          console.error("loadCharacter() - Error getting document:", error);
         }
       });
     } else {
-      alert("Cannot load because Player, Adventure and Character are not populated");
+      alert("loadCharacter() - Cannot load because Player, Adventure and Character are not populated");
     }
   }
 
@@ -766,15 +766,15 @@ $(document).ready(function() {
 
     //check that the version being saved matches that in database
     if (version != dbVer) {
-      alert("Cannot save because Character has been updated, please re-load and try again");
+      alert("saveCharacter() - Cannot save because Character has been updated, please re-load and try again");
     } else if (!(owner)) {
-      alert("Cannot save because user is not authenticated");
+      alert("saveCharacter() - Cannot save because user is not authenticated");
     } else if (!(player && adventure && charaName)) {
-      alert("Cannot save because Player, Adventure and Character are not populated");
+      alert("saveCharacter() - Cannot save because Player, Adventure and Character are not populated");
     } else if (abilityErrors) {
-      alert("Cannot save because the total Ability Score is invalid");
+      alert("saveCharacter() - Cannot save because the total Ability Score is invalid");
     } else if (loadErrors) {
-      alert("Cannot save because total Item Weight exceeds maximum load");
+      alert("saveCharacter() - Cannot save because total Item Weight exceeds maximum load");
     } else {
       version = version++;
       var characterSheet = player + adventure + charaName;
@@ -982,11 +982,11 @@ $(document).ready(function() {
           if (debug == true) {
             console.info("saveCharacter() - Document written with ID:", characterSheet);
           }
-          alert("Character Sheet succesfully saved!");
+          alert("saveCharacter() - Character Sheet succesfully saved!");
         })
         .catch((error) => {
           console.error("saveCharacter() - Error writing document:", error);
-          alert("Failed to save Character Sheet, see console error");
+          alert("saveCharacter() - Failed to save Character Sheet, see console error");
         });
     }
   }
