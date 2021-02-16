@@ -754,8 +754,13 @@ $(document).ready(function() {
       //No version in sheet so assume new character
       version = 0;
     }
+    if (debug == true) {
+      console.info("saveCharacter() - dbVer:", dbVer);
+      console.info("saveCharacter() - version:", version);
+    }
 
-    if (version != dbVer) {
+    //check that the version being saved matches that in database
+    if (version == dbVer) {
       version = version++;
       if (player && adventure && charaName && owner) {
         if (debug == true) {
