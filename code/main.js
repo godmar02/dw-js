@@ -1020,9 +1020,9 @@ $(document).ready(function() {
 
   // Set various drop down options and size cells
   setOptions();
-  setHeight(bond0);
-  setHeight(item0);
-  setHeight(classFeature0);
+  setHeight("bond0");
+  setHeight("item0");
+  setHeight("classFeature0");
 
   //listener functions
   $(document).on("change", "#dwClass, #race, #alignment", function() {
