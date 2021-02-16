@@ -747,7 +747,7 @@ $(document).ready(function() {
   }
 
   function saveCharacter() {
-    var dbVer = parseInt(loadCharVer(), 10);
+    var dbVer = loadCharVer();
     var version = parseInt($("#charVer").val(), 10);
     if (!version && version != 0) {
       //No version in sheet so assume new character
