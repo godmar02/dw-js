@@ -615,7 +615,7 @@ $(document).ready(function() {
       }).catch((error) => {
         if (debug == true) {
           alert("Failed to load character correctly, see console error");
-          console.error("Error getting document:", error);
+          console.error("loadCharVer() - Error getting document:", error);
         }
       });
     } else {
@@ -977,14 +977,14 @@ $(document).ready(function() {
               alert("Character Sheet succesfully saved!");
             })
             .catch((error) => {
-              console.error("Error writing document:", error);
+              console.error("saveCharacter() - Error writing document:", error);
               alert("Failed to save Character Sheet, see console error");
             });
         } else {
           alert("Cannot save if total Item Weight or total Ability Score are invalid");
           if (debug == true) {
-            console.warn("abilityErrors", abilityErrors);
-            console.warn("loadErrors", loadErrors);
+            console.warn("saveCharacter() - abilityErrors", abilityErrors);
+            console.warn("saveCharacter() - loadErrors", loadErrors);
           }
         }
       } else {
