@@ -597,6 +597,7 @@ $(document).ready(function() {
       }
       db.collection("characters").doc(characterSheet).get().then((doc) => {
         if (doc.exists) {
+          console.log("HERE");
           var loadedData = doc.data();
           var chara = loadedData.characterSheet;
           dbVer = chara.version;
@@ -605,6 +606,7 @@ $(document).ready(function() {
           }
           return dbVer;
         } else {
+          console.log("HERE2");
           // doc.data() will be undefined in this case
           // new character
           if (debug == true) {
