@@ -589,8 +589,7 @@ $(document).ready(function() {
     var charaName = $("#charaName").val();
 
     if (player && adventure && charaName) {
-      var characterSheet = player + adventure + charaName;
-      characterSheet = characterSheet.replace(/\W/g, "");
+      var characterSheet = (player + adventure + charaName).replace(/\W/g, "");
       if (debug == true) {
         console.info("loadCharacter() - characterSheet:", characterSheet);
       }
@@ -713,8 +712,7 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var characterSheet = player + adventure + charaName;
-    characterSheet = characterSheet.replace(/\W/g, "");
+    var characterSheet = (player + adventure + charaName).replace(/\W/g, "");
     var owner = userEmail;
     var version = parseInt($("#charVer").val(), 10);
     if (!version && version != 0) {
@@ -725,7 +723,6 @@ $(document).ready(function() {
       console.info("saveCharacter() - dbVer:", dbVer);
       console.info("saveCharacter() - version:", version);
     }
-
 
     if (player && adventure && charaName) {
 
