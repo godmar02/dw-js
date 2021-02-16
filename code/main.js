@@ -604,13 +604,11 @@ $(document).ready(function() {
           return chara.version;
         } else {
           // doc.data() will be undefined in this case
+          // new character
           if (debug == true) {
-            // new character
-            if (debug == true) {
-              console.info("loadCharVer() - Character does not exist in db");
-            }
-            return 0;
+            console.info("loadCharVer() - Character does not exist in db");
           }
+          return 0;
         }
       }).catch((error) => {
         if (debug == true) {
