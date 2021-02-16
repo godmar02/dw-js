@@ -307,58 +307,82 @@ $(document).ready(function() {
   }
 
   function setPlayerOptions() {
-    $.getJSON("/data/playerList.json", function(data) {
-      $("#player").empty();
-      $("#player").append("<option hidden disabled selected value='null'></option>");
-      players = data.players;
-      if (debug == true) {
-        console.info("setPlayerOptions() - players:", players);
+    $.ajax({
+      url: "/data/playerList.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        $("#player").empty();
+        $("#player").append("<option hidden disabled selected value='null'></option>");
+        players = data.players;
+        if (debug == true) {
+          console.info("setPlayerOptions() - players:", players);
+        }
+        $.each(players, function(index, value) {
+          $("#player").append(new Option(value, value));
+        });
       }
-      $.each(players, function(index, value) {
-        $("#player").append(new Option(value, value));
-      });
     });
   }
 
   function setAdventureOptions() {
-    $.getJSON("/data/adventureList.json", function(data) {
-      $("#adventure").empty();
-      $("#adventure").append("<option hidden disabled selected value='null'></option>");
-      adventures = data.adventures;
-      if (debug == true) {
-        console.info("setAdventureOptions() - adventures:", adventures);
+    $.ajax({
+      url: "/data/adventureList.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        $("#adventure").empty();
+        $("#adventure").append("<option hidden disabled selected value='null'></option>");
+        adventures = data.adventures;
+        if (debug == true) {
+          console.info("setAdventureOptions() - adventures:", adventures);
+        }
+        $.each(adventures, function(index, value) {
+          $("#adventure").append(new Option(value, value));
+        });
       }
-      $.each(adventures, function(index, value) {
-        $("#adventure").append(new Option(value, value));
-      });
     });
   }
 
   function setDwClassOptions() {
-    $.getJSON("/data/classList.json", function(data) {
-      $("#dwClass").empty();
-      $("#dwClass").append("<option hidden disabled selected value='null'></option>");
-      classes = data.classes;
-      if (debug == true) {
-        console.info("setDwClassOptions() - classes:", classes);
+    $.ajax({
+      url: "/data/classList.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        $("#dwClass").empty();
+        $("#dwClass").append("<option hidden disabled selected value='null'></option>");
+        classes = data.classes;
+        if (debug == true) {
+          console.info("setDwClassOptions() - classes:", classes);
+        }
+        $.each(classes, function(index, value) {
+          $("#dwClass").append(new Option(value, value));
+        });
       }
-      $.each(classes, function(index, value) {
-        $("#dwClass").append(new Option(value, value));
-      });
     });
   }
 
   function setRaceOptions() {
-    $.getJSON("/data/raceList.json", function(data) {
-      $("#race").empty();
-      $("#race").append("<option hidden disabled selected value='null'></option>");
-      races = data.races;
-      if (debug == true) {
-        console.info("setRaceOptions() - races:", races);
+    $.ajax({
+      url: "/data/raceList.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        $("#race").empty();
+        $("#race").append("<option hidden disabled selected value='null'></option>");
+        races = data.races;
+        if (debug == true) {
+          console.info("setRaceOptions() - races:", races);
+        }
+        $.each(races, function(index, value) {
+          $("#race").append(new Option(value, value));
+        });
       }
-      $.each(races, function(index, value) {
-        $("#race").append(new Option(value, value));
-      });
     });
   }
 
@@ -433,23 +457,29 @@ $(document).ready(function() {
     var baseLoad = 0;
     var maxLoad = 0;
 
-    $.getJSON("/data/classDetails.json", function(data) {
-      //Set maxLoad
-      if (dwClass && strModifier) {
-        baseLoad = parseInt(data[dwClass].baseLoad, 10);
-        maxLoad = baseLoad + strModifier;
+    $.ajax({
+      url: "/data/classDetails.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        //Set maxLoad
+        if (dwClass && strModifier) {
+          baseLoad = parseInt(data[dwClass].baseLoad, 10);
+          maxLoad = baseLoad + strModifier;
 
-        if (debug == true) {
-          console.info("setMaxLoad() - dwClass:", dwClass);
-          console.info("setMaxLoad() - strModifier:", strModifier);
-          console.info("setMaxLoad() - baseLoad:", baseLoad);
-          console.info("setMaxLoad() - maxLoad:", maxLoad);
+          if (debug == true) {
+            console.info("setMaxLoad() - dwClass:", dwClass);
+            console.info("setMaxLoad() - strModifier:", strModifier);
+            console.info("setMaxLoad() - baseLoad:", baseLoad);
+            console.info("setMaxLoad() - maxLoad:", maxLoad);
+          }
+
+          $("#maxLoad").val("/ " + maxLoad);
+          validateLoad();
+        } else {
+          $("#maxLoad").val("");
         }
-
-        $("#maxLoad").val("/ " + maxLoad);
-        validateLoad();
-      } else {
-        $("#maxLoad").val("");
       }
     });
   }
@@ -461,20 +491,26 @@ $(document).ready(function() {
     var baseHp = 0;
     var maxHp = 0;
 
-    $.getJSON("/data/classDetails.json", function(data) {
-      if (dwClass && con) {
-        baseHp = parseInt(data[dwClass].baseHp, 10);
-        if (debug == true) {
-          console.info("setMaxHp() - baseHp:", baseHp);
+    $.ajax({
+      url: "/data/classDetails.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        if (dwClass && con) {
+          baseHp = parseInt(data[dwClass].baseHp, 10);
+          if (debug == true) {
+            console.info("setMaxHp() - baseHp:", baseHp);
+          }
+          maxHp = baseHp + con;
+          if (debug == true) {
+            console.info("setMaxHp() - maxHp:", maxHp);
+          }
+          $("#maxHp").val("/ " + maxHp);
+          validateXp();
+        } else {
+          $("#maxHp").val("");
         }
-        maxHp = baseHp + con;
-        if (debug == true) {
-          console.info("setMaxHp() - maxHp:", maxHp);
-        }
-        $("#maxHp").val("/ " + maxHp);
-        validateXp();
-      } else {
-        $("#maxHp").val("");
       }
     });
   }
@@ -496,16 +532,21 @@ $(document).ready(function() {
     var race = $("#race").val();
     var raceAttribute = "";
 
-    $.getJSON("/data/classDetails.json", function(data) {
-      if (dwClass && race) {
-        raceAttribute = data[dwClass].raceAttributes[race];
-        $("#raceAttribute").val(raceAttribute);
+    $.ajax({
+      url: "/data/classDetails.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        if (dwClass && race) {
+          raceAttribute = data[dwClass].raceAttributes[race];
+          $("#raceAttribute").val(raceAttribute);
+        } else {
+          $("#raceAttribute").val("");
+        }
         setHeight("raceAttribute");
-      } else {
-        $("#raceAttribute").val("");
       }
     });
-    setHeight("raceAttribute");
   }
 
   function setDamage() {
@@ -513,32 +554,44 @@ $(document).ready(function() {
     var dwClass = $("#dwClass").val();
     var damage = "";
 
-    $.getJSON("/data/classDetails.json", function(data) {
-      if (dwClass) {
-        damage = data[dwClass].damage;
-        if (debug == true) {
-          console.info("setDamage() - damage:", damage);
+    $.ajax({
+      url: "/data/classDetails.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        if (dwClass) {
+          damage = data[dwClass].damage;
+          if (debug == true) {
+            console.info("setDamage() - damage:", damage);
+          }
+          $("#damage").val(damage);
+        } else {
+          $("#damage").val("");
         }
-        $("#damage").val(damage);
-      } else {
-        $("#damage").val("");
       }
     });
   }
 
   function setAlignmentOptions() {
-    $.getJSON("/data/classDetails.json", function(data) {
-      $("#alignment").empty();
-      $("#alignment").append("<option hidden disabled selected value='null'></option>");
-      var dwClass = $("#dwClass").val();
-      if (dwClass) {
-        alignments = data[dwClass].alignments;
-        if (debug == true) {
-          console.info("setAlignmentOptions() - alignments:", alignments);
+    $.ajax({
+      url: "/data/classDetails.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        $("#alignment").empty();
+        $("#alignment").append("<option hidden disabled selected value='null'></option>");
+        var dwClass = $("#dwClass").val();
+        if (dwClass) {
+          alignments = data[dwClass].alignments;
+          if (debug == true) {
+            console.info("setAlignmentOptions() - alignments:", alignments);
+          }
+          $.each(alignments, function(index, value) {
+            $("#alignment").append(new Option(value, value));
+          });
         }
-        $.each(alignments, function(index, value) {
-          $("#alignment").append(new Option(value, value));
-        });
       }
     });
   }
@@ -549,17 +602,22 @@ $(document).ready(function() {
     var alignmentAttribute = "";
     var alignment = $("#alignment").val();
 
-    $.getJSON("/data/classDetails.json", function(data) {
-      alignment = $("#alignment").val();
-      if (dwClass && alignment) {
-        alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
-        $("#alignmentAttribute").val(alignmentAttribute);
-      } else {
-        $("#alignmentAttribute").val("");
+    $.ajax({
+      url: "/data/classDetails.json",
+      dataType: 'json',
+      async: false,
+      data: myData,
+      success: function(data) {
+        alignment = $("#alignment").val();
+        if (dwClass && alignment) {
+          alignmentAttribute = data[dwClass].alignmentAttributes[alignment];
+          $("#alignmentAttribute").val(alignmentAttribute);
+        } else {
+          $("#alignmentAttribute").val("");
+        }
+        setHeight("alignmentAttribute");
       }
-
     });
-    setHeight("alignmentAttribute");
   }
 
   function setOptions() {
@@ -609,22 +667,8 @@ $(document).ready(function() {
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
           setRaceAttribute();
-          //embedded set alignment code as timing was an issue
-          $.getJSON("/data/classDetails.json", function(data) {
-            $("#alignment").empty();
-            $("#alignment").append("<option hidden disabled selected value='null'></option>");
-            var dwClass = $("#dwClass").val();
-            alignments = data[dwClass].alignments;
-            if (debug == true) {
-              console.info("setAlignmentOptions() - alignments:", alignments);
-            }
-            $.each(alignments, function(index, value) {
-                $("#alignment").append(new Option(value, value));
-              }
-            );
-            $("#alignment").val("Chaotic");
-            setAlignmentAttribute();
-          });
+          setAlignmentOptions();
+          setAlignmentAttribute();
           $("#level").val(chara.level);
           $("#xp").val(chara.xp);
           $("#str").val(chara.abilities.str);
@@ -986,6 +1030,9 @@ $(document).ready(function() {
 
   // Set various drop down options and size cells
   setOptions();
+  setHeight(bond0);
+  setHeight(item0);
+  setHeight(classFeature0);
 
   //listener functions
   $(document).on("change", "#dwClass, #race, #alignment", function() {
