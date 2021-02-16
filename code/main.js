@@ -587,7 +587,7 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var dbVer = 0 ;
+    var dbVer = 0;
 
     if (player && adventure && charaName) {
       var characterSheet = player + adventure + charaName;
@@ -744,12 +744,16 @@ $(document).ready(function() {
         }
       });
     } else {
-      alert("Cannot load unless Player, Adventure and Character are completed");
+      alert("Cannot load because Player, Adventure and Character are not populated");
     }
   }
 
   function saveCharacter() {
     var dbVer = loadCharVer();
+    var player = $("#player").val();
+    var adventure = $("#adventure").val();
+    var charaName = $("#charaName").val();
+    var owner = userEmail;
     var version = parseInt($("#charVer").val(), 10);
     if (!version && version != 0) {
       //No version in sheet so assume new character
@@ -761,237 +765,232 @@ $(document).ready(function() {
     }
 
     //check that the version being saved matches that in database
-    if (version == dbVer) {
-      version = version++;
-      var player = $("#player").val();
-      var adventure = $("#adventure").val();
-      var charaName = $("#charaName").val();
-      var owner = userEmail;
-      if (player && adventure && charaName && owner) {
-        var characterSheet = player + adventure + charaName;
-        characterSheet = characterSheet.replace(/\W/g, "");
-        if (debug == true) {
-          console.info("saveCharacter() - characterSheet:", characterSheet);
-        }
-        if (debug == true) {
-          console.info("saveCharacter() - abilityErrors:", abilityErrors);
-          console.info("saveCharacter() - loadErrors:", loadErrors);
-        }
-        if (!abilityErrors && !loadErrors) {
-          var backstory = $("#backstory").val();
-          if (!backstory) {
-            backstory = null;
-          }
-          var look = $("#look").val();
-          if (!look) {
-            look = null;
-          }
-          var dwClass = $("#dwClass").val();
-          if (!dwClass) {
-            dwClass = null;
-          }
-          var race = $("#race").val();
-          if (!race) {
-            race = null;
-          }
-          var alignment = $("#alignment").val();
-          if (!alignment) {
-            alignment = null;
-          }
-          var level = parseInt($("#level").val(), 10);
-          if (!level) {
-            level = null;
-          }
-          var xp = parseInt($("#xp").val(), 10);
-          if (!xp && xp != 0) {
-            xp = null;
-          }
-          var str = parseInt($("#str").val(), 10);
-          if (!str) {
-            str = null;
-          }
-          var dex = parseInt($("#dex").val(), 10);
-          if (!dex) {
-            dex = null;
-          }
-          var con = parseInt($("#con").val(), 10);
-          if (!con) {
-            con = null;
-          }
-          var int = parseInt($("#int").val(), 10);
-          if (!int) {
-            int = null;
-          }
-          var wis = parseInt($("#wis").val(), 10);
-          if (!wis) {
-            wis = null;
-          }
-          var cha = parseInt($("#cha").val(), 10);
-          if (!cha) {
-            cha = null;
-          }
-          var strAffliction = $("#strAffliction").val();
-          if (!strAffliction) {
-            strAffliction = null;
-          }
-          var dexAffliction = $("#dexAffliction").val();
-          if (!dexAffliction) {
-            dexAffliction = null;
-          }
-          var conAffliction = $("#conAffliction").val();
-          if (!conAffliction) {
-            conAffliction = null;
-          }
-          var intAffliction = $("#intAffliction").val();
-          if (!intAffliction) {
-            intAffliction = null;
-          }
-          var wisAffliction = $("#wisAffliction").val();
-          if (!wisAffliction) {
-            wisAffliction = null;
-          }
-          var chaAffliction = $("#chaAffliction").val();
-          if (!chaAffliction) {
-            chaAffliction = null;
-          }
-          var armour = parseInt($("#armour").val(), 10);
-          if (!armour && armour != 0) {
-            armour = null;
-          }
-          var hp = parseInt($("#hp").val(), 10);
-          if (!hp) {
-            hp = null;
-          }
-          var funds = parseInt($("#funds").val(), 10);
-          if (!funds && funds != 0) {
-            funds = null;
-          }
-
-          var tableBody;
-          var bodyRows = 0;
-          var bodyRowsCount = 0;
-
-          //bondsTable
-          tableBody = $("#bondsTable tbody");
-          bodyRows = tableBody.children("tr");
-          bodyRowsCount = bodyRows.length;
-          var bonds = [];
-          for (var i = 0; i < bodyRowsCount; i++) {
-            bonds[i] = $("#bond" + i).val();
-            if (!bonds[i]) {
-              bonds[i] = null;
-            }
-          }
-
-          //gearTable
-          tableBody = $("#gearTable tbody");
-          bodyRows = tableBody.children("tr");
-          bodyRowsCount = bodyRows.length;
-          var items = [];
-          var itemsWeights = [];
-          for (var j = 0; j < bodyRowsCount; j++) {
-            items[j] = $("#item" + j).val();
-            if (!items[j]) {
-              items[j] = null;
-            }
-            itemsWeights[j] = parseInt($("#itemWeight" + j).val(), 10);
-            if (!itemsWeights[j] && itemsWeights[j] != 0) {
-              itemsWeights[j] = null;
-            }
-          }
-
-          //classFeaturesTable
-          tableBody = $("#classFeaturesTable tbody");
-          bodyRows = tableBody.children("tr");
-          bodyRowsCount = bodyRows.length;
-          var classFeatures = [];
-          var classFeaturesCheckboxes = [];
-          for (var k = 0; k < bodyRowsCount; k++) {
-            classFeatures[k] = $("#classFeature" + k).val();
-            if (!classFeatures[k]) {
-              classFeatures[k] = null;
-            }
-            classFeaturesCheckboxes[k] = $("#classFeatureCheckbox" + k).is(':checked');
-            if (!classFeaturesCheckboxes[k]) {
-              classFeaturesCheckboxes[k] = null;
-            }
-          }
-
-          // debug
-          if (debug == true) {
-            console.info("saveCharacter() - xp", xp);
-            console.info("saveCharacter() - bonds", bonds);
-            console.info("saveCharacter() - items", items);
-            console.info("saveCharacter() - itemsWeights", itemsWeights);
-            console.info("saveCharacter() - classFeatures", classFeatures);
-            console.info("saveCharacter() - classFeaturesCheckboxes", classFeaturesCheckboxes);
-          }
-
-          // SAVE FUNCTION
-          db.collection("characters").doc(characterSheet).set({
-              "characterSheet": {
-                "owner": owner,
-                "player": player,
-                "adventure": adventure,
-                "charaName": charaName,
-                "look": look,
-                "backstory": backstory,
-                "dwClass": dwClass,
-                "race": race,
-                "alignment": alignment,
-                "level": level,
-                "xp": xp,
-                "abilities": {
-                  "str": str,
-                  "strAffliction": strAffliction,
-                  "dex": dex,
-                  "dexAffliction": dexAffliction,
-                  "con": con,
-                  "conAffliction": conAffliction,
-                  "int": int,
-                  "intAffliction": intAffliction,
-                  "wis": wis,
-                  "wisAffliction": wisAffliction,
-                  "cha": cha,
-                  "chaAffliction": chaAffliction
-                },
-                "armour": armour,
-                "hp": hp,
-                "funds": funds,
-                "bonds": bonds,
-                "gear": {
-                  "items": items,
-                  "itemsWeights": itemsWeights
-                },
-                "classFeatures": {
-                  "classFeatures": classFeatures,
-                  "classFeaturesCheckboxes": classFeaturesCheckboxes
-                },
-                "version": version
-              }
-            })
-            .then(() => {
-              if (debug == true) {
-                console.info("saveCharacter() - Document written with ID:", characterSheet);
-              }
-              alert("Character Sheet succesfully saved!");
-            })
-            .catch((error) => {
-              console.error("saveCharacter() - Error writing document:", error);
-              alert("Failed to save Character Sheet, see console error");
-            });
-        } else {
-          alert("Cannot save if total Item Weight or total Ability Score are invalid");
-          if (debug == true) {
-            console.warn("saveCharacter() - abilityErrors", abilityErrors);
-            console.warn("saveCharacter() - loadErrors", loadErrors);
-          }
-        }
-      } else {
-        alert("Cannot save unless user is authenticated and Player, Adventure and Character are completed");
+    if (version != dbVer) {
+      alert("Cannot save because Character has been updated, please re-load and try again");
+    } else if (!(owner)) {
+      alert("Cannot save because user is not authenticated");
+    } else if (!(player && adventure && charaName)) {
+      alert("Cannot save because Player, Adventure and Character are not populated");
+    } else if (!abilityErrors && !loadErrors) {
+      alert("Cannot save because total Item Weight or total Ability Score are invalid");
+      if (debug == true) {
+        console.warn("saveCharacter() - abilityErrors", abilityErrors);
+        console.warn("saveCharacter() - loadErrors", loadErrors);
       }
     } else {
-      alert("Cannot save because Character has been updated, please re-load and try again");
+      version = version++;
+
+      var characterSheet = player + adventure + charaName;
+      characterSheet = characterSheet.replace(/\W/g, "");
+      if (debug == true) {
+        console.info("saveCharacter() - characterSheet:", characterSheet);
+      }
+      if (debug == true) {
+        console.info("saveCharacter() - abilityErrors:", abilityErrors);
+        console.info("saveCharacter() - loadErrors:", loadErrors);
+      }
+      var backstory = $("#backstory").val();
+      if (!backstory) {
+        backstory = null;
+      }
+      var look = $("#look").val();
+      if (!look) {
+        look = null;
+      }
+      var dwClass = $("#dwClass").val();
+      if (!dwClass) {
+        dwClass = null;
+      }
+      var race = $("#race").val();
+      if (!race) {
+        race = null;
+      }
+      var alignment = $("#alignment").val();
+      if (!alignment) {
+        alignment = null;
+      }
+      var level = parseInt($("#level").val(), 10);
+      if (!level) {
+        level = null;
+      }
+      var xp = parseInt($("#xp").val(), 10);
+      if (!xp && xp != 0) {
+        xp = null;
+      }
+      var str = parseInt($("#str").val(), 10);
+      if (!str) {
+        str = null;
+      }
+      var dex = parseInt($("#dex").val(), 10);
+      if (!dex) {
+        dex = null;
+      }
+      var con = parseInt($("#con").val(), 10);
+      if (!con) {
+        con = null;
+      }
+      var int = parseInt($("#int").val(), 10);
+      if (!int) {
+        int = null;
+      }
+      var wis = parseInt($("#wis").val(), 10);
+      if (!wis) {
+        wis = null;
+      }
+      var cha = parseInt($("#cha").val(), 10);
+      if (!cha) {
+        cha = null;
+      }
+      var strAffliction = $("#strAffliction").val();
+      if (!strAffliction) {
+        strAffliction = null;
+      }
+      var dexAffliction = $("#dexAffliction").val();
+      if (!dexAffliction) {
+        dexAffliction = null;
+      }
+      var conAffliction = $("#conAffliction").val();
+      if (!conAffliction) {
+        conAffliction = null;
+      }
+      var intAffliction = $("#intAffliction").val();
+      if (!intAffliction) {
+        intAffliction = null;
+      }
+      var wisAffliction = $("#wisAffliction").val();
+      if (!wisAffliction) {
+        wisAffliction = null;
+      }
+      var chaAffliction = $("#chaAffliction").val();
+      if (!chaAffliction) {
+        chaAffliction = null;
+      }
+      var armour = parseInt($("#armour").val(), 10);
+      if (!armour && armour != 0) {
+        armour = null;
+      }
+      var hp = parseInt($("#hp").val(), 10);
+      if (!hp) {
+        hp = null;
+      }
+      var funds = parseInt($("#funds").val(), 10);
+      if (!funds && funds != 0) {
+        funds = null;
+      }
+
+      var tableBody;
+      var bodyRows = 0;
+      var bodyRowsCount = 0;
+
+      //bondsTable
+      tableBody = $("#bondsTable tbody");
+      bodyRows = tableBody.children("tr");
+      bodyRowsCount = bodyRows.length;
+      var bonds = [];
+      for (var i = 0; i < bodyRowsCount; i++) {
+        bonds[i] = $("#bond" + i).val();
+        if (!bonds[i]) {
+          bonds[i] = null;
+        }
+      }
+
+      //gearTable
+      tableBody = $("#gearTable tbody");
+      bodyRows = tableBody.children("tr");
+      bodyRowsCount = bodyRows.length;
+      var items = [];
+      var itemsWeights = [];
+      for (var j = 0; j < bodyRowsCount; j++) {
+        items[j] = $("#item" + j).val();
+        if (!items[j]) {
+          items[j] = null;
+        }
+        itemsWeights[j] = parseInt($("#itemWeight" + j).val(), 10);
+        if (!itemsWeights[j] && itemsWeights[j] != 0) {
+          itemsWeights[j] = null;
+        }
+      }
+
+      //classFeaturesTable
+      tableBody = $("#classFeaturesTable tbody");
+      bodyRows = tableBody.children("tr");
+      bodyRowsCount = bodyRows.length;
+      var classFeatures = [];
+      var classFeaturesCheckboxes = [];
+      for (var k = 0; k < bodyRowsCount; k++) {
+        classFeatures[k] = $("#classFeature" + k).val();
+        if (!classFeatures[k]) {
+          classFeatures[k] = null;
+        }
+        classFeaturesCheckboxes[k] = $("#classFeatureCheckbox" + k).is(':checked');
+        if (!classFeaturesCheckboxes[k]) {
+          classFeaturesCheckboxes[k] = null;
+        }
+      }
+
+      // debug
+      if (debug == true) {
+        console.info("saveCharacter() - xp", xp);
+        console.info("saveCharacter() - bonds", bonds);
+        console.info("saveCharacter() - items", items);
+        console.info("saveCharacter() - itemsWeights", itemsWeights);
+        console.info("saveCharacter() - classFeatures", classFeatures);
+        console.info("saveCharacter() - classFeaturesCheckboxes", classFeaturesCheckboxes);
+      }
+
+      // SAVE FUNCTION
+      db.collection("characters").doc(characterSheet).set({
+          "characterSheet": {
+            "owner": owner,
+            "player": player,
+            "adventure": adventure,
+            "charaName": charaName,
+            "look": look,
+            "backstory": backstory,
+            "dwClass": dwClass,
+            "race": race,
+            "alignment": alignment,
+            "level": level,
+            "xp": xp,
+            "abilities": {
+              "str": str,
+              "strAffliction": strAffliction,
+              "dex": dex,
+              "dexAffliction": dexAffliction,
+              "con": con,
+              "conAffliction": conAffliction,
+              "int": int,
+              "intAffliction": intAffliction,
+              "wis": wis,
+              "wisAffliction": wisAffliction,
+              "cha": cha,
+              "chaAffliction": chaAffliction
+            },
+            "armour": armour,
+            "hp": hp,
+            "funds": funds,
+            "bonds": bonds,
+            "gear": {
+              "items": items,
+              "itemsWeights": itemsWeights
+            },
+            "classFeatures": {
+              "classFeatures": classFeatures,
+              "classFeaturesCheckboxes": classFeaturesCheckboxes
+            },
+            "version": version
+          }
+        })
+        .then(() => {
+          if (debug == true) {
+            console.info("saveCharacter() - Document written with ID:", characterSheet);
+          }
+          alert("Character Sheet succesfully saved!");
+        })
+        .catch((error) => {
+          console.error("saveCharacter() - Error writing document:", error);
+          alert("Failed to save Character Sheet, see console error");
+        });
     }
   }
 
