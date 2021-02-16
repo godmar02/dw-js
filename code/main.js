@@ -583,48 +583,6 @@ $(document).ready(function() {
     }
   }
 
-  function loadCharVer() {
-    var player = $("#player").val();
-    var adventure = $("#adventure").val();
-    var charaName = $("#charaName").val();
-    var dbVer = 0;
-
-    if (player && adventure && charaName) {
-      var characterSheet = player + adventure + charaName;
-      characterSheet = characterSheet.replace(/\W/g, "");
-      if (debug == true) {
-        console.info("loadCharVer() - characterSheet:", characterSheet);
-      }
-      db.collection("characters").doc(characterSheet).get().then((doc) => {
-        if (doc.exists) {
-          console.log("HERE");
-          var loadedData = doc.data();
-          var chara = loadedData.characterSheet;
-          dbVer = chara.version;
-          if (debug == true) {
-            console.info("loadCharVer() - dbVer:", dbVer);
-          }
-          return dbVer;
-        } else {
-          console.log("HERE2");
-          // doc.data() will be undefined in this case
-          // new character
-          if (debug == true) {
-            console.info("loadCharVer() - Character does not exist in db- dbVer", dbVer);
-          }
-          return dbVer;
-        }
-      }).catch((error) => {
-        if (debug == true) {
-          alert("loadCharVer() - Failed to load character version data correctly, see console error");
-          console.error("loadCharVer() - Error getting document:", error);
-        }
-      });
-    } else {
-      alert("loadCharVer() - Cannot load database Character Sheet version because Player, Adventure and Character are not populated");
-    }
-  }
-
   function loadCharacter() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
@@ -751,7 +709,7 @@ $(document).ready(function() {
   }
 
   function saveCharacter() {
-    var dbVer = loadCharVer();
+    var dbVer = 0;
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
@@ -766,22 +724,50 @@ $(document).ready(function() {
       console.info("saveCharacter() - version:", version);
     }
 
+    //Load the current character version
+    if (player && adventure && charaName) {
+      var characterSheet = player + adventure + charaName;
+      characterSheet = characterSheet.replace(/\W/g, "");
+      if (debug == true) {
+        console.info("saveCharacter() - characterSheet:", characterSheet);
+      }
+      db.collection("characters").doc(characterSheet).get().then((doc) => {
+        if (doc.exists) {
+          var loadedData = doc.data();
+          var chara = loadedData.characterSheet;
+          dbVer = chara.version;
+          if (debug == true) {
+            console.info("saveCharacter() - dbVer:", dbVer);
+          }
+        } else {
+          // doc.data() will be undefined in this case
+          // new character
+          if (debug == true) {
+            console.info("saveCharacter() - Character does not exist in db- dbVer", dbVer);
+          }
+        }
+      }).catch((error) => {
+        if (debug == true) {
+          alert("saveCharacter() - Failed to load character version data correctly, see console error");
+          console.error("saveCharacter() -  Error getting document:", error);
+        }
+      });
+    } else {
+      alert("saveCharacter() - Cannot save because Player, Adventure and Character are not populated");
+    }
+
     if (!(dbVer)) {
       alert("saveCharacter() - Cannot save because dbVer cannot be retrieved");
     } else if (version != dbVer) {
       alert("saveCharacter() - Cannot save because Character has been updated, please re-load and try again");
     } else if (!(owner)) {
       alert("saveCharacter() - Cannot save because user is not authenticated");
-    } else if (!(player && adventure && charaName)) {
-      alert("saveCharacter() - Cannot save because Player, Adventure and Character are not populated");
     } else if (abilityErrors) {
       alert("saveCharacter() - Cannot save because the total Ability Score is invalid");
     } else if (loadErrors) {
       alert("saveCharacter() - Cannot save because total Item Weight exceeds maximum load");
     } else {
       version = version++;
-      var characterSheet = player + adventure + charaName;
-      characterSheet = characterSheet.replace(/\W/g, "");
       if (debug == true) {
         console.info("saveCharacter() - characterSheet:", characterSheet);
       }
