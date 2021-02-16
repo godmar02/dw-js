@@ -609,6 +609,7 @@ $(document).ready(function() {
           $("#dwClass").val(chara.dwClass);
           $("#race").val(chara.race);
           setRaceAttribute();
+          //embedded set alignment code as timing was an issue
           $.getJSON("/data/classDetails.json", function(data) {
             $("#alignment").empty();
             $("#alignment").append("<option hidden disabled selected value='null'></option>");
@@ -621,7 +622,6 @@ $(document).ready(function() {
                 $("#alignment").append(new Option(value, value));
               }
             );
-            // BROKEN WILL NOT SET OPTION
             $("#alignment").val("Chaotic");
             setAlignmentAttribute();
           });
@@ -747,8 +747,7 @@ $(document).ready(function() {
             console.info("saveCharacter() - dbVer:", dbVer);
           }
         } else {
-          // doc.data() will be undefined in this case
-          // new character
+          // doc.data() will be undefined in this case so it is a new character
           if (debug == true) {
             console.info("saveCharacter() - Character does not exist in db - dbVer", dbVer);
           }
@@ -765,7 +764,7 @@ $(document).ready(function() {
         } else if (loadErrors) {
           alert("saveCharacter() - Cannot save because total Item Weight exceeds maximum load");
         } else {
-          version = version++;
+          version = version + 1;
           if (debug == true) {
             console.info("saveCharacter() - newVersion -", version);
           }
@@ -982,8 +981,6 @@ $(document).ready(function() {
     } else {
       alert("saveCharacter() - Cannot save because Player, Adventure and Character are not populated");
     }
-
-
   }
 
   // Set various drop down options and size cells
