@@ -713,6 +713,8 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
+    var characterSheet = player + adventure + charaName;
+    characterSheet = characterSheet.replace(/\W/g, "");
     var owner = userEmail;
     var version = parseInt($("#charVer").val(), 10);
     if (!version && version != 0) {
@@ -726,8 +728,7 @@ $(document).ready(function() {
 
     //Load the current character version
     if (player && adventure && charaName) {
-      var characterSheet = player + adventure + charaName;
-      characterSheet = characterSheet.replace(/\W/g, "");
+
       if (debug == true) {
         console.info("saveCharacter() - characterSheet:", characterSheet);
       }
