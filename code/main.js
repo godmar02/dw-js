@@ -765,7 +765,9 @@ $(document).ready(function() {
     }
 
     //check that the version being saved matches that in database
-    if (version != dbVer) {
+    if (dbVer) {
+      alert("saveCharacter() - Cannot save because dbVer cannot be retrieved");
+    } else if (version != dbVer) {
       alert("saveCharacter() - Cannot save because Character has been updated, please re-load and try again");
     } else if (!(owner)) {
       alert("saveCharacter() - Cannot save because user is not authenticated");
