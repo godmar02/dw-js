@@ -1,13 +1,12 @@
 # TO DO
-- allow admins to edit anything without saving over owner
 - extensive testing
-- character drop down / add new character functionality
-- inline auth in page
 - moves tab
 - campaign notes tab
-- checkbox size for firefox
-- formatting (inc sizing for default rows)
+- character drop down / add new character functionality
+- allow admins to edit anything without saving over owner
+- inline auth in page
+- formatting
 - dice roller
 - default items
 - default bonds
-- clever things with armour or items?
+- clever things with armour or items as I have the data?
