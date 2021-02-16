@@ -587,12 +587,11 @@ $(document).ready(function() {
     var player = $("#player").val();
     var adventure = $("#adventure").val();
     var charaName = $("#charaName").val();
-    var dbver = 0 ;
+    var dbVer = 0 ;
 
     if (player && adventure && charaName) {
       var characterSheet = player + adventure + charaName;
       characterSheet = characterSheet.replace(/\W/g, "");
-
       if (debug == true) {
         console.info("loadCharVer() - characterSheet:", characterSheet);
       }
@@ -600,18 +599,18 @@ $(document).ready(function() {
         if (doc.exists) {
           var loadedData = doc.data();
           var chara = loadedData.characterSheet;
-          dbver = chara.version;
+          dbVer = chara.version;
           if (debug == true) {
-            console.info("loadCharVer() - dbver:", dbver);
+            console.info("loadCharVer() - dbVer:", dbVer);
           }
-          return dbver;
+          return dbVer;
         } else {
           // doc.data() will be undefined in this case
           // new character
           if (debug == true) {
-            console.info("loadCharVer() - Character does not exist in db");
+            console.info("loadCharVer() - Character does not exist in db- dbVer", dbVer);
           }
-          return dbver;
+          return dbVer;
         }
       }).catch((error) => {
         if (debug == true) {
